@@ -1,0 +1,891 @@
+2007-05-26  Jari Aalto  <jari aalto A T cante net>
+
+	* t2html.pl (UrlInclude): Added new option $mode.x
+	(DoLine): Added new feature#INCLUDE-raw: to embed content
+	as is.
+
+2007-05-25  Jari Aalto  <jari aalto A T cante net>
+
+	* t2html.pl (MakeHeadingName): Increased word grab from 5 to 8
+
+2007-05-24  Jari Aalto  <jari aalto A T cante net>
+
+	* t2html.pl (XlatTag2html): Added few french and spanish
+	symbols.
+
+2007-05-23  Jari Aalto  <jari aalto A T cante net>
+
+	* t2html.pl (UrlInclude): Added calls to process the
+	included file: #URL substitution etc.
+	(XlatUrlInline): Added 'm'ultiline modifier.
+
+2007-03-09  Jari Aalto  <jari aalto A T cante net>
+
+	* t2html.pl (XlatTag2html): Added raquo, laquo
+
+2007-03-01  Jari Aalto  <jari aalto A T cante net>
+
+	* t2html.pl
+	-- changed some HERE documents to use qq() to that
+	   Emacs cperl-mode fontifies the code correctly.
+	(DoLine): Fixed long standing bug where first paragraph
+	after heading was not surrounded by the usual
+	<p class="column8">.
+	(ReadLinksBasic): Improved regexp to match link's
+	last character better.
+	(DOC::HELP): Mention that XHTML strict cannot be achived,
+	because program was never designed for that.
+	(TestPage): Improved error handling.
+	(TestStyle): New.
+	(WriteFile): Accept ARRAY or SCALAR(string).
+	(TestPage): Added 4th test to demontrate external style file.
+	Removed unnecessary exmaples.
+
+2007-02-27  Jari Aalto  <jari aalto A T cante net>
+
+	* t2html.pl
+	(top level): added 'use locale'.
+	(MakeHeadingName): More words: from 5 to 8.
+	Also delete punctuation. Handle Latin-1 conversions
+	better.
+	(IsHeading): Use [:upper:] instead of [A-Z]
+	(XlatDirectives): Fixed empty #t2html-comment and number "1"
+	error in output.
+
+2007-02-21  Jari Aalto  <jari aalto A T cante net>
+
+	* t2html.pl (XlatUrl): If A HEREF was already handled then do
+	nothing. This fixes bug where XlatUrlInline() already
+	converted the URL.
+
+2006-12-05  Jari Aalto  <jaalto A T gamma tpu fi>
+
+	* t2html.pl (XlatWordMarkup): Corrected superscripting
+	in 'words[like this]'.
+
+2006-10-27  Jari Aalto  <jari dot aalto A T cante dot net>
+
+        * t2html.pl (HtmlTable): EOF => "EOF". Update to new perl style.
+        (HtmlFixes): Add necessary double quotes for tags like:
+        <td class="type"> (was: <td class=type>) and
+        <table class="dashed"> (was: <table class=dashed>).
+
+2006-10-26  Jari Aalto  <jari dot aalto A T cante dot net>
+
+        * t2html.pl 1.178: All the <blockquote> elements were removed.
+        It is better to use CSS for marginal settings.
+
+        * t2html.pl (MakeToc): Moved <div class=toc> the the beginning
+        of '<h1>Table of contents</h1>'
+        (MakeToc): Move last </div> to the correct location.
+
+2006-10-25  Jari Aalto  <jari dot aalto A T cante dot net>
+
+        * t2html.pl (DoLine): Added input arg $file. Use it to
+        contruct path name for relative #INCLUDE directive.
+        (Doline::#include): Parse current $file and derive
+        $dir to use for include.
+        (HandleOneFile): Send $file argument to DoLine().
+        (UrlInclude): Converted into HASH args. Added input arg
+        $dir.
+
+2006-04-20  Jari Aalto  <jari dot aalto A T cante dot net>
+
+        * t2html.pl (HELP::OPTIONS): --css-font-type example
+        fixed. Added single quotes.
+
+2006-02-25 Sat  Jari Aalto  <jari dot aalto A T cante dot net>
+
+        * t2html.pl (sub MakeToc): 1.171 Added div around the TOC.
+
+2006-02-23 Thu  Jari Aalto  <jari dot aalto A T cante dot net>
+
+        * t2html.pl (sub CssData): 1.171 Added 2em margin to blockquote.
+        Added margin to PRE-tags.
+
+2006-02-15  Jari Aalto  <jari dot aalto A T cante dot net>
+
+        * t2html.pl (HandleCommandLineArgs): Added missing backslash
+        reference-indicator to `$deleteDefault'.
+
+2006-02-03 Fri  Jari Aalto  <jari dot aalto A T cante dot net>
+
+        * t2html.pl (sub HandleCommandLineArgs): 1.168 Added support to
+        include multiple stylesheets by repeating --css-file option.
+        (sub MakeMetaTags): 1.168 Added \n at the end of
+        http-equiv="Content-Type" output.
+        (sub HtmlFixes): 1.168 There wa missing <p> after each paragraph,
+        Added fix for it.
+        (sub CssData): 1.168 Added CSS for 'table' element:
+        border: none;
+        width: 100%;
+        cellpadding: 10px;
+        cellspacing: 0px;
+        (sub HtmlTable): 1.168 Removed settings of table attributes like
+        cellpadding. Now controlled by stylesheet.
+        (sub HtmlFixes): 1.168 updated regexp, whic searched <table ...>
+        and attributes 'cellpadding' etc. which are now gone.
+        (sub DoLine): 1.168 The small !! marker that drew <hr> tag is
+        now defined in CSS with 'class=special'.
+
+2006-01-25  Jari Aalto  <jari dot aalto A T cante dot net>
+
+        * t2html.pl (HtmlFixes): Fix double closing
+        </PRE></PRE> which was incorrect according to
+        http://validator.w3.org/
+        (MakeMetaTags): Use qq() instead of HERE document for
+        $charset.
+        (MakeToc): Added closing </ul> to the Table of Contents.
+        Now HTML 4.01 valid.
+
+2005-05-29  Jari Aalto  <jari dot aalto A T cante dot net>
+
+        * t2html.pl (HELP::Embedding pictures): Corrected
+        'length=' to 'height=' for correct HTML picture
+        attribute.
+
+2005-02-16  Jari Aalto  <jari dot aalto A T cante dot net>
+
+        Updated Copyright year in all files.
+
+2005-01-26 Wed  Jari  <jari dot aalto A T cante dot net>
+
+        * t2html.pl (CssData CSS:p.column6): Added Unix
+        font 'New Century Schoolbook'
+        (CssData CSS:shade-note-attrib): Added Unix
+        font 'New Century Schoolbook'
+
+2005-02-08  Jari Aalto  <jari dot aalto A T cante dt net>
+
+        * t2html.pl (CssData): Added new styles `color-blue-light',
+        `color-blue-medium'.
+
+2005-02-06  Jari Aalto  <jari dot aalto A T cante dt net>
+
+        * t2html.pl (PrintEnd): Changed lincence to Creative Commons.
+
+2004-12-13 Mon  Jari Aalto  <jari dot aalto A T cante dt net>
+
+        * t2html.pl (sub WriteFile): 1.161 Added binmode.
+        (LinkCache): Removed 'local *FILE', and used more modern 'open my
+        $FILE'Added binmode.
+
+2004-11-30 Tue  Jari Aalto  <jari dot aalto A T cante dt net>
+
+        * t2html.pl (sub MakeUrlPicture): 1.153 Picture text did not
+        contans spaces before the actual text. Like
+        'Pic 1.Text follows' => 'Pic 1. Text follows'.
+
+2004-11-27 Sat  Jari Aalto  <jari dot aalto A T cante dt net>
+
+        * t2html.pl (XlatHtml2tag): Added 1/2-sign, law-sign,
+        pound-sign.
+        (XlatTag2html): Added 1/2-sign, law-sign,
+        pound-sign.
+
+2004-11-16 Tue  Jari Aalto  <jari dot aalto A T cante dt net>
+
+        * t2html.pl
+        - Many, many changes. All HTMl tags are now lowercase due to
+          xhtml compatibility. The XHTMÖ tags are now in a hash table
+          instead of hard coded to the program.
+        - Versions after this date are probably unstable and may produce
+          incorrect HTML.
+        (Getopt::Long): 1.153 Added proper HTML_DOCTYPE
+        for xhtml. Use <br /> for xhtml. Check
+        for simultaneous --html-frame and --Xhtml options. Only one
+        can be used.
+        (sub Initialize): 1.153 New variable %HTML_HASH.
+        (HELP::BUGS): 1.153 Added note that --Xhtml option is broken
+        and does not produce valid markup.
+        (sub GetFile): 1.153 Added -f $file check against accidental
+        directory read.
+
+2004-11-15 Mon  Jari Aalto  <jari dot aalto A T cante dt net>
+
+        * t2html.pl (sub InitArgs): 1.153 Removed `local @ARGV'.
+
+2004-11-14 Sun  Jari Aalto  <jari dot aalto A T cante dt net>
+
+        * t2html.pl (HtmlFixes): 1.153 The special 'Note:' paragraph
+        at column 12 did not go through works markup substitution.
+        Fixed and added debug.
+        (HandleCommandLineArgs): 1.153 Added default value 'Note:' for
+        $$CSS_CODE_STYLE_NOTE.
+
+2004-11-13 Sat  Jari Aalto  <jari dot aalto A T cante dt net>
+
+        * t2html.pl (sub XlatWordMarkup): 1.147 Added staticBegQuote,
+        staticEndQuote.
+        (sub XlatWordMarkup): 1.147 Respect $type -basic.
+        (sub XlatWordMarkup): 1.147 Corrected $prefix to include
+        beginning-of-line anchor (^).
+        (sub XlatPicture): 1.147 Now markup can be used in #PIC
+        element text too. Added call to XlatWordMarkup().
+
+2004-11-11 Thu  Jari Aalto  <jari dot aalto A T cante dot net>
+
+        -- output now conforms http://validator.w3.org/ as
+           HTML 4.01 Transitional. All checks passed.
+
+        * t2html.pl (CssData): Added `color-beige3' and changed color
+        of `shade-normal-attrib' color from #EFEFEF to #F1F1F1
+        which is slightly lighter
+        (HandleCommandLineArgs): 1.147 Added new global variable
+        `$HTML_TAG_PAGE'.
+        (PrintEnd): Do not output </P>, which is not legal HTML 4.01.
+        (MakeHeadingHtml): Do not output </P>, which is not legal
+        HTML 4.01.
+        (t2html::td:bgcolor): 1.147 Added newline after PRE tag.
+        Was: '<PRE>   text here'.
+        (DoLine::staticPreMode): 1.147 Removed extra \n when html was
+        glued after <PRE>. This makes text to follow PRE immedately.
+        (sub HtmlCodeSectionStart): 1.147 Added \n after <PRE>.
+        (sub HtmlFixes): 1.147 The closing </PRE> tag was lost.
+        This was a bug in the s() operator. Now includes </PRE>
+        which is stored.
+
+2004-11-06 Sat  Jari Aalto  <jari dot aalto A T cante dot net>
+
+        * t2html.pl (ReadLinksLinkExtractor): 1.150 Added 'defined' test.
+        (Html2txt): 1.150 Added 'defined' test for $arrayRef.
+        (ReadLinksBasic): 1.150 Added 'defined' test for $arrayRef.
+        (LinkCheckMain): 1.150 Added 'defined' test for $arrayRef.
+        (PrintHtmlDoc): 1.150 Added 'defined' test for $arrayRef.
+        (KillToc): 1.150 Added 'defined' test for $arrayRef.
+        (DoLine): 1.150 Added 'defined' test for $arrayRef.
+        (HandleOneFile): 1.150 Added 'defined' test for $txt.
+
+2004-11-05 Fri  Jari Aalto  <jari dot aalto A T cante dot net>
+
+        * t2html.pl (PrintArray): 1.147 Added 'defined' test for
+        `$arrayRef'
+        (IsHTML): 1.150 Added 'defined' test
+        (WriteFile): 1.150 Added 'defined' test. Removed 'local *FILE' and
+        used new perl 'my $FILE'.
+
+2004-11-04 Thu  Jari Aalto  <jari dot aalto A T cante dot net>
+
+        * t2html.pl (CheckEmail): 1.147 Added debug. Removed
+        unnecessary variable $die.
+
+2004-10-30 Sat  Jari Aalto  <jari dot aalto A T cante dot net>
+
+        * t2html.pl (sub Help): 1.144 Incorrect variable name
+        $is => $id
+
+2004-10-27 Wed  Jari Aalto  <jari dot aalto A T cante dt net>
+
+        * t2html.pl (sub Help): 1.144 Added debug calls.
+
+2004-10-26 Tue  Jari Aalto  <jari dot aalto A T cante dt net>
+
+        * t2html.pl (sub InitArgs): Changed inpur paratemer call syntax:
+        now takes a HASH, nstead of ARRAY.
+        1.144 Check if `argvRef' is defined
+        before using it.
+
+2004-10-23 Sat  Jari Aalto  <jari dot aalto A T cante dot net>
+
+        * t2html.pl (HELP::ENVIRONMENT): 1.137 Added missing '=over
+        4' and +back directives.
+
+2004-10-22 Fri  Jari Aalto  <jari dot aalto A T cante dot net>
+
+        * etc/makefile/vars.mk: (prefix): changed from /usr to
+        /usr/local which is more appropriate for 3rd party packages.
+
+        * t2html.pl (Getopt::DEBUG"): 1.137 Fixed warning
+        'Name Getopt::DEBUG used only once: ...'
+
+2004-10-20 Wed  Jari Aalto  <jari dot aalto A T cante dot net>
+
+        * t2html.pl (sub XlatUrl): 1.137 No more add qq(target="_top")
+        to the A HREF, because Opera does not display it correctly.
+        (sub ReadLinksBasic): 1.137 BASE url compositon was wrong. Fixed.
+
+2004-10-18  Jari Aalto  <jari dot aalto A T cante dt net>
+
+        * t2html.pl (GetFile): Improved error message when file
+        couldn't be opened.
+        (Main): Added PANIC in case cwd() fails to return correct
+        directory.
+
+2004-10-14  Jari Aalto  <jari dot aalto A T cante dt net>
+
+        * t2html.pl
+        (LinkCheckMain): Rename. Was LinkCheck().
+        (ReadLinksMain): Renamed. Was ReadLinks()
+        (ReadLinksBasic): Added variable $tag. Added IMG SRC and
+        LINK HREF checking. Added $root variable for links, that
+        have href=/this/page.htm. Multiple links at the same
+        line were not found; now fixed.
+        (LinkCheckExternal): Exclude example.net, .org, .biz and .info
+        (LinkCache): Removed $staticActive requirement from -add
+        Added imput parameter -code to accept HTTP return value.
+        Write out only URL links with code 200 (ok).
+        (LinkCheckLwp): Cache all URLs, so that if same URL
+        is seen again, no request is sent to remote site. The
+        previous status code is reused from cache. Return HTTP
+        error codes and not just 1 or 0 status code. Disabled
+        GET request and used solely HEAD.
+
+2004-10-12 Tue  Jari Aalto  <jari dot aalto A T cante dt net>
+
+        * t2html.pl (sub ReadLinksBasic): 1.132 Clarified regex by
+        introducing variables `urlset' and `quote'. Added one
+        more debug 5 level print.
+        (sub ReadLinksBasic): 1.132 Fixed mismatches like
+        http://example.org/links.html&gt => http://example.org/links.html
+
+2004-09-11  Jari Aalto  <jari dot aalto A T cante dt net>
+
+        * t2html.pl (PrintHtmlDoc): typos corrected in manual page.
+
+2004-08-29 Sun  Jari Aalto  <jari dot aalto A T cante dt net>
+
+        * t2html.pl (sub XlatWordMarkup): 1.131 Changed [ \t] to [\s]
+        which is more general. Code now uses more readable s{}{}gx and
+        new variable $prefix.
+
+2004-08-12 Thu  Jari Aalto  <jari dot aalto A T cante dt net>
+
+        * t2html.pl (sub ReadLinksBasic): 1.130 Incorrect regexp to find links.
+        Added \s to exclude characters that do not belong to address.
+
+2004-06-28 Mon  Jari Aalto  <jari dot aalto A T cante dt net>
+
+        * t2html.pl (Help): 1.129 Added more documentation to
+        --language option.
+
+2004-03-30   Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl
+        Extra newlines were removed from whole program. Sort of clean up work.
+        (CssData): Change word-small from 0.8 to 0.7, because
+        if the web page is zoomed 200% or more the font with 0.8 looks
+        too big.
+        (DoLine): Corrected bug, where right hand angle bracked and text
+        after it in tag #URL-AS-IS was not outputted. The regexp must
+        include &gt;, not exclude it in output.
+
+2004-02-11 Wed  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (sub IsHeading): 1.122 Wrong regexp did not
+        recognize heading without numbering. "Like This", but
+        wanter "1.1 Like This".
+        (HandleCommandLineArgs): 1.123 Options --css-code-bg and
+        --css-code-bg2 has mistakenly taken option `:s'.
+        Removed.
+
+2004-02-06 Fri  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (CssData() => .shade-note-attrib): Added
+        `font-family' and `font-size'. It is not 0.8 smaller.
+        (sub InitArgs): 1.121 Fixed local Hash() function.
+        Always list @values was returned and then assignef to
+        scalar. That caused the count of members. Now return
+        single scalar. This fixes E.g <TITLE>1</TITLE> problem.
+
+2004-02-03 Tue  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (sub XlatTag2html): 1.121 Special HTML
+        entities that had number at the end, like &sup3;
+        were translated incorrectly as &amp;sup3;. Fixed.
+
+2004-02-02 Mon  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (sub DoLineUserTags): 1.121 Added debug.
+        (sub XlatTag2htmlSpecial): 1.121 Added debug.
+        (sub XlatTag2html): 1.121 Added debug.
+        (sub XlatPicture): 1.121 Added debug.
+
+2004-01-27 Tue  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl
+        - Added many new lines of debug code all over the program.
+        (Getopt::Long): 1.120 Option --Auto-detect
+        mistakenly had `:s' option request which ate the file
+        name following the option.
+        (sub IsHTML): 1.120 Searching first 100 for <HTML> is
+        too much. Reduced to 10 lines.
+
+2004-01-24 Sat  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (sub Main): 1.117 Hash('option') CAll did not check
+        values correctly. It always returned try, so all user's command
+        line options were cleared. The Hash-function must not return
+        'undef' or any other values, because it is stored to an array.
+        The only correct value to return is empty list (). This fix
+        corrects e.g. option --name-uniq.
+
+2003-12-14  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (XlatDirectives): Typo corrected
+        if  $line = /\S/ =>  if  $line =~ /\S/
+
+2003-12-05 Fri    Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (XlatDirectives): 1.116 Incorrectly required
+        that all #t2html-<directive> tags start from left. Regexp
+        included '^\s*'. The anchor is now removed.
+
+2003-11-11  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (XlatDirectives): If the directove line was
+        empty line plain '#t2html-comment' the line was not
+        stripped. Now fixed. No directives are left in text.
+
+2003-09-26 Fri  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (unless ( /\S/ )): 1.115 --script-file
+        no longer dies on error if file was not found.
+        New option --css-file to import external
+
+2003-09-21  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (AcceptUrl($)): 'foo' excluded also valid
+        links like 'foorum'. Fixed by aadding \b.
+
+2003-08-19 Tue  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (sub ReadLinksBasic): 1.113 the BASE value
+        included extra /, which made all links invalid. Now regexp
+        correctly removed only trailing slash. Ignore `mailto'
+        HREFS.
+
+2003-08-17 Sun  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl
+        (Help): New user option #INCLUDE-<url>. With this is is
+        possible to include other files into this current one. Either
+        via http://address or just plain files. The included portion
+        is copied to the point verbatim. No translations happen.
+        (sub RemoveHTMLaround): 1.109 New.
+        (sub UrlInclude): 1.109 New.
+        (sub EnvExpand): 1.112 New.
+
+2003-08-12 Tue  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (CssData): 1.107 Changed colors to dimmer.
+        [samp.word] is no longer `blue', but lighter  #4C9CD4 + bold.
+        [shade-note-attrib] is no longer #E0E0F0 but lighter #E5ECF3.
+        (CheckModuleLWP): Removed.
+        (CheckModuleLinkExtractor): Removed.
+        (ReadLinksLinkExtractor): New. If HTML::LinkExtractor is around,
+        use it and skip program's own imperfect link extracting routine.
+        (TestDriverLinkExtractor): 1.108 New.
+
+2003-08-03 Sun  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (sub GetFile): 1.106 HTTP get did not preserve newlined.
+        Added for-loop to split().
+        (sub ReadLinks): 1.106 Whole logic rewritten. There were serious
+        URL link reading errors in this whole function. The current
+        implementation is not very robust, but should be adequate for simple
+        external links (http://). Added support for detecting local
+        'A HREF=local.html' links by prepending BASE to them.
+
+2003-07-31 Thu  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (sub HandleCommandLineArgs): 1.103 Added empty HOME
+        test.
+        (Top level;): 1.103 Added qw($HOME), to satisfy Windows users,
+        who do not have that set. Bug reported by vimma@jippii.fi
+        (sub Help): 1.103 Documented new option --button-heading-top.
+        Added new topic `BUGS'.
+        (sub HandleCommandLineArgs): 1.103 New option `button-heading-top'.
+        (sub MakeHeadingHtml): 1.103 Added support for
+        $OPT_HEADING_TOP_BUTTON (The feature was previously commented out).
+        (sub HandleCommandLineArgs): 1.103 --Version option now prints
+        to stdout instead of stderr. In addition, print $PROGRAM_NAME;
+        full path.
+        (sub MakeHeadingHtml): 1.104 Now the [toc] link respects
+        the --Language setting.
+
+2003-07-22 Tue  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (sub MakeToc): 1.102 Simplified FRAMESET main() html
+        file, so that there is no CSS any more, because it is only needed
+        in the xxxx-body.html file.
+
+2003-05-02 Fri  Jari Aalto  <jari aalto A T cante dt net>
+
+        RELEASED: 2003.0502
+
+        * t2html.pl (sub XlatUrlInline): 1.100 New feature, see
+        inline #URL from the --help section.
+        (sub XlatUrl): 1.100 Added Backward lookahead test so that
+         XlatUrlInline() cases are skipped.
+
+2003-01-24 Fri  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (sub ReadLinks): 1.97 Do not check links that are
+        prefixed with a minus character, like -http://this.is/example.html
+
+2003-01-12 Sun  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (DoLine): 1.97 Corrected #URL-AS-IS regexp. Do not
+        count in the last character `>', like in <#URL-AS-IS-this.html>
+
+2003-01-02 Thu  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (MakeHeadingHtml): 1.97 If --as-is option is active,
+        do not output <HR> code at all. If --Xhtml option has been give,
+        output <HR></HR>
+
+2002-12-22  Jari Aalto   <jari aalto A T cante dt net>
+
+        * t2html.pl (MakeHeadingName): Multiple underscores
+        are squeezed to one.
+
+2002-11-22  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (CssData): Missing required semicolon from
+        CSS defineition at `p.column7' => `font-weight: bold;'
+
+2002-10-10  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (MakeUrlPicture): Changed picture ALT text. Now
+        display the image name instead of the description text.
+
+2002-10-03 Thu  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (CssData): 1.95 Changed quote7 CSS spec: 0.7 => 1em.
+
+2002-09-17 Tue  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (HtmlFixes): 1.94 Remove P-tag just before
+        <UL> and <OL>. Not needed.
+        (MakeHeadingHtml): 1.94 Added special character handling to header
+        string. Call `XlatTag2htmlSpecial'.
+        (DoLine): 1.94 Fixed mysterious '--' which was not converted into
+        &ndash;. Added to the top of function, next to
+        (XlatWordMarkup): 1.94 Added return immediately if ARG is empty
+        (XlatTag2html): 1.94 Added return immediately if ARG is empty
+        (XlatTag2htmlSpecial): 1.94 Added return immediately if ARG is empty
+
+2002-09-16 Mon  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (t2html::td:bgcolor): Corrected 'else if' => 'elsif'
+
+2002-09-01 Sun  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (CssData): 1.90 Changed quote7 from
+        1.2em to 0.7em. The font is not that loud any more.
+
+2002-08-31 Sat  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (HandleCommandLineArgs): 1.90 Removed
+        non-descriptive --Butt, --Buttp, --Butt options.
+        Use the long names instead.
+        (HandleCommandLineArgs): 1.90 Removed
+        non-descriptive  --mk and --md options. Use
+        --meta-description and --meta-keywords
+        instead.
+
+2002-08-30  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (CssData): Added 'color: Navy;' to many
+        defaul CSS style. Most useful in #t2html:: code column 12
+        directives.
+
+        * t2html.pl (HtmlFixes): <PRE> code cleanup required
+        in whitespace before newline. This was incorrect. There
+        can be zero spac before newline. Fixed. In layout, this
+        causes extra newline just before CODE column 12.
+
+2002-08-30  Jari Aalto   <jari aalto A T cante dt net>
+
+        * t2html.pl (__DATA__): Changed default text: wording and
+        some pragraphs rewritten.
+
+2002-08-30  Jari Aalto   <jari aalto A T cante dt net>
+
+
+        * admin.bashrc (function sfperl2html_docexamples ()):
+        Example 4 was not generated correctly. Bash gor mixed up
+        with the embedded single quotes in definition
+        --css-code='(?:Note|Notice)' => reduced to simple
+        --css-code=Note: which does not use single quotes. This
+        is only a problem inside bash command file, which uses `eval'.
+
+2002-08-28  Jari Aalto   <jari aalto A T cante dt net>
+
+        * t2html.pl (XlatTag2htmlSpecial): New.
+
+2002-08-27  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (HtmlFixes): Corrected <PRE> tag fix to delete
+        all newlines after the tag. This shortens the gap that is shown
+        at column from regular text.
+        (XlatWordMarkup): Corrected superscripting: special characters
+        are ignore '\"!?;,.(<> before superscript.
+
+2002-08-19  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (CssData): Redesigned styles`table.solid',
+        new style `table.dashed'.
+        (__DATA__): Added new table rendering examples for --test-page.
+        (Help): Added POD documentation to new section
+        `Controlling CSS generation (HTML tables)'. Long story
+        about how <TABLE> and <TD> tags can be controlled.
+
+2002-08-18  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (HtmlFixes): Whent the new feature --css-code-note
+        was put to a test (big documnet), it had serious flaws in
+        regexps (too greedy). Fixed. Now coloring should be ok.
+        ADDEd NEW FEATURES. It is now posisble to say exactly what kind of
+        table redering is wanted. See manual for directive #t2html::
+
+2002-08-18  Jari Aalto  <jari aalto A T cante dt net>
+
+        KIT RELEASED 2002.0818
+
+        * t2html.pl
+        - NEW FEATURE: It is possible to mark special 'notice' paragraphs
+        with option --css-code-note=REGEXP. See --test-page for
+        demonstration.
+        (DATA): Example updated.
+        (HtmlFixes): New features. Now render with different color
+        if there is special keyword.
+        (HtmlTable): New.
+        (HandleCommandLineArgs): Added documentation for
+        options --css-code-bg and --css-code-note=REGEXP
+        (HandleCommandLineArgs): Added support new option
+        --css-code-note=REGEXP
+
+2002-08-14 Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (Initialize): 1.76 Changed  all conatant names
+        to uppercase. E.g. OutputSimple => OUTPUT_TYPE_SIMPLE.
+        Changed contant values to strings also, and removed
+        non-descriptive numbers (used to be type 1, now uses bareword
+        -simple)
+
+2002-08-13  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (XlatHtml2tag): Added more conversion: Swedish,
+        Norweigian, German.
+        (MakeHeadingName): With foreign languages, like in Finnish the
+        Heading may contain non-7bit characters and the NAME tag
+        generated is composed form &auml;, which is not good.
+        Not substitutes &auml; with simple 'a'. Same for
+        Swedish, Norweigian, and German.
+        (UpdateHeaderArray): Adde dmore debug. The substitution
+        removed crucial & and ; characters that delimit special
+        HTML tokens. Do not remove those, they are handled elswhere.
+        (HandleCommandLineArgs): environment variable $EMAIL is
+        no longer used. User must supply --email EMAIL.
+        (HandleCommandLineArgs): New opion --Auto-detect. Only files
+        that 'should be converted' are converted to HTML.
+        (OutputDir): Check if OUTPUT_DIR is defined.
+        (PrintEndSimple): Check OPT_EMAIL for value, before
+        inderting <META HTTP-EQUIV=Made CONTENT=mailto: ... >
+        (MakeMetaTags): Check $email and $author for values before
+        using them.
+        (HeaderArrayClear): New.
+        (HandleOneFile): Added call to HeaderArrayClear()
+
+2002-08-08 Thu  Jari Aalto  <jari aalto A T cante dt net>
+
+        * admin.bashrc (function sfperl2html_ask ()): 1.6 New.
+        (function sfperl2html_ask ()): 1.6 New.
+        (function sfperl2html_release_check ()): 1.6 New.
+        (function sfperl2html_release ()): 1.6 Call
+        sfperl2html_release_check()
+
+2002-08-07 Wed  Jari Aalto  <jari aalto A T cante dt net>
+
+        * admin.bashrc (function sfperl2html_html ()): 1.5 Renamed.
+        (function sfperl2html_doc ()): 1.5 Renamed.
+
+        * t2html.pl
+        - NEW REVOLUTIONARY FEATURE ADDED.
+        - It is now possible to embed
+          command line options directly into text file. Like if you
+          would like to set Code sections grey-shade on, Add line:
+              #T2HTML-OPTION --css-code-bg
+              #T2HTML-OPTION --as-is
+        Ran through Perl 5.8.0 -w => fixed errors.
+        (HandleCommandLineArgs): Added
+        `outputUndefined' to set initial value of OUTPUT_TYPE.
+        (DoLine): 1.75 in 'study line' Move regexp /^( +)[^ ]/
+        inside if. It may not necessarily match. Initialise
+        $spaces to 0.
+        (CssData): 1.75 Initialize $ARG if not passed to function.
+        (JavaScript): 1.75 Check defined $JAVA_CODE.
+        (PrintEnd): 1.75 Check defined $file.
+        (PrintEnd): 1.75 Set $url to initial value.
+        (PrintStart): 1.75 initialise @ret;
+        (MakeMetaTags): 1.75 initialise variables: author, email,
+        kwd, desc
+        (CssData): 1.75 Check defined $CSS_FONT_TYPE
+        (PrintStart): 1.75 initialise bodyAttr, email and all %arg
+        parameters.
+        (PrintStart): 1.75
+        (DoLine): 1.75 Correctd staticPreMode => $staticPreMode
+        (XlatTag2html): 1.75 Do not translate &quot; in PURE HTML
+        directives.
+        (Main): 1.75 Created local function Arr() to access
+        new data structure.
+        (XlatDirectives): 1.75 New data structure. The hash VALUE is
+        now anonymous array.
+        (GetFile): 1.75 Do not exit from subroutine via `next'
+        (PrintArray): 1.75 Wrong offset. $count must be -1, due to zero
+        offset.
+        (MakeHeadingHtml): 1.75 Initalised variable $button.
+        (MakeMetaTags): 1.75 Changed URL to sourceforge.
+        (MakeToc): 1.75 Initialised variables $stylee, $styleb
+        (MakeToc): 1.75 Corrected two calls to MakeMetaTags(). Must be hash.
+        (Main): 1.75 Fixed multiple passig of $verb to command line
+        parser. It must be reseted to original value in InitArgs()
+        (MakeToc): 1.75 Corrected <A NAME=ref> reference generation.
+        If there is o frame name, do not add it to the <A NAME>.
+        (HtmlFixes): 1.75 New. Now --css-code-bg works correctly.
+        (HtmlCodeSectionStart): 1.75 Added <PRE> inside <TABLE>
+        so that -css-code-bg works correctly.
+        (HandleCommandLineArgs): 1.75 Added options
+        --t2html-tags and turn off option --not2html-tags
+        (PrintHash): 1.75 Added ability to print anonymous arrays
+        (HandleCommandLineArgs): 1.75 Fixed bug where --options-file=FILE
+        was only allowed option. Now rest of the options in ARGV are merged
+        with the options from file.
+        (XlatTag2html): 1.75 Fixed << and >> shell redirection
+        parsing. They must be translated i <<TAG>>, but they should
+        not be translated in `cat >> file'.
+        (XlatTag2html): 1.75 Added German translations Uml and SS.
+
+2002-08-05 Mon  Jari Aalto  <jari aalto A T cante dt net>
+
+        * admin.bashrc (function sfperl2htmldoc ()): More better
+        perl file hanfling. Added two for-loops. Last one removes
+        unneeded POD temporary files.
+        (function sfperl2htmlinit ()): Added SF_UPLOAD_DIRECTORY
+
+        * t2html.pl (HandleOneFile): Changed debug to verb when
+        so that --Out will print where the destination file
+        is outputted.
+        (HandleCommandLineArgs): OUTPUT_AUTOMATIC (--Out) must be turned
+        also on if user supplies --Out-dir.
+        (CssData): Removed `HIDE BROWSER' tags because they interfred
+        in CSS handling (IE 5.5). Corrected code that added semicolon
+        at the end of SIZE and FONT styles. (added double ;;)
+        (HandleCommandLineArgs): No longer set default
+        CSS_FONT_SIZE, but let the browser decide font size.
+
+2002-08-03 Sat  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (HandleCommandLineArgs): Die, if library LWP
+        is not available and user requests link check.
+
+2002-08-02 Fri  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (HandleCommandLineArgs): Incorect setting of $verb.
+        couldn't pass --verbose 3, because it was set to 0. fixed.
+        (HandleCommandLineArgs): Added to the documentation
+        Seaction about extra `Directives' that can be embedded inside
+        file with tag #T2HTML-<directove>
+        (PrintStart): Added support for many new input parameters instead
+        of using globals.
+        (PrintHtmlDoc): Added support for many new input parameters instead
+        of using globals.
+        (HandleOneFile): Added support for many new input parameters instead
+        of using globals.
+        (Main): Added reading directove codes from source file.
+
+2002-07-26  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (Help): Ran --help-man and fixed the documentation,
+        because too many paragraphs were too long when read through
+        <nroff -man t2html.1>
+
+2002-05-07 Tue  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (sub XlatTag2html): 1.69 Added support for embedding
+        HTML code into the text. Now surround HTML code with double-
+        lt-gt tags in format: <<HTML>>
+
+2002-04-28 Sun  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (HandleCommandLineArgs): 1.68 Added new option
+        --help-man
+        (sub Help): 1.68 Now print Unix manual page with argument
+        -man
+
+        * admin.bashrc (function sfperl2htmldoc): 1.2 New.
+        Updates the t2html.html page and now generates Unix
+        manuala page t2html.1
+
+2002-04-20 Sat  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (sub XlatTag2html): 1.66 Added lot more HTML
+        token conversions. Copyright sigh (C), Registered trade
+        mark sign (R), Plus minus sign +-, long dash --. Added
+        support to embed direct html tokes like &times;
+
+2002-02-27 Wed  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl: 1.62 Added superscript feature: Person said[1].
+        the Bracket MUST BE next to the word.
+
+2002-02-04 Mon  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (sub OutputDir): 1.62 Corrected --Out
+        options. Mistakenly put files to /, now looks at
+        cwd().
+
+2002-02-02 Sat  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (sub MakeToc): 1.61 Converted to use HASH
+        input parameters.
+        (sub LinkCheckExternal): 1.61 Converted to use HASH
+        input parameters.
+        (sub LinkCheck): 1.61 Converted to use HASH
+        input parameters.
+        (sub MakeMetaTags): 1.61  Converted to use HASH
+        input parameters.
+        (sub PrintStart): 1.61 Converted to use HASH
+        input parameters.
+        (sub PrintEnd): 1.61 Converted to use HASH
+        input parameters.
+        (sub PrintHtmlDoc): 1.61 Converted to use HASH
+        input parameters.
+        (sub MakeHeadingHtml): 1.61 Converted to use HASH
+        input parameters.
+        (sub DoLine): 1.61 Converted to use HASH
+        input parameters.
+        (sub HandleOneFile): 1.61 Converted to use HASH
+        input parameters.
+
+2002-02-01 Fri  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (sub Main): 1.61 Split into smaller parts.
+        (sub GetFile): 1.61 New.
+        (sub OutputDir): 1.61 New.
+
+2002-01-31 Thu  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl
+        -- Many big internal changes
+        (sub HandleCommandLineArgs): 1.57 Added
+        `Link-cache' options.
+        (sub Help): 1.57 Wrote `Link-cache' docs.
+        (sub Min): 1.57 New.
+        (sub IsHTML): 1.57 New.
+        (sub LinkCache): 1.57 New. Now can use local cache for
+        OK checked urls.
+        (sub LinkHash): 1.57 New.
+        (sub LinkCheckLwp): 1.57 New. More abstraction.
+        (sub LinkCheckExternal): 1.57 Exploded function to smaller pieces.
+        (sub LinkCheck): 1.57 Converted to use HASH function arguments.
+        (sub Main): 1.57 Send more globals to HandleOneFile().
+        (sub HandleOneFile): 1.57 Converted to use HASH function arguments.
+        emoved globals due to new architechture.
+
+2002-01-24 Thu  Jari Aalto  <jari aalto A T cante dt net>
+
+        * t2html.pl (sub LinkCheckExternal): 1.57 Added
+        reegxp to exclude some non-readl links like
+        example.com and {foo,bar,baz}.site.com.

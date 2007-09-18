@@ -1,0 +1,379 @@
+Table of contents
+
+       1.0 Document id
+           1.1 General
+           1.2 Description
+              1.2.1 Overview of features:
+              1.2.2 HTML conversion
+              1.2.3 HTML 4.01
+              1.2.4 Link check for the text file
+              1.2.5 Splitting the text file to pieces
+           1.3 Curious what the document looks like?
+           1.4 Writing a text document
+           1.5 Emacs and minor mode
+           1.6 Ripping program documentation
+              1.6.1 Documentation tools in programming languages
+              1.6.2 Other programming languages
+           1.7 Download the code
+
+       2.0 Other converters
+           2.1 Postscript
+           2.2 Texinfo
+           2.3 Other text to HTML tools
+           2.4 General Document Maintenance tools
+
+1.0 Document id
+
+    1.1 General
+
+        .$Id: conversion.txt,v 1.8 2004/10/12 08:13:14 jaalto Exp $
+        This page describes Technical text (TF) format and a Perl script
+        which can convert TF to HTML.
+
+        [Sourceforge perl-text2html project public summary] Perl
+        text2html is HTML 4.01/CSS2 project which converts pure
+        plain text files into very informative and professional looking
+        HTML documentation pages. The text files require no mark up
+        whatsoever, just naturally written text in Technical Format
+        (TF).
+
+    1.2 Description
+
+        Writing text documents is different from writing messages to
+        Usenet or to your fellow workers. There already exists several
+        tools to convert email messages into HTML, like *MHonArc*,
+        Email hyper archiver, but for regular text documents, like for
+        memos, FAQs, help pages and for other papers, there wasn't
+        any suitable HTML converter couple of years back. The author
+        wanted a simple HTML tool which would read _pure_ _plain_
+        _text_ documents, like guides, tips pages, documentation,
+        book mark pages etc. and convert them into HTML. Here you will
+        find the specification how to format your text documents for
+        *t2html.pl* perl script text to HTML converter.
+
+        Few arguments, why plain text is the best source document format:
+
+        o   It is readable by all, without any extra software
+        o   Deliverable by email, as is.
+        o   Most easily kept in version control
+        o   Most easily patched ( when someone sends a diff -u ...)
+        o   Most easily handed to someone else when author no longer
+            maintain it. (If you have specialized tools, people
+            need to learn them in order to maintain your FAQ.)
+
+       1.2.1 Overview of features:
+
+        o   Requires Perl 5.004 or never
+        o   500K text document takes 70 seconds to convert to HTML.
+        o   TF to Perl POD conversion may be in a future plan.
+        o   Better linking of multiple files planned
+        o   Configuration file for individual file options planned.
+
+       1.2.2 HTML conversion
+
+        o   minimal mark up: rendering is based on indentation level.
+            Written text document looks like a "Natural Document", and is
+            suitable for reading as such.
+        o   Text layout with indentation rules is called Technical Format
+            (TF) and document must be formatted according to it before it
+            is suitable for HTML generation.
+        o   Rules are simple: place heading to the left and text at column 8.
+        o   Program generates *META* tags for search engines.
+        o   Colored html page: <EM> <STRONG> <PRE> ...
+        o   Hyperlinks and email addresses are automatically detected.
+            No mark up is needed.
+
+       1.2.3 HTML 4.01
+
+        o   Make a single html (1 file) or *Frame* version (3 files)
+        o   Sample CSS2 (Cascading Style Sheet) included in HTML code for
+            document rendering. User can import his own CSS2.
+
+       1.2.4 Link check for the text file
+
+        o   You need LWP module in order to use this feature. (Comes with
+            latest Perl)
+        o   Program has switches to run Link check on your text file
+            to find out any broken or moved link. Currently you
+            have to manually fix the links, nut an Emacs mode to do this
+            automatically is planned. The output from Link check is standard
+            grep style:  *FILE:NBR:Error-Description*
+
+       1.2.5 Splitting the text file to pieces
+
+        o   You can split very large document into pieces, e.g. according
+            to top level headings and convert each piece to HTML. This is
+            also handy if you're planning to print Slides for a class:
+            Split on Headings to individual files: raise the font point
+            and print each file separately.
+
+    1.3 Curious what the document looks like?
+
+        Before leaping forward, you anxiously want to see the results? Ok,
+        view these two links and you see what TF looks like and the
+        generated HTML. You may also be interested in seeing the generated
+        HTML code: select view->source in your browser now.
+
+            #URL-BASE/t2html.txt    -- plain text (TF)
+            #URL-BASE/t2html.html   -- generated page. (this page)
+
+        The TF specification can be found from the *t2html.pl* manual page;
+
+            #URL-BASE/t2html-perl.html
+
+        The command used to generate these framed html pages was:
+
+            % t2html.pl                                                     \
+              --author           "Jari Aalto"                               \
+              --title            "Perl Text to html converter"              \
+              --html-body         LANG=en                                   \
+              --button-previous   ssjaaa.html                               \
+              --meta-keywords    "text2html perl conversion"                \
+              --meta-description "Perl Text to html converter"              \
+              --html-frame                                                  \
+              --Out                                                         \
+              t2html.txt
+
+    1.4 Writing a text document
+
+        You need nothing else but a text editor where the current column
+        number is displayed or editor can be configured to advance your
+        TAB by 4 spaces. That's it.
+
+    1.5 Emacs and minor mode
+
+        See project  http://tiny-tools.sourceforge.net/
+
+        If word `Emacs' means anything to you, then you can use additional
+        Emacs minor mode (package *tinytf.el*) which can make the
+        writing much more easier: It will help formatting paragraphs,
+        filling bullets numbering headings and keeping TOC up to date. The
+        description of the Emacs package is found from this page and from
+        the package itself.
+
+        If you don't know Emacs but got interested, then see this link
+        for more Emacs information
+        http://tiny-tools.sourceforge.net/emacs-elisp.html Emacs is
+        available virtually for all OS platforms now
+
+    1.6 Ripping program documentation
+
+       1.6.1 Documentation tools in programming languages
+
+        *Perl* is an exception within programmin languages, because it
+        includes internal documentation syntax called _POD_ (Plain Old
+        Syntax), with which you can embed documentation right into
+        the program source. Deriving the documentation from perl
+        programs is a straightforward job.
+
+        Another well known language (invented long after Perl) is
+        Java, which calls the embedded documentation *javadoc*.
+
+        All others, the de facto method would be:
+
+        o   To write separate documentation for the program
+
+       1.6.2 Other programming languages
+
+        But it is possible to embed documentation inside any
+        programming language: directly into the code. Another small
+        Perl utility is used to extract the documentation provided it
+        was written in TF format. Documentation is put at the
+        beginning of the file and updated there.
+
+        `ripdoc.pl' extracts the documentation which follows TF
+        guidelines. The idea is that you can generate HTML documents from
+        the embedded 'TF pod'. The conversion goes like this:
+
+            % ripdoc.pl code.sh | t2html.pl > code.html
+            % ripdoc.pl code.el | t2html.pl > code.html
+            % ripdoc.pl code.cc | t2html.pl > code.html
+
+        Suitable for awk, shell, sh, ksh, C++, Java, Lisp, python,
+        Tcl etc. programming languages. The only criteria is that the language
+        supports *one-comment-starter* and that the documentation has
+        been written by using it. Languages that have *comment-start*
+        and *comment-end*, like C that has /* and */, are not suitable for
+        ripdoc.pl. Visit
+        http://cpan.perl.org/modules/by-authors/id/J/JA/JARIAALTO/ to get
+        the program.
+
+         Live examples
+
+        o   *Procmail*. Have a look how the ripdoc.el was used to convert
+            Procmail Module library documentation into HTML manual pages
+            at: http://pm-lib.sourceforge.net/pm-lib.html
+        o   *Emacs* *Lisp* Another set of documentation was ripped straight
+            out of the packages' comments at
+            http://tiny-tools.sourceforge.net/emacs-tiny-tools.html
+
+    1.7 Download the code
+
+        Download and see the manual page of the perl program
+
+            http://www.cpan.org/modules/by-authors/id/J/JA/JARIAALTO/
+
+            t2html.pl         -- text to html convertor
+            ripdoc.pl         -- Rip package documentation
+
+            #URL-BASE/t2html-perl.html  -- Manual
+            #URL-BASE/ripdoc-perl.html  -- Manual
+
+2.0 Other converters
+
+    2.1 Postscript
+
+        o   *html2ps* converter by Jan Karrman's <jan@tdb.uu.se> at
+            http://www.tdb.uu.se/~jan/html2ps.html
+        o   html to ps converter
+            http://www.tdb.uu.se/~jan/html2ps.html
+        o   html to ps converter by Charlie's Perl at
+            http://www.antipope.org/charlie/webbook/essays/toolkit.html
+
+    2.2 Texinfo
+
+        o   See page http://www.fido.de/kama/texinfo/texinfo-en.html
+            where you can find C-program *html2texinfo* program
+        o   Perl program *html2texi.pl*
+            http://www.cs.washington.edu/homes/mernst/software/#html2texi
+            html2texi converts HTML documentation trees into Texinfo
+            format.  Texinfo format can be easily converted to Info format
+            (for browsing in Emacs or the stand alone Info browser), to a
+            printed manual, or to HTML. Thus, html2texi.pl permits
+            conversion of HTML files to Info format, and secondarily
+            enables producing printed versions of Web page
+            hierarchies. Unlike HTML, Info format is searchable. Since Info
+            is integrated into Emacs, one can read documentation without
+            starting a separate Web browser. Additionally, Info browsers
+            (including Emacs) contain convenient features missing from Web
+            browsers, such as easy index lookup and mouse-free browsing.
+
+    2.3 Other text to HTML tools
+
+        o   *t2php* Implementation in PHP language of the
+            technical format. Visit
+            http://rule-project.org/text/en/sw/t2php.txt
+        o   *Wiki*, a simple text rule mark up.
+            http://c2.com/cgi/wiki?TextFormattingRules
+        o   *Zope* A Stuctured text, which seems to rely on indentation
+            level as well. The tool has been written in Python language.
+            See http://www.zope.org/Documentation/Articles/STX and
+            http://www.zope.org/Members/millejoh/structuredText
+        o   *htmlpp* by iMATIX's is at http://www.imatix.com/. This
+            is like C-preprosessor where you have have complex
+            and powerful text-markup commands. The base file
+            ,for html generation is not easily text-readable.
+
+            See also http://www.imatix.com/html/gslgen/index.htm GSLgen is
+            a general-purpose file generator. It generates source code,
+            data, or other files from an XML file and a schema file. The
+            XML file defines a particular set of data. The schema file
+            tells GSLgen what to do with that data
+
+        o   *No-TagsMarkup* by Scott S. Lawton. Another interesting
+            plain-text style, similar to TF, is at
+            http://www.prefab.com/ssl/notagsmarkup.html . Compared to TF,
+            this style needs more markup and lacks come of the advanced
+            features like Frame/colour/CSS2 support.
+        o   *setext* by Ian Feldman's, a simple text markup is available at
+            <setext@tidbits.com>
+        o   *text2html.pl* by Set Golub's Perl script is at
+            http://www.cs.wustl.edu/~seth/txt2html/. This is a very good tool
+            if you want to convert mail message into html quickly. Use it for
+            ad hoc things.
+        o   *faq2text*, A C-code (Unix) based text to HTML converter at
+            http://www.fadden.com/dl-misc/#faq2html
+        o   *faq2html ftp://ftp.eyrie.org/pub/software/web/faq2html
+
+      Other Utilities
+
+       "DocBook - SGML"
+        http://www.oreilly.com/catalog/docbook => online book
+
+       "Texi2html - Perl script"
+        ttp://www.mathematik.uni-kl.de/~obachman/Texi2html
+
+       "HTML tidy - remove extra markup"
+        http://www.w3.org/People/Raggett/tidy/
+
+       "Latex like Perl formatting"
+        http://www.physics.purdue.edu/~hinson/ftl/
+
+       "Hyperlatex"'
+        http://www.cs.ust.hk/~otfried/Hyperlatex/
+
+        Hyperlatex is a package that allows you to prepare documents
+        in HTML, and, at the same time, to produce a neatly printed
+        document from your input. Unlike some other systems that you
+        may have seen, Hyperlatex is not a general LaTeX-to-HTML
+        converter. In my eyes, conversion is not a solution to HTML
+        authoring. A well written HTML document must differ from a
+        printed copy in a number of rather subtle ways. I doubt that
+        these differences can be recognized mechanically, and I
+        believe that converted LaTeX can never be as readable as a
+        document written in HTML.  The basic idea of Hyperlatex is to
+        make it possible to write a document that will look like a
+        flawless LaTeX document when printed and like a handwritten
+        HTML document when viewed with an HTML browser.
+
+       "html2texi"
+        http://www.cs.washington.edu/homes/mernst/software/#html2texi
+
+<<<<<<< conversion.txt
+        html2texi converts HTML documentation trees into Texinfo format.
+        Texinfo format can be easily converted to Info format (for browsing
+        in Emacs or the stand alone Info browser), to a printed manual, or
+        to HTML. Thus, html2texi.pl permits conversion of HTML files to
+        Info format, and secondarily enables producing printed versions of
+        Web page hierarchies. Unlike HTML, Info format is searchable. Since
+        Info is integrated into Emacs, one can read documentation without
+        starting a separate Web browser. Additionally, Info browsers
+        (including Emacs) contain convenient features missing from Web
+        browsers, such as easy index lookup and mouse-free browsing.
+=======
+       "RTF in PC"
+        http://www.kfa-juelich.de/isr/1/texconv/textopc.html
+>>>>>>> 1.5
+
+       "catdoc" (Viewing MS WORD files)
+        .http://www.ice.ru/~vitus/works/
+        .http://packages.debian.org/unstable/text/catdoc.html
+        .<vitus@agropc.msk.su>                  Victor B. Wagner
+
+        Catdoc is simple, one C source file, compiles in any system (DOS;
+        Unix). Feed MS word file to it and it gives 7bit text out of it.
+
+       "word2x"  (Viewing MS WORD files)
+        ftp://ftp.dante.de:/pub/tex/tools/word2x/
+
+        My comment:
+
+        o   Doesn't offer anything more to catdoc (well if you need better
+            latex output, then you want this)
+        o   Cannot be used as pipe. This is _very_ serious shortcoming.
+        o   Many source files and difficult to get compiled
+        o   Just use `catdoc' instead, I tried this and wasn't convinced.
+
+       "Laola" (Viewing MS WORD files)
+        http://wwwwbs.cs.tu-berlin.de/~schwartz/pmh/
+
+        Laola(perl) does a respectable job of taking MSWord files to text
+        ...LAOLA is giving access to the raw document streams of any program
+        using "structured storage" technology to save its documents.
+        ELSER is dealing especially with these streams as they are present
+        in Word 6 and Word 7 documents.
+
+       "MSWordView"
+        http://www.csn.ul.ie/~caolan/docs/MSWordView.html
+        ...MSWordView is a program that can understand the microsofts word
+        8 binary file format (office97), it currently converts word into
+        html, which can then be read with a browser.
+
+    2.4 General Document Maintenance tools
+
+        o   Faq maintainer toolset page is at following page:
+            http://www.qucis.queensu.ca/FAQs/FAQaid/ It contains all the
+            known tools to make you FAQ maintenance/posting/updating easier
+            in any platform.
+
+End

@@ -1,0 +1,55 @@
+File id
+
+        This is INSTALL file of Perl Text to HTML project
+
+Requirements
+
+        GNU make is needed for the `Makefile'. To check which version you
+        have, run:
+
+            foo@host:/home/foo$ make -v
+            GNU Make 3.80
+            ...
+
+        Perl 5.004 or later is needed for the program. If option
+        --link-check is used, then extra modules from CPAN are needed
+        To check the perl version:
+
+            foo@host:/home/foo$ perl -v
+            This is perl, v5.8.5
+            ...
+
+        Try see if the necessary modules to check URLs links are
+        installed:
+
+            foo@host:/home/foo$ perl -MHTML::FormatText -e 'print ok'
+            foo@host:/home/foo$ perl -MHTML::Parse      -e 'print ok'
+            foo@host:/home/foo$ perl -MLWP::UserAgent   -e 'print ok'
+
+How to install
+
+        Perl is supposed to be in /usr/bin/perl and if it is not
+        there you may want to create a symlink (if you're admin):
+
+            ln -s `which perl` /usr/bin/perl
+
+        Installation requires GNU make. The default locations are
+        /usr/local/bin and /usr/local/man for system wide install:
+
+            su - root
+            make install
+
+        To install for local account only, use:
+
+            make DESTDIR=$HOME install
+
+Examples
+
+        It is best to start with the manual page which is same as option
+        `--help' and jump to the end for examples. But the quickest way
+        may be just try what the program can do by using this INSTALL
+        file as an example (the layout you see is what you get):
+
+            t2html.pl INSTALL | lynx
+
+End of file

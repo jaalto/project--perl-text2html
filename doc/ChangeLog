@@ -1,0 +1,36 @@
+2004-08-28 Sat  Jari Aalto  <jari dot aalto A T cante dt net>
+
+        * txt/conversion.txt (2.1 Preface, Jan 1997): 1.7 Removed.
+        The pfficial description is in t2html.pl --help.
+        (2.3 Other text to HTML tools): 1.7 Added t2php project.
+
+2002-08-31 Sat  Jari Aalto  <jari aalto A T poboxes dt com>
+
+        * examples/: The other test files (2, 3) were not
+        identical to (1). Copied.
+
+2002-08-19  Jari Aalto  <jari aalto A T poboxes dt com>
+
+        * html/index.html: Added news for 2002-08-19 version, which
+        contains lot of impreovements.
+
+        * examples/t2html.pl-1.txt: Spell cheked file with
+        Emacs M-x flyspell-buffer.
+        (Table rendering examples): New section to demontrate the
+        new table controlling features.
+
+2002-08-05 Mon  Jari Aalto  <jari aalto A T poboxes dt com>
+
+        * html/index.html: Removed Copyright year
+        from the end of page.
+
+        * /html/index.html (<H1> Links and
+        download ): Added CHANGELOG printing from CVS.
+        Rewote teh example perl commands. Had to copy files from
+        doc/examples/ to doc/html directory, because otherwise
+        it is not possible to locally browse doc/html/index.html with
+        the example links in the page. Updated  NEWS section to mention
+        about new #T2HTML features. Chnages CPAN text to say, that
+        it no longer the primary source - warning, that the CPAN
+        file may not be up to date. Removed copyright year from the end
+        of file.
