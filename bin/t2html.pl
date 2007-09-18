@@ -1,15 +1,12 @@
 #!/usr/bin/perl
 #
 # t2html.pl -- Perl, text2html converter. Uses Techical text format (TF)
-# $Id: t2html.pl,v 1.191 2007/09/18 11:45:36 jaalto Exp $
 #
 # {{{ Documentation
 #
 #  File id
 #
 #       Copyright (C) 1996-2006 Jari Aalto
-#       Created:      1996-11
-#       Keywords:     Perl, text, HTML, conversion
 #
 #       This program is free software; you can redistribute it and/or
 #       modify it under the terms of the GNU General Public License as
@@ -18,18 +15,15 @@
 #
 #       This program is distributed in the hope that it will be useful, but
 #       WITHOUT ANY WARRANTY; without even the implied warranty of
-#       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+#       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 #       General Public License for more details.
-#       Visit <http://www.gnu.org/copyleft/gpl.html>.
 #
-#   About program layout
+#       You should have received a copy of the GNU General Public License
+#       along with program; see the file COPYING. If not, write to the
+#       Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+#       Boston, MA 02110-1301, USA.
 #
-#       Code written with Emacs and indentation controlled with
-#       Emacs package tinytab.el, a generic tab minor mode for programming.
-#
-#       The {{ }}} marks you see in this file are party of file "fold"
-#       control package called folding.el (Unix Emacs lisp package).
-#       ftp://ftp.csd.uu.se/pub/users/andersl/beta/ to get the latest.
+#       Visit <http://www.gnu.org/copyleft/gpl.html>
 #
 #   Introduction
 #
@@ -122,10 +116,9 @@ IMPORT:             #   These are environment variables
     #
     #   The following variable is updated by Emacs setup whenever
     #   this file is saved. See Emacs module tinperl.el where the
-    #   feature is implemented; available at
-    #   http//tiny-tools.sourceforge.net
+    #   feature is implemented.
 
-    $VERSION = '2007.0526';
+    $VERSION = '2007.0918.1217';
 
 # }}}
 # {{{ Initial setup
@@ -232,7 +225,7 @@ sub Initialize ()
     $FILE_ID    = '$Id: t2html.pl,v 1.191 2007/09/18 11:45:36 jaalto Exp $'; #font '
     $VERSION_VC = (split ' ', $FILE_ID)[2];   # Version Control
     $CONTACT    = "";
-    $URL        =  "http://perl-text2html.sourceforge.net/";
+    $URL        =  "http://freshmeat.net/projects/perl-text2html/";
 
     $OUTPUT_AUTOFLUSH = 1;
     $HTTP_CODE_OK     = 200;
@@ -1221,7 +1214,7 @@ To help maintining large documents, there is also available an
 I<Emacs> minor mode, package called I<tinytf.el>, which offers text
 fontification with colors, Indentation control, bullet filling,
 heading renumbering, word markup, syntax highlighting etc.
-See Emacs Tiny Tools project at http://tiny-tools.sourceforge.net/
+See project http://freshmeat.net/projects/emacs-tiny-tools
 
 =head1 SYNOPSIS
 
@@ -2709,7 +2702,7 @@ HTML validator is at http://validator.w3.org/
 iMATIX created htmlpp which is available at http://www.imatix.com/
 
 Emacs minor mode to write documents based on TF layout is available. See
-package tinytf.el in Tiny Tools kit at http://tiny-tools.sourceforge.net/
+package tinytf.el in project http://freshmeat.net/projects/emacs-tiny-tools
 
 =head2 Standards
 
@@ -2736,10 +2729,6 @@ items that span more than one line.
 At the time being, it is not to be expect the option B<--Xhtml> to
 produce syntactically valid markup.
 
-=head1 AVAILABILITY
-
-Homepage is at http://perl-text2html.sourceforge.net/
-
 =head1 SCRIPT CATEGORIES
 
 CPAN/Administrative
@@ -2764,15 +2753,20 @@ instead of included link extracting algorithm.
 
 C<any>
 
-=head1 VERSION
+=head1 AVAILABILITY
 
-$Id: t2html.pl,v 1.191 2007/09/18 11:45:36 jaalto Exp $
+Homepage is at http://freshmeat.net/projects/perl-text2html
 
 =head1 AUTHOR
 
 Copyright (C) 1996-2006 Jari Aalto. This program is free software; you can
 redistribute it and/or modify it under the same terms as Perl itself or in
 terms of Gnu General Public license v2 or later.
+
+This documentation may be distributed subject to the terms and
+conditions set forth in GNU General Public License v2 or later; or, at
+your option, distributed under the terms of GNU Free Documentation
+License version 1.2 or later (GNU FDL).
 
 =cut
 
