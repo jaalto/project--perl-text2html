@@ -26,7 +26,6 @@ MAKE_INCLUDEDIR = etc/makefile
 include $(MAKE_INCLUDEDIR)/id.mk
 include $(MAKE_INCLUDEDIR)/vars.mk
 include $(MAKE_INCLUDEDIR)/unix.mk
-include $(MAKE_INCLUDEDIR)/net.mk
 
 # ######################################################## &suffixes ###
 
