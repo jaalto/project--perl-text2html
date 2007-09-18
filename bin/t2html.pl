@@ -118,7 +118,7 @@ IMPORT:             #   These are environment variables
     #   this file is saved. See Emacs module tinperl.el where the
     #   feature is implemented.
 
-    $VERSION = '2007.0918.1226';
+    $VERSION = '2007.0918.1242';
 
 # }}}
 # {{{ Initial setup
@@ -5601,9 +5601,7 @@ sub CssData ( ; $ )
         {
             font-size: 0.9em;
         }
-
     ); # end of double quote qq();
-
 }
 
 # ****************************************************************************

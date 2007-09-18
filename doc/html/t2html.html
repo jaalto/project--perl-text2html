@@ -1,8 +1,10 @@
+<?xml version="1.0" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>t2html.pl - Simple text to HTML converter. Relies on text indentation rules.</title>
-<link rev="made" href="mailto:root@localhost" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:rurban@x-ray.at" />
 </head>
 
 <body style="background-color: white">
@@ -62,12 +64,11 @@
 	</ul>
 
 	<li><a href="#bugs">BUGS</a></li>
-	<li><a href="#availability">AVAILABILITY</a></li>
 	<li><a href="#script_categories">SCRIPT CATEGORIES</a></li>
 	<li><a href="#prerequisites">PREREQUISITES</a></li>
 	<li><a href="#corequisites">COREQUISITES</a></li>
 	<li><a href="#osnames">OSNAMES</a></li>
-	<li><a href="#version">VERSION</a></li>
+	<li><a href="#availability">AVAILABILITY</a></li>
 	<li><a href="#author">AUTHOR</a></li>
 </ul>
 <!-- INDEX END -->
@@ -101,14 +102,16 @@ approach to support XHTML. See page <a href="http://www.w3.org/TR/xhtml1/#guidel
 where the backward compatibility recommendations are outlined:</p>
 <pre>
     Legal HTML          XHTML requires
-    &lt;P&gt;                 &lt;P&gt; ..&lt;/P&gt;
-    &lt;BR&gt;                &lt;BR&gt;&lt;/BR&gt;
-    &lt;HR&gt;                &lt;HR&gt;&lt;/HR&gt;</pre>
+    &lt;P&gt;                 &lt;p&gt; ..&lt;/p&gt;
+    &lt;BR&gt;                &lt;br&gt;&lt;/br&gt;
+    &lt;HR&gt;                &lt;hr&gt;&lt;/hr&gt;</pre>
 <p>XHTML does not support fragment identifiers #foo, with the <code>name</code> element,
-but only with <code>id</code> so for backward compatibility both elements are
+but uses <code>id</code> instead. For backward compatibility both elements are
 defined:</p>
 <pre>
     &lt; ..name=&quot;tag&quot;&gt;     Is now &lt;.. name=&quot;tag&quot; id=&quot;tag&quot;&gt;</pre>
+<p>NOTE: This program was never designed to be used for XHTML and the
+strict XHTML validity is not to be expected.</p>
 <p><strong>Motivation</strong></p>
 <p>The easiest format to write large documents, like FAQs, is text. A text
 file offers WysiWyg editing and it can be turned easily into HTML format.
@@ -119,12 +122,11 @@ maintain the documents.</p>
 version control like RCS, CVS, SVN, Arch, Perforce, ClearCase. They can be
 asily compared with diff and patches can be easily received and sent to
 them.</p>
-<p>To help maintining large documents, there is also available an <em>Emacs</em>
-minor mode, lisp package, called <em>tinytf.el</em>, which can help to keep your
-documents up to date. Indentation control, bullet filling, renumbering
-headings, marking words, syntax highlighting etc. are included. The package
-is included in Emacs Tiny Tools project at
-<a href="http://tiny-tools.sourceforge.net/">http://tiny-tools.sourceforge.net/</a></p>
+<p>To help maintining large documents, there is also available an
+<em>Emacs</em> minor mode, package called <em>tinytf.el</em>, which offers text
+fontification with colors, Indentation control, bullet filling,
+heading renumbering, word markup, syntax highlighting etc.
+See project <a href="http://freshmeat.net/projects/emacs-tiny-tools">http://freshmeat.net/projects/emacs-tiny-tools</a></p>
 <p>
 </p>
 <hr />
@@ -155,80 +157,80 @@ pieces according to toplevel headings:</p>
 </p>
 <h2><a name="html__header_and_footer_options">Html: Header and Footer options</a></h2>
 <dl>
-<dt><strong><a name="item__2d_2das_2dis"><strong>--as-is</strong></a></strong><br />
-</dt>
+<dt><strong><a name="item__2d_2das_2dis"><strong>--as-is</strong></a></strong>
+
 <dd>
-Any extra HTML formatting or text manipulation is suppressed. Text is
+<p>Any extra HTML formatting or text manipulation is suppressed. Text is
 preserved as it appears in file. Use this option if you plan to deliver or
-and print the text as seen.
+and print the text as seen.</p>
 </dd>
 <dd>
 <pre>
     o  If file contains &quot;Table of Contents&quot; it is not removed
     o  Table of Content block is not created (it usually would)</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dauthor__2da_str"><strong>--author -a STR</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dauthor__2da_str"><strong>--author -a STR</strong></a></strong>
+
 <dd>
-Author of document e.g. <strong>--author ``John Doe''</strong>
+<p>Author of document e.g. <strong>--author ``John Doe''</strong></p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2ddisclaimer_2dfile_file"><strong>--disclaimer-file</strong> FILE</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2ddisclaimer_2dfile_file"><strong>--disclaimer-file</strong> FILE</a></strong>
+
 <dd>
-The text that appears at the footer is read from this file. If not given
+<p>The text that appears at the footer is read from this file. If not given
 the default copyright text is added. Options <code>--quiet</code> and
-<code>--simple</code> suppress disclaimers.
+<code>--simple</code> suppress disclaimers.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2ddocument_file"><strong>--document FILE</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2ddocument_file"><strong>--document FILE</strong></a></strong>
+
 <dd>
-<strong>Name</strong> of the document or filename. You could list all
-alternative URLs to the document with this option.
+<p><strong>Name</strong> of the document or filename. You could list all
+alternative URLs to the document with this option.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2demail__2de_email"><strong>--email -e EMAIL</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2demail__2de_email"><strong>--email -e EMAIL</strong></a></strong>
+
 <dd>
-The contact address of the author of the document. Must be pure email
+<p>The contact address of the author of the document. Must be pure email
 address with no ``&lt;'' and ``&gt;'' characters included. Eg.
-<strong>--email <a href="mailto:foo@example.com">foo@example.com</a></strong>
+<strong>--email <a href="mailto:foo@example.com">foo@example.com</a></strong></p>
 </dd>
 <dd>
 <pre>
     --email &quot;&lt;me@here.com&gt;&quot;     WRONG
     --email &quot;me@here.com&quot;       right</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dsimple__2ds"><strong>--simple</strong> <strong>-s</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dsimple__2ds"><strong>--simple</strong> <strong>-s</strong></a></strong>
+
 <dd>
-Print minimum footer only: contact, email and date. Use <code>--quiet</code> to
-completely discard footer.
+<p>Print minimum footer only: contact, email and date. Use <code>--quiet</code> to
+completely discard footer.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dt2html_2dtags"><strong>--t2html-tags</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dt2html_2dtags"><strong>--t2html-tags</strong></a></strong>
+
 <dd>
-Allow processing embedded #T2HTML-&lt;tag&gt; directives inside file. See full
+<p>Allow processing embedded #T2HTML-&lt;tag&gt; directives inside file. See full
 explanation by reading topic <code>EMBEDDED DIRECTIVES INSIDE TEXT</code>. By
-default, you do not need to to supply this option - it is ``on'' by default.
+default, you do not need to to supply this option - it is ``on'' by default.</p>
 </dd>
 <dd>
 <p>To disregard embedded directives in text file, supply ``no'' option:
 <strong>--not2html-tags</strong>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dtitle_str__2dt_str"><strong>--title STR</strong> <strong>-t STR</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dtitle_str__2dt_str"><strong>--title STR</strong> <strong>-t STR</strong></a></strong>
+
 <dd>
-The title text that appears in top frame of browser.
+<p>The title text that appears in top frame of browser.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2durl_url"><strong>--url URL</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2durl_url"><strong>--url URL</strong></a></strong>
+
 </dl>
 <p>Location of the HTML file. When <strong>--document</strong> gave the name, this gives the
 location. This information is printed at the Footer.</p>
@@ -236,14 +238,14 @@ location. This information is printed at the Footer.</p>
 </p>
 <h2><a name="html__navigation_urls">Html: Navigation urls</a></h2>
 <dl>
-<dt><strong><a name="item__2d_2dbase_url"><strong>--base URL</strong></a></strong><br />
-</dt>
+<dt><strong><a name="item__2d_2dbase_url"><strong>--base URL</strong></a></strong>
+
 <dd>
-URL location of the HTML file in the <strong>destination site</strong> where it will be
+<p>URL location of the HTML file in the <strong>destination site</strong> where it will be
 put available. This option is needed only if the document is hosted on a
 FTP server (rare, but possible). A FTP server based document cannot use
 Table Of Contents links (fragment <em>#tag</em> identifiers) unless HTML tag BASE
-is also defined.
+is also defined.</p>
 </dd>
 <dd>
 <p>The argument can be full URL to the document:</p>
@@ -253,19 +255,19 @@ is also defined.
     --base <a href="ftp://ftp.example.com/file.html">ftp://ftp.example.com/file.html</a>
     --base <a href="ftp://ftp.example.com/">ftp://ftp.example.com/</a></pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dbutton_2dheading_2dtop"><strong>--button-heading-top</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dbutton_2dheading_2dtop"><strong>--button-heading-top</strong></a></strong>
+
 <dd>
-Add additional <strong>[toc]</strong> navigation button to the end of each heading. This
-may be useful in long non-framed HTML files.
+<p>Add additional <strong>[toc]</strong> navigation button to the end of each heading. This
+may be useful in long non-framed HTML files.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dbutton_2dtop_url"><strong>--button-top URL</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dbutton_2dtop_url"><strong>--button-top URL</strong></a></strong>
+
 <dd>
-Buttons are placed at the top of document in order: [previous][top][next]
-and <em>--button-*</em> options define the URLs.
+<p>Buttons are placed at the top of document in order: [previous][top][next]
+and <em>--button-*</em> options define the URLs.</p>
 </dd>
 <dd>
 <p>If URL is string <em>none</em> then no button is inserted. This may be handy if
@@ -293,25 +295,25 @@ the buttons are defined by a separate program. And example using Perl:</p>
 <pre>
     # End of sample program</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dbutton_2dprev_url"><strong>--button-prev URL</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dbutton_2dprev_url"><strong>--button-prev URL</strong></a></strong>
+
 <dd>
-URL to go to previous document or string <em>none</em>.
+<p>URL to go to previous document or string <em>none</em>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dbutton_2dnext_url"><strong>--button-next URL</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dbutton_2dnext_url"><strong>--button-next URL</strong></a></strong>
+
 <dd>
-URL to go to next document or string <em>none</em>.
+<p>URL to go to next document or string <em>none</em>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dreference_tag_3dvalue"><strong>--reference tag=value</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dreference_tag_3dvalue"><strong>--reference tag=value</strong></a></strong>
+
 <dd>
-You can add any custom references (tags) inside text and get them expand to
+<p>You can add any custom references (tags) inside text and get them expand to
 any value. This option can be given multiple times and every occurrance
-of TAG is replaced with VALUE. E.g. when given following options:
+of TAG is replaced with VALUE. E.g. when given following options:</p>
 </dd>
 <dd>
 <pre>
@@ -327,20 +329,20 @@ values. An example text:</p>
         The homepage is #HOME-URL/page.html and the mirrot page it at
         #ARCHIVE-URL/page.html where you can find the latest version.</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dreference_2dseparator_string"><strong>--reference-separator STRING</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dreference_2dseparator_string"><strong>--reference-separator STRING</strong></a></strong>
+
 <dd>
-See above. String that is used to split the TAG and VALUE. Default is equal
-sign ``=''.
+<p>See above. String that is used to split the TAG and VALUE. Default is equal
+sign ``=''.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dtoc_2durl_2dprint__2dt"><strong>--Toc-url-print -T</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dtoc_2durl_2dprint__2dt"><strong>--Toc-url-print -T</strong></a></strong>
+
 <dd>
-Display URLs (contructed from headings) that build up the Table of Contents
+<p>Display URLs (contructed from headings) that build up the Table of Contents
 (NAME AHREF tags) in a document. The list is outputted to stderr, so that
-it can be separated:
+it can be separated:</p>
 </dd>
 <dd>
 <pre>
@@ -354,26 +356,27 @@ for your file, you need the list of names.</p>
 <pre>
   <a href="http://www.example.com/myfile.html#fragment-identifier">http://www.example.com/myfile.html#fragment-identifier</a></pre>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="html__controlling_css_generation__html_tables_">Html: Controlling CSS generation (HTML tables)</a></h2>
 <dl>
-<dt><strong><a name="item__2d_2dcss_2dcode_2dbg"><strong>--css-code-bg</strong></a></strong><br />
-</dt>
+<dt><strong><a name="item__2d_2dcss_2dcode_2dbg"><strong>--css-code-bg</strong></a></strong>
+
 <dd>
-This option affects how the code section (column 12) is rendered. Normally
-the section is surrounded with a &lt;PRE&gt;..&lt;/PRE&gt; codes, but with this
+<p>This option affects how the code section (column 12) is rendered. Normally
+the section is surrounded with a &lt;pre&gt;..&lt;/pre&gt; codes, but with this
 options, something more fancier is used. The code is wrapped inside a
-&lt;TABLE&gt;...&lt;/TABLE&gt; and the background color is set to a shade of gray.
+&lt;table&gt;...&lt;/table&gt; and the background color is set to a shade of gray.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dcss_2dcode_2dnote__22regexp_22"><strong>--css-code-note ``REGEXP'' </strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dcss_2dcode_2dnote__22regexp_22"><strong>--css-code-note ``REGEXP'' </strong></a></strong>
+
 <dd>
-Option <strong>--css-code-bg</strong> is required to activate this option. A special word
+<p>Option <strong>--css-code-bg</strong> is required to activate this option. A special word
 defined using regexp (defualt is 'Note:') will mark code sections specially.
-The <code>first word</code> is matched against the supplied Perl regexp.
+The <code>first word</code> is matched against the supplied Perl regexp.</p>
 </dd>
 <dd>
 <p>The supplied regexp must not, repeat, must not, include any matching group
@@ -600,12 +603,7 @@ definition which is:</p>
 </dd>
 <dd>
 <pre>
-    &lt;TABLE  class=&quot;shade-note&quot;
-            width=&quot;94%&quot;
-            border=&quot;0&quot;
-            cellpadding=&quot;10&quot;
-            cellspacing=&quot;0&quot;
-            &gt;</pre>
+    &lt;TABLE  class=&quot;shade-note&quot;&gt;</pre>
 </dd>
 <dd>
 <p>To change e.g. only value cellpadding, you would say:</p>
@@ -619,55 +617,58 @@ definition which is:</p>
 <strong>--test-page</strong> and look at the source and generated HTML files. That
 should offer more rope to experiment with.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dcss_2dfile_file"><strong>--css-file FILE</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dcss_2dfile_file"><strong>--css-file FILE</strong></a></strong>
+
 <dd>
-Include &lt;LINK ...&gt; which refers to external CSS style definition source.
+<p>Include &lt;LINK ...&gt; which refers to external CSS style definition source.
 This option is ignored if <strong>--script-file</strong> option has been given,
-because that option imports whole content inside HEAD tag.
+because that option imports whole content inside HEAD tag. This option
+can appear multiple times and the external CSS files are added in
+listed order.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dcss_2dfont_2dtype_css_2ddefinition"><strong>--css-font-type CSS-DEFINITION</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dcss_2dfont_2dtype_css_2ddefinition"><strong>--css-font-type CSS-DEFINITION</strong></a></strong>
+
 <dd>
-Set the BODY element's font defintion to CSS-DEFINITION. The
-default value used is the regular typeset used in newspapers and books:
+<p>Set the BODY element's font defintion to CSS-DEFINITION. The
+default value used is the regular typeset used in newspapers and books:</p>
 </dd>
 <dd>
 <pre>
-    --css-font-type&quot;font-family: &quot;Times New Roman&quot;, serif;&quot;</pre>
+    --css-font-type='font-family: &quot;Times New Roman&quot;, serif;'</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dcss_2dfont_2dsize_css_2ddefinition"><strong>--css-font-size CSS-DEFINITION</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dcss_2dfont_2dsize_css_2ddefinition"><strong>--css-font-size CSS-DEFINITION</strong></a></strong>
+
 <dd>
-Set the body element's font size to CSS-DEFINITION. The default font
-size is expressed in points:
+<p>Set the body element's font size to CSS-DEFINITION. The default font
+size is expressed in points:</p>
 </dd>
 <dd>
 <pre>
     --css-font-size=&quot;font-size: 12pt;&quot;</pre>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="html__controlling_the_body_of_document">Html: Controlling the body of document</a></h2>
 <dl>
-<dt><strong><a name="item__2d_2ddelete_regexp"><strong>--delete REGEXP</strong></a></strong><br />
-</dt>
+<dt><strong><a name="item__2d_2ddelete_regexp"><strong>--delete REGEXP</strong></a></strong>
+
 <dd>
-Delete lines matching perl REGEXP. This is useful if you use some document
+<p>Delete lines matching perl REGEXP. This is useful if you use some document
 tool that uses navigation tags in the text file that you do not want to show
-up in generated HTML.
+up in generated HTML.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2ddelete_2demail_2dheaders"><strong>--delete-email-headers</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2ddelete_2demail_2dheaders"><strong>--delete-email-headers</strong></a></strong>
+
 <dd>
-Delete email headers at the beginning of file, until first empty line that
+<p>Delete email headers at the beginning of file, until first empty line that
 starts the body. If you keep your document ready for Usenet news posting, they
-may contain headers and body:
+may contain headers and body:</p>
 </dd>
 <dd>
 <pre>
@@ -680,11 +681,11 @@ may contain headers and body:
 <pre>
     BODY-OF-TEXT</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dnodelete_2ddefault"><strong>--nodelete-default</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dnodelete_2ddefault"><strong>--nodelete-default</strong></a></strong>
+
 <dd>
-Use this option to suppress default text deletion (which is on).
+<p>Use this option to suppress default text deletion (which is on).</p>
 </dd>
 <dd>
 <p>Emacs <code>folding.el</code> package and vi can be used with any text or
@@ -716,21 +717,21 @@ are not included in the generated output.</p>
 <pre>
   }}}</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dhtml_2dbody_str"><strong>--html-body STR</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dhtml_2dbody_str"><strong>--html-body STR</strong></a></strong>
+
 <dd>
-Additional attributes to add to HTML tag &lt;BODY&gt;. You could e.g. define
+<p>Additional attributes to add to HTML tag &lt;BODY&gt;. You could e.g. define
 language of the text with <strong>--html-body LANG=en</strong> which would generate
-HTML tag &lt;BODY LANG=``en''&gt; See section ``SEE ALSO'' for ISO 639.
+HTML tag &lt;BODY LANG=``en''&gt; See section ``SEE ALSO'' for ISO 639.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dhtml_2dcolumn_2dbeg_3d_22spec_html_2dspec_22"><strong>--html-column-beg=``SPEC HTML-SPEC''</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dhtml_2dcolumn_2dbeg_3d_22spec_html_2dspec_22"><strong>--html-column-beg=``SPEC HTML-SPEC''</strong></a></strong>
+
 <dd>
-The default interpretation of columns 1,2,3  5,6,7,8,9,10,11,12 can be
+<p>The default interpretation of columns 1,2,3  5,6,7,8,9,10,11,12 can be
 changed with <em>beg</em> and <em>end</em> swithes. Columns 0,4 can't be changed because
-they are reserved for headings. Here are some samples:
+they are reserved for headings. Here are some samples:</p>
 </dd>
 <dd>
 <pre>
@@ -789,26 +790,26 @@ defines following standard named colors:</p>
     White       #FFFFFF  Fuchsia #FF00FF
     Yellow      #FFFF00  Aqua    #00FFFF</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dhtml_2dcolumn_2dend_3d_22col_html_2dspec_22"><strong>--html-column-end=``COL HTML-SPEC''</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dhtml_2dcolumn_2dend_3d_22col_html_2dspec_22"><strong>--html-column-end=``COL HTML-SPEC''</strong></a></strong>
+
 <dd>
-See <strong>--html-column-beg</strong>
+<p>See <strong>--html-column-beg</strong></p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dhtml_2dfont_size"><strong>--html-font SIZE</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dhtml_2dfont_size"><strong>--html-font SIZE</strong></a></strong>
+
 <dd>
-Define FONT SIZE. It might be useful to set bigger font size for presentations.
+<p>Define FONT SIZE. It might be useful to set bigger font size for presentations.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dhtml_2dframe__2df__5bframe_2dparams_5d"><strong>--html-frame -F [FRAME-PARAMS]</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dhtml_2dframe__2df__5bframe_2dparams_5d"><strong>--html-frame -F [FRAME-PARAMS]</strong></a></strong>
+
 <dd>
-If given, then three separate HTML files are generated. The left frame will
+<p>If given, then three separate HTML files are generated. The left frame will
 contain TOC and right frame contains rest of the text. The <em>FRAME-PARAMS</em>
 can be any valid parameters for HTML tag FRAMESET. The default is
-<code>cols=&quot;25%,75%&quot;</code>.
+<code>cols=&quot;25%,75%&quot;</code>.</p>
 </dd>
 <dd>
 <p>Using this implies <strong>--Out</strong> option automatically, because three files
@@ -824,14 +825,14 @@ cannot be printed to stdout.</p>
         file-toc.html   Left frame (navigation)
         file-body.html  Right frame (content)</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dlanguage_id"><strong>--language ID</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dlanguage_id"><strong>--language ID</strong></a></strong>
+
 <dd>
-Use language ID, a two character ISO identifier like ``en'' for English
+<p>Use language ID, a two character ISO identifier like ``en'' for English
 during the generation of HTML. This only affects the text that is shown to
 end-user, like text ``Table Of contents''. The default setting is ``en''. See
-section ``SEE ALSO'' for standards ISO 639 and ISO 3166 for proper codes.
+section ``SEE ALSO'' for standards ISO 639 and ISO 3166 for proper codes.</p>
 </dd>
 <dd>
 <p>The selected langauge changes propgram's internal arrays in two ways: 1)
@@ -843,12 +844,12 @@ numbered pictures will use natinal equivalent.</p>
 <p>If your languagae is not supported, please send the phrase for ``Table of
 contents'' and word ``Pic'' in your langauge to the maintainer.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dscript_2dfile_file"><strong>--script-file FILE</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dscript_2dfile_file"><strong>--script-file FILE</strong></a></strong>
+
 <dd>
-Include java code that must be complete &lt;SCRIPT...&gt;&lt;/SCRIPT&gt; from FILE. The
-code is put inside &lt;HEAD&gt; of each HTML.
+<p>Include java code that must be complete &lt;SCRIPT...&gt;&lt;/SCRIPT&gt; from FILE. The
+code is put inside &lt;HEAD&gt; of each HTML.</p>
 </dd>
 <dd>
 <p>The <strong>--script-file</strong> is a general way to import anything into the HEAD
@@ -856,35 +857,35 @@ element. Eg. If you want to keep separate style definitions for
 all, you could only import a pointer to a style sheet.
 See <em>14.3.2 Specifying external style sheets</em> in HTML 4.0 standard.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dmeta_2dkeywords_str"><strong>--meta-keywords STR</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dmeta_2dkeywords_str"><strong>--meta-keywords STR</strong></a></strong>
+
 <dd>
-Meta keywords. Used by search engines. Separate kwywords like ``AA, BB, CC''
+<p>Meta keywords. Used by search engines. Separate kwywords like ``AA, BB, CC''
 with commas. Refer to HTML 4.01 specification and topic ``7.4.4 Meta data''
-and see <a href="http://www.htmlhelp.com/reference/wilbur/">http://www.htmlhelp.com/reference/wilbur/</a> and
+and see <a href="http://www.htmlhelp.com/reference/wilbur/">http://www.htmlhelp.com/reference/wilbur/</a> and</p>
 </dd>
 <dd>
 <pre>
     --meta-keywords &quot;AA,BB,CC&quot;</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dmeta_2ddescription_str"><strong>--meta-description STR</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dmeta_2ddescription_str"><strong>--meta-description STR</strong></a></strong>
+
 <dd>
-Meta description. Include description string, max 1000 characters. This is
+<p>Meta description. Include description string, max 1000 characters. This is
 used by search engines. Refer to HTML 4.01 specification and topic
-``7.4.4 Meta data''
+``7.4.4 Meta data''</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dname_2duniq"><strong>--name-uniq</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dname_2duniq"><strong>--name-uniq</strong></a></strong>
+
 <dd>
-First 1-4 words from the heading are used for the HTML <em>NAME</em> tags.
+<p>First 1-4 words from the heading are used for the HTML <em>NAME</em> tags.
 However, it is possible that two same headings start with exactly the same
 1-4 words. In those cases you have to turn on this option. It will use
 counter 00 - 999 instead of words from headings to construct HTML <em>NAME</em>
-references.
+references.</p>
 </dd>
 <dd>
 <p>Please use this option only in emergencies, because referring to jump block
@@ -908,17 +909,18 @@ the heading. Think about welfare of your netizens who bookmark you pages.
 Try to make headings to not have same subjects and you do not need this
 option.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="document_maintenance_and_batch_job_commands">Document maintenance and batch job commands</a></h2>
 <dl>
-<dt><strong><a name="item__2d_2dauto_2ddetect"><strong>--Auto-detect</strong></a></strong><br />
-</dt>
+<dt><strong><a name="item__2d_2dauto_2ddetect"><strong>--Auto-detect</strong></a></strong>
+
 <dd>
-Convert file only if tag <code>#T2HTML-</code> is found from file. This option
+<p>Convert file only if tag <code>#T2HTML-</code> is found from file. This option
 is handy if you run a batch command to convert all files to HTML, but
-only if they look like HTML base files:
+only if they look like HTML base files:</p>
 </dd>
 <dd>
 <pre>
@@ -931,13 +933,13 @@ them to conversion program. The <strong>--Auto-detect</strong> only converts fil
 which include <code>#T2HTML-</code> directives. Other text files are not
 converted.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dlink_2dcheck__2dl"><strong>--link-check -l</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dlink_2dcheck__2dl"><strong>--link-check -l</strong></a></strong>
+
 <dd>
-Check all http and ftp links.
+<p>Check all http and ftp links.
 <em>This option is supposed to be run standalone</em>
-Option <strong>--quiet</strong> has special meaning when used with link check.
+Option <strong>--quiet</strong> has special meaning when used with link check.</p>
 </dd>
 <dd>
 <p>With this option you can regularly validate your document and remove dead
@@ -965,11 +967,11 @@ able to get the file at one click, checker can validate at least the
 directory. If you are not the owner of the link, it is also possible
 that the file has moved of new version name has appeared.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dlink_2dcheck_2dsingle__2dl"><strong>--Link-check-single -L</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dlink_2dcheck_2dsingle__2dl"><strong>--Link-check-single -L</strong></a></strong>
+
 <dd>
-Print condensed output in <em>grep -n</em> like manner <em>FILE:LINE:MESSAGE</em>
+<p>Print condensed output in <em>grep -n</em> like manner <em>FILE:LINE:MESSAGE</em></p>
 </dd>
 <dd>
 <p>This option concatenates the url response text to single line, so that you
@@ -977,11 +979,11 @@ can view the messages in one line. You can use programming tools (like
 Emacs M-x compile) that can parse standard grep syntax to jump to locations
 in your document to correct the links later.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dout__2do"><strong>--Out -O</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dout__2do"><strong>--Out -O</strong></a></strong>
+
 <dd>
-write generated HTML to file that is derived from the input filename.
+<p>write generated HTML to file that is derived from the input filename.</p>
 </dd>
 <dd>
 <pre>
@@ -989,17 +991,17 @@ write generated HTML to file that is derived from the input filename.
     --Out --print /dir/file.txt        --&gt; /dir/file.html
     --Out --print /dir/file.this.txt   --&gt; /dir/file.this.html</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dlink_2dcache_cache_file"><strong>--Link-cache CACHE_FILE</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dlink_2dcache_cache_file"><strong>--Link-cache CACHE_FILE</strong></a></strong>
+
 <dd>
-When links are checked periodically, it would be quite a rigorous to
+<p>When links are checked periodically, it would be quite a rigorous to
 check every link every time that has already succeeded. In order to
 save link checking time, the ``ok'' links can be cached into separate
 file. Next time you check the links, the cache is opened and only
 links found that were not in the cache are checked. This should
 dramatically improve long searches. Consider this example, where
-every text file is checked recursively.
+every text file is checked recursively.</p>
 </dd>
 <dd>
 <pre>
@@ -1007,12 +1009,12 @@ every text file is checked recursively.
       --quiet --Link-cache ~tmp/link.cache \
       `find . -name &quot;*.txt&quot; -type f`</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dout_2ddir_dir"><strong>--Out-dir DIR</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dout_2ddir_dir"><strong>--Out-dir DIR</strong></a></strong>
+
 <dd>
-Like <strong>--Out</strong>, but chop the directory part and write output files to
-DIR. The following would generate the HTML file to current directory:
+<p>Like <strong>--Out</strong>, but chop the directory part and write output files to
+DIR. The following would generate the HTML file to current directory:</p>
 </dd>
 <dd>
 <pre>
@@ -1027,12 +1029,12 @@ output to directory ``none'':</p>
 <pre>
     --Out-dir none</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dprint__2dp"><strong>--print -p</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dprint__2dp"><strong>--print -p</strong></a></strong>
+
 <dd>
-Print filename to stdout after HTML processing. Normally program prints
-no file names, only the generated HTML.
+<p>Print filename to stdout after HTML processing. Normally program prints
+no file names, only the generated HTML.</p>
 </dd>
 <dd>
 <pre>
@@ -1042,12 +1044,12 @@ no file names, only the generated HTML.
 <pre>
     --&gt; page.html</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dprint_2durl__2dp"><strong>--print-url -P</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dprint_2durl__2dp"><strong>--print-url -P</strong></a></strong>
+
 <dd>
-Print filename in URL format. This is useful if you want to check the
-layout immediately with your browser.
+<p>Print filename in URL format. This is useful if you want to check the
+layout immediately with your browser.</p>
 </dd>
 <dd>
 <pre>
@@ -1057,13 +1059,13 @@ layout immediately with your browser.
 <pre>
     --&gt; file: /users/foo/txt/page.html</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dsplit_regexp"><strong>--split REGEXP</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dsplit_regexp"><strong>--split REGEXP</strong></a></strong>
+
 <dd>
-Split document into smaller pieces when REGEXP matches. <em>Split commands
+<p>Split document into smaller pieces when REGEXP matches. <em>Split commands
 are standalone</em>, meaning, that it starts and quits. No HTML conversion for
-the file is engaged.
+the file is engaged.</p>
 </dd>
 <dd>
 <p>If REGEXP is found from the line, it is a start point of a split. E.g. to
@@ -1086,28 +1088,28 @@ use:</p>
 First split the document, then convert each part to HTML and finally print
 each part (page) separately to printer.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dsplit1__2d_2ds1"><strong>--split1 --S1</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dsplit1__2d_2ds1"><strong>--split1 --S1</strong></a></strong>
+
 <dd>
-This is shorthand of <strong>--split</strong> command. Define regexp to split on toplevel
-heading.
+<p>This is shorthand of <strong>--split</strong> command. Define regexp to split on toplevel
+heading.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dsplit2__2d_2ds2"><strong>--split2 --S2</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dsplit2__2d_2ds2"><strong>--split2 --S2</strong></a></strong>
+
 <dd>
-This is shorthand of <strong>--split</strong> command. Define regexp to split on second
-level heading.
+<p>This is shorthand of <strong>--split</strong> command. Define regexp to split on second
+level heading.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dsplit_2dnamed_2dfiles__2d_2dsn"><strong>--split-named-files --SN</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dsplit_2dnamed_2dfiles__2d_2dsn"><strong>--split-named-files --SN</strong></a></strong>
+
 <dd>
-Additional directive for split commands. If you split e.g. by headings using
+<p>Additional directive for split commands. If you split e.g. by headings using
 <strong>--split1</strong>, it would be more informative to generate filenames according
 to first few words from the heading name. Suppose the heading names where
-split occur were:
+split occur were:</p>
 </dd>
 <dd>
 <pre>
@@ -1122,78 +1124,80 @@ split occur were:
     FILENAME-program_guidelines
     FILENAME-conclusion</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dxhtml"><strong>--Xhtml</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dxhtml"><strong>--Xhtml</strong></a></strong>
+
 <dd>
-Render using strict XHTML. This means using &lt;hr /&gt;, &lt;BR /&gt; and paragraphs
-use &lt;P&gt;&lt;/P&gt;.
+<p>Render using strict XHTML. This means using &lt;hr/&gt;, &lt;br/&gt; and paragraphs
+use &lt;p&gt;..&lt;/p&gt;.</p>
 </dd>
 <dd>
 <p><code>Note: this option is experimental. See BUGS</code></p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="miscellaneous_options">Miscellaneous options</a></h2>
 <dl>
-<dt><strong><a name="item__2d_2ddebug_level"><strong>--debug LEVEL</strong></a></strong><br />
-</dt>
+<dt><strong><a name="item__2d_2ddebug_level"><strong>--debug LEVEL</strong></a></strong>
+
 <dd>
-Turn on debug with positive LEVEL number. Zero means no debug.
+<p>Turn on debug with positive LEVEL number. Zero means no debug.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dhelp__2dh"><strong>--help -h</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dhelp__2dh"><strong>--help -h</strong></a></strong>
+
 <dd>
-Print help screen.
+<p>Print help screen.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dhelp_2dhtml"><strong>--Help-html</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dhelp_2dhtml"><strong>--Help-html</strong></a></strong>
+
 <dd>
-Print help in HTML format.
+<p>Print help in HTML format.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dhelp_2dman"><strong>--Help-man</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dhelp_2dman"><strong>--Help-man</strong></a></strong>
+
 <dd>
-Print help page in Unix manual page format. You want to feed this output to
-<strong>nroff -man</strong> in order to read it.
+<p>Print help page in Unix manual page format. You want to feed this output to
+<strong>nroff -man</strong> in order to read it.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dtest_2dpage"><strong>--test-page</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dtest_2dpage"><strong>--test-page</strong></a></strong>
+
 <dd>
-Print the test page: HTML and exampl etext file that demonstrates
-the capabilities.
+<p>Print the test page: HTML and example text file that demonstrates
+the capabilities.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dtime"><strong>--time</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dtime"><strong>--time</strong></a></strong>
+
 <dd>
-Print to stderr time spent used for handling the file.
+<p>Print to stderr time spent used for handling the file.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dverbose__5blevel_5d"><strong>--verbose [LEVEL]</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dverbose__5blevel_5d"><strong>--verbose [LEVEL]</strong></a></strong>
+
 <dd>
-Print verbose messages.
+<p>Print verbose messages.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dquiet__2dq"><strong>--quiet -q</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dquiet__2dq"><strong>--quiet -q</strong></a></strong>
+
 <dd>
-Print no footer at all. This option has different meaning if
-<em>--link-check</em> option is turned on: print only errorneous links.
+<p>Print no footer at all. This option has different meaning if
+<em>--link-check</em> option is turned on: print only errorneous links.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item__2d_2dversion__2dv"><strong>--Version -V</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item__2d_2dversion__2dv"><strong>--Version -V</strong></a></strong>
+
 <dd>
-Print program version information.
+<p>Print program version information.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <hr />
@@ -1337,26 +1341,27 @@ of text formatting are secribed below.</p>
 </p>
 <h2><a name="used_headings">USED HEADINGS</a></h2>
 <ul>
-<li></li>
-There are only <em>two</em> heading levels in this style. Heading columns are 0
-and 4 and the heading must start with big letter or number
-<p></p>
-<li></li>
-at column 4, if the text starts with small letter, that line is interpreted
-as &lt;STRONG&gt;
-<p></p>
-<li></li>
-A HTML &lt;HR&gt; mark is added just before printing heading at level 1.
-<p></p>
-<li></li>
-The headings are gathered, the TOC is built and inserted to the beginning
+<li>
+<p>There are only <em>two</em> heading levels in this style. Heading columns are 0
+and 4 and the heading must start with big letter or number</p>
+</li>
+<li>
+<p>at column 4, if the text starts with small letter, that line is interpreted
+as &lt;STRONG&gt;</p>
+</li>
+<li>
+<p>A HTML &lt;HR&gt; mark is added just before printing heading at level 1.</p>
+</li>
+<li>
+<p>The headings are gathered, the TOC is built and inserted to the beginning
 of HTML page. The HTML &lt;NAME&gt; references used in TOC are the first 4
 sequential words from the headings. Make sure your headings are uniquely
 named, otherwise there will be same NAME references in the generated HTML.
 Spaces are converted into underscore when joining the words. If you can not
 write unique headings by four words, then you must use <strong>--name-uniq</strong>
-switch
-<p></p></ul>
+switch</p>
+</li>
+</ul>
 <p>
 </p>
 <hr />
@@ -1366,43 +1371,45 @@ switch
 <h2><a name="general">General</a></h2>
 <p>The basic rules for positioning text in certain columns:</p>
 <ul>
-<li></li>
-Text at column 0 is undefined if it does not start with big letter or number
-to indicate Heading level 1.
-<p></p>
-<li></li>
-Text between colums 1-3 is marked with &lt;EM&gt;
-<p></p>
-<li></li>
-Column 4 is reserved for heading level 2
-<p></p>
-<li></li>
-Text between colums 5-7 is marked with &lt;STRONG&gt;
-<p></p>
-<li></li>
-Text at column 7 is &lt;EM&gt; if the first character is double quote.
-<p></p>
-<li></li>
-Column 10 is reserved for &lt;EM&gt; text. If you want to quote someone
-or to add reference text, place the text in this column.
-<p></p>
-<li></li>
-Text at colums 9,11 are marked with &lt;STRONG&gt;
-<p></p></ul>
+<li>
+<p>Text at column 0 is undefined if it does not start with big letter or number
+to indicate Heading level 1.</p>
+</li>
+<li>
+<p>Text between colums 1-3 is marked with &lt;EM&gt;</p>
+</li>
+<li>
+<p>Column 4 is reserved for heading level 2</p>
+</li>
+<li>
+<p>Text between colums 5-7 is marked with &lt;STRONG&gt;</p>
+</li>
+<li>
+<p>Text at column 7 is &lt;EM&gt; if the first character is double quote.</p>
+</li>
+<li>
+<p>Column 10 is reserved for &lt;EM&gt; text. If you want to quote someone
+or to add reference text, place the text in this column.</p>
+</li>
+<li>
+<p>Text at colums 9,11 are marked with &lt;STRONG&gt;</p>
+</li>
+</ul>
 <p>Column 8 for text and special codes</p>
 <ul>
-<li></li>
-Column 8 is reserved for normal text
-<p></p>
-<li></li>
-At the start of text, at colum 8, there can be DOT-code or COMMA-code.
-<p></p></ul>
+<li>
+<p>Column 8 is reserved for normal text</p>
+</li>
+<li>
+<p>At the start of text, at colum 8, there can be DOT-code or COMMA-code.</p>
+</li>
+</ul>
 <p>Column 12 is special</p>
 <ul>
-<li></li>
-Column 12 is treated specially: block is started with &lt;PRE&gt; and lines are
+<li>
+<p>Column 12 is treated specially: block is started with &lt;PRE&gt; and lines are
 marked as &lt;SAMP&gt;&lt;/SAMP&gt;. When the last text at <em>column</em> 12 is found, the
-block is closed with &lt;/PRE&gt; Note follwing example
+block is closed with &lt;/PRE&gt; Note follwing example</p>
 <pre>
     txt txt txt         ;evenly placed block, fine, do it like this
     txt txt</pre>
@@ -1415,23 +1422,24 @@ block is closed with &lt;/PRE&gt; Note follwing example
     txt txt txt txt
         txt txt txt txt
     ;; Finalizing comment, now the text is evenly placed</pre>
-<p></p></ul>
+</li>
+</ul>
 <p>
 </p>
 <h2><a name="additional_tokens_for_use_at_column_8">Additional tokens for use at column 8</a></h2>
 <ul>
-<li></li>
-If there is <code>.</code>(dot) at the beginning of a line and immediately
-non-whitespace, then &lt;BR&gt; code is added to the end of line.
+<li>
+<p>If there is <code>.</code>(dot) at the beginning of a line and immediately
+non-whitespace, then &lt;BR&gt; code is added to the end of line.</p>
 <pre>
     .This line has BR code at the end.
     While these two line are joined together
     by your browser, depending on the frame width.</pre>
-<p></p>
-<li></li>
-If there is <code>,</code>(comma) then the &lt;P&gt; code is not inserted if the previous
+</li>
+<li>
+<p>If there is <code>,</code>(comma) then the &lt;P&gt; code is not inserted if the previous
 line is empty. If you use both <code>.</code>(dot) and <code>,</code>(comma), they must be in
-order dot-comma. The <code>,</code>(comma) works differently if it is used in bullet
+order dot-comma. The <code>,</code>(comma) works differently if it is used in bullet</p>
 <p>A &lt;P&gt; is always added if there is separation of paragraphs, but when you are
 writing a bullet, there is a problem, because a bullet exist only as long
 as text is kept together</p>
@@ -1452,13 +1460,14 @@ not &lt;SAMPLE&gt; while it is placed at column 12</p>
 <pre>
         // and this is code sample after bullet
         if ( $flag ) { ..do something.. }</pre>
-<p></p></ul>
+</li>
+</ul>
 <p>
 </p>
 <h2><a name="special_text_markings">Special text markings</a></h2>
 <dl>
-<dt><strong><a name="item_italic_2c_bold_2c_code_2c_small_2c_big_tokens">italic, bold, code, small, big tokens</a></strong><br />
-</dt>
+<dt><strong><a name="item_italic_2c_bold_2c_code_2c_small_2c_big_tokens">italic, bold, code, small, big tokens</a></strong>
+
 <dd>
 <pre>
     _this_      is intepreted as &lt;STRONG class='word'&gt;this&lt;/STRONG&gt;
@@ -1475,8 +1484,8 @@ bigger font, CAPITALIZE THE WORDS.</p>
     +this+      is intepreted as &lt;SPAN class=&quot;word-big&quot;&gt;this&lt;/SPAN&gt;
     word [this] is intepreted as &lt;SPAN class=&quot;word-ref&quot;&gt;this&lt;/SPAN&gt;</pre>
 </dd>
-<dt><strong><a name="item_supercripting">supercripting</a></strong><br />
-</dt>
+<dt><strong><a name="item_supercripting">supercripting</a></strong>
+
 <dd>
 <pre>
     word[this]  is intepreted as superscript. You can use like
@@ -1484,11 +1493,11 @@ bigger font, CAPITALIZE THE WORDS.</p>
                 imaginable[IV superscritps] as long as the left
                 bracket is attached to the word.</pre>
 </dd>
-<dt><strong><a name="item_embedding_standard_html_tokens">embedding standard HTML tokens</a></strong><br />
-</dt>
+<dt><strong><a name="item_embedding_standard_html_tokens">embedding standard HTML tokens</a></strong>
+
 <dd>
-Stanadard special HTML entities can be added inside text in a normal way,
-either using sybolic names or the hash code. Here are exmples
+<p>Stanadard special HTML entities can be added inside text in a normal way,
+either using sybolic names or the hash code. Here are exmples</p>
 </dd>
 <dd>
 <pre>
@@ -1500,14 +1509,14 @@ either using sybolic names or the hash code. Here are exmples
     &amp;trade; &amp;copy; &amp;reg;
     &amp;euro; &amp;pound; &amp;yen;</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_embedding_pure_html_into_text">embedding PURE HTML into text</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_embedding_pure_html_into_text">embedding PURE HTML into text</a></strong>
+
 <dd>
-<strong>this feature is highly experimental</strong>. It is possible to embed
+<p><strong>this feature is highly experimental</strong>. It is possible to embed
 pure HTML inside text in occasions, where e.g. some special
 formatting is needed. The isea is simple: you write HTML as usual
-but double every &lt; and &gt; characters, like:
+but double every &lt; and &gt; characters, like:</p>
 </dd>
 <dd>
 <pre>
@@ -1562,30 +1571,32 @@ interpreting as PURE HTML:</p>
         one
         EOF</pre>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <dl>
-<dt><strong><a name="item_drawing_a_short_separator">drawing a short separator</a></strong><br />
-</dt>
+<dt><strong><a name="item_drawing_a_short_separator">drawing a short separator</a></strong>
+
 <dd>
-A !! (two exclamation marks) at text column (position 8) causes adding
+<p>A !! (two exclamation marks) at text column (position 8) causes adding
 immediate &lt;HR&gt; code. Any text after !! in the same line is written with
 &lt;STRONG&gt; &lt;EM&gt; and inserted just after &lt;HR&gt; code, therefore the word
-formatting commands have no effect in this line.
+formatting commands have no effect in this line.</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <h2><a name="http_and_email_marking_control">Http and email marking control</a></h2>
 <ul>
-<li></li>
-All http and ftp references as well as &lt;<a href="mailto:foo@example.com">foo@example.com</a>&gt; email
+<li>
+<p>All http and ftp references as well as &lt;<a href="mailto:foo@example.com">foo@example.com</a>&gt; email
 addresses are marked clickable. Email must have surrounding &lt;&gt;
-characters to be recognized.
-<p></p>
-<li></li>
-If url is preceded with hyphen, it will not be clickable. If a string
+characters to be recognized.</p>
+</li>
+<li>
+<p>If url is preceded with hyphen, it will not be clickable. If a string
 foo, bar, quux, test, site is found from url, then it is not counted as
-clickable.
+clickable.</p>
 <pre>
     &lt;me@here.com&gt;                   clickable
     <a href="http://example.com">http://example.com</a>              clickable</pre>
@@ -1595,41 +1606,44 @@ clickable.
 <pre>
     -<a href="http://example.com">http://example.com</a>             hyphen, not clickable
     <a href="http://">http://</a>$EXAMPLE                 variable. not clickable</pre>
-<p></p></ul>
+</li>
+</ul>
 <p>
 </p>
 <h2><a name="lists_and_bullets">Lists and bullets</a></h2>
 <ul>
-<li></li>
-The bulletin table is contructed if there is ``o'' or ``*'' at column 8 and 3
+<li>
+<p>The bulletin table is contructed if there is ``o'' or ``*'' at column 8 and 3
 spaces after it, so that text starts at column 12. Bulleted lines are
-adviced to be kept together; no spaces between bullet blocks.
-<p></p>
-<li></li>
-The ordered list is started with ``.'', a dot, and written like bullet where
-text starts at column 12.
-<p></p></ul>
+adviced to be kept together; no spaces between bullet blocks.</p>
+</li>
+<li>
+<p>The ordered list is started with ``.'', a dot, and written like bullet where
+text starts at column 12.</p>
+</li>
+</ul>
 <p>
 </p>
 <h2><a name="line_breaks">Line breaks</a></h2>
 <ul>
-<li></li>
-All line breaks are visible in your document, do not use more than one line
-break to separate paragraphs.
-<p></p>
-<li></li>
-Very important is that there is only <em>one</em> line break after headings.
-<p></p></ul>
+<li>
+<p>All line breaks are visible in your document, do not use more than one line
+break to separate paragraphs.</p>
+</li>
+<li>
+<p>Very important is that there is only <em>one</em> line break after headings.</p>
+</li>
+</ul>
 <p>
 </p>
 <hr />
 <h1><a name="embedded_directives_inside_text">EMBEDDED DIRECTIVES INSIDE TEXT</a></h1>
 <dl>
-<dt><strong><a name="item_command_line_options">Command line options</a></strong><br />
-</dt>
+<dt><strong><a name="item_command_line_options">Command line options</a></strong>
+
 <dd>
-You can cancel obeying all embedded directives by supplying option
-<strong>--not2html-tags</strong>.
+<p>You can cancel obeying all embedded directives by supplying option
+<strong>--not2html-tags</strong>.</p>
 </dd>
 <dd>
 <p>You can include these lines anywhere in the document and their content
@@ -1680,17 +1694,21 @@ associated options.</p>
     #T2HTML-COMMENT  You comment here
     #T2HTML-COMMENT  You another comment here</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_embedding_files">Embedding files</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_embedding_files">Embedding files</a></strong>
+
 <dd>
-#INCLUDE- command
+<p>#INCLUDE- command</p>
 </dd>
 <dd>
 <p>This is used to include the content into current current position. The URL
 can be a filename reference, where every $VAR is subtituted from the
 environment variables. The <code>tilde(~)</code> expansion is not supported. The
 included filename is operating system supported path location.</p>
+</dd>
+<dd>
+<p>A prefix <code>raw:</code> disables any normal formatting. The file content is
+included as is.</p>
 </dd>
 <dd>
 <p>The URL can also be a HTTP reference to a remote location, whose content is
@@ -1717,13 +1735,14 @@ within the BODY, marked with !!, are included:</p>
 <dd>
 <pre>
     #INCLUDE-$HOME/lib/html/picture1.html
-    #INCLUDE-<a href="http://www.example.com/code.html">http://www.example.com/code.html</a></pre>
+    #INCLUDE-<a href="http://www.example.com/code.html">http://www.example.com/code.html</a>
+    #INCLUDE-raw:example/code.html</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_embedding_pictures">Embedding pictures</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_embedding_pictures">Embedding pictures</a></strong>
+
 <dd>
-#PIC command is used to include pictures into the text
+<p>#PIC command is used to include pictures into the text</p>
 </dd>
 <dd>
 <pre>
@@ -1741,12 +1760,12 @@ within the BODY, marked with !!, are included:</p>
 <dd>
 <pre>
     3.  Additional attributes that are attached inside &lt;IMG&gt; tag.
-        For &lt;IMG width=&quot;200&quot; length=&quot;200&quot;&gt;, the line would
+        For &lt;IMG width=&quot;200&quot; height=&quot;200&quot;&gt;, the line would
         read:</pre>
 </dd>
 <dd>
 <pre>
-        #PIC some.png#Caption Text#width=&quot;200&quot; length=&quot;200&quot;##</pre>
+        #PIC some.png#Caption Text#width=200 length=200##</pre>
 </dd>
 <dd>
 <pre>
@@ -1757,13 +1776,13 @@ within the BODY, marked with !!, are included:</p>
 which is used in case the browser is not capable of showing pictures.
 You can suppress the ALT text with option <strong>--no-picture-alt</strong>.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_fragment_identifiers_for_named_tags">Fragment identifiers for named tags</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_fragment_identifiers_for_named_tags">Fragment identifiers for named tags</a></strong>
+
 <dd>
-#REF command is used for refering to HTML &lt;NAME&gt; tag inside current
+<p>#REF command is used for refering to HTML &lt;NAME&gt; tag inside current
 document. The whole command must be placed on one single line and
-cannot be broken to multiple lines. An example:
+cannot be broken to multiple lines. An example:</p>
 </dd>
 <dd>
 <pre>
@@ -1780,13 +1799,13 @@ cannot be broken to multiple lines. An example:
 <pre>
     2.  The clickable text is delimited by ; characters.</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_referring_to_external_documents_2e">Referring to external documents.</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_referring_to_external_documents_2e">Referring to external documents.</a></strong>
+
 <dd>
-<code>#URL</code> tag can be used to embed URLs inline, so that the full
+<p><code>#URL</code> tag can be used to embed URLs inline, so that the full
 link is not visible. Only the shown text is used to jump to URL.
-This directive cannot be broken to separate lines,
+This directive cannot be broken to separate lines,</p>
 </dd>
 <dd>
 <pre>
@@ -1802,12 +1821,12 @@ This directive cannot be broken to separate lines,
 <pre>
      See search engine #URL&lt;<a href="http://www.google.com&gt">http://www.google.com&gt</a>; &lt;Google&gt;</pre>
 </dd>
-<p></p>
-<dt><strong><a name="item_referring_to_local_documents_2e">Referring to local documents.</a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_referring_to_local_documents_2e">Referring to local documents.</a></strong>
+
 <dd>
-<code>#URL-AS-IS-</code> is a shorthand to announce the filename, while
-referring to local disk location.
+<p><code>#URL-AS-IS-</code> is a shorthand to announce the filename, while
+referring to local disk location.</p>
 </dd>
 <dd>
 <pre>
@@ -1825,7 +1844,8 @@ referring to local disk location.
 <pre>
     &lt;A HREF=&quot;doc/mytext.doc&quot;&gt;mytext.doc&lt;/A&gt;</pre>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <hr />
@@ -1918,21 +1938,22 @@ error code:</p>
 <hr />
 <h1><a name="environment">ENVIRONMENT</a></h1>
 <dl>
-<dt><strong><a name="item_email"><strong>EMAIL</strong></a></strong><br />
-</dt>
+<dt><strong><a name="item_email"><strong>EMAIL</strong></a></strong>
+
 <dd>
-If environment variable <em>EMAIL</em> is defined, it is used in footer for
-contact address. Option <strong>--email</strong> overrides environment setting.
+<p>If environment variable <em>EMAIL</em> is defined, it is used in footer for
+contact address. Option <strong>--email</strong> overrides environment setting.</p>
 </dd>
-<p></p>
-<dt><strong><a name="item_lang"><strong>LANG</strong></a></strong><br />
-</dt>
+</li>
+<dt><strong><a name="item_lang"><strong>LANG</strong></a></strong>
+
 <dd>
-The default language setting for switch <code>--language</code> Make sure the
+<p>The default language setting for switch <code>--language</code> Make sure the
 first two characters contains the language definition, like in:
-LANG=en.iso88591
+LANG=en.iso88591</p>
 </dd>
-<p></p></dl>
+</li>
+</dl>
 <p>
 </p>
 <hr />
@@ -1946,7 +1967,7 @@ available at <a href="http://www.tdb.uu.se/~jan/html2ps.html">http://www.tdb.uu.
 <p>HTML validator is at <a href="http://validator.w3.org/">http://validator.w3.org/</a></p>
 <p>iMATIX created htmlpp which is available at <a href="http://www.imatix.com/">http://www.imatix.com/</a></p>
 <p>Emacs minor mode to write documents based on TF layout is available. See
-package tinytf.el in Tiny Tools kit at <a href="http://tiny-tools.sourceforge.net/">http://tiny-tools.sourceforge.net/</a></p>
+package tinytf.el in project <a href="http://freshmeat.net/projects/emacs-tiny-tools">http://freshmeat.net/projects/emacs-tiny-tools</a></p>
 <p>
 </p>
 <h2><a name="standards">Standards</a></h2>
@@ -1968,13 +1989,8 @@ package tinytf.el in Tiny Tools kit at <a href="http://tiny-tools.sourceforge.ne
 <p>The implementation was originally designed to work linewise, so it is
 unfortunately impossible to add or modify any existing feature to look for
 items that span more than one line.</p>
-<p>At the time being, do not use option <strong>--Xhtml</strong>. It will not produce
-syntactically valid markup.</p>
-<p>
-</p>
-<hr />
-<h1><a name="availability">AVAILABILITY</a></h1>
-<p>Homepage is at <a href="http://perl-text2html.sourceforge.net/">http://perl-text2html.sourceforge.net/</a></p>
+<p>At the time being, it is not to be expect the option <strong>--Xhtml</strong> to
+produce syntactically valid markup.</p>
 <p>
 </p>
 <hr />
@@ -2005,8 +2021,8 @@ instead of included link extracting algorithm.</p>
 <p>
 </p>
 <hr />
-<h1><a name="version">VERSION</a></h1>
-<p>$Id: t2html.html,v 1.20 2006/02/19 15:27:08 jaalto Exp $</p>
+<h1><a name="availability">AVAILABILITY</a></h1>
+<p>Homepage is at <a href="http://freshmeat.net/projects/perl-text2html">http://freshmeat.net/projects/perl-text2html</a></p>
 <p>
 </p>
 <hr />
@@ -2014,6 +2030,10 @@ instead of included link extracting algorithm.</p>
 <p>Copyright (C) 1996-2006 Jari Aalto. This program is free software; you can
 redistribute it and/or modify it under the same terms as Perl itself or in
 terms of Gnu General Public license v2 or later.</p>
+<p>This documentation may be distributed subject to the terms and
+conditions set forth in GNU General Public License v2 or later; or, at
+your option, distributed under the terms of GNU Free Documentation
+License version 1.2 or later (GNU FDL).</p>
 
 </body>
 

@@ -29,15 +29,18 @@ README
     recommendations are outlined:
 
         Legal HTML          XHTML requires
-        <P>                 <P> ..</P>
-        <BR>                <BR></BR>
-        <HR>                <HR></HR>
+        <P>                 <p> ..</p>
+        <BR>                <br></br>
+        <HR>                <hr></hr>
 
     XHTML does not support fragment identifiers #foo, with the "name"
-    element, but only with "id" so for backward compatibility both elements
+    element, but uses "id" instead. For backward compatibility both elements
     are defined:
 
         < ..name="tag">     Is now <.. name="tag" id="tag">
+
+    NOTE: This program was never designed to be used for XHTML and the
+    strict XHTML validity is not to be expected.
 
     Motivation
 
@@ -53,11 +56,10 @@ README
     to them.
 
     To help maintining large documents, there is also available an *Emacs*
-    minor mode, lisp package, called *tinytf.el*, which can help to keep
-    your documents up to date. Indentation control, bullet filling,
-    renumbering headings, marking words, syntax highlighting etc. are
-    included. The package is included in Emacs Tiny Tools project at
-    http://tiny-tools.sourceforge.net/
+    minor mode, package called *tinytf.el*, which offers text fontification
+    with colors, Indentation control, bullet filling, heading renumbering,
+    word markup, syntax highlighting etc. See project
+    http://freshmeat.net/projects/emacs-tiny-tools
 
 SYNOPSIS
     To convert text file into HTML:
@@ -210,9 +212,9 @@ OPTIONS
   Html: Controlling CSS generation (HTML tables)
     --css-code-bg
         This option affects how the code section (column 12) is rendered.
-        Normally the section is surrounded with a <PRE>..</PRE> codes, but
+        Normally the section is surrounded with a <pre>..</pre> codes, but
         with this options, something more fancier is used. The code is
-        wrapped inside a <TABLE>...</TABLE> and the background color is set
+        wrapped inside a <table>...</table> and the background color is set
         to a shade of gray.
 
     --css-code-note "REGEXP"
@@ -374,12 +376,7 @@ OPTIONS
         You can change any individual value of the default table definition
         which is:
 
-            <TABLE  class="shade-note"
-                    width="94%"
-                    border="0"
-                    cellpadding="10"
-                    cellspacing="0"
-                    >
+            <TABLE  class="shade-note">
 
         To change e.g. only value cellpadding, you would say:
 
@@ -393,12 +390,14 @@ OPTIONS
         Include <LINK ...> which refers to external CSS style definition
         source. This option is ignored if --script-file option has been
         given, because that option imports whole content inside HEAD tag.
+        This option can appear multiple times and the external CSS files are
+        added in listed order.
 
     --css-font-type CSS-DEFINITION
         Set the BODY element's font defintion to CSS-DEFINITION. The default
         value used is the regular typeset used in newspapers and books:
 
-            --css-font-type"font-family: "Times New Roman", serif;"
+            --css-font-type='font-family: "Times New Roman", serif;'
 
     --css-font-size CSS-DEFINITION
         Set the body element's font size to CSS-DEFINITION. The default font
@@ -724,8 +723,8 @@ OPTIONS
             FILENAME-conclusion
 
     --Xhtml
-        Render using strict XHTML. This means using <hr />, <BR /> and
-        paragraphs use <P></P>.
+        Render using strict XHTML. This means using <hr/>, <br/> and
+        paragraphs use <p>..</p>.
 
         "Note: this option is experimental. See BUGS"
 
@@ -744,7 +743,7 @@ OPTIONS
         output to nroff -man in order to read it.
 
     --test-page
-        Print the test page: HTML and exampl etext file that demonstrates
+        Print the test page: HTML and example text file that demonstrates
         the capabilities.
 
     --time
@@ -1159,6 +1158,9 @@ EMBEDDED DIRECTIVES INSIDE TEXT
         supported. The included filename is operating system supported path
         location.
 
+        A prefix "raw:" disables any normal formatting. The file content is
+        included as is.
+
         The URL can also be a HTTP reference to a remote location, whose
         content is included at the point. In case of remote content or when
         filename ends to extension ".html" or ".html", the content is
@@ -1180,6 +1182,7 @@ EMBEDDED DIRECTIVES INSIDE TEXT
 
             #INCLUDE-$HOME/lib/html/picture1.html
             #INCLUDE-http://www.example.com/code.html
+            #INCLUDE-raw:example/code.html
 
     Embedding pictures
         #PIC command is used to include pictures into the text
@@ -1192,10 +1195,10 @@ EMBEDDED DIRECTIVES INSIDE TEXT
             2.  The Text that appears below picture
 
             3.  Additional attributes that are attached inside <IMG> tag.
-                For <IMG width="200" length="200">, the line would
+                For <IMG width="200" height="200">, the line would
                 read:
 
-                #PIC some.png#Caption Text#width="200" length="200"##
+                #PIC some.png#Caption Text#width=200 length=200##
 
             4.  The position of image: "left" (default), "center", "right"
 
@@ -1359,8 +1362,8 @@ SEE ALSO
     iMATIX created htmlpp which is available at http://www.imatix.com/
 
     Emacs minor mode to write documents based on TF layout is available. See
-    package tinytf.el in Tiny Tools kit at
-    http://tiny-tools.sourceforge.net/
+    package tinytf.el in project
+    http://freshmeat.net/projects/emacs-tiny-tools
 
   Standards
     RFC 1766 contains list of langauge codes at http://www.rfc.net/
@@ -1379,11 +1382,8 @@ BUGS
     unfortunately impossible to add or modify any existing feature to look
     for items that span more than one line.
 
-    At the time being, do not use option --Xhtml. It will not produce
+    At the time being, it is not to be expect the option --Xhtml to produce
     syntactically valid markup.
-
-AVAILABILITY
-    Homepage is at http://perl-text2html.sourceforge.net/
 
 SCRIPT CATEGORIES
     CPAN/Administrative html
@@ -1404,19 +1404,27 @@ COREQUISITES
 OSNAMES
     "any"
 
-VERSION
-    $Id: t2html.txt,v 1.8 2006/02/19 15:27:08 jaalto Exp $
+AVAILABILITY
+    Homepage is at http://freshmeat.net/projects/perl-text2html
 
 AUTHOR
     Copyright (C) 1996-2006 Jari Aalto. This program is free software; you
     can redistribute it and/or modify it under the same terms as Perl itself
     or in terms of Gnu General Public license v2 or later.
 
+    This documentation may be distributed subject to the terms and
+    conditions set forth in GNU General Public License v2 or later; or, at
+    your option, distributed under the terms of GNU Free Documentation
+    License version 1.2 or later (GNU FDL).
+
 
 
 Default CSS and JAVA code inserted to the beginning of each file
+See option --css-file to replace default CSS.
+
 
     <style type="text/css">
+
 
 
         /*
@@ -1589,7 +1597,7 @@ Default CSS and JAVA code inserted to the beginning of each file
 
         blockquote
         {
-            margin-right: 0;
+            margin-right: 2em;
         }
 
         @media print   { BLOCKQUOTE
@@ -1602,10 +1610,18 @@ Default CSS and JAVA code inserted to the beginning of each file
             color: Navy;
         }
 
+        hr.special
+        {
+            width: 50%;
+            text-align; left;
+        }
+
         pre
         {
             font-family:   "Courier New", monospace;
             font-size:     0.8em;
+            margin-top:    1em;
+            margin-bottom: 1em;
         }
 
         pre.code
@@ -1623,11 +1639,18 @@ Default CSS and JAVA code inserted to the beginning of each file
 
             font-family:    "Courier New", monospace;
             font-size:      0.8em;
-
             color:          Navy;
         }
 
         /* //////////////////////// tables /////////////////////////// */
+
+        table
+        {
+            border: none;
+            width: 100%;
+            cellpadding: 10px;
+            cellspacing: 0px;
+        }
 
         table.basic
         {
@@ -1703,6 +1726,13 @@ Default CSS and JAVA code inserted to the beginning of each file
             background: #FFFFCC;
         }
 
+        table tr td pre
+        {
+                /*  Make PRE tables "airy" */
+                margin-top:    1em;
+                margin-bottom: 1em;
+        }
+
         table.shade-normal
         {
                 font-family:    "Courier New", monospace;
@@ -1728,11 +1758,6 @@ Default CSS and JAVA code inserted to the beginning of each file
         .shade-normal2-attrib
         {
             background: #E0E0F0;
-        }
-
-        table.shade-note
-        {
-            /* nothing special */
         }
 
         .shade-note-attrib
@@ -2042,7 +2067,7 @@ Default CSS and JAVA code inserted to the beginning of each file
             font-size: 0.9em;
         }
 
-
+    
 
     </style>
 
@@ -2070,3 +2095,4 @@ Default CSS and JAVA code inserted to the beginning of each file
 
     </script>
 
+        
