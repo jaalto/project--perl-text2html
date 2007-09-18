@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# t2html.pl -- Perl, text2html converter. Uses Techical text format (TF)
+# t2html -- Perl, text2html converter. Uses Techical text format (TF)
 #
 # {{{ Documentation
 #
@@ -52,7 +52,7 @@
 #       Here are Devel::Dprof profiling results for 560k text file in HP-UX
 #       Time in seconds is User time.
 #
-#           perl -d:DProf ./t2html.pl page.txt > /dev/null
+#           perl -d:DProf ./t2html page.txt > /dev/null
 #
 #           Time Seconds     #Calls sec/call Name
 #           52.1   22.96      12880   0.0018 main::DoLine
@@ -118,7 +118,7 @@ IMPORT:             #   These are environment variables
     #   this file is saved. See Emacs module tinperl.el where the
     #   feature is implemented.
 
-    $VERSION = '2007.0918.1310';
+    $VERSION = '2007.0918.1337';
 
 # }}}
 # {{{ Initial setup
@@ -208,24 +208,17 @@ sub Initialize ()
 
     use vars qw
     (
-        $CONTACT
-        $FILE_ID
         $HTTP_CODE_OK
         $LIB
         $PROGNAME
         $URL
-        $VERSION_VC
         %HTML_HASH
         $debug
     );
 
-    $PROGNAME   = "t2html.pl";
+    $PROGNAME   = "t2html";
     $LIB        = $PROGNAME;      # library where each function belongs: PRGNAME
-
-    $FILE_ID    = '$Id: t2html.pl,v 1.191 2007/09/18 11:45:36 jaalto Exp $'; #font '
-    $VERSION_VC = (split ' ', $FILE_ID)[2];   # Version Control
-    $CONTACT    = "";
-    $URL        =  "http://freshmeat.net/projects/perl-text2html/";
+    $URL        =  "http://freshmeat.net/projects/perl-text2html";
 
     $OUTPUT_AUTOFLUSH = 1;
     $HTTP_CODE_OK     = 200;
@@ -816,7 +809,7 @@ sub HandleCommandLineArgs ()
 
     if ( $version )
     {
-        print "$VERSION $VERSION_VC $PROGNAME $CONTACT $URL $PROGRAM_NAME\n";
+        print "$VERSION $PROGNAME $URL $PROGRAM_NAME\n";
         exit 0;
     }
 
@@ -932,7 +925,7 @@ EOF
         else
         {
             warn "$id: Language [$LANG_ISO] is not supported, please contact "
-                , "maintainer $CONTACT. Switched to English."
+                , "maintainer. Switched to English."
                 ;
             $LANG_ISO = "en";
         }
@@ -1156,7 +1149,7 @@ EOF
 
 =head1 NAME
 
-t2html.pl - Simple text to HTML converter. Relies on text indentation rules.
+t2html - Simple text to HTML converter. Relies on text indentation rules.
 
 =head1 README
 
@@ -1220,25 +1213,25 @@ See project http://freshmeat.net/projects/emacs-tiny-tools
 
 To convert text file into HTML:
 
-    t2html.pl [options] file.txt > file.html
+    t2html [options] file.txt > file.html
 
 In addition to making HTML pages, program includes feature to check broken
 links and report them in I<egrep -n> like fashion:
 
-    t2html.pl --Link-check-single --quiet file.txt
+    t2html --Link-check-single --quiet file.txt
 
 To check links from multiple pages and cache good links to separate file,
 use B<--Link-cache> option. The next link check will run much faster
 because cached valid links will not be fetched again. At regular intervals
 delete the link cache file to force complete check.
 
-    t2html.pl --Link-check-single --Link-cache ~/tmp/link.cache \
+    t2html --Link-check-single --Link-cache ~/tmp/link.cache \
               --quiet file.txt
 
 In case there are need for slides, is is possible to plit big document into
 pieces according to toplevel headings:
 
-    t2html.pl --S1 --SN | t2html.pl --simple -Out
+    t2html --S1 --SN | t2html --simple -Out
 
 =head1 OPTIONS
 
@@ -1342,7 +1335,7 @@ the buttons are defined by a separate program. And example using Perl:
 
     # ... somewhere $prev or $next may get set, or then not
 
-    qx(t2html.pl --button-top "$top" --button-prev "$prev" --button-next "$next" ...);
+    qx(t2html --button-top "$top" --button-prev "$prev" --button-next "$next" ...);
 
     # End of sample program
 
@@ -1380,7 +1373,7 @@ Display URLs (contructed from headings) that build up the Table of Contents
 (NAME AHREF tags) in a document. The list is outputted to stderr, so that
 it can be separated:
 
-    % t2html.pl --Toc-url-print tmp.txt > file.html 2> toc-list.txt
+    % t2html --Toc-url-print tmp.txt > file.html 2> toc-list.txt
 
 Where would you need this? If you want to know the fragment identifies
 for your file, you need the list of names.
@@ -1789,7 +1782,7 @@ is handy if you run a batch command to convert all files to HTML, but
 only if they look like HTML base files:
 
     find . -name "*.txt" -type f \
-         -exec t2html.pl --Auto-detect --verbose --Out {} \;
+         -exec t2html --Auto-detect --verbose --Out {} \;
 
 The command searches all *.txt files under current directory and feeds
 them to conversion program. The B<--Auto-detect> only converts files
@@ -1849,7 +1842,7 @@ links found that were not in the cache are checked. This should
 dramatically improve long searches. Consider this example, where
 every text file is checked recursively.
 
-    $ t2html.pl --Link-check-single \
+    $ t2html --Link-check-single \
       --quiet --Link-cache ~tmp/link.cache \
       `find . -name "*.txt" -type f`
 
@@ -1871,7 +1864,7 @@ output to directory "none":
 Print filename to stdout after HTML processing. Normally program prints
 no file names, only the generated HTML.
 
-    % t2html.pl --Out --print page.txt
+    % t2html --Out --print page.txt
 
     --> page.html
 
@@ -1880,7 +1873,7 @@ no file names, only the generated HTML.
 Print filename in URL format. This is useful if you want to check the
 layout immediately with your browser.
 
-    % t2html.pl --Out --print-url page.txt | xargs lynx
+    % t2html --Out --print-url page.txt | xargs lynx
 
     --> file: /users/foo/txt/page.html
 
@@ -2613,11 +2606,11 @@ Headings start with a big letter or number, likein "Heading", not
 
 To print the test page and show all the possibilities:
 
-    % t2html.pl --test-page
+    % t2html --test-page
 
 To make simple HTML page without any meta information:
 
-    % t2html.pl --title "Html Page Title" --author "Mr. Foo" \
+    % t2html --title "Html Page Title" --author "Mr. Foo" \
       --simple --Out --print file.txt
 
 If you have periodic post in email format, use B<--delete-email-headers> to
@@ -2633,7 +2626,7 @@ To convert page from a text document, including meta tags, buttons, colors
 and frames. Pay attention to switch I<--html-body> which defines document
 language.
 
-    % t2html.pl                                         \
+    % t2html                                         \
     --print                                             \
     --Out                                               \
     --author    "Mr. foo"                               \
@@ -2656,20 +2649,20 @@ language.
 To check links and print status of all links in par with the http error
 message (most verbose):
 
-    % t2html.pl --link-check file.txt | tee link-error.log
+    % t2html --link-check file.txt | tee link-error.log
 
 To print only problematic links:
 
-    % t2html.pl --link-check --quiet file.txt | tee link-error.log
+    % t2html --link-check --quiet file.txt | tee link-error.log
 
 To print terse output in egep -n like manner: line number, link and
 error code:
 
-    % t2html.pl --link-check-single --quiet file.txt | tee link-error.log
+    % t2html --link-check-single --quiet file.txt | tee link-error.log
 
 To split large document into pieces, and convert each piece to HTML:
 
-    % t2html.pl --split1 --split-name file.txt | t2html --simple -Out
+    % t2html --split1 --split-name file.txt | t2html --simple -Out
 
 =head1 ENVIRONMENT
 
@@ -4968,7 +4961,7 @@ sub CssData ( ; $ )
                NOTE    NOTE    NOTE    NOTE    NOTE    NOTE    NOTE
 
             This is the default CSS 2.0 generated by the program,
-            please see "t2html.pl --help" for option --script-file
+            please see "t2html --help" for option --script-file
             to import your own CSS and Java definitions into the page.
 
             XHTML note: at page http://www.w3.org/TR/xhtml1/#guidelines
@@ -10041,13 +10034,13 @@ Main();
 0;
 
 __DATA__
-T2html.pl Test Page
+t2html Test Page
 
         #T2HTML-TITLE           Page title is embedded inside text file
         #t2HTML-EMAIL           author@examle.com
         #T2HTML-AUTHOR          John Doe
         #T2HTML-METAKEYWORDS    test, html, example
-        #T2HTML-METADESCRIPTION This is test page of program t2html.pl
+        #T2HTML-METADESCRIPTION This is test page of program t2html
 
         This is a demonstrataion text file of Perl Text To HTML
         converter.
@@ -10101,7 +10094,8 @@ T2html.pl Test Page
         The editing mode can automatically generate the table of
         contents and the HTML generator can use it to generate a two
         frame output with the TOC in the left frame as hotlinks to the
-        sections and subsections. Visit http://tiny-tools.sourceforge.net
+        sections and subsections.
+        Visit http://freshmeat.net/projects/emacs-tiny-tools
 
     Bullets, lists, and links
 
@@ -10294,14 +10288,14 @@ Table rendering examples
 
 Conversion program
 
-        The perl program t2html.pl turns the raw technical text format
+        The perl program t2html turns the raw technical text format
         into HTML. Among other things it can produce HTML files with
         an index frame, a main frame, and a master that ties the two
         together. It has features too numerous to list to control the
         output. For details see the perldoc than is embeddedinside the
         program:
 
-            perl -S t2html.pl --help | more
+            perl -S t2html --help | more
 
         The frame aware html pages are generated by adding the
         *--html-frame* option.

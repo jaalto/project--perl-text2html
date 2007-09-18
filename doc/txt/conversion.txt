@@ -142,7 +142,7 @@ Table of contents
 
     1.5 Emacs and minor mode
 
-        See project  http://tiny-tools.sourceforge.net/
+        See project http://freshmeat.net/projects/emacs-tiny-tools
 
         If word `Emacs' means anything to you, then you can use additional
         Emacs minor mode (package *tinytf.el*) which can make the
@@ -150,11 +150,6 @@ Table of contents
         filling bullets numbering headings and keeping TOC up to date. The
         description of the Emacs package is found from this page and from
         the package itself.
-
-        If you don't know Emacs but got interested, then see this link
-        for more Emacs information
-        http://tiny-tools.sourceforge.net/emacs-elisp.html Emacs is
-        available virtually for all OS platforms now
 
     1.6 Ripping program documentation
 
@@ -202,22 +197,10 @@ Table of contents
 
         o   *Procmail*. Have a look how the ripdoc.el was used to convert
             Procmail Module library documentation into HTML manual pages
-            at: http://pm-lib.sourceforge.net/pm-lib.html
+            at: http://freshmeat.net/projects/pm-lib
         o   *Emacs* *Lisp* Another set of documentation was ripped straight
             out of the packages' comments at
-            http://tiny-tools.sourceforge.net/emacs-tiny-tools.html
-
-    1.7 Download the code
-
-        Download and see the manual page of the perl program
-
-            http://www.cpan.org/modules/by-authors/id/J/JA/JARIAALTO/
-
-            t2html.pl         -- text to html convertor
-            ripdoc.pl         -- Rip package documentation
-
-            #URL-BASE/t2html-perl.html  -- Manual
-            #URL-BASE/ripdoc-perl.html  -- Manual
+            http://freshmeat.net/projects/emacs-tiny-tools
 
 2.0 Other converters
 
