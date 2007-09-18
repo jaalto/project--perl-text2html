@@ -1,12 +1,24 @@
-# $Id: cygwin.mk,v 1.2 2004/04/05 00:32:07 jaalto Exp $
+#!/usr/bin/makefile -f
+# -*- makefile -*-
 #
-#	Copyright (C)  2003 Jari Aalto
-#	Keywords:      Makefile, cygbuild, Cygwin
+#	Copyright (C) 2003-2007 Jari Aalto
 #
 #	This program is free software; you can redistribute it and/or
 #	modify it under the terms of the GNU General Public License as
 #	published by the Free Software Foundation; either version 2 of the
 #	License, or (at your option) any later version
+#
+#	This program is distributed in the hope that it will be useful, but
+#	WITHOUT ANY WARRANTY; without even the implied warranty of
+#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+#	General Public License for more details.
+#
+#	You should have received a copy of the GNU General Public License
+#	along with program; see the file COPYING. If not, write to the
+#	Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+#	Boston, MA 02110-1301, USA.
+#
+#	Visit <http://www.gnu.org/copyleft/gpl.html>
 #
 #    To make a Cygwin Net release
 #
@@ -35,11 +47,11 @@
 #
 #	    .build/
 #
-#	The 'publish' command works similarly. It enters the RELEASEDIR and looks
-#	Cygwin files one directory above (..) and copies them to the default
-#	destination directory. This directory is usually configured to Web server
-#	and it is seen to the outside world.
-
+#	The 'publish' command works similarly. It enters the
+#	RELEASEDIR and looks Cygwin files one directory above (..) and
+#	copies them to the default destination directory. This
+#	directory is usually configured to Web server and it is seen
+#	to the outside world.
 
 CYGBUILD	= cygbuild.sh
 CYGBUILDBIN	= bin/$(CYGBUILD)
