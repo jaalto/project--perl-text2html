@@ -118,7 +118,7 @@ IMPORT:             #   These are environment variables
     #   this file is saved. See Emacs module tinperl.el where the
     #   feature is implemented.
 
-    $VERSION = '2007.0918.1337';
+    $VERSION = '2007.0918.1422';
 
 # }}}
 # {{{ Initial setup
@@ -10042,7 +10042,15 @@ t2html Test Page
         #T2HTML-METAKEYWORDS    test, html, example
         #T2HTML-METADESCRIPTION This is test page of program t2html
 
-        This is a demonstrataion text file of Perl Text To HTML
+        Copyright (C) 1996-2007 Jari Aalto
+
+        License: This material may be distributed only subject to
+        the terms and conditions set forth in GNU General Public
+        License v2 or later; or, at your option, distributed under the
+        terms of GNU Free Documentation License version 1.2 or later
+        (GNU FDL).
+
+        This is a demonstration text of Perl Text To HTML
         converter.
 
     Headings
