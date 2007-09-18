@@ -6,7 +6,7 @@
 #
 #  File id
 #
-#       Copyright (C) 1996-2006 Jari Aalto
+#       Copyright (C) 1996-2007 Jari Aalto
 #
 #       This program is free software; you can redistribute it and/or
 #       modify it under the terms of the GNU General Public License as
@@ -118,7 +118,7 @@ IMPORT:             #   These are environment variables
     #   this file is saved. See Emacs module tinperl.el where the
     #   feature is implemented.
 
-    $VERSION = '2007.0918.1217';
+    $VERSION = '2007.0918.1226';
 
 # }}}
 # {{{ Initial setup
