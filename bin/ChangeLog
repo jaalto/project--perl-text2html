@@ -1,3 +1,8 @@
+2007-09-18  Jari Aalto  <jari.aalto@cante.net>
+
+	* t2html.pl (HtmlFixes): Delete trailing whitespaces.
+	(TestPage): Output to current directory, not $HOME/tmp.
+
 2007-05-26  Jari Aalto  <jari aalto A T cante net>
 
 	* t2html.pl (UrlInclude): Added new option $mode.x

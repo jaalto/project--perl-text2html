@@ -118,7 +118,7 @@ IMPORT:             #   These are environment variables
     #   this file is saved. See Emacs module tinperl.el where the
     #   feature is implemented.
 
-    $VERSION = '2007.0918.1422';
+    $VERSION = '2007.0918.1434';
 
 # }}}
 # {{{ Initial setup
@@ -8210,10 +8210,15 @@ sub HtmlFixes ($)
 
     s,(</h[2-7]>\s+)([^<]),$1<p>$2,gi;
 
+    #  Final clean up: remove trailing spaces
+
+    s,[\t]+$,,mg;
+
     #   Restore array and put newlines back.
 
     my @arr =  split '\n', $ARG;
     $ARG .= "\n"  for ( @arr );
+
 
     \@arr;
 }
@@ -9371,35 +9376,35 @@ sub TestPage ( $ )
 
     # ............................................. initial settings ...
 
-    my $home = GetHomeDir();
-    my $tmp  = "$home/tmp";
+    my $destdir = "."; # GetHomeDir();
+#    my $tmp  = "$destdir/tmp";
+#
+#    $destdir = $tmp  if  -d $tmp;
+#
+#    if ( not $destdir )
+#    {
+#        $destdir = $TEMPDIR || $TEMP || "/tmp";
+#    }
+#
+#    unless ( -d $destdir)
+#    {
+#        die "[FATAL] Cannot find temporary directory to write test files to.";
+#    }
 
-    $home = $tmp  if  -d $tmp;
+    my $fileText1 = "$destdir/$PROGNAME-1.txt";
+    my $fileHtml1 = "$destdir/$PROGNAME-1.html";
 
-    if ( not $home )
-    {
-        $home = $TEMPDIR || $TEMP || "/tmp";
-    }
+    my $fileText2 = "$destdir/$PROGNAME-2.txt";
+    my $fileHtml2 = "$destdir/$PROGNAME-2.html";
 
-    unless ( -d $home)
-    {
-        die "[FATAL] Cannot find temporary directory to write test files to.";
-    }
+    my $fileText3 = "$destdir/$PROGNAME-3.txt";
+    my $fileHtml3 = "$destdir/$PROGNAME-3.html";
 
-    my $fileText1 = "$home/$PROGNAME-1.txt";
-    my $fileHtml1 = "$home/$PROGNAME-1.html";
+    my $fileText4 = "$destdir/$PROGNAME-4.txt";
+    my $fileHtml4 = "$destdir/$PROGNAME-4.html";
+    my $cssFile   = "$destdir/$PROGNAME-4.css";
 
-    my $fileText2 = "$home/$PROGNAME-2.txt";
-    my $fileHtml2 = "$home/$PROGNAME-2.html";
-
-    my $fileText3 = "$home/$PROGNAME-3.txt";
-    my $fileHtml3 = "$home/$PROGNAME-3.html";
-
-    my $fileText4 = "$home/$PROGNAME-4.txt";
-    my $fileHtml4 = "$home/$PROGNAME-4.html";
-    my $cssFile   = "$home/$PROGNAME-4.css";
-
-    my $fileFrame = "$home/$PROGNAME-5.txt";
+    my $fileFrame = "$destdir/$PROGNAME-5.txt";
 
     # ............................................. write test files ...
 
