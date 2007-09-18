@@ -1,0 +1,148 @@
+
+
+/* An example CSS */
+
+body
+{
+    font-family:    Georgia, "Times New Roman", times, serif;
+    padding-left:   0px;
+    margin-left:    30px;
+
+    font-size:      12px;
+
+    line-height:    140%;
+    text-align:     left;
+    max-width:      700px;
+}
+
+div.toc
+{
+    font-family:    Verdana, Tahoma, Arial, sans-serif;
+    margin-left:    40px;
+}
+
+div.toc h1
+{
+    font-family:    Georgia, "Times New Roman", times, serif;
+    margin-left:    -40px;
+}
+
+h1, h2, h3, h4
+{
+    color:          #6BA4DC;
+    text-align:     left;
+}
+
+h1
+{
+    font-size:      20px;
+    margin-left:    0px;
+}
+
+h2
+{
+    font-size:      14px;
+    margin:         0;
+    margin-left:    35px;
+}
+
+hr
+{
+    border:         0;
+    width:          0%;
+}
+
+p
+{
+    text-align:     justify;
+    margin-left:    3em;
+}
+
+pre
+{
+    margin-left:    35px;
+}
+
+li
+{
+    text-align:     justify;
+}
+
+p.column8
+{
+    text-align:     justify;
+}
+
+ul, ol
+{
+    margin-left:    35px;
+}
+
+.word-ref
+{
+    color:          teal;
+}
+
+em.word
+{
+    color:          #809F69;
+}
+
+samp.word
+{
+    color:          #4C9CD4;
+    font-family:    "Courier New", Courier, monospace;
+    font-size:      1em;
+}
+
+span.super
+{
+    /* superscripts */
+    color:          teal;
+    vertical-align: super;
+    font-family:    Verdana, Arial, sans-serif;
+    font-size:      0.8em;
+}
+
+span.word-small
+{
+    color: #CC66FF;
+    font-family: Verdana, Arial, sans-serif;
+}
+
+table
+{
+    border:             none;
+    width:              100%;
+    cellpadding:        10px;
+    cellspacing:        0px;
+}
+
+table tr td pre
+{
+    /*  Make PRE tables "airy" */
+    margin-top:         1em;
+    margin-bottom:      1em;
+}
+
+table.shade-normal
+{
+     color:             #777;
+}
+
+table.dashed
+{
+    color: Navy;
+
+    border-top:         1px #00e6e8 solid;
+    border-left:        1px #00e6e8 solid;
+    border-right:       1px #00c6c8 solid;
+    border-bottom:      1px #00c6c8 solid;
+    border-width:       94%;
+    border-style:       dashed; /* dotted */
+}
+
+/* End of CSS */
+
+
+
