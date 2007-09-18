@@ -1,0 +1,28 @@
+Perl Text to HTML converter
+---------------------------
+
+Convert text files into HTML 4.01/CSS2 fromat. The text files are written
+naturally using headings and indented paragraphs. The is no markup language.
+
+    bin/	    The program and project administration utilities
+    doc/            Documentation in various formats
+    etc/makefile    Administrative files; install and project management
+
+Important files
+
+    doc/txt/README.txt          General project information
+    doc/txt/LICENSE.txt 	Licensing information
+    bin/ChangeLog		Project change records
+
+Project contacts
+
+    Homepage
+      http://freshmeat.net/projects/perl-text2html
+
+    Reporting bugs
+      See freshmeat page
+
+    Source code repository
+      See freshmeat page
+
+End of file
