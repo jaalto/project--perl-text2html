@@ -118,7 +118,7 @@ IMPORT:             #   These are environment variables
     #   this file is saved. See Emacs module tinperl.el where the
     #   feature is implemented.
 
-    $VERSION = '2007.0918.1434';
+    $VERSION = '2007.0918.1443';
 
 # }}}
 # {{{ Initial setup
@@ -8212,13 +8212,12 @@ sub HtmlFixes ($)
 
     #  Final clean up: remove trailing spaces
 
-    s,[\t]+$,,mg;
+    s,[ \t]+$,,mg;
 
     #   Restore array and put newlines back.
 
-    my @arr =  split '\n', $ARG;
-    $ARG .= "\n"  for ( @arr );
-
+    my $str = $ARG;
+    my @arr =  map { $ARG .= "\n" } split '\n', $str;
 
     \@arr;
 }
