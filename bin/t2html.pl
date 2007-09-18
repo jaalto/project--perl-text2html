@@ -118,7 +118,7 @@ IMPORT:             #   These are environment variables
     #   this file is saved. See Emacs module tinperl.el where the
     #   feature is implemented.
 
-    $VERSION = '2007.0918.1242';
+    $VERSION = '2007.0918.1310';
 
 # }}}
 # {{{ Initial setup
@@ -10047,13 +10047,10 @@ T2html.pl Test Page
         #t2HTML-EMAIL           author@examle.com
         #T2HTML-AUTHOR          John Doe
         #T2HTML-METAKEYWORDS    test, html, example
-        #T2HTML-METADESCRIPTION This is test page of tool t2html.pl
+        #T2HTML-METADESCRIPTION This is test page of program t2html.pl
 
-        This is a sampler of a text file used to generate HTML when
-        processed with a supporting perl script.  The t2html project is
-        hosted at http://perl-text2html.sourceforge.net/ and
-        an Emacs add-on package tinytf.el to format text is at
-        http://tiny-tools.sourceforge.com/
+        This is a demonstrataion text file of Perl Text To HTML
+        converter.
 
     Headings
 
