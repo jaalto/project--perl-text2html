@@ -13,7 +13,7 @@ Licensing information
         General Public License for more details.
 
         You should have received a copy of the GNU General Public License
-        along with program. If not, write to the
+        along with program; see file COPYING.GNU-GPL. If not, write to the
         Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
         Boston, MA 02110-1301, USA.
 
@@ -46,7 +46,8 @@ Licensing information
             published by the Free Software Foundation; with no
             Invariant Sections, no Front-Cover Texts, and no
             Back-Cover Texts. A copy of the license is included in the
-            section entitled "GNU Free Documentation License".
+            section entitled "GNU Free Documentation License" in file
+            COPYING.GNU-FDL.
 
             Visit <http://www.gnu.org/licenses/fdl.html> for more information.
 
