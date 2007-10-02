@@ -1,5 +1,7 @@
 2007-09-18  Jari Aalto  <jari.aalto@cante.net>
 
+	RELEASE: 20071002
+
 	* t2html.pl (HtmlFixes): Delete trailing whitespaces.
 	(TestPage): Output to current directory, not $HOME/tmp.
 
