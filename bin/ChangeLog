@@ -1,3 +1,9 @@
+2007-10-12  Jari Aalto  <jari.aalto@cante.net>
+
+	* t2html.pl (HELP::Referring to local documents):
+	Removed documentation of option '#URL-AS-IS-'. This
+	is superceded by generic '#URL'
+
 2007-09-18  Jari Aalto  <jari.aalto@cante.net>
 
 	RELEASE: 20071002

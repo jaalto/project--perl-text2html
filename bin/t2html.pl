@@ -2552,22 +2552,6 @@ Like if written:
 
      See search engine #URL<http://www.google.com> <Google>
 
-=item Referring to local documents.
-
-C<#URL-AS-IS-> is a shorthand to announce the filename, while
-referring to local disk location.
-
-                Pay attention. The syntax is "URL-AS-IS-", so that
-                whole contruct is treated as one word.
-                |
-                +------------
-     #URL-AS-IS-doc/mytext.doc The rest of the seen text can
-     be written immediately after the tag.
-
-Th generated HTML code will read:
-
-    <A HREF="doc/mytext.doc">mytext.doc</A>
-
 =back
 
 =head1 TABLE OF CONTENT HEADING
