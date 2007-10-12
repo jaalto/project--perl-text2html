@@ -129,7 +129,7 @@ IMPORT:             #   These are environment variables
 #
 #       Ignore HERE document indentation. Use function like this
 #
-#           @var = Here <<EOF;
+#           @var = Here << "EOF";
 #                   Indented text
 #                   Indented text
 #           EOF
@@ -1405,7 +1405,7 @@ C<(one|two|three)> are not allowed. You must use the Perl non-grouping ones
 like C<(?:one|two|three)>. Please refer to perl manual page [perlre] if
 this short introduction did not give enough rope.
 
-With this options, instead of rendering column 12 text with <PRE>..</PRE>,
+With this options, instead of rendering column 12 text with <pre>..</pre>,
 the text appears just like regular text, but with a twist. The background
 color of the text has been changed to darker grey to visually stand out
 form the text.
@@ -1448,7 +1448,7 @@ are rendered as code sections. Like here:
         }
 
 As if this were not enough, there are some special table control
-directives that let you control the <TABLE>..</TABLE> which is
+directives that let you control the <table>..</table> which is
 put around the code section at column 12. Here are few examples:
 
     Here is example 1
@@ -1489,7 +1489,7 @@ put around the code section at column 12. Here are few examples:
 
 Looks cryptic? Cannot help that and in order for you to completely
 understand what these directives do, you need to undertand what elements
-can be added to the <TABLE> and <TD> tokens. Refer to HTML specification
+can be added to the <table> and <td> tokens. Refer to HTML specification
 for available attributes. Here is briefing what you can do:
 
 The start command is:
@@ -1503,27 +1503,27 @@ The C<key:value> pairs can be:
 
     td:ATTRIBUTES
        |
-       This is converted into <TD attributes>
+       This is converted into <td attributes>
 
     table:ATTRIBUTES
           |
-          This is converted into <TABLE attributes>
+          This is converted into <table attributes>
 
 There can be no spaces in the ATTRIBUTES, because the C<First-word> must
 be one contiguous word. An underscore can be used in place of space:
 
     table:border=1_width=94%
           |
-          Interpreted as <TABLE border="1" width="94%">
+          Interpreted as <table border="1" width="94%">
 
 It is also possible to change the default CLASS style with word
 C<tableclass>. In order the CLASS to be useful, its CSS definitions must be
 either in the default configuration or supplied from a external file.
 See option B<--script-file>.
 
-    tableclass:CLASS
+    tableclass:name
                |
-               Interpreted as <TABLE class="CLASS">
+               Interpreted as <table class="name">
 
 For example, there are couple of default styles that can be used:
 
@@ -1641,14 +1641,14 @@ The default interpretation of columns 1,2,3  5,6,7,8,9,10,11,12 can be
 changed with I<beg> and I<end> swithes. Columns 0,4 can't be changed because
 they are reserved for headings. Here are some samples:
 
-    --html-column-beg="7quote <EM class='quote7'>"
-    --html-column-end="7quote </EM>"
+    --html-column-beg="7quote <em class='quote7'>"
+    --html-column-end="7quote </em>"
 
-    --html-column-beg="10    <PRE> class='column10'"
-    --html-column-end="10    </PRE>"
+    --html-column-beg="10    <pre> class='column10'"
+    --html-column-end="10    </pre>"
 
-    --html-column-beg="quote <SPAN class='word'>"
-    --html-column-end="quote </SPAN>"
+    --html-column-beg="quote <span class='word'>"
+    --html-column-end="quote </span>"
 
 B<Note:> You can only give specifications up till column 12. If text
 is beyound column 12, it is interpreted like it were at column 12.
@@ -1724,8 +1724,8 @@ contents" and word "Pic" in your langauge to the maintainer.
 
 =item B<--script-file FILE>
 
-Include java code that must be complete <SCRIPT...></SCRIPT> from FILE. The
-code is put inside <HEAD> of each HTML.
+Include java code that must be complete <script...></script> from FILE. The
+code is put inside <head> of each HTML.
 
 The B<--script-file> is a general way to import anything into the HEAD
 element. Eg. If you want to keep separate style definitions for
@@ -1748,14 +1748,14 @@ used by search engines. Refer to HTML 4.01 specification and topic
 
 =item B<--name-uniq>
 
-First 1-4 words from the heading are used for the HTML I<NAME> tags.
+First 1-4 words from the heading are used for the HTML I<name> tags.
 However, it is possible that two same headings start with exactly the same
 1-4 words. In those cases you have to turn on this option. It will use
-counter 00 - 999 instead of words from headings to construct HTML I<NAME>
+counter 00 - 999 instead of words from headings to construct HTML I<name>
 references.
 
 Please use this option only in emergencies, because referring to jump block
-I<NAME> via
+I<name> via
 
     httpI://example.com/doc.html#header_name
 
@@ -2007,7 +2007,7 @@ called 'Technical format' (TF)
 
            Emphatised text at column 7, like heading level 3
 
-           "Special <EM> text at column 7 starts with double quote"
+           "Special <em> text at column 7 starts with double quote"
 
             Another standard text block at column 8 txt txt txt
             txt txt txt txt txt txt txt txt txt txt txt txt txt
@@ -2023,7 +2023,7 @@ called 'Technical format' (TF)
 
                 Column 12 and further is reserved for code examples
                 Column 12 and further is reserved for code examples
-                All text here are surrounded by <PRE> HTML codes
+                All text here are surrounded by <pre> HTML codes
                 (This CODE column in affected by --css-code* options,
                 see more ideas from there.)
 
@@ -2063,7 +2063,7 @@ called 'Technical format' (TF)
                 code, it tells this paragraph to continue in
                 bullet mode, otherwise this text at column 12
                 would be intepreted as code section surrpoundedn
-                by <PRE> HTML codes.
+                by <pre> HTML codes.
 
             *   Bullet 2, text starts at column 12
             *   Bullet 3. Bullets are adviced to keep together
@@ -2080,8 +2080,8 @@ called 'Technical format' (TF)
             .This line has BR code and is displayed in line by itself.
             .This line has BR code and is displayed in line by itself.
 
-            !! This adds an <HR> HTML code, text in line is marked with
-            !! <STRONG> <EM>
+            !! This adds an <hr> HTML code, text in line is marked with
+            !! <strong> <em>
 
            "This is emphasised text starting at column 7"
             .And this text is put after the previous line with BR code
@@ -2127,16 +2127,16 @@ and 4 and the heading must start with big letter or number
 =item *
 
 at column 4, if the text starts with small letter, that line is interpreted
-as <STRONG>
+as <strong>
 
 =item *
 
-A HTML <HR> mark is added just before printing heading at level 1.
+A HTML <hr> mark is added just before printing heading at level 1.
 
 =item *
 
 The headings are gathered, the TOC is built and inserted to the beginning
-of HTML page. The HTML <NAME> references used in TOC are the first 4
+of HTML page. The HTML <name> references used in TOC are the first 4
 sequential words from the headings. Make sure your headings are uniquely
 named, otherwise there will be same NAME references in the generated HTML.
 Spaces are converted into underscore when joining the words. If you can not
@@ -2160,7 +2160,7 @@ to indicate Heading level 1.
 
 =item *
 
-Text between colums 1-3 is marked with <EM>
+Text between colums 1-3 is marked with <em>
 
 =item *
 
@@ -2168,20 +2168,20 @@ Column 4 is reserved for heading level 2
 
 =item *
 
-Text between colums 5-7 is marked with <STRONG>
+Text between colums 5-7 is marked with <strong>
 
 =item *
 
-Text at column 7 is <EM> if the first character is double quote.
+Text at column 7 is <em> if the first character is double quote.
 
 =item *
 
-Column 10 is reserved for <EM> text. If you want to quote someone
+Column 10 is reserved for <em> text. If you want to quote someone
 or to add reference text, place the text in this column.
 
 =item *
 
-Text at colums 9,11 are marked with <STRONG>
+Text at colums 9,11 are marked with <strong>
 
 =back
 
@@ -2205,9 +2205,9 @@ Column 12 is special
 
 =item *
 
-Column 12 is treated specially: block is started with <PRE> and lines are
-marked as <SAMP></SAMP>. When the last text at I<column> 12 is found, the
-block is closed with </PRE> Note follwing example
+Column 12 is treated specially: block is started with <pre> and lines are
+marked as <samp></samp>. When the last text at I<column> 12 is found, the
+block is closed with </pre> Note follwing example
 
     txt txt txt         ;evenly placed block, fine, do it like this
     txt txt
@@ -2230,7 +2230,7 @@ block is closed with </PRE> Note follwing example
 =item *
 
 If there is C<.>(dot) at the beginning of a line and immediately
-non-whitespace, then <BR> code is added to the end of line.
+non-whitespace, then <br> code is added to the end of line.
 
     .This line has BR code at the end.
     While these two line are joined together
@@ -2238,11 +2238,11 @@ non-whitespace, then <BR> code is added to the end of line.
 
 =item *
 
-If there is C<,>(comma) then the <P> code is not inserted if the previous
+If there is C<,>(comma) then the <p> code is not inserted if the previous
 line is empty. If you use both C<.>(dot) and C<,>(comma), they must be in
 order dot-comma. The C<,>(comma) works differently if it is used in bullet
 
-A <P> is always added if there is separation of paragraphs, but when you are
+A <p> is always added if there is separation of paragraphs, but when you are
 writing a bullet, there is a problem, because a bullet exist only as long
 as text is kept together
 
@@ -2251,7 +2251,7 @@ as text is kept together
 
 But to write bullets tat spread multiple paragraphs, you must instruct
 that those are to kept together and the text in next paragraph is
-not <SAMPLE> while it is placed at column 12
+not <sample> while it is placed at column 12
 
     *   This is a bullet and it has all text ketp together
         ,even if there is another line in the bullet.
@@ -2272,16 +2272,16 @@ not <SAMPLE> while it is placed at column 12
 
 =item italic, bold, code, small, big tokens
 
-    _this_      is intepreted as <STRONG class='word'>this</STRONG>
-    *this*      is intepreted as <EM class='word'>this</EM>
-    `this'      is intepreted as <SAMPLE class='word'>this</SAMPLE> `
+    _this_      is intepreted as <strong class='word'>this</strong>
+    *this*      is intepreted as <em class='word'>this</em>
+    `this'      is intepreted as <sample class='word'>this</sample> `
 
 Exra modifiers that can be mixed with the above. Usually if you want
 bigger font, CAPITALIZE THE WORDS.
 
-    =this=      is intepreted as <SPAN class="word-small">this</SPAN>
-    +this+      is intepreted as <SPAN class="word-big">this</SPAN>
-    word [this] is intepreted as <SPAN class="word-ref">this</SPAN>
+    =this=      is intepreted as <span class="word-small">this</span>
+    +this+      is intepreted as <span class="word-big">this</span>
+    word [this] is intepreted as <span class="word-ref">this</span>
 
 =item supercripting
 
@@ -2352,8 +2352,8 @@ interpreting as PURE HTML:
 =item drawing a short separator
 
 A !! (two exclamation marks) at text column (position 8) causes adding
-immediate <HR> code. Any text after !! in the same line is written with
-<STRONG> <EM> and inserted just after <HR> code, therefore the word
+immediate <hr> code. any text after !! in the same line is written with
+<strong> <em> and inserted just after <hr> code, therefore the word
 formatting commands have no effect in this line.
 
 =back
@@ -2482,15 +2482,15 @@ extension C<.html> or C<.html>, the content is stripped in order to make
 the inclusion of the content possible. In picture below, only the lines
 within the BODY, marked with !!, are included:
 
-    <HTML>
-      <HEAD>
+    <html>
+      <head>
         ...
-      </HEAD>
-      <BODY>
-        This text                 !!
-        And more of this          !!
-      </BODY>
-    </HTML>
+      </head>
+      <body>
+        this text                 !!
+        and more of this          !!
+      </body>
+    </html>
 
 Examples:
 
@@ -2509,8 +2509,8 @@ Examples:
 
     2.  The Text that appears below picture
 
-    3.  Additional attributes that are attached inside <IMG> tag.
-        For <IMG width="200" height="200">, the line would
+    3.  Additional attributes that are attached inside <img> tag.
+        For <img width="200" height="200">, the line would
         read:
 
         #PIC some.png#Caption Text#width=200 length=200##
@@ -2524,7 +2524,7 @@ You can suppress the ALT text with option B<--no-picture-alt>.
 
 =item Fragment identifiers for named tags
 
-#REF command is used for refering to HTML <NAME> tag inside current
+#REF command is used for refering to HTML <name> tag inside current
 document. The whole command must be placed on one single line and
 cannot be broken to multiple lines. An example:
 
@@ -2566,7 +2566,7 @@ referring to local disk location.
 
 Th generated HTML code will read:
 
-    <A HREF="doc/mytext.doc">mytext.doc</A>
+    <a href="doc/mytext.doc">mytext.doc</a>
 
 =back
 
@@ -2591,7 +2591,7 @@ text and bullet. Make it your mantra: I<one> I<one> I<one> ...
 Next, you may have put text at wrong column position. Remember that the
 regular text is at column 8.
 
-If generated HTML suddendly starts using only one font, eg <PRE>, then
+If generated HTML suddendly starts using only one font, eg <pre>, then
 you have forgot to close the block. Make it read even, like this:
 
     Code block
@@ -3322,9 +3322,9 @@ sub MakeUrlPicture ( % )
     #  table  .. width="220" height="300"
     #  img    .. width="180" height="250"
 
-    my $ret = <<"EOF";
-<P>
-    <A name="$staticReference$nbr" id="$staticReference$nbr"></A>
+    my $ret = << "EOF";
+<p>
+    <a name="$staticReference$nbr" id="$staticReference$nbr"></a>
     <table>
         <tr> <td align="$align" valign="middle">
                  <img src="$ref"
@@ -3381,8 +3381,8 @@ sub CheckModule ($)
 #
 #   DESCRIPTION
 #
-#       Translate html back tho HTML HREF
-#       &lt;A HREF=&quot;... => <A HREF="...
+#       Translate html back tho HTML href
+#       &lt;a href=&quot;... => <a href="...
 #
 #   INPUT PARAMETERS
 #
@@ -3729,7 +3729,7 @@ sub XlatTag2html ($)
     #
     #       <<table border="1">
     #              |
-    #              Can't know that there is not yet ">" like in <<TD>>
+    #              Can't know that there is not yet ">" like in <<td>>
     #
     #   Whereas this would be valid
     #
@@ -4321,7 +4321,7 @@ sub XlatMailto ($)
         }
         else
         {
-            $pre . "<EM>" . MakeUrlRef( "mailto:$url" , $url) . "</EM>"
+            $pre . "<em>" . MakeUrlRef( "mailto:$url" , $url) . "</em>"
         }
     }egx;
 
@@ -4730,20 +4730,20 @@ sub EnvExpand ($)
 #
 #   DESCRIPTION
 #
-#       Remove everything up till <BODY> and after </BODY>. This effectively
+#       Remove everything up till <body> and after </body>. This effectively
 #       makes it possible to have clean HTML whis is not a "page" any more.
 #       The portion marked with !! to the right is preserved, everything else
 #       is stripped.
 #
-#           <HTML>
-#             <HEAD>
+#           <html>
+#             <head>
 #               ...
-#             </HEAD>
-#             <BODY>
+#             </head>
+#             <body>
 #               This text                 !!
 #               And more of this          !!
-#             </BODY>
-#           </HTML>
+#             </body>
+#           </html>
 #
 #   INPUT PARAMETERS
 #
@@ -4762,18 +4762,18 @@ sub RemoveHTMLaround ($)
 
     $debug > 2  and  print "$id: [$ARG]\n";
 
-    #   Delete everything up til <BODY>
-    #   Delete everything after  </BODY>
+    #   Delete everything up til <body>
+    #   Delete everything after  </body>
 
-    s,^.+<\s*BODY\s*>,,i;
-    s,<\s*/\s*BODY\s*>.*,,;
+    s,^.+<\s*body\s*>,,i;
+    s,<\s*/\s*body\s*>.*,,i;
 
     #   Malformed web paged do not even bother to use BODY, so
     #   try if there are HEAD or HTML and kill those
 
-    s,^.+<\s*/\s*HEAD\s*>,,i;
-    s,^.*<\s*HTML\s*>.*,,;
-    s,<\s*/\s*HTML\s*>.*,,;
+    s,^.+<\s*/\s*head\s*>,,i;
+    s,^.*<\s*html\s*>.*,,i;
+    s,<\s*/\s*html\s*>.*,,i;
 
     $ARG;
 }
@@ -4912,10 +4912,10 @@ sub Base (;$$)
 #
 #   DESCRIPTION
 #
-#       Return CSS Style sheet data without the <STYLE> .. </STYLE> tokens
+#       Return CSS Style sheet data without the <style> .. </style> tokens
 #       The correct way to include external CSS is:
 #
-#           <link REL="STYLESHEET" TYPE="text/css" HREF="/dir/my.css">
+#           <link rel="stylesheet" type="text/css" href="/dir/my.css">
 #
 #   RETURN VALUES
 #
@@ -5629,7 +5629,7 @@ sub JavaScript (; $)
         my $css = CssData $type;
 
         #  won't work in Browsers....
-        #  <STYLE TYPE="text/css"  MEDIA="screen, print">
+        #  <style type="text/css"  media="screen, print">
 
         return qq(
 
@@ -5679,7 +5679,7 @@ $css
 #       $title
 #       $baseFile   [optional] The html filename at $BASE_URL
 #       $attrib     [optional] Attitional attributes
-#       $rest       [optional] Rest HTML before </HEAD>
+#       $rest       [optional] Rest HTML before </head>
 #
 #   USES GLOBAL
 #
@@ -5736,7 +5736,7 @@ sub HtmlStartBasic ( % )
 #
 #   DESCRIPTION
 #
-#       Create <LINK> html tag
+#       Create <link> html tag
 #
 #       Advanced net browsers can use the included LINK tags.
 #       http://www.htmlhelp.com/reference/wilbur/
@@ -5962,7 +5962,7 @@ $HTML_HASH{beg}
         push @ret, <<"........EOF";
 
 <div class="toc" id="toc">
-<A name="toc" id="toc" class="name"></A>
+<a name="toc" id="toc" class="name"></a>
 <h1>
     $toc
     $doc
@@ -7060,8 +7060,8 @@ sub MakeMetaTags ( % )
 #       $butn           Url Button to point to "next"
 #       $metaDesc       [optional]
 #       $metaKeywords   [optional]
-#       $bodyAttr       [optional] Attributes to attach  to BODY tag,
-#                       e.g. <BODY LANG=en> when value would be "LANG=en".
+#       $bodyAttr       [optional] Attributes to attach to BODY tag,
+#                       e.g. <body lang=en> when value would be "LANG=en".
 #       $email          [optional]
 #
 #   RETURN VALUES
@@ -7112,8 +7112,8 @@ EOF
 
     # ................................................ start of html ...
     # 1998-08 Note: Microsoft Internet Explorer can't show the html page
-    # if the comment '<!--' is placed before comment <HTML> tag.
-    # Netscape will show .html ok. By moving the comment after <HTML>
+    # if the comment '<!--' is placed before comment <html> tag.
+    # Netscape will show .html ok. By moving the comment after <html>
     # IE is able to read the page.
 
     push @ret, HereQuote <<"........EOF";
@@ -7269,7 +7269,7 @@ sub PrintEndSimple ($;$)
     if ( defined $OPT_EMAIL  and  $OPT_EMAIL )
     {
         $email = qq(Contact: &lt;<a href="mailto:$email">)
-                 . qq($email</A>&gt;$HTML_HASH{br}\n)
+                 . qq($email</a>&gt;$HTML_HASH{br}\n)
     }
 
     join ''
@@ -7382,7 +7382,9 @@ EOF
 
         $pbeg
         This file has been automatically generated from plain text file
-        with Perl script <strong>$PROGNAME v$VERSION</strong>$br
+        with
+        <a href="$URL">$PROGNAME</a>
+        $br
         $pend
 
         $author
@@ -7795,7 +7797,7 @@ sub HeaderArrayUpdate ($; $)
             ALREADY   : $staticNameHash{ $ARG }
             CONVERSION: [$name] --> [$ARG]
 
-            Cannot pick 1-8 words to construct HTML <A NAME="...">
+            Cannot pick 1-8 words to construct HTML <a name="...">
             fragment identifier, because there already is an entry
             with the same name. Please rename all heading so that they
             do not have the same first 1-5 words.
@@ -7884,7 +7886,7 @@ sub MakeHeadingHtml ( % )
         my $attr = qq( class="btn-toc" );
 
         #   It doesn't matter how the FONT is reduced, it
-        #   won't make the [toc] button any smaller inside the <H> tag.
+        #   won't make the [toc] button any smaller inside the <h> tag.
         #   -- too bad --
 
         if ( $OPT_HEADING_TOP_BUTTON )
@@ -7916,10 +7918,10 @@ sub MakeHeadingHtml ( % )
     {
         my $hr = $AS_IS ? "" : $HTML_HASH{hr};
 
-        $ret = HereQuote <<EOF;
+        $ret = HereQuote << "EOF";
             $HTML_HASH{p_end}
             $hr
-                <A name="$hname"  id="$hname"></A>
+                <a name="$hname"  id="$hname"></a>
                 <h1>
                 $header
                 $button
@@ -7930,7 +7932,7 @@ EOF
     }
     elsif ( $level > 1 )
     {
-        $ret = <<EOF;
+        $ret = << "EOF";
 
 $HTML_HASH{p_end}
   <a name="$hname" id="$hname"></a>
@@ -8025,7 +8027,7 @@ sub HtmlFixes ($)
     {
         my $tag = '\S+';  # $CSS_CODE_STYLE_NOTE;
 
-        #   Search <PRE> tags and change style to "shade-note"
+        #   Search <pre> tags and change style to "shade-note"
 
         s{
             # $1
@@ -8065,7 +8067,7 @@ sub HtmlFixes ($)
                 $table =~ s/$classT\"/shade-note\"/g;
                 $table =~ s/$classTD\"/shade-note-attrib\"/g;
                 $table =~ s,<(?i:pre)>,<b>$tagWord</b>,;
-                $end   = "";            # remove </PRE>
+                $end   = "";            # remove </pre>
                 $found = 1;
             }
             elsif ( $tagWord2 =~ /t2html::(\S+)/ )
@@ -8132,7 +8134,7 @@ sub HtmlFixes ($)
                 $pre   = 1;
 
                 $para =  XlatWordMarkup ( XlatTag2html $para );
-                $para = "<B>$tagWord</B> " . $para;
+                $para = "<strong<>$tagWord</strong> " . $para;
 
                 $para = HtmlTable $para, "shade-note", "shade-note-attrib";
 
@@ -8155,7 +8157,7 @@ sub HtmlFixes ($)
                 $debug > 7  and  print "$id: PARAGRAPH-ELSE (final) text [$text]\n";
 
                 # Separate paragraphs
-                # $text =~ s/^\s*$/    <P>/g;
+                # $text =~ s/^\s*$/    <p>/g;
             }
 
             $text .= "</pre>\n" if $pre and $text !~ /<pre/i;
@@ -8186,15 +8188,15 @@ sub HtmlFixes ($)
     s,(?:\s*[\n\r])( *</(?:pre|code)>),$1,igm;
 
     #  Remove P before OL or UL - already fixed in DoLine().
-    # s,<P>(<[ou]l>),$1,igm;
+    # s,<p>(<[ou]l>),$1,igm;
 
-    #  Remove extra newline that is generated by <P>. </TABLE>
+    #  Remove extra newline that is generated by <p>. </table>
     #  already adds one empty line.
 
-    # s,(</TABLE>\s+)<P class="column7">,$1,gsmi;
+    # s,(</table>\s+)<p\s+class="column7">,$1,gsmi;
 
     #  Remove extra gap before table
-    #  s,<P>\s+(<table),$1,gsmi;
+    #  s,<p>\s+(<table),$1,gsmi;
 
     #  Fix double closing
 
@@ -8265,7 +8267,7 @@ sub DoLineUserTags ( $ )
 #
 #   DESCRIPTION
 #
-#       Return HTML code to start <PRE> section
+#       Return HTML code to start <pre> section
 #
 #   INPUT PARAMETERS
 #
@@ -8285,17 +8287,17 @@ sub HtmlCodeSectionEnd ()
     {
         #   This will format nicely in the generated HTML
 
-        my $html = <<EOF;
-    </PRE>
-    </TD>
-    </TR>
-</TABLE>
+        my $html = << "EOF";
+    </pre>
+    </td>
+    </tr>
+</table>
 EOF
         $html;
     }
     else
     {
-        "</PRE>\n";
+        "</pre>\n";
     }
 }
 
@@ -8303,7 +8305,7 @@ EOF
 #
 #   DESCRIPTION
 #
-#       Return HTML code to start <PRE> section
+#       Return HTML code to start <pre> section
 #
 #   INPUT PARAMETERS
 #
@@ -8334,16 +8336,16 @@ sub HtmlCodeSectionStart ()
 
 
         $html = << "EOF";
-<P>
-<TABLE class="$class">
-    <TR>
-    <TD class="$attrib" valign="top">
-    <PRE>
+<p>
+<table class="$class">
+    <tr>
+    <td class="$attrib" valign="top">
+    <pre>
 EOF
     }
     else
     {
-        $html = qq(\n<PRE class="code">\n);
+        $html = qq(\n<pre class="code">\n);
     }
 
     $debug > 6  and  print "$id: RET [$html]";
@@ -8424,6 +8426,7 @@ sub DoLine ( % )
     my $spaces      = 0;
     my $bulletText  = "";
     my $i           = -1;
+    my $br          = $HTML_HASH{br};
 
     # .................................... lines around current-line ...
     #       HEADER                  <-- search this
@@ -8564,12 +8567,6 @@ sub DoLine ( % )
     }
 
     # ......................................................... &rcs ...
-    #  Version control keywords, like RCS/CVS.
-
-    if ( m"(.*)(\$Id.*\$)(.*)" )
-    {
-        $ARG = "$1<EM><STRONG>$2</STRONG></EM>$3";
-    }
 
     #   The bullet text must be examined only after the expansions
     #   in the line
@@ -8597,12 +8594,12 @@ sub DoLine ( % )
         if ( defined $2 )
         {
             $ARG = qq(\n<hr class="special"> \n)
-                .  qq(\t <strong><em> $2 </em></strong><br> \n)
+                .  qq(\t <strong><em> $2 </em></strong>$br \n)
                 ;
         }
         else
         {
-             $ARG = "\n<HR> \n\t<!--  BREAK -->   <BR>\n";
+             $ARG = "\n<hr> \n\t<!--  BREAK -->   $br\n";
         }
     }
     elsif ( $hlevel = IsHeading $ARG )
@@ -8650,7 +8647,7 @@ sub DoLine ( % )
         $beg = $static7beg;
         $end = $static7end;
 
-        $ARG = $beg . $ARG . $end . "<BR>";
+        $ARG = $beg . $ARG . $end . $br;
         $spaces = 8;                    # for <p class=column8>
     }
 
@@ -8661,11 +8658,11 @@ sub DoLine ( % )
         if (  $line > 0  and  $AsIs  and  $prevEmpty )
         {
             #  if the Image reference #PIC is placed to the code column,
-            #  the <PRE> tags are not good at all.
+            #  the <pre> tags are not good at all.
 
             if ( $staticPreMode )
             {
-                #   Don't leave pictures inside PRE tags.
+                #   Don't leave pictures inside pre tags.
 
                 my $html = HtmlCodeSectionEnd();
 
@@ -8718,7 +8715,7 @@ sub DoLine ( % )
           $CSS_CODE_STYLE  ne -notset
         )
     {
-        $ARG .= "<BR>";
+        $ARG .= $br;
     }
 
 
@@ -8769,7 +8766,7 @@ sub DoLine ( % )
         }
         else
         {
-            $ARG = "\t$ARG\n<P>\n";             # Continue in bullet mode
+            $ARG = "\t$ARG\n<p>\n";             # Continue in bullet mode
         }
 
         $debug > 1 and warn "______________BULLET OFF [$isBullet] $ARG\n";
@@ -8877,7 +8874,7 @@ sub DoLine ( % )
             }
             elsif ( $spaces <= 12 )
             {
-                # No </P> needed
+                # No </p> needed
             }
         }
     }
@@ -8899,7 +8896,7 @@ sub DoLine ( % )
 
         if ( $isBrCode  and  not m,</p>,i )
         {
-            $ARG .= $HTML_HASH{br};
+            $ARG .= $br;
         }
     }
 
