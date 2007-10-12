@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>t2html.pl - Simple text to HTML converter. Relies on text indentation rules.</title>
+<title>t2html - Simple text to HTML converter. Relies on text indentation rules.</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:rurban@x-ray.at" />
 </head>
@@ -78,7 +78,7 @@
 </p>
 <hr />
 <h1><a name="name">NAME</a></h1>
-<p>t2html.pl - Simple text to HTML converter. Relies on text indentation rules.</p>
+<p>t2html - Simple text to HTML converter. Relies on text indentation rules.</p>
 <p>
 </p>
 <hr />
@@ -133,22 +133,22 @@ See project <a href="http://freshmeat.net/projects/emacs-tiny-tools">http://fres
 <h1><a name="synopsis">SYNOPSIS</a></h1>
 <p>To convert text file into HTML:</p>
 <pre>
-    t2html.pl [options] file.txt &gt; file.html</pre>
+    t2html [options] file.txt &gt; file.html</pre>
 <p>In addition to making HTML pages, program includes feature to check broken
 links and report them in <em>egrep -n</em> like fashion:</p>
 <pre>
-    t2html.pl --Link-check-single --quiet file.txt</pre>
+    t2html --Link-check-single --quiet file.txt</pre>
 <p>To check links from multiple pages and cache good links to separate file,
 use <strong>--Link-cache</strong> option. The next link check will run much faster
 because cached valid links will not be fetched again. At regular intervals
 delete the link cache file to force complete check.</p>
 <pre>
-    t2html.pl --Link-check-single --Link-cache ~/tmp/link.cache \
+    t2html --Link-check-single --Link-cache ~/tmp/link.cache \
               --quiet file.txt</pre>
 <p>In case there are need for slides, is is possible to plit big document into
 pieces according to toplevel headings:</p>
 <pre>
-    t2html.pl --S1 --SN | t2html.pl --simple -Out</pre>
+    t2html --S1 --SN | t2html --simple -Out</pre>
 <p>
 </p>
 <hr />
@@ -289,7 +289,7 @@ the buttons are defined by a separate program. And example using Perl:</p>
 </dd>
 <dd>
 <pre>
-    qx(t2html.pl --button-top &quot;$top&quot; --button-prev &quot;$prev&quot; --button-next &quot;$next&quot; ...);</pre>
+    qx(t2html --button-top &quot;$top&quot; --button-prev &quot;$prev&quot; --button-next &quot;$next&quot; ...);</pre>
 </dd>
 <dd>
 <pre>
@@ -346,7 +346,7 @@ it can be separated:</p>
 </dd>
 <dd>
 <pre>
-    % t2html.pl --Toc-url-print tmp.txt &gt; file.html 2&gt; toc-list.txt</pre>
+    % t2html --Toc-url-print tmp.txt &gt; file.html 2&gt; toc-list.txt</pre>
 </dd>
 <dd>
 <p>Where would you need this? If you want to know the fragment identifies
@@ -925,7 +925,7 @@ only if they look like HTML base files:</p>
 <dd>
 <pre>
     find . -name &quot;*.txt&quot; -type f \
-         -exec t2html.pl --Auto-detect --verbose --Out {} \;</pre>
+         -exec t2html --Auto-detect --verbose --Out {} \;</pre>
 </dd>
 <dd>
 <p>The command searches all *.txt files under current directory and feeds
@@ -1005,7 +1005,7 @@ every text file is checked recursively.</p>
 </dd>
 <dd>
 <pre>
-    $ t2html.pl --Link-check-single \
+    $ t2html --Link-check-single \
       --quiet --Link-cache ~tmp/link.cache \
       `find . -name &quot;*.txt&quot; -type f`</pre>
 </dd>
@@ -1038,7 +1038,7 @@ no file names, only the generated HTML.</p>
 </dd>
 <dd>
 <pre>
-    % t2html.pl --Out --print page.txt</pre>
+    % t2html --Out --print page.txt</pre>
 </dd>
 <dd>
 <pre>
@@ -1053,7 +1053,7 @@ layout immediately with your browser.</p>
 </dd>
 <dd>
 <pre>
-    % t2html.pl --Out --print-url page.txt | xargs lynx</pre>
+    % t2html --Out --print-url page.txt | xargs lynx</pre>
 </dd>
 <dd>
 <pre>
@@ -1822,29 +1822,6 @@ This directive cannot be broken to separate lines,</p>
      See search engine #URL&lt;<a href="http://www.google.com&gt">http://www.google.com&gt</a>; &lt;Google&gt;</pre>
 </dd>
 </li>
-<dt><strong><a name="item_referring_to_local_documents_2e">Referring to local documents.</a></strong>
-
-<dd>
-<p><code>#URL-AS-IS-</code> is a shorthand to announce the filename, while
-referring to local disk location.</p>
-</dd>
-<dd>
-<pre>
-                Pay attention. The syntax is &quot;URL-AS-IS-&quot;, so that
-                whole contruct is treated as one word.
-                |
-                +------------
-     #URL-AS-IS-doc/mytext.doc The rest of the seen text can
-     be written immediately after the tag.</pre>
-</dd>
-<dd>
-<p>Th generated HTML code will read:</p>
-</dd>
-<dd>
-<pre>
-    &lt;A HREF=&quot;doc/mytext.doc&quot;&gt;mytext.doc&lt;/A&gt;</pre>
-</dd>
-</li>
 </dl>
 <p>
 </p>
@@ -1884,10 +1861,10 @@ you have forgot to close the block. Make it read even, like this:</p>
 <h1><a name="examples">EXAMPLES</a></h1>
 <p>To print the test page and show all the possibilities:</p>
 <pre>
-    % t2html.pl --test-page</pre>
+    % t2html --test-page</pre>
 <p>To make simple HTML page without any meta information:</p>
 <pre>
-    % t2html.pl --title &quot;Html Page Title&quot; --author &quot;Mr. Foo&quot; \
+    % t2html --title &quot;Html Page Title&quot; --author &quot;Mr. Foo&quot; \
       --simple --Out --print file.txt</pre>
 <p>If you have periodic post in email format, use <strong>--delete-email-headers</strong> to
 ignore the header text:</p>
@@ -1900,7 +1877,7 @@ ignore the header text:</p>
 and frames. Pay attention to switch <em>--html-body</em> which defines document
 language.</p>
 <pre>
-    % t2html.pl                                         \
+    % t2html                                         \
     --print                                             \
     --Out                                               \
     --author    &quot;Mr. foo&quot;                               \
@@ -1922,17 +1899,17 @@ language.</p>
 <p>To check links and print status of all links in par with the http error
 message (most verbose):</p>
 <pre>
-    % t2html.pl --link-check file.txt | tee link-error.log</pre>
+    % t2html --link-check file.txt | tee link-error.log</pre>
 <p>To print only problematic links:</p>
 <pre>
-    % t2html.pl --link-check --quiet file.txt | tee link-error.log</pre>
+    % t2html --link-check --quiet file.txt | tee link-error.log</pre>
 <p>To print terse output in egep -n like manner: line number, link and
 error code:</p>
 <pre>
-    % t2html.pl --link-check-single --quiet file.txt | tee link-error.log</pre>
+    % t2html --link-check-single --quiet file.txt | tee link-error.log</pre>
 <p>To split large document into pieces, and convert each piece to HTML:</p>
 <pre>
-    % t2html.pl --split1 --split-name file.txt | t2html --simple -Out</pre>
+    % t2html --split1 --split-name file.txt | t2html --simple -Out</pre>
 <p>
 </p>
 <hr />
