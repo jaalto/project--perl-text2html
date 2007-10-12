@@ -4785,7 +4785,7 @@ sub UrlInclude (%)
     my %arg     = @ARG;
     my $dir     = $arg{-dir};
     my $url     = $arg{-url};
-    my $mode    = $arg{-modex};
+    my $mode    = $arg{-mode};
 
     $debug  and  print "$id: url [$url] dir [$dir] mode [$mode]\n";
 
@@ -4814,9 +4814,7 @@ sub UrlInclude (%)
         # 1) There is no path, so use current directory
         # 2) It start with relative path ../
 
-        if ( $dir
-             and ($url !~ m,[/\\],  or  $url =~ m,^[.],, )
-           )
+        if ( $dir  and  ($url !~ m,[/\\],  or  $url =~ m,^[.],, ) )
         {
 
             $debug > 2 and  print "$id: dir added: $dir + $url\n";
