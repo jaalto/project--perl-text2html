@@ -8053,7 +8053,6 @@ sub HtmlFixes ($)
             my $tagWord2 = XlatHtml2tag $tagWord; # Fix &gt; ==> ">"
             my $tagcss   = $tagWord2 =~ /$CSS_CODE_STYLE_NOTE/o;
 
-
             $debug > 7  and  print "$id: #STYLE-CSS [$CSS_CODE_STYLE_NOTE]"
                                  , " word [$tagWord] tagWord2 [$tagWord2]"
                                  , " tagcss [$tagcss]";
@@ -8099,18 +8098,17 @@ sub HtmlFixes ($)
 
                     if ( $key eq 'td' )
                     {
-                        $table =~ s/(?i:td[^>]+)(class=.[^\"']+)./$1$val/g;
+                        $table =~ s/((?i:td[^>]+))class=.[^\"']+./$1$val/g;
                     }
                     elsif ( $key eq 'table' )
                     {
-                        $table =~ s/(?i:table\s+)([^>]+)/$1$val/g;
+                        $table =~ s/((?i:table\s+))[^>]+/$1$val/g;
                     }
                     elsif ( $key =~ /table(\S+)/ )
                     {
-                        $key = $1;
-
+                        $key   = $1;
                         $val   = qq("$val")  unless $val =~ /[\"']/;
-                        $table =~ s/(?i:table[^>]+)($key=.[^\"]+.)/$1$key=$val/g;
+                        $table =~ s/((?i:table[^>]+))$key=.[^\"]+./$1$key=$val/g;
                     }
                 }
             }
