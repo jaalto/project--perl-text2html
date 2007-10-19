@@ -8132,7 +8132,7 @@ sub HtmlFixes ($)
                 $pre   = 1;
 
                 $para =  XlatWordMarkup ( XlatTag2html $para );
-                $para = "<strong>$tagWord</strong> " . $para;
+                $para = qq(<span class="note12">$tagWord</span> ) . $para;
 
                 $para = HtmlTable $para, "shade-note", "shade-note-attrib";
 
