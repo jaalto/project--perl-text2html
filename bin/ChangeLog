@@ -3,6 +3,7 @@
 	* t2html.pl (HtmlFixes): Correct grouping expressions
 	that did not catch correct $1. This was causes by recent change
 	where the case sensitive options were put in '(?:)' => '((?:))'
+	Fix column 12, 'Note:' and <strong> html tag rendering.
 
 2007-10-12  Jari Aalto  <jari.aalto@cante.cante.net>
 
