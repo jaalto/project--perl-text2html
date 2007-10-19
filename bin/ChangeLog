@@ -1,3 +1,9 @@
+2007-10-19  Jari Aalto  <jaalto@cante.cante.net>
+
+	* t2html.pl (HtmlFixes): Correct grouping expressions
+	that did not catch correct $1. This was causes by recent change
+	where the case sensitive options were put in '(?:)' => '((?:))'
+
 2007-10-12  Jari Aalto  <jari.aalto@cante.cante.net>
 
 	* t2html.pl (HELP::Referring to local documents):
