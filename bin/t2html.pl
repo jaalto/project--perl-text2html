@@ -5180,7 +5180,7 @@ sub CssData ( ; $ )
                 border-left:    1px #999999 solid;
                 border-right:   1px #666666 solid;
                 border-bottom:  1px #666666 solid;
-                border-width:   94%;
+                border-width:   thin;
                 border-style: dashed; /* dotted */
 
 
@@ -8116,7 +8116,7 @@ sub HtmlFixes ($)
                 $pre   = 1;
 
                 $para =  XlatWordMarkup ( XlatTag2html $para );
-                $para = "<strong<>$tagWord</strong> " . $para;
+                $para = qq(<span class="note12">$tagWord</span> ) . $para;
 
                 $para = HtmlTable $para, "shade-note", "shade-note-attrib";
 
