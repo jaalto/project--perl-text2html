@@ -6985,7 +6985,7 @@ sub MakeMetaTags ( % )
         push @ret, qq(  <$META="keywords"\n\tCONTENT="$kwd">\n\n);
     }
 
-    if ( defined $desc )
+    if ( $desc = /\S/ )
     {
         length($desc) > 1000
             and warn "$id: META DESC over 1000 characters";
