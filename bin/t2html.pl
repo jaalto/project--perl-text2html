@@ -6,7 +6,7 @@
 #
 #  File id
 #
-#       Copyright (C) 1996-2007 Jari Aalto
+#       Copyright (C) 1996-2008 Jari Aalto
 #
 #       This program is free software; you can redistribute it and/or
 #       modify it under the terms of the GNU General Public License as
@@ -2736,7 +2736,7 @@ Homepage is at http://freshmeat.net/projects/perl-text2html
 
 =head1 AUTHOR
 
-Copyright (C) 1996-2006 Jari Aalto. This program is free software; you can
+Copyright (C) 1996-2008 Jari Aalto. This program is free software; you can
 redistribute it and/or modify it under the same terms as Perl itself or in
 terms of Gnu General Public license v2 or later.
 
@@ -10023,7 +10023,7 @@ t2html Test Page
         #T2HTML-METAKEYWORDS    test, html, example
         #T2HTML-METADESCRIPTION This is test page of program t2html
 
-        Copyright (C) 1996-2007 Jari Aalto
+        Copyright (C) 1996-2008 Jari Aalto
 
         License: This material may be distributed only subject to
         the terms and conditions set forth in GNU General Public

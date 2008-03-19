@@ -1393,7 +1393,7 @@ AVAILABILITY
     Homepage is at http://freshmeat.net/projects/perl-text2html
 
 AUTHOR
-    Copyright (C) 1996-2006 Jari Aalto. This program is free software; you
+    Copyright (C) 1996-2008 Jari Aalto. This program is free software; you
     can redistribute it and/or modify it under the same terms as Perl itself
     or in terms of Gnu General Public license v2 or later.
 
