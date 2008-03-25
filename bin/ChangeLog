@@ -1,3 +1,10 @@
+2008-03-25  Jari Aalto  <jari.aalto@tamk.fi>
+
+	* t2html.pl (HandleCommandLineArgs): Use 3way open() call.
+	(WriteFile): Use 3way open() call.
+	(UrlInclude): Use 3way open() call.
+	(LinkCache): Use 3way open() call.
+
 2007-11-08  Jari Aalto  <jaalto@cante.cante.net>
 
 	* t2html.pl (MakeMetaTags): If no description was given,

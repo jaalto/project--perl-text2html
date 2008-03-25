@@ -118,7 +118,7 @@ IMPORT:             #   These are environment variables
     #   this file is saved. See Emacs module tinperl.el where the
     #   feature is implemented.
 
-    $VERSION = '2007.0918.1443';
+    $VERSION = '2008.0325.2318';
 
 # }}}
 # {{{ Initial setup
@@ -1019,7 +1019,7 @@ EOF
         $debug  and
             print "$id: Reading CSS and Java definitions form $SCRIPT_FILE\n";
 
-        if ( open FILE, "< $SCRIPT_FILE" )
+        if ( open FILE, "<", $SCRIPT_FILE )
         {
             $JAVA_CODE = join '', <FILE>;
             close FILE;
@@ -4595,7 +4595,7 @@ sub WriteFile ($$)
         return;
     }
 
-    open  my $FILE, "> $file" or die "$id: Cannot write to [$file] $ERRNO";
+    open  my $FILE, ">", $file or die "$id: Cannot write to [$file] $ERRNO";
     binmode $FILE;
 
     my $type =  ref $value;
@@ -4762,6 +4762,10 @@ sub RemoveHTMLaround ($)
 
     $debug > 2  and  print "$id: [$ARG]\n";
 
+    #  Remove <!DOCTYPE
+
+    s,<!DOCTYPE.*,,;
+
     #   Delete everything up til <body>
     #   Delete everything after  </body>
 
@@ -4840,9 +4844,9 @@ sub UrlInclude (%)
         local *FILE;
         $url = EnvExpand $url;
 
-        unless ( open FILE, "< $url" )
+        unless ( open FILE, "<", $url )
         {
-            $verb  and  warn "Cannot open '$url' $ERRNO";
+            $verb  and  warn "[WARN] Cannot open '$url' $ERRNO";
             return;
         }
 
@@ -4853,6 +4857,10 @@ sub UrlInclude (%)
         {
             $ret = RemoveHTMLaround $ret;
         }
+
+        $debug > 2  and  print "$id: content of [$url] START:"
+                             . $ret
+                             . "$id: content of [$url] END:\n";
 
         unless ( $mode )
         {
@@ -6111,7 +6119,7 @@ sub LinkCache ( % )
         #   This means, that user has deleted cache file and forcing
         #   a full scan of every link.
 
-        unless ( open FILE, "<$arg" )
+        unless ( open FILE, "<", $arg )
         {
             $verb > 1  and  warn "$id: Cannot open $arg $ERRNO";
             $ret = 0;
@@ -6140,7 +6148,7 @@ sub LinkCache ( % )
 
         $verb  and  print "$id: writing [$arg]\n";
 
-        my $stat = open my $FILE, "> $arg";
+        my $stat = open my $FILE, ">", $arg;
 
         unless ( $stat )
         {
@@ -8923,7 +8931,6 @@ sub DoLine ( % )
         }
 
         $ARG = $before . $out . $after;
-
     }
 
     $debug > 6  and  print "$id: RET [$ARG]\n";
