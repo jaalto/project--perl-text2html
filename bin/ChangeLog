@@ -26,6 +26,10 @@
 
 2007-10-12  Jari Aalto  <jari.aalto@cante.cante.net>
 
+	* t2html.pl (HELP::Referring to local documents):
+	Removed documentation of option '#URL-AS-IS-'. This
+	is superceded by generic '#URL'
+
 	* t2html.pl (UrlInclude): Fixed reading of
 	function argument. This made 'raw:' include mode to
 	work again.

@@ -129,9 +129,9 @@
 .\" ========================================================================
 .\"
 .IX Title "T2HTML 1"
-.TH T2HTML 1 "2007-09-18" "perl v5.8.8" "Perl Text to HTML Converter"
+.TH T2HTML 1 "2007-10-12" "perl v5.8.8" "Perl Text to HTML Converter"
 .SH "NAME"
-t2html.pl \- Simple text to HTML converter. Relies on text indentation rules.
+t2html \- Simple text to HTML converter. Relies on text indentation rules.
 .SH "README"
 .IX Header "README"
 Convert pure text files into nice looking, possibly framed, \s-1HTML\s0 pages.
@@ -198,14 +198,14 @@ See project http://freshmeat.net/projects/emacs\-tiny\-tools
 To convert text file into \s-1HTML:\s0
 .PP
 .Vb 1
-\&    t2html.pl [options] file.txt > file.html
+\&    t2html [options] file.txt > file.html
 .Ve
 .PP
 In addition to making \s-1HTML\s0 pages, program includes feature to check broken
 links and report them in \fIegrep \-n\fR like fashion:
 .PP
 .Vb 1
-\&    t2html.pl --Link-check-single --quiet file.txt
+\&    t2html --Link-check-single --quiet file.txt
 .Ve
 .PP
 To check links from multiple pages and cache good links to separate file,
@@ -214,7 +214,7 @@ because cached valid links will not be fetched again. At regular intervals
 delete the link cache file to force complete check.
 .PP
 .Vb 2
-\&    t2html.pl --Link-check-single --Link-cache ~/tmp/link.cache \e
+\&    t2html --Link-check-single --Link-cache ~/tmp/link.cache \e
 \&              --quiet file.txt
 .Ve
 .PP
@@ -222,7 +222,7 @@ In case there are need for slides, is is possible to plit big document into
 pieces according to toplevel headings:
 .PP
 .Vb 1
-\&    t2html.pl --S1 --SN | t2html.pl --simple -Out
+\&    t2html --S1 --SN | t2html --simple -Out
 .Ve
 .SH "OPTIONS"
 .IX Header "OPTIONS"
@@ -323,7 +323,7 @@ the buttons are defined by a separate program. And example using Perl:
 .Ve
 .Sp
 .Vb 1
-\&    qx(t2html.pl --button-top "$top" --button-prev "$prev" --button-next "$next" ...);
+\&    qx(t2html --button-top "$top" --button-prev "$prev" --button-next "$next" ...);
 .Ve
 .Sp
 .Vb 1
@@ -364,7 +364,7 @@ Display URLs (contructed from headings) that build up the Table of Contents
 it can be separated:
 .Sp
 .Vb 1
-\&    % t2html.pl --Toc-url-print tmp.txt > file.html 2> toc-list.txt
+\&    % t2html --Toc-url-print tmp.txt > file.html 2> toc-list.txt
 .Ve
 .Sp
 Where would you need this? If you want to know the fragment identifies
@@ -853,7 +853,7 @@ only if they look like \s-1HTML\s0 base files:
 .Sp
 .Vb 2
 \&    find . -name "*.txt" -type f \e
-\&         -exec t2html.pl --Auto-detect --verbose --Out {} \e;
+\&         -exec t2html --Auto-detect --verbose --Out {} \e;
 .Ve
 .Sp
 The command searches all *.txt files under current directory and feeds
@@ -915,7 +915,7 @@ dramatically improve long searches. Consider this example, where
 every text file is checked recursively.
 .Sp
 .Vb 3
-\&    $ t2html.pl --Link-check-single \e
+\&    $ t2html --Link-check-single \e
 \&      --quiet --Link-cache ~tmp/link.cache \e
 \&      `find . -name "*.txt" -type f`
 .Ve
@@ -941,7 +941,7 @@ Print filename to stdout after \s-1HTML\s0 processing. Normally program prints
 no file names, only the generated \s-1HTML\s0.
 .Sp
 .Vb 1
-\&    % t2html.pl --Out --print page.txt
+\&    % t2html --Out --print page.txt
 .Ve
 .Sp
 .Vb 1
@@ -953,7 +953,7 @@ Print filename in \s-1URL\s0 format. This is useful if you want to check the
 layout immediately with your browser.
 .Sp
 .Vb 1
-\&    % t2html.pl --Out --print-url page.txt | xargs lynx
+\&    % t2html --Out --print-url page.txt | xargs lynx
 .Ve
 .Sp
 .Vb 1
@@ -1678,25 +1678,6 @@ Like if written:
 .Vb 1
 \&     See search engine #URL<http://www.google.com> <Google>
 .Ve
-.IP "Referring to local documents." 4
-.IX Item "Referring to local documents."
-\&\f(CW\*(C`#URL\-AS\-IS\-\*(C'\fR is a shorthand to announce the filename, while
-referring to local disk location.
-.Sp
-.Vb 6
-\&                Pay attention. The syntax is "URL-AS-IS-", so that
-\&                whole contruct is treated as one word.
-\&                |
-\&                +------------
-\&     #URL-AS-IS-doc/mytext.doc The rest of the seen text can
-\&     be written immediately after the tag.
-.Ve
-.Sp
-Th generated \s-1HTML\s0 code will read:
-.Sp
-.Vb 1
-\&    <A HREF="doc/mytext.doc">mytext.doc</A>
-.Ve
 .SH "TABLE OF CONTENT HEADING"
 .IX Header "TABLE OF CONTENT HEADING"
 If there is heading 1, which is named exactly \*(L"Table of Contents\*(R", then all
@@ -1734,13 +1715,13 @@ Headings start with a big letter or number, likein \*(L"Heading\*(R", not
 To print the test page and show all the possibilities:
 .PP
 .Vb 1
-\&    % t2html.pl --test-page
+\&    % t2html --test-page
 .Ve
 .PP
 To make simple \s-1HTML\s0 page without any meta information:
 .PP
 .Vb 2
-\&    % t2html.pl --title "Html Page Title" --author "Mr. Foo" \e
+\&    % t2html --title "Html Page Title" --author "Mr. Foo" \e
 \&      --simple --Out --print file.txt
 .Ve
 .PP
@@ -1762,7 +1743,7 @@ and frames. Pay attention to switch \fI\-\-html\-body\fR which defines document
 language.
 .PP
 .Vb 19
-\&    % t2html.pl                                         \e
+\&    % t2html                                         \e
 \&    --print                                             \e
 \&    --Out                                               \e
 \&    --author    "Mr. foo"                               \e
@@ -1787,26 +1768,26 @@ To check links and print status of all links in par with the http error
 message (most verbose):
 .PP
 .Vb 1
-\&    % t2html.pl --link-check file.txt | tee link-error.log
+\&    % t2html --link-check file.txt | tee link-error.log
 .Ve
 .PP
 To print only problematic links:
 .PP
 .Vb 1
-\&    % t2html.pl --link-check --quiet file.txt | tee link-error.log
+\&    % t2html --link-check --quiet file.txt | tee link-error.log
 .Ve
 .PP
 To print terse output in egep \-n like manner: line number, link and
 error code:
 .PP
 .Vb 1
-\&    % t2html.pl --link-check-single --quiet file.txt | tee link-error.log
+\&    % t2html --link-check-single --quiet file.txt | tee link-error.log
 .Ve
 .PP
 To split large document into pieces, and convert each piece to \s-1HTML:\s0
 .PP
 .Vb 1
-\&    % t2html.pl --split1 --split-name file.txt | t2html --simple -Out
+\&    % t2html --split1 --split-name file.txt | t2html --simple -Out
 .Ve
 .SH "ENVIRONMENT"
 .IX Header "ENVIRONMENT"

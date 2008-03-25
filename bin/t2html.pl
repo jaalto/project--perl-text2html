@@ -6,7 +6,7 @@
 #
 #  File id
 #
-#       Copyright (C) 1996-2007 Jari Aalto
+#       Copyright (C) 1996-2008 Jari Aalto
 #
 #       This program is free software; you can redistribute it and/or
 #       modify it under the terms of the GNU General Public License as
@@ -118,7 +118,7 @@ IMPORT:             #   These are environment variables
     #   this file is saved. See Emacs module tinperl.el where the
     #   feature is implemented.
 
-    $VERSION = '2008.0325.2318';
+    $VERSION = '2008.0325.2321';
 
 # }}}
 # {{{ Initial setup
@@ -2552,22 +2552,6 @@ Like if written:
 
      See search engine #URL<http://www.google.com> <Google>
 
-=item Referring to local documents.
-
-C<#URL-AS-IS-> is a shorthand to announce the filename, while
-referring to local disk location.
-
-                Pay attention. The syntax is "URL-AS-IS-", so that
-                whole contruct is treated as one word.
-                |
-                +------------
-     #URL-AS-IS-doc/mytext.doc The rest of the seen text can
-     be written immediately after the tag.
-
-Th generated HTML code will read:
-
-    <a href="doc/mytext.doc">mytext.doc</a>
-
 =back
 
 =head1 TABLE OF CONTENT HEADING
@@ -2752,7 +2736,7 @@ Homepage is at http://freshmeat.net/projects/perl-text2html
 
 =head1 AUTHOR
 
-Copyright (C) 1996-2006 Jari Aalto. This program is free software; you can
+Copyright (C) 1996-2008 Jari Aalto. This program is free software; you can
 redistribute it and/or modify it under the same terms as Perl itself or in
 terms of Gnu General Public license v2 or later.
 
@@ -10046,7 +10030,7 @@ t2html Test Page
         #T2HTML-METAKEYWORDS    test, html, example
         #T2HTML-METADESCRIPTION This is test page of program t2html
 
-        Copyright (C) 1996-2007 Jari Aalto
+        Copyright (C) 1996-2008 Jari Aalto
 
         License: This material may be distributed only subject to
         the terms and conditions set forth in GNU General Public
