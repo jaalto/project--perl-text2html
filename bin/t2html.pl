@@ -100,11 +100,11 @@ IMPORT:             #   These are environment variables
     use Env;
     use vars qw
     (
-        $HOME
-        $TEMP
-        $TEMPDIR
-        $PATH
-        $LANG
+	$HOME
+	$TEMP
+	$TEMPDIR
+	$PATH
+	$LANG
     );
 }
 
@@ -118,7 +118,7 @@ IMPORT:             #   These are environment variables
     #   this file is saved. See Emacs module tinperl.el where the
     #   feature is implemented.
 
-    $VERSION = '2007.0918.1443';
+    $VERSION = '2008.0919.2235';
 
 # }}}
 # {{{ Initial setup
@@ -174,11 +174,11 @@ sub HereQuote ($)
 
     if ( /^\s*(?:([^\w\s]+)(\s*).*\n)(?:\s*\1\2?.*\n)+$/ )     #font-lock s//
     {
-        ( $white, $lead ) = ( $2, quotemeta $1);
+	( $white, $lead ) = ( $2, quotemeta $1);
     }
     else
     {
-        ( $white, $lead ) = ( /^(\s+)/, '');
+	( $white, $lead ) = ( /^(\s+)/, '');
     }
 
     s/^\s*?$lead(?:$white)?//gm;
@@ -208,12 +208,12 @@ sub Initialize ()
 
     use vars qw
     (
-        $HTTP_CODE_OK
-        $LIB
-        $PROGNAME
-        $URL
-        %HTML_HASH
-        $debug
+	$HTTP_CODE_OK
+	$LIB
+	$PROGNAME
+	$URL
+	%HTML_HASH
+	$debug
     );
 
     $PROGNAME   = "t2html";
@@ -227,10 +227,10 @@ sub Initialize ()
 
     use vars qw
     (
-        @HEADING_ARRAY
-        %HEADING_HASH
-        %LINK_HASH
-        %LINK_HASH_CODE
+	@HEADING_ARRAY
+	%HEADING_HASH
+	%LINK_HASH
+	%LINK_HASH_CODE
     );
 
     @HEADING_ARRAY  = ();
@@ -242,12 +242,12 @@ sub Initialize ()
 
     use vars qw
     (
-        $OUTPUT_TYPE_SIMPLE
-        $OUTPUT_TYPE_QUIET
-        $OUTPUT_TYPE_UNDEFINED
+	$OUTPUT_TYPE_SIMPLE
+	$OUTPUT_TYPE_QUIET
+	$OUTPUT_TYPE_UNDEFINED
 
-        $BULLET_TYPE_NUMBERED
-        $BULLET_TYPE_NORMAL
+	$BULLET_TYPE_NUMBERED
+	$BULLET_TYPE_NORMAL
     );
 
     #   Some constants:  old Perl style. New Perl uses "use constant"
@@ -265,40 +265,40 @@ sub Initialize ()
 
     %COLUMN_HASH =
     (
-        "" => ""
+	"" => ""
 
-        , beg7  => qq(<p class="column7"><em><strong>)
-        , end7  => "</strong></em>"
+	, beg7  => qq(<p class="column7"><em><strong>)
+	, end7  => "</strong></em>"
 
-        , beg9  => qq(<p class="column9"><strong>)
-        , end9  => "</strong>"
+	, beg9  => qq(<p class="column9"><strong>)
+	, end9  => "</strong>"
 
-        , beg10  => qq(<p class="column10"><em class="quote10">)
-        , end10  => "</em>"
+	, beg10  => qq(<p class="column10"><em class="quote10">)
+	, end10  => "</em>"
 
-        , beg7quote => qq(<span class="quote7">)
-        , end7quote => "</span>"
+	, beg7quote => qq(<span class="quote7">)
+	, end7quote => "</span>"
 
-        , begemp  => qq(<em class="word">)
-        , endemp  => "</em>"
+	, begemp  => qq(<em class="word">)
+	, endemp  => "</em>"
 
-        , begbold => qq(<strong class="word">)
-        , endbold => "</strong>"
+	, begbold => qq(<strong class="word">)
+	, endbold => "</strong>"
 
-        , begquote => qq(<samp class="word">)
-        , endquote => "</samp>"
+	, begquote => qq(<samp class="word">)
+	, endquote => "</samp>"
 
-        , begsmall => qq(<span class="word-small">)
-        , endsmall => "</span>"
+	, begsmall => qq(<span class="word-small">)
+	, endsmall => "</span>"
 
-        , begbig  => qq(<span class="word-big">)
-        , endbig  => "</span>"
+	, begbig  => qq(<span class="word-big">)
+	, endbig  => "</span>"
 
-        , begref  => qq(<span class="word-ref">)
-        , endref  => "</span>"
+	, begref  => qq(<span class="word-ref">)
+	, endref  => "</span>"
 
-        , superscriptbeg  => qq(<span class="super">)
-        , superscriptend  => "</span>"
+	, superscriptbeg  => qq(<span class="super">)
+	, superscriptend  => "</span>"
 
     );
 
@@ -310,18 +310,18 @@ sub Initialize ()
 
     %LANGUAGE_HASH =
     (
-        -toc  =>
-        {
-              en => 'Table of Contents'     # U.S. English -- all caps
-            , es => 'Tabla de Contenidos'
-            , fi => 'Sis&auml;llysluettelo'
-        },
+	-toc  =>
+	{
+	      en => 'Table of Contents'     # U.S. English -- all caps
+	    , es => 'Tabla de Contenidos'
+	    , fi => 'Sis&auml;llysluettelo'
+	},
 
        -pic   =>
        {
-              en => 'Picture'
-            , fi => 'Kuva'
-            , de => 'Bilde'
+	      en => 'Picture'
+	    , fi => 'Kuva'
+	    , de => 'Bilde'
        }
     );
 
@@ -330,40 +330,40 @@ sub Initialize ()
     sub Here($);
 
     my $doctype = Here <<"EOF";
-        <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 EOF
 
     my $doctype_frame = HereQuote <<"EOF";
-        <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Frameset//EN"
-                  "http://www.w3.org/TR/REC-html40/frameset.dtd">
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Frameset//EN"
+		  "http://www.w3.org/TR/REC-html40/frameset.dtd">
 EOF
 
     %HTML_HASH =
     (
-        doctype         => $doctype
-        , doctype_frame => $doctype_frame
-        , beg           => "<html>"
-        , end           => "</html>"
-        , br            => "<br>"
-        , hr            => "<hr>"
-        , pbeg          => "<p>"
-        , pend          => ""
+	doctype         => $doctype
+	, doctype_frame => $doctype_frame
+	, beg           => "<html>"
+	, end           => "</html>"
+	, br            => "<br>"
+	, hr            => "<hr>"
+	, pbeg          => "<p>"
+	, pend          => ""
     );
 
     # ............................................... css properties ...
 
     use vars qw
     (
-        $CSS_BODY_FONT_TYPE_NORMAL
-        $CSS_BODY_FONT_TYPE_READABLE
-        $CSS_BODY_FONT_SIZE_FRAME
-        $CSS_BODY_FONT_SIZE_NORMAL
+	$CSS_BODY_FONT_TYPE_NORMAL
+	$CSS_BODY_FONT_TYPE_READABLE
+	$CSS_BODY_FONT_SIZE_FRAME
+	$CSS_BODY_FONT_SIZE_NORMAL
     );
 
     $CSS_BODY_FONT_TYPE_NORMAL   = qq("Times New Roman", serif;);
 
     $CSS_BODY_FONT_TYPE_READABLE =
-        qq(verdana, arial, helvetica, sans-serif;);
+	qq(verdana, arial, helvetica, sans-serif;);
 
     $CSS_BODY_FONT_SIZE_FRAME    = qq(0.6em; /* relative, 8pt */);
     $CSS_BODY_FONT_SIZE_NORMAL   = qq(12pt; /* points */);
@@ -372,9 +372,9 @@ EOF
 
     use vars qw
     (
-        $ARG_PATH
-        $ARG_FILE
-        $ARG_DIR
+	$ARG_PATH
+	$ARG_FILE
+	$ARG_DIR
     );
 }
 
@@ -413,21 +413,21 @@ sub HandleCommandLineArgsFromFile ( $ )
 
     unless ( open FILE, $file )
     {
-        die "$id: Cannot open file [$file] $ERRNO";
+	die "$id: Cannot open file [$file] $ERRNO";
     }
 
     while ( defined($ARG = <FILE>) )
     {
-        s/#\s.*//g;                 # Delete comments
+	s/#\s.*//g;                 # Delete comments
 
-        next if /^\s*$/;            # if empty line
+	next if /^\s*$/;            # if empty line
 
-        s/^\s+//;                   # trim leading and trailing spaces
-        s/\s+$//;                   #font-lock s //
+	s/^\s+//;                   # trim leading and trailing spaces
+	s/\s+$//;                   #font-lock s //
 
-        $debug  and  warn "$id: ADD => $ARG\n";
+	$debug  and  warn "$id: ADD => $ARG\n";
 
-        $line .= $ARG;
+	$line .= $ARG;
     }
 
     #   Now comes the difficult part, We can't just split()'
@@ -450,36 +450,36 @@ sub HandleCommandLineArgsFromFile ( $ )
 
     while ( $ARG ne ""  )
     {
-        s/^\s+//;
+	s/^\s+//;
 
-        if ( /^(-+\S+)(.*)/ )   #font-lock s//
-        {
-            $debug  and  warn "$id: PARSE option $1\n";
+	if ( /^(-+\S+)(.*)/ )   #font-lock s//
+	{
+	    $debug  and  warn "$id: PARSE option $1\n";
 
-            push @arr, $1;
-            $ARG = $2;
-        }
-        elsif ( /^[\"]([^\"]*)[\"](.*)/ )       #font-lock s//
-        {
-            $debug  and  warn "$id: PARSE dquote $1\n";
+	    push @arr, $1;
+	    $ARG = $2;
+	}
+	elsif ( /^[\"]([^\"]*)[\"](.*)/ )       #font-lock s//
+	{
+	    $debug  and  warn "$id: PARSE dquote $1\n";
 
-            push @arr, $1;
-            $ARG = $2;
-        }
-        elsif ( /^'([^']*)'(.*)/ )      #font-lock s'/
-        {
-            $debug  and  warn "$id: PARSE squote $1\n";
+	    push @arr, $1;
+	    $ARG = $2;
+	}
+	elsif ( /^'([^']*)'(.*)/ )      #font-lock s'/
+	{
+	    $debug  and  warn "$id: PARSE squote $1\n";
 
-            push @arr, $1;
-            $ARG = $2;
-        }
-        elsif ( /^(\S+)(.*)/ )  #font-lock s//  #
-        {
-            $debug  and  warn "$id: PARSE value  $1\n";
+	    push @arr, $1;
+	    $ARG = $2;
+	}
+	elsif ( /^(\S+)(.*)/ )  #font-lock s//  #
+	{
+	    $debug  and  warn "$id: PARSE value  $1\n";
 
-            push @arr, $1;
-            $ARG = $2;
-        }
+	    push @arr, $1;
+	    $ARG = $2;
+	}
     }
 
     close FILE;
@@ -523,62 +523,62 @@ sub HandleCommandLineArgs ()
     use vars qw
     (
 
-        $AS_IS
-        $AUTHOR
-        $BASE
-        $BASE_URL
-        $BASE_URL_ALL
-        $BUT_NEXT
-        $BUT_PREV
-        $BUT_TOP
-        $CSS_CODE_STYLE
-        $CSS_CODE_STYLE_ATTRIBUTES
-        $CSS_CODE_STYLE_NOTE
-        $CSS_FONT_SIZE
-        $CSS_FONT_TYPE
-        $DELETE_EMAIL
-        $DELETE_REGEXP
-        $DISCLAIMER_FILE
-        $DOC
-        $DOC_URL
-        $FONT
-        $FORGET_HEAD_NUMBERS
-        $FRAME
-        $HTML_BODY_ATTRIBUTES
-        $JAVA_CODE
-        $LANG_ISO
-        $LINK_CHECK
-        $LINK_CHECK_ERR_TEXT_ONE_LINE
-        $META_DESC
-        $META_KEYWORDS
-        $NAME_UNIQ
-        $OBEY_T2HTML_DIRECTIVES
-        $OPT_AUTO_DETECT
-        $OPT_EMAIL
-        $OPT_HEADING_TOP_BUTTON
-        $OUTPUT_AUTOMATIC
-        $OUTPUT_DIR
-        $OUTPUT_SIMPLE
-        $OUTPUT_TYPE
-        $PICTURE_ALT
-        $PRINT
-        $PRINT_NAME_REFS
-        $PRINT_URL
-        $QUIET
-        $SCRIPT_FILE
-        $SPLIT1
-        $SPLIT2
-        $SPLIT_NAME_FILENAMES
-        $SPLIT_REGEXP
-        $TITLE
-        $XHTML_RENDER
+	$AS_IS
+	$AUTHOR
+	$BASE
+	$BASE_URL
+	$BASE_URL_ALL
+	$BUT_NEXT
+	$BUT_PREV
+	$BUT_TOP
+	$CSS_CODE_STYLE
+	$CSS_CODE_STYLE_ATTRIBUTES
+	$CSS_CODE_STYLE_NOTE
+	$CSS_FONT_SIZE
+	$CSS_FONT_TYPE
+	$DELETE_EMAIL
+	$DELETE_REGEXP
+	$DISCLAIMER_FILE
+	$DOC
+	$DOC_URL
+	$FONT
+	$FORGET_HEAD_NUMBERS
+	$FRAME
+	$HTML_BODY_ATTRIBUTES
+	$JAVA_CODE
+	$LANG_ISO
+	$LINK_CHECK
+	$LINK_CHECK_ERR_TEXT_ONE_LINE
+	$META_DESC
+	$META_KEYWORDS
+	$NAME_UNIQ
+	$OBEY_T2HTML_DIRECTIVES
+	$OPT_AUTO_DETECT
+	$OPT_EMAIL
+	$OPT_HEADING_TOP_BUTTON
+	$OUTPUT_AUTOMATIC
+	$OUTPUT_DIR
+	$OUTPUT_SIMPLE
+	$OUTPUT_TYPE
+	$PICTURE_ALT
+	$PRINT
+	$PRINT_NAME_REFS
+	$PRINT_URL
+	$QUIET
+	$SCRIPT_FILE
+	$SPLIT1
+	$SPLIT2
+	$SPLIT_NAME_FILENAMES
+	$SPLIT_REGEXP
+	$TITLE
+	$XHTML_RENDER
 
-        @CSS_FILE
-        %REFERENCE_HASH
+	@CSS_FILE
+	%REFERENCE_HASH
 
-        $debug
-        $time
-        $verb
+	$debug
+	$time
+	$verb
     );
 
     #   When heading string is read, forget the numbering by default
@@ -604,8 +604,8 @@ sub HandleCommandLineArgs ()
 
     use vars qw
     (
-        $MODULE_LWP_OK
-        $MODULE_LINKEXTRACTOR_OK
+	$MODULE_LWP_OK
+	$MODULE_LINKEXTRACTOR_OK
     );
 
     $MODULE_LWP_OK              = 0;
@@ -617,7 +617,7 @@ sub HandleCommandLineArgs ()
 
     if ( defined $LANG and $LANG =~ /^[a-z][a-z]/i ) # s/ environment var
     {
-        $LANG_ISO = lc $LANG;
+	$LANG_ISO = lc $LANG;
     }
 
     # ......................................................... Other ...
@@ -628,19 +628,19 @@ sub HandleCommandLineArgs ()
 
     if ( /(--options?-file(?:=|\s+)(\S+))/  )         # s/
     {
-        my $opt  = $1;
-        my $file = $2;
-        my @argv;
+	my $opt  = $1;
+	my $file = $2;
+	my @argv;
 
-        for my $arg ( @ARGV )               # Remove option
-        {
-            next if  $arg eq $opt;
-            push @argv, $arg;
-        }
+	for my $arg ( @ARGV )               # Remove option
+	{
+	    next if  $arg eq $opt;
+	    push @argv, $arg;
+	}
 
-        # Merge options
+	# Merge options
 
-        @ARGV = ( @argv, HandleCommandLineArgsFromFile($file) );
+	@ARGV = ( @argv, HandleCommandLineArgsFromFile($file) );
     }
 
     my @argv = @ARGV;           # Save value for debugging;
@@ -657,20 +657,20 @@ sub HandleCommandLineArgs ()
 
     for ( @ARGV )
     {
-        if ( /--html-column-(beg|end)/ )
-        {
-            if ( /--html-column-(beg|end)=(\w+) +(.+)/ )        #font-lock s//
-            {
-                ( $key, $tag, $val ) = ( $1, $2, $3);
+	if ( /--html-column-(beg|end)/ )
+	{
+	    if ( /--html-column-(beg|end)=(\w+) +(.+)/ )        #font-lock s//
+	    {
+		( $key, $tag, $val ) = ( $1, $2, $3);
 
-                $COLUMN_HASH{ $key . $tag } = $val;
-                $debug  and  warn "$key$tag ==> $val\n";
-            }
-            else
-            {
-                warn "Unregognized switch: $ARG";
-            }
-        }
+		$COLUMN_HASH{ $key . $tag } = $val;
+		$debug  and  warn "$key$tag ==> $val\n";
+	    }
+	    else
+	    {
+		warn "Unregognized switch: $ARG";
+	    }
+	}
     }
 
     @ARGV = grep ! /--html-column-/, @ARGV;
@@ -690,9 +690,9 @@ sub HandleCommandLineArgs ()
 
     Getopt::Long::config( qw
     (
-        require_order
-        no_ignore_case
-        no_ignore_case_always
+	require_order
+	no_ignore_case
+	no_ignore_case_always
     ));
 
     $debug  and  PrintArray("$id: before GetOption", \@ARGV);
@@ -704,86 +704,86 @@ sub HandleCommandLineArgs ()
 
     GetOptions      # Getopt::Long
     (
-          "debug:i"                 => \$debug
-        , "d:i"                     => \$debug
-        , "h|help"                  => \$help
-        , "Help-html"               => \$helpHTML
-        , "Help-man"                => \$helpMan
-        , "test-page"               => \$testpage
-        , "Version"                 => \$version
-        , "verbose:i"               => \$verb
+	  "debug:i"                 => \$debug
+	, "d:i"                     => \$debug
+	, "h|help"                  => \$help
+	, "Help-html"               => \$helpHTML
+	, "Help-man"                => \$helpMan
+	, "test-page"               => \$testpage
+	, "Version"                 => \$version
+	, "verbose:i"               => \$verb
 
-        , "Auto-detect"             => \$OPT_AUTO_DETECT
-        , "as-is"                   => \$AS_IS
-        , "author=s"                => \$AUTHOR
-        , "email=s"                 => \$email
+	, "Auto-detect"             => \$OPT_AUTO_DETECT
+	, "as-is"                   => \$AS_IS
+	, "author=s"                => \$AUTHOR
+	, "email=s"                 => \$email
 
-        , "base=s"                  => \$BASE
-        , "document=s"              => \$DOC
-        , "disclaimer-file=s"       => \$DISCLAIMER_FILE
+	, "base=s"                  => \$BASE
+	, "document=s"              => \$DOC
+	, "disclaimer-file=s"       => \$DISCLAIMER_FILE
 
-        , "t|title=s"               => \$TITLE
-        , "language=s"              => \$LANG_ISO
+	, "t|title=s"               => \$TITLE
+	, "language=s"              => \$LANG_ISO
 
-        , "button-previous=s"       => \$BUT_PREV
-        , "button-next=s"           => \$BUT_NEXT
-        , "button-top=s"            => \$BUT_TOP
-        , "button-heading-top"      => \$OPT_HEADING_TOP_BUTTON
+	, "button-previous=s"       => \$BUT_PREV
+	, "button-next=s"           => \$BUT_NEXT
+	, "button-top=s"            => \$BUT_TOP
+	, "button-heading-top"      => \$OPT_HEADING_TOP_BUTTON
 
-        , "html-body=s"             => \$HTML_BODY_ATTRIBUTES
-        , "html-font=s"             => \$FONT
-        , "F|html-frame"            => \$FRAME
+	, "html-body=s"             => \$HTML_BODY_ATTRIBUTES
+	, "html-font=s"             => \$FONT
+	, "F|html-frame"            => \$FRAME
 
-        , "script-file=s"           => \$SCRIPT_FILE
+	, "script-file=s"           => \$SCRIPT_FILE
 
-        , "css-file=s"              => \@CSS_FILE
-        , "css-font-type=s"         => \$CSS_FONT_TYPE
-        , "css-font-size=s"         => \$CSS_FONT_SIZE
-        , "css-font-normal"         => \$fontNormal
-        , "css-font-readable"       => \$fontReadable
+	, "css-file=s"              => \@CSS_FILE
+	, "css-font-type=s"         => \$CSS_FONT_TYPE
+	, "css-font-size=s"         => \$CSS_FONT_SIZE
+	, "css-font-normal"         => \$fontNormal
+	, "css-font-readable"       => \$fontReadable
 
-        , "css-code-note=s"         => \$codeNote
-        , "css-code-3d"             => \$code3d
-        , "css-code-bg"             => \$codeBg
-        , "css-code-bg2"            => \$codeBg2
+	, "css-code-note=s"         => \$codeNote
+	, "css-code-3d"             => \$code3d
+	, "css-code-bg"             => \$codeBg
+	, "css-code-bg2"            => \$codeBg2
 
-        , "delete-lines=s"          => \$DELETE_REGEXP
-        , "delete-email-headers"    => \$DELETE_EMAIL
-        , "delete-default!"         => \$deleteDefault
+	, "delete-lines=s"          => \$DELETE_REGEXP
+	, "delete-email-headers"    => \$DELETE_EMAIL
+	, "delete-default!"         => \$deleteDefault
 
-        , "name-uniq"               => \$NAME_UNIQ
-        , "T|toc-url-print"         => \$PRINT_NAME_REFS
-        , "url=s"                   => \$DOC_URL
+	, "name-uniq"               => \$NAME_UNIQ
+	, "T|toc-url-print"         => \$PRINT_NAME_REFS
+	, "url=s"                   => \$DOC_URL
 
-        , "simple"                  => \$OUTPUT_SIMPLE
-        , "quiet"                   => \$QUIET
-        , "print"                   => \$PRINT
-        , "P|print-url"             => \$PRINT_URL
-        , "time"                    => \$time
+	, "simple"                  => \$OUTPUT_SIMPLE
+	, "quiet"                   => \$QUIET
+	, "print"                   => \$PRINT
+	, "P|print-url"             => \$PRINT_URL
+	, "time"                    => \$time
 
-        , "picture-alt!"            => \$PICTURE_ALT
+	, "picture-alt!"            => \$PICTURE_ALT
 
-        , "split=s"                 => \$SPLIT_REGEXP
-        , "S1|split1"               => \$SPLIT1
-        , "S2|split2"               => \$SPLIT2
-        , "SN|split-name-files"     => \$SPLIT_NAME_FILENAMES
+	, "split=s"                 => \$SPLIT_REGEXP
+	, "S1|split1"               => \$SPLIT1
+	, "S2|split2"               => \$SPLIT2
+	, "SN|split-name-files"     => \$SPLIT_NAME_FILENAMES
 
-        , "t2html-tags!"            => \$OBEY_T2HTML_DIRECTIVES
+	, "t2html-tags!"            => \$OBEY_T2HTML_DIRECTIVES
 
-        , "Out"                     => \$OUTPUT_AUTOMATIC
-        , "Out-dir=s"               => \$OUTPUT_DIR
+	, "Out"                     => \$OUTPUT_AUTOMATIC
+	, "Out-dir=s"               => \$OUTPUT_DIR
 
-        , "Reference-separator=s@"  => \$referenceSeparator
-        , "reference=s@"            => \@reference
+	, "Reference-separator=s@"  => \$referenceSeparator
+	, "reference=s@"            => \@reference
 
-        , "link-check"              => \$LINK_CHECK
-        , "L|Link-check-single"     => \$LINK_CHECK_ERR_TEXT_ONE_LINE
-        , "Link-cache=s"            => \$linkCacheFile
+	, "link-check"              => \$LINK_CHECK
+	, "L|Link-check-single"     => \$LINK_CHECK_ERR_TEXT_ONE_LINE
+	, "Link-cache=s"            => \$linkCacheFile
 
-        , "Xhtml"                   => \$XHTML_RENDER
+	, "Xhtml"                   => \$XHTML_RENDER
 
-        , "meta-description=s"      => \$META_DESC
-        , "meta-keywords=s"         => \$META_KEYWORDS
+	, "meta-description=s"      => \$META_DESC
+	, "meta-keywords=s"         => \$META_KEYWORDS
 
     );
 
@@ -792,14 +792,14 @@ sub HandleCommandLineArgs ()
 
     if ( $debug )
     {
-        warn "$id: ARGV => [@ARGV]\n";
-        PrintArray( "$id: ARGV after getopt", \@ARGV );
+	warn "$id: ARGV => [@ARGV]\n";
+	PrintArray( "$id: ARGV after getopt", \@ARGV );
 
-        $verb = 10;
+	$verb = 10;
     }
     else
     {
-        $debug = 0;
+	$debug = 0;
     }
 
     $help       and  Help();
@@ -809,239 +809,239 @@ sub HandleCommandLineArgs ()
 
     if ( $version )
     {
-        print "$VERSION $PROGNAME $URL $PROGRAM_NAME\n";
-        exit 0;
+	print "$VERSION $PROGNAME $URL $PROGRAM_NAME\n";
+	exit 0;
     }
 
     if ( $XHTML_RENDER )
     {
-        my $doctype = Here <<"EOF";
-        <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transiotional.dtd">
+	my $doctype = Here <<"EOF";
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transiotional.dtd">
 EOF
 
-        #  xml:lang="" lang=""
+	#  xml:lang="" lang=""
 
-        my $begin = qq(<html xmlns="http://www.w3.org/1999/xhtml">);
+	my $begin = qq(<html xmlns="http://www.w3.org/1999/xhtml">);
 
-        $HTML_HASH{doctype} = $doctype;
-        @HTML_HASH{qw(br hr pend)} = ("<br />", "<hr />", "</p>");
+	$HTML_HASH{doctype} = $doctype;
+	@HTML_HASH{qw(br hr pend)} = ("<br />", "<hr />", "</p>");
     }
 
     if ( defined $OPT_HEADING_TOP_BUTTON )
     {
-        $OPT_HEADING_TOP_BUTTON = 1;
+	$OPT_HEADING_TOP_BUTTON = 1;
     }
 
     if ( defined $code3d )
     {
-        $CSS_CODE_STYLE = -d3;
-        $CSS_CODE_STYLE_ATTRIBUTES = $code3d  if $code3d =~ /[a-z]/i
+	$CSS_CODE_STYLE = -d3;
+	$CSS_CODE_STYLE_ATTRIBUTES = $code3d  if $code3d =~ /[a-z]/i
     }
     elsif ( defined $codeBg )
     {
-        $CSS_CODE_STYLE = -shade;
-        $CSS_CODE_STYLE_ATTRIBUTES = $codeBg  if $codeBg =~ /[a-z]/i
+	$CSS_CODE_STYLE = -shade;
+	$CSS_CODE_STYLE_ATTRIBUTES = $codeBg  if $codeBg =~ /[a-z]/i
     }
     elsif ( defined $codeBg2 )
     {
-        $CSS_CODE_STYLE = -shade2;
-        $CSS_CODE_STYLE_ATTRIBUTES = $codeBg2  if $codeBg2 =~ /[a-z]/i
+	$CSS_CODE_STYLE = -shade2;
+	$CSS_CODE_STYLE_ATTRIBUTES = $codeBg2  if $codeBg2 =~ /[a-z]/i
     }
 
     unless ( $CSS_CODE_STYLE )
     {
-        $CSS_CODE_STYLE = -notset;
+	$CSS_CODE_STYLE = -notset;
     }
 
     if ( defined $codeNote )
     {
-        if ( $CSS_CODE_STYLE eq -notset )
-        {
-            die "$id: Which css style you want with --css-code-note? "
-                . "Please select one of -css-code-* options.";
-        }
+	if ( $CSS_CODE_STYLE eq -notset )
+	{
+	    die "$id: Which css style you want with --css-code-note? "
+		. "Please select one of -css-code-* options.";
+	}
 
-        $ARG = $codeNote;
+	$ARG = $codeNote;
 
-        unless ( /\S/ )
-        {
-            die "$id: You must supply search regexp: --css-code-note='REGEXP'";
-        }
+	unless ( /\S/ )
+	{
+	    die "$id: You must supply search regexp: --css-code-note='REGEXP'";
+	}
 
-        if ( s/\(([^?])/(?:$1/g  )
-        {
-            $verb and warn "$id: Incorrect --css-code-note."
-                , " Must use non-grouping parens in regexp."
-                , " Fixed to format: $ARG ";
-        }
+	if ( s/\(([^?])/(?:$1/g  )
+	{
+	    $verb and warn "$id: Incorrect --css-code-note."
+		, " Must use non-grouping parens in regexp."
+		, " Fixed to format: $ARG ";
+	}
 
-        $CSS_CODE_STYLE_NOTE = $ARG;
+	$CSS_CODE_STYLE_NOTE = $ARG;
     }
     else
     {
-        $CSS_CODE_STYLE_NOTE = 'Note:';
+	$CSS_CODE_STYLE_NOTE = 'Note:';
     }
 
     unless ( defined $OBEY_T2HTML_DIRECTIVES )
     {
-        $OBEY_T2HTML_DIRECTIVES = 1;
+	$OBEY_T2HTML_DIRECTIVES = 1;
     }
 
     $LINK_CHECK = 1  if    $LINK_CHECK_ERR_TEXT_ONE_LINE;
 
     if ( $linkCacheFile )
     {
-        LinkCache( -action => '-read', -arg => $linkCacheFile);
+	LinkCache( -action => '-read', -arg => $linkCacheFile);
     }
 
     for ( @reference )
     {
-        my $sep = $referenceSeparator || "=";
-        my ( $key, $value ) = split /$sep/, $ARG;       #font-lock s/
+	my $sep = $referenceSeparator || "=";
+	my ( $key, $value ) = split /$sep/, $ARG;       #font-lock s/
 
-        unless ( $key and $value )
-        {
-            die "No separator [$sep] found from --reference [$ARG]";
-        }
+	unless ( $key and $value )
+	{
+	    die "No separator [$sep] found from --reference [$ARG]";
+	}
 
-        $REFERENCE_HASH{ $key } = $value;
+	$REFERENCE_HASH{ $key } = $value;
 
-        $debug  and warn "$id: [$ARG] Making reference [$key] => [$value]\n";
+	$debug  and warn "$id: [$ARG] Making reference [$key] => [$value]\n";
     }
 
     if ( $LANG_ISO !~ /^[a-z][a-z]/ )                               #font s/
     {
-        die "$id: --language setting must contain two character ISO 639 code."
+	die "$id: --language setting must contain two character ISO 639 code."
     }
     else
     {
-        my $lang = substr lc $LANG_ISO, 0, 2;
+	my $lang = substr lc $LANG_ISO, 0, 2;
 
-        if ( exists $LANGUAGE_HASH{-toc }{$lang} )
-        {
-            $LANG_ISO = $lang;
-        }
-        else
-        {
-            warn "$id: Language [$LANG_ISO] is not supported, please contact "
-                , "maintainer. Switched to English."
-                ;
-            $LANG_ISO = "en";
-        }
+	if ( exists $LANGUAGE_HASH{-toc }{$lang} )
+	{
+	    $LANG_ISO = $lang;
+	}
+	else
+	{
+	    warn "$id: Language [$LANG_ISO] is not supported, please contact "
+		, "maintainer. Switched to English."
+		;
+	    $LANG_ISO = "en";
+	}
     }
 
     if ( defined $email )
     {
-        $OPT_EMAIL = $email;
+	$OPT_EMAIL = $email;
     }
     else
     {
-        $OPT_EMAIL = '';
+	$OPT_EMAIL = '';
     }
 
     if ( defined $DOC_URL )
     {
-        local $ARG = $DOC_URL;
-        m,/$,  and  die  "$id: trailing slash in --url ? [$DOC_URL]"; #font m"
+	local $ARG = $DOC_URL;
+	m,/$,  and  die  "$id: trailing slash in --url ? [$DOC_URL]"; #font m"
     }
 
     if ( defined $OUTPUT_DIR  and $OUTPUT_DIR eq "none" )           #font m"
     {
-        undef $OUTPUT_DIR;
+	undef $OUTPUT_DIR;
     }
 
     $OUTPUT_DIR  and  $OUTPUT_AUTOMATIC = 1;
 
     if ( $FRAME and $XHTML_RENDER )
     {
-        die "$id: Conflicting options --html-frame and --Xhtml. Use only one.";
+	die "$id: Conflicting options --html-frame and --Xhtml. Use only one.";
     }
 
     if ( $FRAME )
     {
-        $OUTPUT_AUTOMATIC = 1;
+	$OUTPUT_AUTOMATIC = 1;
     }
 
     if ( not defined $deleteDefault  or  $deleteDefault == 1 )
     {
-        #   Delete Emacs folding.el marks that keeps text in sections. #fl
-        #
-        #       # {{{  Folding begin mark
-        #       # }}}  Folding end mark
-        #
-        #   Delete also comments
-        #
-        #       #_COMMENT
+	#   Delete Emacs folding.el marks that keeps text in sections. #fl
+	#
+	#       # {{{  Folding begin mark
+	#       # }}}  Folding end mark
+	#
+	#   Delete also comments
+	#
+	#       #_COMMENT
 
-        $DELETE_REGEXP = '^(?:#\s*)?([{]{3}|[}]{3}|(#_comment(?i)))'
+	$DELETE_REGEXP = '^(?:#\s*)?([{]{3}|[}]{3}|(#_comment(?i)))'
     }
 
     if ( $BASE ne '' )
     {
 
-        $BASE_URL_ALL   = $BASE;        # copy original
-        local $ARG      = $BASE;
+	$BASE_URL_ALL   = $BASE;        # copy original
+	local $ARG      = $BASE;
 
-        s,\n,,g;                        # No newlines
+	s,\n,,g;                        # No newlines
 
-        #   If /users/foo/ given, treat as file access protocol
+	#   If /users/foo/ given, treat as file access protocol
 
-        m,^/,     and    $ARG = "file:$ARG";   #font s,
+	m,^/,     and    $ARG = "file:$ARG";   #font s,
 
-        #   To ensure that we really get filename
+	#   To ensure that we really get filename
 
-        not m,/,   and   die "Base must contain slash, URI [$ARG]"; #font m"
+	not m,/,   and   die "Base must contain slash, URI [$ARG]"; #font m"
 
-        warn "Base may need trailing slash: $ARG" if /file/ and not m,/$,;
+	warn "Base may need trailing slash: $ARG" if /file/ and not m,/$,;
 
-        #   Exclude the filename part
+	#   Exclude the filename part
 
-        $BASE_URL = $ARG;
-        $BASE_URL = $1 if m,(.*)/,;
+	$BASE_URL = $ARG;
+	$BASE_URL = $1 if m,(.*)/,;
     }
 
     if ( defined @CSS_FILE  and  @CSS_FILE )
     {
-        $JAVA_CODE = '';
+	$JAVA_CODE = '';
 
-        for my $file (@CSS_FILE)
-        {
-            $JAVA_CODE .= qq(<link rel="stylesheet")
-                        . qq( type="text/css" href="$file">\n);
-        }
+	for my $file (@CSS_FILE)
+	{
+	    $JAVA_CODE .= qq(<link rel="stylesheet")
+			. qq( type="text/css" href="$file">\n);
+	}
     }
 
     if ( defined $SCRIPT_FILE  and  $SCRIPT_FILE ne '' )
     {
-        local *FILE;
+	local *FILE;
 
-        $debug  and
-            print "$id: Reading CSS and Java definitions form $SCRIPT_FILE\n";
+	$debug  and
+	    print "$id: Reading CSS and Java definitions form $SCRIPT_FILE\n";
 
-        if ( open FILE, "< $SCRIPT_FILE" )
-        {
-            $JAVA_CODE = join '', <FILE>;
-            close FILE;
-        }
-        else
-        {
-            warn "$id: Couldn't read [$SCRIPT_FILE] $ERRNO";
-            $JAVA_CODE = "<!-- ERROR: couldn't import -->";
-        }
+	if ( open FILE, "< $SCRIPT_FILE" )
+	{
+	    $JAVA_CODE = join '', <FILE>;
+	    close FILE;
+	}
+	else
+	{
+	    warn "$id: Couldn't read [$SCRIPT_FILE] $ERRNO";
+	    $JAVA_CODE = "<!-- ERROR: couldn't import -->";
+	}
     }
 
     if ( $LINK_CHECK )
     {
-        $LINK_CHECK                  = 1;
-        $MODULE_LWP_OK               = CheckModule( 'LWP::UserAgent');
-        #  http://search.cpan.org/author/PODMASTER/HTML-LinkExtractor-0.07/LinkExtractor.pm
-        $MODULE_LINKEXTRACTOR_OK     = CheckModule( 'HTML::LinkExtractor');
+	$LINK_CHECK                  = 1;
+	$MODULE_LWP_OK               = CheckModule( 'LWP::UserAgent');
+	#  http://search.cpan.org/author/PODMASTER/HTML-LinkExtractor-0.07/LinkExtractor.pm
+	$MODULE_LINKEXTRACTOR_OK     = CheckModule( 'HTML::LinkExtractor');
 
-        if ( not $MODULE_LWP_OK )
-        {
-            die "Need library LWP::UserAgent to check links.";
-        }
+	if ( not $MODULE_LWP_OK )
+	{
+	    die "Need library LWP::UserAgent to check links.";
+	}
     }
 
     $OUTPUT_TYPE  = $OUTPUT_TYPE_UNDEFINED;
@@ -1050,76 +1050,76 @@ EOF
 
     if ( defined $OPT_AUTO_DETECT )
     {
-        if (  $OPT_AUTO_DETECT =~ /^$|^\d+$/ )
-        {
-            # Default value
-            $OPT_AUTO_DETECT = "(?i)#T2HTML-";
-        }
+	if (  $OPT_AUTO_DETECT =~ /^$|^\d+$/ )
+	{
+	    # Default value
+	    $OPT_AUTO_DETECT = "(?i)#T2HTML-";
+	}
     }
 
     if ( defined $SPLIT1 )
     {
-        $SPLIT_REGEXP = '^([.0-9]+ )?[A-Z][a-z0-9]';
-        $debug and warn "$id: SPLIT_REGEXP = $SPLIT_REGEXP\n";
+	$SPLIT_REGEXP = '^([.0-9]+ )?[A-Z][a-z0-9]';
+	$debug and warn "$id: SPLIT_REGEXP = $SPLIT_REGEXP\n";
     }
 
     if ( defined $SPLIT2 )
     {
-        $SPLIT_REGEXP = '^    ([.0-9]+ )?[A-Z][a-z0-9]';
-        $debug and warn "$id: SPLIT_REGEXP = $SPLIT_REGEXP\n";
+	$SPLIT_REGEXP = '^    ([.0-9]+ )?[A-Z][a-z0-9]';
+	$debug and warn "$id: SPLIT_REGEXP = $SPLIT_REGEXP\n";
     }
 
     use vars qw( $HOME_ABS_PATH );
 
     if ( defined $PRINT_URL )
     {
-        #   We can't print absolute references like:
-        #   file:/usr136/users/PM3/foo/file.html because that cannot
-        #   be swallowed by browser. We must canonilise it to $HOME
-        #   format file:/users/foo/file.html
-        #
-        #   Find out where is HOME
+	#   We can't print absolute references like:
+	#   file:/usr136/users/PM3/foo/file.html because that cannot
+	#   be swallowed by browser. We must canonilise it to $HOME
+	#   format file:/users/foo/file.html
+	#
+	#   Find out where is HOME
 
-        my $previous = cwd();
+	my $previous = cwd();
 
-        if ( defined $HOME  and  $HOME ne '' )
-        {
-            chdir $HOME;
-            $HOME_ABS_PATH = cwd();
-            chdir $previous;
-        }
+	if ( defined $HOME  and  $HOME ne '' )
+	{
+	    chdir $HOME;
+	    $HOME_ABS_PATH = cwd();
+	    chdir $previous;
+	}
     }
 
     if ( $AS_IS )
     {
-        $BUT_TOP = $BUT_PREV = $BUT_NEXT = "";
+	$BUT_TOP = $BUT_PREV = $BUT_NEXT = "";
     }
 
     # .................................................... css fonts ...
 
     unless ( defined $CSS_FONT_SIZE )
     {
-        # $CSS_FONT_SIZE  = $CSS_BODY_FONT_SIZE_NORMAL;
+	# $CSS_FONT_SIZE  = $CSS_BODY_FONT_SIZE_NORMAL;
     }
 
     unless ( defined $CSS_FONT_TYPE )
     {
-        $CSS_FONT_TYPE  = $CSS_BODY_FONT_TYPE_NORMAL;
+	$CSS_FONT_TYPE  = $CSS_BODY_FONT_TYPE_NORMAL;
     }
 
     if ( $fontNormal )
     {
-        $CSS_FONT_TYPE = $CSS_BODY_FONT_TYPE_NORMAL;
+	$CSS_FONT_TYPE = $CSS_BODY_FONT_TYPE_NORMAL;
     }
     elsif ( $fontReadable )
     {
-        $CSS_FONT_TYPE = $CSS_BODY_FONT_TYPE_READABLE
+	$CSS_FONT_TYPE = $CSS_BODY_FONT_TYPE_READABLE
     }
 
     if ( $AS_IS  and  $FRAME )
     {
-        warn "$id: [WARNING] --as-is cancels option --html-frame."
-            . " Did you mean --quiet?";
+	warn "$id: [WARNING] --as-is cancels option --html-frame."
+	    . " Did you mean --quiet?";
 
     }
 
@@ -1226,7 +1226,7 @@ because cached valid links will not be fetched again. At regular intervals
 delete the link cache file to force complete check.
 
     t2html --Link-check-single --Link-cache ~/tmp/link.cache \
-              --quiet file.txt
+	      --quiet file.txt
 
 In case there are need for slides, is is possible to plit big document into
 pieces according to toplevel headings:
@@ -1359,8 +1359,8 @@ of TAG is replaced with VALUE. E.g. when given following options:
 When referenced in text, the generated HTML includes expanded expanded to
 values. An example text:
 
-        The homepage is #HOME-URL/page.html and the mirrot page it at
-        #ARCHIVE-URL/page.html where you can find the latest version.
+	The homepage is #HOME-URL/page.html and the mirrot page it at
+	#ARCHIVE-URL/page.html where you can find the latest version.
 
 =item B<--reference-separator STRING>
 
@@ -1417,16 +1417,16 @@ first paragraphs at column 12 differently. Like this:
     This is the regular text that appears somewhere at column 8.
     It may contain several lines of text in this paragraph.
 
-        Notice: Here is the special section, at column 12,
-        and the first word in this paragraph is 'Notice:'.
-        Only that makes this paragraph at column 12 special.
+	Notice: Here is the special section, at column 12,
+	and the first word in this paragraph is 'Notice:'.
+	Only that makes this paragraph at column 12 special.
 
     Now, we have some code to show to the user:
 
-        for ( i = 0; i++; i < 10 )
-        {
-            //  Doing something in this loop
-        }
+	for ( i = 0; i++; i < 10 )
+	{
+	    //  Doing something in this loop
+	}
 
 One note, text written with initial special word, like C<Notice:>,
 must all fit in one full pragraph. Any other paragraphs that follow,
@@ -1435,17 +1435,17 @@ are rendered as code sections. Like here:
     This is the regular text that appears somewhere
     It may contain several lines of text in this paragraph
 
-        Notice: Here is the special section, at column 12,
-        and the first word in this paragraph is 'Notice:'
-        which makes it special
+	Notice: Here is the special section, at column 12,
+	and the first word in this paragraph is 'Notice:'
+	which makes it special
 
-        Hoewver, this paragraph IS NOT rendered specially
-        any more. Only the first paragraph above.
+	Hoewver, this paragraph IS NOT rendered specially
+	any more. Only the first paragraph above.
 
-        for ( i = 0; i++; i < 10 )
-        {
-            //  Doing something in this loop
-        }
+	for ( i = 0; i++; i < 10 )
+	{
+	    //  Doing something in this loop
+	}
 
 As if this were not enough, there are some special table control
 directives that let you control the <table>..</table> which is
@@ -1453,39 +1453,39 @@ put around the code section at column 12. Here are few examples:
 
     Here is example 1
 
-        #t2html::td:bgcolor=#F7F7DE
+	#t2html::td:bgcolor=#F7F7DE
 
-        for ( i = 0; i++; i < 10 )
-        {
-            //  Doing something in this loop
-        }
+	for ( i = 0; i++; i < 10 )
+	{
+	    //  Doing something in this loop
+	}
 
     Here is example 2
 
-        #t2html::td:bgcolor=#F7F7DE:tableborder:1
+	#t2html::td:bgcolor=#F7F7DE:tableborder:1
 
-        for ( i = 0; i++; i < 10 )
-        {
-            //  Doing something in this loop
-        }
+	for ( i = 0; i++; i < 10 )
+	{
+	    //  Doing something in this loop
+	}
 
     Here is example 3
 
-        #t2html::td:bgcolor="#FFFFFF":tableclass:dashed
+	#t2html::td:bgcolor="#FFFFFF":tableclass:dashed
 
-        for ( i = 0; i++; i < 10 )
-        {
-            //  Doing something in this loop
-        }
+	for ( i = 0; i++; i < 10 )
+	{
+	    //  Doing something in this loop
+	}
 
     Here is example 4
 
-        #t2html::td:bgcolor="#FFFFFF":table:border=1_width=94%_border=0_cellpadding="10"_cellspacing="0"
+	#t2html::td:bgcolor="#FFFFFF":table:border=1_width=94%_border=0_cellpadding="10"_cellspacing="0"
 
-        for ( i = 0; i++; i < 10 )
-        {
-            //  Doing something in this loop
-        }
+	for ( i = 0; i++; i < 10 )
+	{
+	    //  Doing something in this loop
+	}
 
 Looks cryptic? Cannot help that and in order for you to completely
 understand what these directives do, you need to undertand what elements
@@ -1495,9 +1495,9 @@ for available attributes. Here is briefing what you can do:
 The start command is:
 
     #t2html::
-            |
-            After this comes attribute pairs in form key:value
-            and multiple ones as key1:value1:key2:value2 ...
+	    |
+	    After this comes attribute pairs in form key:value
+	    and multiple ones as key1:value1:key2:value2 ...
 
 The C<key:value> pairs can be:
 
@@ -1506,15 +1506,15 @@ The C<key:value> pairs can be:
        This is converted into <td attributes>
 
     table:ATTRIBUTES
-          |
-          This is converted into <table attributes>
+	  |
+	  This is converted into <table attributes>
 
 There can be no spaces in the ATTRIBUTES, because the C<First-word> must
 be one contiguous word. An underscore can be used in place of space:
 
     table:border=1_width=94%
-          |
-          Interpreted as <table border="1" width="94%">
+	  |
+	  Interpreted as <table border="1" width="94%">
 
 It is also possible to change the default CLASS style with word
 C<tableclass>. In order the CLASS to be useful, its CSS definitions must be
@@ -1522,28 +1522,28 @@ either in the default configuration or supplied from a external file.
 See option B<--script-file>.
 
     tableclass:name
-               |
-               Interpreted as <table class="name">
+	       |
+	       Interpreted as <table class="name">
 
 For example, there are couple of default styles that can be used:
 
     1) Here is CLASS "dashed" example
 
-        #t2html::tableclass:dashed
+	#t2html::tableclass:dashed
 
-            for ( i = 0; i++; i < 10 )
-            {
-                //  Doing something in this loop
-            }
+	    for ( i = 0; i++; i < 10 )
+	    {
+		//  Doing something in this loop
+	    }
 
     2) Here is CLASS "solid" example:
 
-        #t2html::tableclass:solid
+	#t2html::tableclass:solid
 
-            for ( i = 0; i++; i < 10 )
-            {
-                //  Doing something in this loop
-            }
+	    for ( i = 0; i++; i < 10 )
+	    {
+		//  Doing something in this loop
+	    }
 
 You can change any individual value of the default table
 definition which is:
@@ -1704,8 +1704,8 @@ cannot be printed to stdout.
     file.html
 
     --> file.html       The Frame file, point browser here
-        file-toc.html   Left frame (navigation)
-        file-body.html  Right frame (content)
+	file-toc.html   Left frame (navigation)
+	file-body.html  Right frame (content)
 
 =item B<--language ID>
 
@@ -1782,7 +1782,7 @@ is handy if you run a batch command to convert all files to HTML, but
 only if they look like HTML base files:
 
     find . -name "*.txt" -type f \
-         -exec t2html --Auto-detect --verbose --Out {} \;
+	 -exec t2html --Auto-detect --verbose --Out {} \;
 
 The command searches all *.txt files under current directory and feeds
 them to conversion program. The B<--Auto-detect> only converts files
@@ -1992,123 +1992,123 @@ called 'Technical format' (TF)
      The column positions are currently undeined and may not
      format correcly. Do ot place text at columns 1,2,3
 
-        This is heading2 at column 4 started with big letter
+	This is heading2 at column 4 started with big letter
 
-            Standard text starts at column 8, you can *emphatize*
-            text or make it _strong_ and write =SmallText= or
-            +BigText+ show variable name `ThisIsAlsoVariable'.
-            You can `_*nest*_' `the' markup. more txt in this
-            paragraph txt txt txt txt txt txt txt txt txt txt txt
-            txt txt txt txt txt txt txt txt txt txt txt txt txt
-            txt txt txt txt txt txt txt txt txt txt txt txt txt
-            txt
+	    Standard text starts at column 8, you can *emphatize*
+	    text or make it _strong_ and write =SmallText= or
+	    +BigText+ show variable name `ThisIsAlsoVariable'.
+	    You can `_*nest*_' `the' markup. more txt in this
+	    paragraph txt txt txt txt txt txt txt txt txt txt txt
+	    txt txt txt txt txt txt txt txt txt txt txt txt txt
+	    txt txt txt txt txt txt txt txt txt txt txt txt txt
+	    txt
 
-          Normal but colored text is between columns 5, 6
+	  Normal but colored text is between columns 5, 6
 
-           Emphatised text at column 7, like heading level 3
+	   Emphatised text at column 7, like heading level 3
 
-           "Special <em> text at column 7 starts with double quote"
+	   "Special <em> text at column 7 starts with double quote"
 
-            Another standard text block at column 8 txt txt txt
-            txt txt txt txt txt txt txt txt txt txt txt txt txt
-            txt txt txt txt txt txt txt txt txt txt txt txt txt
-            txt txt txt txt txt txt txt
+	    Another standard text block at column 8 txt txt txt
+	    txt txt txt txt txt txt txt txt txt txt txt txt txt
+	    txt txt txt txt txt txt txt txt txt txt txt txt txt
+	    txt txt txt txt txt txt txt
 
-             strong text at columns 9 and 11
+	     strong text at columns 9 and 11
 
-              Column 10 is normally reserved for quotations
-              Column 10 is normally reserved for quotations
-              Column 10 is normally reserved for quotations
-              Column 10 is normally reserved for quotations
+	      Column 10 is normally reserved for quotations
+	      Column 10 is normally reserved for quotations
+	      Column 10 is normally reserved for quotations
+	      Column 10 is normally reserved for quotations
 
-                Column 12 and further is reserved for code examples
-                Column 12 and further is reserved for code examples
-                All text here are surrounded by <pre> HTML codes
-                (This CODE column in affected by --css-code* options,
-                see more ideas from there.)
+		Column 12 and further is reserved for code examples
+		Column 12 and further is reserved for code examples
+		All text here are surrounded by <pre> HTML codes
+		(This CODE column in affected by --css-code* options,
+		see more ideas from there.)
 
-        Heading2 at column 4 again
+	Heading2 at column 4 again
 
-           If you want something like Heading level 3, use colum 7 (bold)
+	   If you want something like Heading level 3, use colum 7 (bold)
 
-            txt txt txt txt txt txt txt txt txt txt txt txt
-            txt txt txt txt txt txt txt txt txt txt txt txt
-            txt txt txt txt txt txt txt txt txt txt txt txt
+	    txt txt txt txt txt txt txt txt txt txt txt txt
+	    txt txt txt txt txt txt txt txt txt txt txt txt
+	    txt txt txt txt txt txt txt txt txt txt txt txt
 
-             [1998-09-10 comp.lang.perl.misc Mr. Foo said]
+	     [1998-09-10 comp.lang.perl.misc Mr. Foo said]
 
-              cited text cited text cited text cited text cited
-              text cited text cited text cited text cited text
-              cited text cited text cited text cited text cited
-              text cited text
+	      cited text cited text cited text cited text cited
+	      text cited text cited text cited text cited text
+	      cited text cited text cited text cited text cited
+	      text cited text
 
-             [1998-09-10 comp.lang.perl.misc Mr. Bar said]
+	     [1998-09-10 comp.lang.perl.misc Mr. Bar said]
 
-              cited text cited text cited text cited text cited
-              text cited text cited text cited text cited text
-              cited text cited text cited text cited text cited
-              text cited text
+	      cited text cited text cited text cited text cited
+	      text cited text cited text cited text cited text
+	      cited text cited text cited text cited text cited
+	      text cited text
 
-           If you want something like Heading level 3, use colum 7 (bold)
+	   If you want something like Heading level 3, use colum 7 (bold)
 
-            txt txt txt txt txt txt txt txt txt txt txt txt
-            txt txt txt txt txt txt txt txt txt txt txt txt
-            txt txt txt txt txt txt txt txt txt txt txt txt
+	    txt txt txt txt txt txt txt txt txt txt txt txt
+	    txt txt txt txt txt txt txt txt txt txt txt txt
+	    txt txt txt txt txt txt txt txt txt txt txt txt
 
-            *   Bullet 1 text starts at column 1
-                txt txt txt txt txt txt txt txt
-                ,txt txt txt txt txt txt txt txt
+	    *   Bullet 1 text starts at column 1
+		txt txt txt txt txt txt txt txt
+		,txt txt txt txt txt txt txt txt
 
-                Notice that previous paragraph ends to P-comma
-                code, it tells this paragraph to continue in
-                bullet mode, otherwise this text at column 12
-                would be intepreted as code section surrpoundedn
-                by <pre> HTML codes.
+		Notice that previous paragraph ends to P-comma
+		code, it tells this paragraph to continue in
+		bullet mode, otherwise this text at column 12
+		would be intepreted as code section surrpoundedn
+		by <pre> HTML codes.
 
-            *   Bullet 2, text starts at column 12
-            *   Bullet 3. Bullets are adviced to keep together
-            *   Bullet 4. Bullets are adviced to keep together
+	    *   Bullet 2, text starts at column 12
+	    *   Bullet 3. Bullets are adviced to keep together
+	    *   Bullet 4. Bullets are adviced to keep together
 
-            .   This is ordered list nbr 1, text starts at column 12
-            .   This is ordered list nbr 2
-            .   This is ordered list nbr 3
+	    .   This is ordered list nbr 1, text starts at column 12
+	    .   This is ordered list nbr 2
+	    .   This is ordered list nbr 3
 
-            .This line has BR, notice the DOT-code at beginning
-             of line. It is efective only at columns 1..11,
-             because column 12 is reserved for code examples.
+	    .This line has BR, notice the DOT-code at beginning
+	     of line. It is efective only at columns 1..11,
+	     because column 12 is reserved for code examples.
 
-            .This line has BR code and is displayed in line by itself.
-            .This line has BR code and is displayed in line by itself.
+	    .This line has BR code and is displayed in line by itself.
+	    .This line has BR code and is displayed in line by itself.
 
-            !! This adds an <hr> HTML code, text in line is marked with
-            !! <strong> <em>
+	    !! This adds an <hr> HTML code, text in line is marked with
+	    !! <strong> <em>
 
-           "This is emphasised text starting at column 7"
-            .And this text is put after the previous line with BR code
-           "This starts as separate line just below previous one"
-            .And continues again as usual with BR code
+	   "This is emphasised text starting at column 7"
+	    .And this text is put after the previous line with BR code
+	   "This starts as separate line just below previous one"
+	    .And continues again as usual with BR code
 
-            See the document #URL-BASE/document.txt, where #URL-BASE
-            tag is substituted with contents of --base switch.
+	    See the document #URL-BASE/document.txt, where #URL-BASE
+	    tag is substituted with contents of --base switch.
 
-            Make this email address clickable <account@example.com>
+	    Make this email address clickable <account@example.com>
 
-            Do not make this email address clickable bar@example.com,
-            because it is only an example and not a real address. Notice
-            that the last one was not surrounded by <>. Common login names
-            like foo, bar, quux are also ignored automatically.
+	    Do not make this email address clickable bar@example.com,
+	    because it is only an example and not a real address. Notice
+	    that the last one was not surrounded by <>. Common login names
+	    like foo, bar, quux are also ignored automatically.
 
-            Also do not make < this@example.com> because there is extra
-            white spaces. This may be more convenient way to disable
-            email addresses temporarily.
+	    Also do not make < this@example.com> because there is extra
+	    white spaces. This may be more convenient way to disable
+	    email addresses temporarily.
 
     Heading1 again at colum 0
 
-        Subheading at colum 4
+	Subheading at colum 4
 
-            And regular text, column 8 txt txt txt txt txt txt txt txt txt
-            txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt
-            txt txt txt txt txt txt txt txt txt txt txt
+	    And regular text, column 8 txt txt txt txt txt txt txt txt txt
+	    txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt
+	    txt txt txt txt txt txt txt txt txt txt txt
 
     --//-- decription end
 
@@ -2214,11 +2214,11 @@ block is closed with </pre> Note follwing example
 
     txt txt txt txt     ;Can not terminate the /pre, because last
     txt txt txt txt     ;column is not at 12
-        txt txt txt txt
+	txt txt txt txt
 
     txt txt txt txt
     txt txt txt txt
-        txt txt txt txt
+	txt txt txt txt
     ;; Finalizing comment, now the text is evenly placed
 
 =back
@@ -2247,22 +2247,22 @@ writing a bullet, there is a problem, because a bullet exist only as long
 as text is kept together
 
     *   This is a bullet and it has all text ketp together
-        even if there is another line in the bullet.
+	even if there is another line in the bullet.
 
 But to write bullets tat spread multiple paragraphs, you must instruct
 that those are to kept together and the text in next paragraph is
 not <sample> while it is placed at column 12
 
     *   This is a bullet and it has all text ketp together
-        ,even if there is another line in the bullet.
+	,even if there is another line in the bullet.
 
-        This is new paragrah to the previous bullet and this is
-        not a text sample. See COMMa-code below.
+	This is new paragrah to the previous bullet and this is
+	not a text sample. See COMMa-code below.
 
     *   This is new bullet
 
-        // and this is code sample after bullet
-        if ( $flag ) { ..do something.. }
+	// and this is code sample after bullet
+	if ( $flag ) { ..do something.. }
 
 =back
 
@@ -2286,9 +2286,9 @@ bigger font, CAPITALIZE THE WORDS.
 =item supercripting
 
     word[this]  is intepreted as superscript. You can use like
-                this[1], multiple[(2)] and almost any[(ab)] and
-                imaginable[IV superscritps] as long as the left
-                bracket is attached to the word.
+		this[1], multiple[(2)] and almost any[(ab)] and
+		imaginable[IV superscritps] as long as the left
+		bracket is attached to the word.
 
 =item embedding standard HTML tokens
 
@@ -2318,32 +2318,32 @@ lines. This is C<invalid:>
 
     <<table>
 
-        <<tr>>one
-        <<tr>>two
+	<<tr>>one
+	<<tr>>two
 
     <</table>>
 
 The pure HTML must be written without separating newlines:
 
     <<table>
-        <<tr>>one
-        <<tr>>two
+	<<tr>>one
+	<<tr>>two
     <</table>>
 
 This "doubling" affects normal text writing rules as well. If you write
 documents, where you describe Unix styled HERE-documents, you MUST NOT put
 the tokens next to each other:
 
-        bash$ cat<<EOF              # DON'T! It will confuse parser.
-        one
-        EOF
+	bash$ cat<<EOF              # DON'T! It will confuse parser.
+	one
+	EOF
 
 You must write the above code example using spaces to prevent "<<" from
 interpreting as PURE HTML:
 
-        bash$ cat << EOF            # RIGHT, add spaces
-        one
-        EOF
+	bash$ cat << EOF            # RIGHT, add spaces
+	one
+	EOF
 
 =back
 
@@ -2484,11 +2484,11 @@ within the BODY, marked with !!, are included:
 
     <html>
       <head>
-        ...
+	...
       </head>
       <body>
-        this text                 !!
-        and more of this          !!
+	this text                 !!
+	and more of this          !!
       </body>
     </html>
 
@@ -2503,17 +2503,17 @@ Examples:
 #PIC command is used to include pictures into the text
 
     #PIC picture.png#Caption Text#Picture HTML attributes#align#
-          (1)        (2)          (3)                     (4)
+	  (1)        (2)          (3)                     (4)
 
     1.  The NAME or URL address of the picturere. Like image/this.png
 
     2.  The Text that appears below picture
 
     3.  Additional attributes that are attached inside <img> tag.
-        For <img width="200" height="200">, the line would
-        read:
+	For <img width="200" height="200">, the line would
+	read:
 
-        #PIC some.png#Caption Text#width=200 length=200##
+	#PIC some.png#Caption Text#width=200 length=200##
 
     4.  The position of image: "left" (default), "center", "right"
 
@@ -2529,11 +2529,11 @@ document. The whole command must be placed on one single line and
 cannot be broken to multiple lines. An example:
 
     #REF #how_to_profile;(Note: profiling);
-          (1)            (2)
+	  (1)            (2)
 
     1.  The NAME HTML tag reference in current document, a single word.
-        This can also be a full URL link.
-        You can get NAME list by enabling --Toc-url-print option.
+	This can also be a full URL link.
+	You can get NAME list by enabling --Toc-url-print option.
 
     2.  The clickable text is delimited by ; characters.
 
@@ -2544,9 +2544,9 @@ link is not visible. Only the shown text is used to jump to URL.
 This directive cannot be broken to separate lines,
 
      #URL<FULL-HTTP-LINK> <embedded inline text>
-         |               |
-         |               whitespace allowed here
-         Must be kept together
+	 |               |
+	 |               whitespace allowed here
+	 Must be kept together
 
 Like if written:
 
@@ -2557,10 +2557,10 @@ Like if written:
 C<#URL-AS-IS-> is a shorthand to announce the filename, while
 referring to local disk location.
 
-                Pay attention. The syntax is "URL-AS-IS-", so that
-                whole contruct is treated as one word.
-                |
-                +------------
+		Pay attention. The syntax is "URL-AS-IS-", so that
+		whole contruct is treated as one word.
+		|
+		+------------
      #URL-AS-IS-doc/mytext.doc The rest of the seen text can
      be written immediately after the tag.
 
@@ -2595,8 +2595,8 @@ If generated HTML suddendly starts using only one font, eg <pre>, then
 you have forgot to close the block. Make it read even, like this:
 
     Code block
-        Code block
-        Code block
+	Code block
+	Code block
     ;;  Add empty comment here to "close" the code example at column 12
 
 Headings start with a big letter or number, likein "Heading", not
@@ -2771,38 +2771,38 @@ sub Help (;$ $)
 
     if ( $type eq -html )
     {
-        $debug  and  print "$id: -html option\n";
-        pod2html $PROGRAM_NAME;
+	$debug  and  print "$id: -html option\n";
+	pod2html $PROGRAM_NAME;
     }
     elsif ( $type eq -man )
     {
-        $debug  and  print "$id: -man option\n";
+	$debug  and  print "$id: -man option\n";
 
-        eval "use Pod::Man";
-        $EVAL_ERROR  and  die "$id: Cannot generate Man: $EVAL_ERROR";
+	eval "use Pod::Man";
+	$EVAL_ERROR  and  die "$id: Cannot generate Man: $EVAL_ERROR";
 
-        my %options;
-        $options{center} = 'Perl Text to HTML Converter';
+	my %options;
+	$options{center} = 'Perl Text to HTML Converter';
 
-        my $parser = Pod::Man->new(%options);
-        $parser->parse_from_file($PROGRAM_NAME);
+	my $parser = Pod::Man->new(%options);
+	$parser->parse_from_file($PROGRAM_NAME);
     }
     else
     {
-        $debug  and  print "$id: no options\n";
+	$debug  and  print "$id: no options\n";
 
-        pod2text $PROGRAM_NAME;
-        print "\n\n"
-        , "Default CSS and JAVA code inserted to the beginning of each file\n"
-        , "See option --css-file to replace default CSS.\n"
-        , JavaScript()
-        ;
+	pod2text $PROGRAM_NAME;
+	print "\n\n"
+	, "Default CSS and JAVA code inserted to the beginning of each file\n"
+	, "See option --css-file to replace default CSS.\n"
+	, JavaScript()
+	;
     }
 
     if ( defined $msg )
     {
-        print $msg;
-        exit 1;
+	print $msg;
+	exit 1;
     }
 
     exit 0;
@@ -2861,17 +2861,17 @@ sub IsHTML ($)
 
     unless ( defined $arrRef )
     {
-        warn "$id: [ERROR] arrRef is not defined";
-        return;
+	warn "$id: [ERROR] arrRef is not defined";
+	return;
     }
 
     for ( @$arrRef[0 .. Min(10, scalar(@$arrRef) -1) ]   )
     {
-        if ( /<\s*(HTML|XML)\s*>/i )
-        {
-            $ret = 1;
-            last;
-        }
+	if ( /<\s*(HTML|XML)\s*>/i )
+	{
+	    $ret = 1;
+	    last;
+	}
     }
 
     $debug  and  print "$id: RET [$ret]\n";
@@ -2903,15 +2903,15 @@ sub LoadUrlSupport ()
 
     local *LoadLib = sub ($)
     {
-        my $lib            = shift;
-        local $EVAL_ERROR  = '';
-        eval "use $lib";
+	my $lib            = shift;
+	local $EVAL_ERROR  = '';
+	eval "use $lib";
 
-        if ( $EVAL_ERROR )
-        {
-            warn "$id: $lib is not available [$EVAL_ERROR]\n";
-            $error++;
-        }
+	if ( $EVAL_ERROR )
+	{
+	    warn "$id: $lib is not available [$EVAL_ERROR]\n";
+	    $error++;
+	}
     };
 
     LoadLib( "LWP::UserAgent");
@@ -2950,29 +2950,29 @@ sub PathConvert ( $ ; $ )
 
     if ( defined $unix )
     {
-        s,\\,/,g;                   #font s/
+	s,\\,/,g;                   #font s/
 
-        if ( $trail )
-        {
-            s,/*$,/,;               #font s/
-        }
-        else
-        {
-            s,/+$,,;
-        }
+	if ( $trail )
+	{
+	    s,/*$,/,;               #font s/
+	}
+	else
+	{
+	    s,/+$,,;
+	}
     }
     else
     {
-        s,/,\\,g;                   #fonct s/
+	s,/,\\,g;                   #fonct s/
 
-        if ( $trail )
-        {
-            s,\\*$,\\,;
-        }
-        else
-        {
-            s,\\+$,,;
-        }
+	if ( $trail )
+	{
+	    s,\\*$,\\,;
+	}
+	else
+	{
+	    s,\\+$,,;
+	}
     }
 
     $ARG;
@@ -3002,22 +3002,22 @@ sub GetHomeDir ()
 
     unless ( defined $HOME )
     {
-        print "$id: WARNING Please set environement variable HOME"
-            , " to your home directory location. In Win32 This might be c:/home"
-            ;
+	print "$id: WARNING Please set environement variable HOME"
+	    , " to your home directory location. In Win32 This might be c:/home"
+	    ;
     }
 
     if ( defined $HOME )
     {
-        $ret = $HOME;
+	$ret = $HOME;
     }
     else
     {
-        local $ARG;
-        for ( qw(~/tmp /tmp c:/temp)  )
-        {
-            -d  and   $ret = $ARG, last;
-        }
+	local $ARG;
+	for ( qw(~/tmp /tmp c:/temp)  )
+	{
+	    -d  and   $ret = $ARG, last;
+	}
     }
 
     $debug   and   warn "$id: RETURN $ret\n";
@@ -3049,19 +3049,19 @@ sub PrintArray ($$;*)
 
     if ( defined $arrayRef )
     {
-        $fh       = $fh || \*STDERR;
-        my $i     = 1;
-        my $count = @$arrayRef;
+	$fh       = $fh || \*STDERR;
+	my $i     = 1;
+	my $count = @$arrayRef;
 
-        print $fh "\n ------ ARRAY BEG $title\n";
+	print $fh "\n ------ ARRAY BEG $title\n";
 
-        for ( @$arrayRef )
-        {
-            print $fh "[$i/$count] $ARG\n";
-            $i++;
-        }
+	for ( @$arrayRef )
+	{
+	    print $fh "[$i/$count] $ARG\n";
+	    $i++;
+	}
 
-        print $fh " ------ ARRAY END $title\n";
+	print $fh " ------ ARRAY END $title\n";
     }
 }
 
@@ -3096,8 +3096,8 @@ sub PrintArray2 ( $ @ )
 
     for ( @arr )
     {
-        warn "$id: $name\[$i\] = $ARG/$count\n";
-        $i++;
+	warn "$id: $name\[$i\] = $ARG/$count\n";
+	$i++;
     }
 }
 
@@ -3132,21 +3132,21 @@ sub PrintHash ($$;*)
 
     for ( sort keys %$hashRef )
     {
-        if ( $$hashRef{$ARG} )
-        {
-            $out = $$hashRef{ $ARG };
+	if ( $$hashRef{$ARG} )
+	{
+	    $out = $$hashRef{ $ARG };
 
-            if ( ref $out eq  "ARRAY" )
-            {
-                $out = "ARRAY => @$out";
-            }
-        }
-        else
-        {
-            $out = "<undef>";
-        }
-        print $fh "$i / $ARG = $out \n";
-        $i++;
+	    if ( ref $out eq  "ARRAY" )
+	    {
+		$out = "ARRAY => @$out";
+	    }
+	}
+	else
+	{
+	    $out = "<undef>";
+	}
+	print $fh "$i / $ARG = $out \n";
+	$i++;
     }
     print $fh " ------ END $title ------------\n";
 }
@@ -3178,13 +3178,13 @@ sub CheckEmail ($)
 
     if  ( $email =~ /^\S*$/ )         # Contains something
     {
-        if  ( $email !~ /@/  or  $email =~ /[<>]/ )
-        {
-            die "Invalid EMAIL [$email]. It must not contain characters <> "
-              , "or you didn't include \@\n"
-              , "Example: me\@example.com"
-              ;
-        }
+	if  ( $email !~ /@/  or  $email =~ /[<>]/ )
+	{
+	    die "Invalid EMAIL [$email]. It must not contain characters <> "
+	      , "or you didn't include \@\n"
+	      , "Example: me\@example.com"
+	      ;
+	}
     }
 }
 
@@ -3211,8 +3211,8 @@ sub DeleteEmailHeaders ($)
 
     unless ( defined $txt )
     {
-        warn "$id: \$txt is not defined";
-        return;
+	warn "$id: \$txt is not defined";
+	return;
     }
 
     my ( @array, $body);
@@ -3220,23 +3220,23 @@ sub DeleteEmailHeaders ($)
 
     if ( $line !~ /^[-\w]+:|^From/ )
     {
-        $debug  and print "$id: Skipped, no email ", @$txt[0];
-        @array = @$txt;
+	$debug  and print "$id: Skipped, no email ", @$txt[0];
+	@array = @$txt;
     }
     else
     {
-        for $line ( @$txt )
-        {
-            next if   $body == 0  and  $line !~ /^\s*$/;
+	for $line ( @$txt )
+	{
+	    next if   $body == 0  and  $line !~ /^\s*$/;
 
-            unless ( $body )
-            {
-                $body = 1;
-                next;                           # Ignore one empty line
-            }
+	    unless ( $body )
+	    {
+		$body = 1;
+		next;                           # Ignore one empty line
+	    }
 
-            push @array, $line;
-        }
+	    push @array, $line;
+	}
     }
 
     \@array;
@@ -3304,12 +3304,12 @@ sub MakeUrlPicture ( % )
 
     if ( not defined $align  or  not $align )
     {
-        $align  = "left";
+	$align  = "left";
     }
 
     unless ( $staticReference )
     {
-        $staticReference = Language( -pic);
+	$staticReference = Language( -pic);
     }
 
     my $picText;
@@ -3326,20 +3326,20 @@ sub MakeUrlPicture ( % )
 <p>
     <a name="$staticReference$nbr" id="$staticReference$nbr"></a>
     <table>
-        <tr> <td align="$align" valign="middle">
-                 <img src="$ref"
-                      border="0"
-                      $alt
-                      $attr
-                      >
-             </td>
-        </tr>
-        <tr> <td>
-                 <div class="picture">
-                 $picText$txt
-                 </div>
-             </td>
-        </tr>
+	<tr> <td align="$align" valign="middle">
+		 <img src="$ref"
+		      border="0"
+		      $alt
+		      $attr
+		      >
+	     </td>
+	</tr>
+	<tr> <td>
+		 <div class="picture">
+		 $picText$txt
+		 </div>
+	     </td>
+	</tr>
     </table>
 EOF
 
@@ -3401,7 +3401,7 @@ sub XlatHtml2href ($)
 
     s{&lt;A HREF(.*?)&gt;}
     {
-        "<a href" . XlatHtml2tag($1) .  ">";
+	"<a href" . XlatHtml2tag($1) .  ">";
     }egi;
 
     s,&lt;/a&gt;,</a>,gi;
@@ -3522,26 +3522,26 @@ sub XlatWordMarkup ($; $)
 
     unless ( $staticBegBold )
     {
-        $staticBegBold = $COLUMN_HASH{ begbold };
-        $staticEndBold = $COLUMN_HASH{ endbold };
+	$staticBegBold = $COLUMN_HASH{ begbold };
+	$staticEndBold = $COLUMN_HASH{ endbold };
 
-        $staticBegEmp = $COLUMN_HASH{ begemp };
-        $staticEndEmp = $COLUMN_HASH{ endemp };
+	$staticBegEmp = $COLUMN_HASH{ begemp };
+	$staticEndEmp = $COLUMN_HASH{ endemp };
 
-        $staticBegSmall = $COLUMN_HASH{ begsmall };
-        $staticEndSmall = $COLUMN_HASH{ endsmall };
+	$staticBegSmall = $COLUMN_HASH{ begsmall };
+	$staticEndSmall = $COLUMN_HASH{ endsmall };
 
-        $staticBegBig = $COLUMN_HASH{ begbig };
-        $staticEndBig = $COLUMN_HASH{ endbig };
+	$staticBegBig = $COLUMN_HASH{ begbig };
+	$staticEndBig = $COLUMN_HASH{ endbig };
 
-        $staticBegRef = $COLUMN_HASH{ begref };
-        $staticEndRef = $COLUMN_HASH{ endref };
+	$staticBegRef = $COLUMN_HASH{ begref };
+	$staticEndRef = $COLUMN_HASH{ endref };
 
-        $staticBegSup = $COLUMN_HASH{ superscriptbeg };
-        $staticEndSup = $COLUMN_HASH{ superscriptend };
+	$staticBegSup = $COLUMN_HASH{ superscriptbeg };
+	$staticEndSup = $COLUMN_HASH{ superscriptend };
 
-        $staticBegQuote = $COLUMN_HASH{ begquote };
-        $staticEndQuote = $COLUMN_HASH{ endquote };
+	$staticBegQuote = $COLUMN_HASH{ begquote };
+	$staticEndQuote = $COLUMN_HASH{ endquote };
     }
 
     my ( $beg, $end );
@@ -3580,9 +3580,9 @@ sub XlatWordMarkup ($; $)
 
     if (  s,($prefix)\*(\S+?)\*,$1$beg$2$end,g  )
     {
-        # For debug only
-        # warn "$id:  $ARG";
-        # die if m,Joka,;
+	# For debug only
+	# warn "$id:  $ARG";
+	# die if m,Joka,;
     }
 
     $debug > 3  and  print "$id: after *this2* [$ARG]";
@@ -3593,8 +3593,8 @@ sub XlatWordMarkup ($; $)
     $end = $staticEndSmall;
 
     s{
-        ($prefix)
-        =(\S+)=
+	($prefix)
+	=(\S+)=
      }
      {$1$beg$2$end}gx;
 
@@ -3610,50 +3610,50 @@ sub XlatWordMarkup ($; $)
     unless ( $type eq  -basic )
     {
 
-        #       [Mike] referred to [rfc822]
+	#       [Mike] referred to [rfc822]
 
-        $beg = $staticBegRef;
-        $end = $staticEndRef;
+	$beg = $staticBegRef;
+	$end = $staticEndRef;
 
-        s{
-           ($prefix)
-           \[
-              ([[:alpha:]]\S*)
-           \]
-           ([\s,.!?:;]|$)
-         }
-         {$1$beg\[$2\]$end$3}gx;
+	s{
+	   ($prefix)
+	   \[
+	      ([[:alpha:]]\S*)
+	   \]
+	   ([\s,.!?:;]|$)
+	 }
+	 {$1$beg\[$2\]$end$3}gx;
 
-         $debug > 3  and  print "$id: after [this] [$ARG]";
+	 $debug > 3  and  print "$id: after [this] [$ARG]";
 
-        #   [Figure: this here]
+	#   [Figure: this here]
 
-        s{
-            ([\s>])
-             \[
-                (\s*[^][\r\n]+[\s][^][\n\r]+)
-             \]
-         }
-         {$1$beg\[$2\]$end}gx;
+	s{
+	    ([\s>])
+	     \[
+		(\s*[^][\r\n]+[\s][^][\n\r]+)
+	     \]
+	 }
+	 {$1$beg\[$2\]$end}gx;
 
-         $debug > 3  and  print "$id: after [this here] [$ARG]";
+	 $debug > 3  and  print "$id: after [this here] [$ARG]";
 
-        #   Superscripts, raised to a "power"
-        #   professor John says[1]
+	#   Superscripts, raised to a "power"
+	#   professor John says[1]
 
-        $beg = $staticBegSup;
-        $end = $staticEndSup;
+	$beg = $staticBegSup;
+	$end = $staticEndSup;
 
-        s{
-            ([^\s\'\",!?;.(<>])
-            \[
-                ([^][\r\n]+)
-            \]
-            ([\s\,.:;]|$)
-         }
-         {$1$beg$2$end$3}gx;
+	s{
+	    ([^\s\'\",!?;.(<>])
+	    \[
+		([^][\r\n]+)
+	    \]
+	    ([\s\,.:;]|$)
+	 }
+	 {$1$beg$2$end$3}gx;
 
-         $debug > 3  and  print "$id: after this[superscript] [$ARG]";
+	 $debug > 3  and  print "$id: after this[superscript] [$ARG]";
 
     }
 
@@ -3699,15 +3699,15 @@ sub XlatTag2html ($)
 
     unless ( /<<|>>/ )
     {
-        #   You can write PURE HTML inside text like this:
-        #
-        #       <<table border=5 cellpadding="7">>
-        #
-        #   We do not want to translate this line into
-        #
-        #       <<table border=5 cellpadding=&quot;7&quot;>>
+	#   You can write PURE HTML inside text like this:
+	#
+	#       <<table border=5 cellpadding="7">>
+	#
+	#   We do not want to translate this line into
+	#
+	#       <<table border=5 cellpadding=&quot;7&quot;>>
 
-        s,\",&quot;,g;  # dummy-coment " to fix Emacs font-lock highlighting
+	s,\",&quot;,g;  # dummy-coment " to fix Emacs font-lock highlighting
     }
 
     #   Hand Debug. Turn this on, if converson does not work.
@@ -3875,27 +3875,27 @@ sub XlatRef ($)
 
     if (  /(.*)#REF\s+(.*)\s*;(.*);(.*)/ )
     {
-        # There already may be absolute reference, check it first
-        #
-        #   http:/www.example.com#referece_here
+	# There already may be absolute reference, check it first
+	#
+	#   http:/www.example.com#referece_here
 
 #       $s2 = "#$s2"  if not /(\#REF.+\#)/ and /ftp:|htp:/;
 
-        $debug  and  print "$id: #REF--> [$1]\n [$2]\n [$3]\n [$ARG]";
+	$debug  and  print "$id: #REF--> [$1]\n [$2]\n [$3]\n [$ARG]";
 
-        $ARG = $1 .  MakeUrlRef($2, $3) . $4;
+	$ARG = $1 .  MakeUrlRef($2, $3) . $4;
 
-        unless ( $ARG =~ /#|http:|file:|news:|wais:|ftp:/ )
-        {
-            warn "$id: Suspicious REF. Did you forgot # or http?\n\t$ARG"
-        }
+	unless ( $ARG =~ /#|http:|file:|news:|wais:|ftp:/ )
+	{
+	    warn "$id: Suspicious REF. Did you forgot # or http?\n\t$ARG"
+	}
 
-        $debug  and  print "$id:LINE[$ARG]";
+	$debug  and  print "$id:LINE[$ARG]";
 
     }
     elsif ( /#REF.+#/ )
     {
-        warn "$id: Suspicious #REF format [$ARG]. Must contain hash-sign(#)";
+	warn "$id: Suspicious #REF format [$ARG]. Must contain hash-sign(#)";
     }
 
     $debug > 2  and  print "$id: RET [$ARG]\n";
@@ -3933,41 +3933,41 @@ sub XlatPicture ($)
 
     if ( /(.*)#PIC\s+([^#]+\S)\s*#\s*(.*)#\s*(.*)#\s*(.*)#(.*)/ )
     {
-        my ($before, $url, $text, $attr, $align, $rest)
-            = ($1, $2, $3, $4, $5, $6);
+	my ($before, $url, $text, $attr, $align, $rest)
+	    = ($1, $2, $3, $4, $5, $6);
 
-        #   This is used to number each picture as it appears
+	#   This is used to number each picture as it appears
 
-        $staticPicCount++;
+	$staticPicCount++;
 
-        # There already may be absolute reference, check it first
-        #
-        #   http:/www.example.com#referece_here
+	# There already may be absolute reference, check it first
+	#
+	#   http:/www.example.com#referece_here
 
-        $debug and warn "$id: #PIC--> \$1[$1]\n\$2[$2]\n\$3[$3]\nLINE[$ARG]";
+	$debug and warn "$id: #PIC--> \$1[$1]\n\$2[$2]\n\$3[$3]\nLINE[$ARG]";
 
-        my $pictureHtml = MakeUrlPicture
-            -url        => $url
-            , -text     => XlatWordMarkup($text, -basic)
-            , -attrib   => $attr
-            , -align    => $align
-            , -number   => $staticPicCount
-            ;
+	my $pictureHtml = MakeUrlPicture
+	    -url        => $url
+	    , -text     => XlatWordMarkup($text, -basic)
+	    , -attrib   => $attr
+	    , -align    => $align
+	    , -number   => $staticPicCount
+	    ;
 
-        $ARG = $before .  $pictureHtml . $rest;
+	$ARG = $before .  $pictureHtml . $rest;
 
-        #   Try finding .gif .jpg .png or something ...
+	#   Try finding .gif .jpg .png or something ...
 
-        unless ( m,\.[a-z][a-z][a-z],i )
-        {
-            warn "$id: Suspicious #PIC [$ARG]. Did you forgot .png .jpg ...?"
-        }
+	unless ( m,\.[a-z][a-z][a-z],i )
+	{
+	    warn "$id: Suspicious #PIC [$ARG]. Did you forgot .png .jpg ...?"
+	}
 
-        $debug  and  warn "$id:LINE[$ARG]";
+	$debug  and  warn "$id:LINE[$ARG]";
     }
     elsif ( /#PIC.*#/ )
     {
-        warn "$id: Suspicious #PIC format [$ARG]. Must have 3 separators(#)";
+	warn "$id: Suspicious #PIC format [$ARG]. Must have 3 separators(#)";
     }
 
     $debug > 2   and   print "$id: RET [$ARG]\n";
@@ -4011,49 +4011,49 @@ sub XlatDirectives (@)
 
     for ( @content )
     {
-        if ( /^(.*)\s*#T2HTML-(\S+)\s+(.*\S)/i )
-        {
-            $debug  > 2 and  warn "$id: if-1a [$ARG]\n";
+	if ( /^(.*)\s*#T2HTML-(\S+)\s+(.*\S)/i )
+	{
+	    $debug  > 2 and  warn "$id: if-1a [$ARG]\n";
 
-            my ($line, $name, $value) = ($1, $2, $3);
+	    my ($line, $name, $value) = ($1, $2, $3);
 
-            $debug  > 2 and  warn "$id: if if-2b ($name,$value,[$line])\n";
+	    $debug  > 2 and  warn "$id: if if-2b ($name,$value,[$line])\n";
 
-            next if $name =~ /comment/i;
+	    next if $name =~ /comment/i;
 
-            push @ret, $line   if  $line =~ /\S/;
-            $name = lc $name;
+	    push @ret, $line   if  $line =~ /\S/;
+	    $name = lc $name;
 
 
-            $verb > 1  and  print "$id: if-1c [$name] = [$value]\n";
+	    $verb > 1  and  print "$id: if-1c [$name] = [$value]\n";
 
-            unless ( defined $hash{$name} )
-            {
-                $hash{ $name } = [$value];
-            }
-            else
-            {
-                my $arrRef = $hash{ $name };
-                push @$arrRef, $value;
-                $hash{ $name } = $arrRef;
-            }
-        }
-        elsif ( /^(.*)\s*#T2HTML-(\S+)/i )
-        {
-            #  Empty directive
+	    unless ( defined $hash{$name} )
+	    {
+		$hash{ $name } = [$value];
+	    }
+	    else
+	    {
+		my $arrRef = $hash{ $name };
+		push @$arrRef, $value;
+		$hash{ $name } = $arrRef;
+	    }
+	}
+	elsif ( /^(.*)\s*#T2HTML-(\S+)/i )
+	{
+	    #  Empty directive
 
-            $debug  and print "$id: $ARG";
+	    $debug  and print "$id: $ARG";
 
-            my $line = $1;
+	    my $line = $1;
 
-            $debug > 2  and warn "$id: elsif 2 [$line]\n";
+	    $debug > 2  and warn "$id: elsif 2 [$line]\n";
 
-            push @ret, $line   if  $line =~ /\S/;
-        }
-        else
-        {
-            push @ret, $ARG;
-        }
+	    push @ret, $line   if  $line =~ /\S/;
+	}
+	else
+	{
+	    push @ret, $ARG;
+	}
     }
 
 
@@ -4087,20 +4087,20 @@ sub XlatDirectives (@)
 sub AcceptUrl($)
 {
     if ( $ARG[0] !~ m,\b(foo
-                         |baz
-                         |quu[zx])\b
-                      |:/\S*\.?example\.
-                      |example\.com
-                      |:/test\.
+			 |baz
+			 |quu[zx])\b
+		      |:/\S*\.?example\.
+		      |example\.com
+		      |:/test\.
 
-                    ,x
-         )
+		    ,x
+	 )
     {
-        1;
+	1;
     }
     else
     {
-        0;
+	0;
     }
 }
 
@@ -4136,12 +4136,12 @@ sub XlatUrlInline ($)
       (.*)
     }
     {
-        my $before = $1;
-        my $url    = $2;
-        my $inline = $3;
-        my $after  = $4;
+	my $before = $1;
+	my $url    = $2;
+	my $inline = $3;
+	my $after  = $4;
 
-        qq($before<a href="$url">$inline</a>$after);
+	qq($before<a href="$url">$inline</a>$after);
 
     }gmex;
 
@@ -4180,77 +4180,77 @@ sub XlatUrl ($)
 
     s
     {
-        ([^\"]?)           # Emacs font-lock comment to terminate opening "
-        (?<!HREF=\")       # Already handled by XlatUrlInline()
-        ((?:file|ftp|http|news|wais|mail|telnet):
+	([^\"]?)           # Emacs font-lock comment to terminate opening "
+	(?<!HREF=\")       # Already handled by XlatUrlInline()
+	((?:file|ftp|http|news|wais|mail|telnet):
 
-         #  urls can contain almost anything,
-         #  BUT the last character grabbed in text must not be period,
-         #  colon etc. because they canät be distinguished from regular text
-         #  tokens.
-         #
-         #      See url http://example.com/that.txt. New sentence starts here.
-         #
-         #  It would be better to write
-         #
-         #      See url <http://example.com/that.txt>. New sentence starts here.
-         #
-         [^][\s<>]+[^\s,.!?;:<>])
+	 #  urls can contain almost anything,
+	 #  BUT the last character grabbed in text must not be period,
+	 #  colon etc. because they canät be distinguished from regular text
+	 #  tokens.
+	 #
+	 #      See url http://example.com/that.txt. New sentence starts here.
+	 #
+	 #  It would be better to write
+	 #
+	 #      See url <http://example.com/that.txt>. New sentence starts here.
+	 #
+	 [^][\s<>]+[^\s,.!?;:<>])
     }
     {
-        $pre = $1;
-        $url = $2;
+	$pre = $1;
+	$url = $2;
 
-        $debug > 4  and  print "$id: PRE=[$pre] URL=[$url]\n";
+	$debug > 4  and  print "$id: PRE=[$pre] URL=[$url]\n";
 
-        #  Unfortunately the Link that is passed to us has already
-        #  gone through conversion of "<" and ">" as in
-        #  <URL:http://example.com/>  so we must treat the ending
-        #  ">" as a separate case
+	#  Unfortunately the Link that is passed to us has already
+	#  gone through conversion of "<" and ">" as in
+	#  <URL:http://example.com/>  so we must treat the ending
+	#  ">" as a separate case
 
-        my $last = "";
+	my $last = "";
 
-        if ( $url =~ /(&gt;?.*)/i )
-        {
-            $last = $1;
-            $url  =~ s/&gt;?.*//;
-        }
+	if ( $url =~ /(&gt;?.*)/i )
+	{
+	    $last = $1;
+	    $url  =~ s/&gt;?.*//;
+	}
 
-        #   Do not make -http://some.com clickable. Remove "-" in
-        #   front of the URL.
+	#   Do not make -http://some.com clickable. Remove "-" in
+	#   front of the URL.
 
-        my $clickable = 1;
+	my $clickable = 1;
 
-        if ( $pre =~ /-/ )
-        {
-            $clickable = 0;
-            $pre       = "";
-        }
+	if ( $pre =~ /-/ )
+	{
+	    $clickable = 0;
+	    $pre       = "";
+	}
 
-        $debug > 4  and print "$id: ARG=[$ARG] pre=[$pre] url=[$url] "
-                        , " click=$clickable, accept=", AcceptUrl $url, "\n";
+	$debug > 4  and print "$id: ARG=[$ARG] pre=[$pre] url=[$url] "
+			, " click=$clickable, accept=", AcceptUrl $url, "\n";
 
-        if ( not $clickable  or  not AcceptUrl $url  )
-        {
-            $pre . $url . $last ;
-        }
-        else
-        {
-            #   When we make HREF target to point to "_top", then
-            #   the destination page will occupy whole browser window
-            #   automatically and delete any existing frames.
-            #
-            #   --> Destination may freely set up its own frames
+	if ( not $clickable  or  not AcceptUrl $url  )
+	{
+	    $pre . $url . $last ;
+	}
+	else
+	{
+	    #   When we make HREF target to point to "_top", then
+	    #   the destination page will occupy whole browser window
+	    #   automatically and delete any existing frames.
+	    #
+	    #   --> Destination may freely set up its own frames
 
-            my $opt =  qq!target="_top"! ;
-            $opt    = ''; # disabled for now.
+	    my $opt =  qq!target="_top"! ;
+	    $opt    = ''; # disabled for now.
 
-            join ''
-                , $pre
-                , MakeUrlRef( $url, $url, $opt )
-                , $last
-                ;
-        }
+	    join ''
+		, $pre
+		, MakeUrlRef( $url, $url, $opt )
+		, $last
+		;
+	}
     }egix;
 
     $debug > 2  and  print "$id: RET=[$ARG]\n";
@@ -4298,31 +4298,31 @@ sub XlatMailto ($)
 
     s
     {
-        (^|.)                           # must not start with "-"
+	(^|.)                           # must not start with "-"
 
-        &lt;                            # html <  tag.
-             ([^ \t$<>]+@[^ \t$<>]+)
-        &gt;
+	&lt;                            # html <  tag.
+	     ([^ \t$<>]+@[^ \t$<>]+)
+	&gt;
     }
     {
-        my $pre       = $1;
-        my $url       = $2;
-        my $clickable = 1;
+	my $pre       = $1;
+	my $url       = $2;
+	my $clickable = 1;
 
-        if ( $pre eq '-' )
-        {
-            $clickable = 0;
-            $pre       = "";
-        }
+	if ( $pre eq '-' )
+	{
+	    $clickable = 0;
+	    $pre       = "";
+	}
 
-        if ( not $clickable  or  not AcceptUrl $url )
-        {
-            $pre . $url;
-        }
-        else
-        {
-            $pre . "<em>" . MakeUrlRef( "mailto:$url" , $url) . "</em>"
-        }
+	if ( not $clickable  or  not AcceptUrl $url )
+	{
+	    $pre . $url;
+	}
+	else
+	{
+	    $pre . "<em>" . MakeUrlRef( "mailto:$url" , $url) . "</em>"
+	}
     }egx;
 
     $debug > 2  and  print "$id: RET [$ARG]\n";
@@ -4507,8 +4507,8 @@ sub FileFrameName ($)
 
     if ( $ARG_PATH ne '' )
     {
-        $debug  and  print "$id: $ARG_PATH + $type + .html\n";
-        FileNameChange $ARG_PATH, $type, ".html";
+	$debug  and  print "$id: $ARG_PATH + $type + .html\n";
+	FileNameChange $ARG_PATH, $type, ".html";
     }
 }
 
@@ -4542,27 +4542,27 @@ sub GeneratefileName ($;$)
 
     if ( $headings )
     {
-        return sub
-        {
-            my $line = shift;
+	return sub
+	{
+	    my $line = shift;
 
-            not defined $line
-                and croak "You must pass one ARG";
+	    not defined $line
+		and croak "You must pass one ARG";
 
-            not $line =~ /[a-z]/
-                and croak "ARG must contain some words. Cannot make filename";
+	    not $line =~ /[a-z]/
+		and croak "ARG must contain some words. Cannot make filename";
 
-            sprintf "$file-%s", MakeHeadingName($line);
-        }
+	    sprintf "$file-%s", MakeHeadingName($line);
+	}
     }
     else
     {
-        my $i = 0;
-        return sub
-        {
-            #   this function ignores passed ARGS
-            sprintf "$file-%03d", $i++;
-        }
+	my $i = 0;
+	return sub
+	{
+	    #   this function ignores passed ARGS
+	    sprintf "$file-%03d", $i++;
+	}
 
     }
 }
@@ -4591,8 +4591,8 @@ sub WriteFile ($$)
 
     unless ( defined $value )
     {
-        warn "$id: \$value is not defined";
-        return;
+	warn "$id: \$value is not defined";
+	return;
     }
 
     open  my $FILE, "> $file" or die "$id: Cannot write to [$file] $ERRNO";
@@ -4604,11 +4604,11 @@ sub WriteFile ($$)
 
     if ( $type eq "ARRAY" )
     {
-        print $FILE @$value;
+	print $FILE @$value;
     }
     elsif ( not $type )
     {
-        print $FILE $value;
+	print $FILE $value;
     }
 
     close $FILE;
@@ -4644,8 +4644,8 @@ sub SplitToFiles ($ $$ $)
 
     unless ( defined $array )
     {
-        warn "$id: [ERROR] \$array is not defined";
-        return;
+	warn "$id: [ERROR] \$array is not defined";
+	return;
     }
 
     my    (@fileArray, @tmp);
@@ -4654,33 +4654,33 @@ sub SplitToFiles ($ $$ $)
 
     for ( @$array )
     {
-        if ( /$regexp/o && @tmp )
-        {
-            #   Get the first line that matched and use it as filename
-            #   base
+	if ( /$regexp/o && @tmp )
+	{
+	    #   Get the first line that matched and use it as filename
+	    #   base
 
-            my ($match) = grep /$regexp/o, @tmp;
+	    my ($match) = grep /$regexp/o, @tmp;
 
-            my $name = &$FileName( $match );
-            WriteFile $name, \@tmp;
+	    my $name = &$FileName( $match );
+	    WriteFile $name, \@tmp;
 
-            @tmp = ();
-            push @tmp, $ARG;
+	    @tmp = ();
+	    push @tmp, $ARG;
 
-            push @fileArray, $name;
-        }
-        else
-        {
-            push @tmp, $ARG;
-        }
+	    push @fileArray, $name;
+	}
+	else
+	{
+	    push @tmp, $ARG;
+	}
     }
 
     if ( @tmp )                                 # last block
     {
-        my $name = &$FileName( $tmp[0] );
-        WriteFile $name, \@tmp;
+	my $name = &$FileName( $tmp[0] );
+	WriteFile $name, \@tmp;
 
-        push @fileArray, $name;
+	push @fileArray, $name;
     }
 
     @fileArray;
@@ -4716,9 +4716,9 @@ sub EnvExpand ($)
 
     for my $key ( sort {length($b) <=> length($a)} keys %ENV )
     {
-        $val = $ENV{$key};
+	$val = $ENV{$key};
 
-        s/\$$key/$val/;
+	s/\$$key/$val/;
     }
 
     $debug and  print "$id: RET [$ARG]\n";
@@ -4809,63 +4809,63 @@ sub UrlInclude (%)
 
     if ( $MODULE_LWP_OK  and  $url =~ m,http://,i )
     {
-        my $ua       = new LWP::UserAgent;
-        my $req      = new HTTP::Request( GET => $url);
-        my $response = $ua->request( $req );
-        my $ok       = $response->is_success();
+	my $ua       = new LWP::UserAgent;
+	my $req      = new HTTP::Request( GET => $url);
+	my $response = $ua->request( $req );
+	my $ok       = $response->is_success();
 
-        $debug     and  print "$id: GET status $ok\n";
+	$debug     and  print "$id: GET status $ok\n";
 
-        if ( $ok )
-        {
-            $ret = $response->content();
+	if ( $ok )
+	{
+	    $ret = $response->content();
 
-            $debug > 2 and  print "$id: content BEFORE =>\n$ret\n";
+	    $debug > 2 and  print "$id: content BEFORE =>\n$ret\n";
 
-            $ret = RemoveHTMLaround $ret;
-        }
+	    $ret = RemoveHTMLaround $ret;
+	}
     }
     else
     {
-        # 1) There is no path, so use current directory
-        # 2) It start with relative path ../
+	# 1) There is no path, so use current directory
+	# 2) It start with relative path ../
 
-        if ( $dir  and  ($url !~ m,[/\\],  or  $url =~ m,^[.],, ) )
-        {
+	if ( $dir  and  ($url !~ m,[/\\],  or  $url =~ m,^[.],, ) )
+	{
 
-            $debug > 2 and  print "$id: dir added: $dir + $url\n";
-            $url = "$dir/" . $url;
-        }
+	    $debug > 2 and  print "$id: dir added: $dir + $url\n";
+	    $url = "$dir/" . $url;
+	}
 
-        local *FILE;
-        $url = EnvExpand $url;
+	local *FILE;
+	$url = EnvExpand $url;
 
-        unless ( open FILE, "< $url" )
-        {
-            $verb  and  warn "Cannot open '$url' $ERRNO";
-            return;
-        }
+	unless ( open FILE, "< $url" )
+	{
+	    $verb  and  warn "Cannot open '$url' $ERRNO";
+	    return;
+	}
 
-        $ret = join '', <FILE>;
-        close FILE;
+	$ret = join '', <FILE>;
+	close FILE;
 
-        if ( $url =~ /\.s?html?/ )
-        {
-            $ret = RemoveHTMLaround $ret;
-        }
+	if ( $url =~ /\.s?html?/ )
+	{
+	    $ret = RemoveHTMLaround $ret;
+	}
 
-        unless ( $mode )
-        {
-            $ret = DoLineUserTags($ret);
-            $ret = XlatTag2html $ret;
-            $ret = XlatRef $ret;
-            $ret = XlatPicture $ret;
+	unless ( $mode )
+	{
+	    $ret = DoLineUserTags($ret);
+	    $ret = XlatTag2html $ret;
+	    $ret = XlatRef $ret;
+	    $ret = XlatPicture $ret;
 
-            $ret = XlatUrlInline $ret;
-            $ret = XlatUrl $ret;
-            $ret = XlatMailto $ret;
-            $ret = XlatWordMarkup $ret;
-        }
+	    $ret = XlatUrlInline $ret;
+	    $ret = XlatUrl $ret;
+	    $ret = XlatMailto $ret;
+	    $ret = XlatWordMarkup $ret;
+	}
     }
 
     $debug > 2 and  print "$id: RET =>\n$ret\n";
@@ -4904,7 +4904,7 @@ sub Base (;$$)
 
     if ( defined $BASE_URL and $BASE_URL ne '' )
     {
-        qq(  <base href="$BASE_URL/$file" $attrib>\n) ;
+	qq(  <base href="$BASE_URL/$file" $attrib>\n) ;
     }
 }
 
@@ -4925,674 +4925,674 @@ sub Base (;$$)
 
 sub CssData ( ; $ )
 {
-        local ( $ARG ) = @ARG;
+	local ( $ARG ) = @ARG;
 
-        $ARG = '' unless defined $ARG;
+	$ARG = '' unless defined $ARG;
 
-        my $bodyFontType = '' ;
+	my $bodyFontType = '' ;
 
-        if ( defined $CSS_FONT_TYPE )
-        {
-            #  Css must end to ";", Add semicolon if it's missing.
-            $bodyFontType = "font-family: $CSS_FONT_TYPE";
-            $bodyFontType .= ";" unless $bodyFontType =~ /;/;
-        }
+	if ( defined $CSS_FONT_TYPE )
+	{
+	    #  Css must end to ";", Add semicolon if it's missing.
+	    $bodyFontType = "font-family: $CSS_FONT_TYPE";
+	    $bodyFontType .= ";" unless $bodyFontType =~ /;/;
+	}
 
-        my $bodyFontSize = '';
+	my $bodyFontSize = '';
 
-        if ( defined $CSS_FONT_SIZE )
-        {
-            $bodyFontSize = qq(font-size: $CSS_FONT_SIZE);
-            $bodyFontSize .= ";" unless $bodyFontSize =~ /;/;
-        }
+	if ( defined $CSS_FONT_SIZE )
+	{
+	    $bodyFontSize = qq(font-size: $CSS_FONT_SIZE);
+	    $bodyFontSize .= ";" unless $bodyFontSize =~ /;/;
+	}
 
-        if ( /toc/i )
-        {
-            $bodyFontSize = $CSS_BODY_FONT_SIZE_FRAME;
-        }
+	if ( /toc/i )
+	{
+	    $bodyFontSize = $CSS_BODY_FONT_SIZE_FRAME;
+	}
 
-        return qq(
+	return qq(
 
-        /*
+	/*
 
-            ///////////////////////////////////////////////////////////
-               NOTE    NOTE    NOTE    NOTE    NOTE    NOTE    NOTE
+	    ///////////////////////////////////////////////////////////
+	       NOTE    NOTE    NOTE    NOTE    NOTE    NOTE    NOTE
 
-            This is the default CSS 2.0 generated by the program,
-            please see "t2html --help" for option --script-file
-            to import your own CSS and Java definitions into the page.
+	    This is the default CSS 2.0 generated by the program,
+	    please see "t2html --help" for option --script-file
+	    to import your own CSS and Java definitions into the page.
 
-            XHTML note: at page http://www.w3.org/TR/xhtml1/#guidelines
-            It is recommended that CSS2 with XHTML use lowercase
-            element and attribute names
+	    XHTML note: at page http://www.w3.org/TR/xhtml1/#guidelines
+	    It is recommended that CSS2 with XHTML use lowercase
+	    element and attribute names
 
-            This default CSS2 has been validated according to
-            http://jigsaw.w3.org/css-validator/validator-uri.html.en
+	    This default CSS2 has been validated according to
+	    http://jigsaw.w3.org/css-validator/validator-uri.html.en
 
-            To design colors, visit:
-            http://www.btexact.com/people/rigdence/colours/
+	    To design colors, visit:
+	    http://www.btexact.com/people/rigdence/colours/
 
-               NOTE    NOTE    NOTE    NOTE    NOTE    NOTE    NOTE
-            ///////////////////////////////////////////////////////////
+	       NOTE    NOTE    NOTE    NOTE    NOTE    NOTE    NOTE
+	    ///////////////////////////////////////////////////////////
 
-            Comments on the CSS tags:
+	    Comments on the CSS tags:
 
-            -   block-width: "thin" (Netscape ok, MSIE nok)
+	    -   block-width: "thin" (Netscape ok, MSIE nok)
 
-            NETSCAPE 4.05
+	    NETSCAPE 4.05
 
-            -  In general does not render CSS very well. Eg
-               font size changes does not show up in screen.
-            -  :hover property is not recognised
+	    -  In general does not render CSS very well. Eg
+	       font size changes does not show up in screen.
+	    -  :hover property is not recognised
 
-            NETSCAPE 4.75 as of 2000-10-01
+	    NETSCAPE 4.75 as of 2000-10-01
 
-            -  Shows garbage for stylesheet section that marked CITATION.
-               (IE has no trouble to show it)
+	    -  Shows garbage for stylesheet section that marked CITATION.
+	       (IE has no trouble to show it)
 
-            MSIE 4.0+
+	    MSIE 4.0+
 
-            - Renders CSS very well.
+	    - Renders CSS very well.
 
-            Media types
+	    Media types
 
-            - Netscape does not transfer the CSS element definitions to
-              the "print" media as it should. They only affect Browser
-              or media "screen"
-            - That is why you really have to say EM STRONG ... /STRONG EM
-              to get that kind of text seen in printer too. You cannot
-              just define P.column7 { ... }
+	    - Netscape does not transfer the CSS element definitions to
+	      the "print" media as it should. They only affect Browser
+	      or media "screen"
+	    - That is why you really have to say EM STRONG ... /STRONG EM
+	      to get that kind of text seen in printer too. You cannot
+	      just define P.column7 { ... }
 
-            The \@media CSS definition is not supported by Netscape 4.05
-            I do not know if MSIE 4.0 supports it.
+	    The \@media CSS definition is not supported by Netscape 4.05
+	    I do not know if MSIE 4.0 supports it.
 
-            So doing this would cause CSS to be ignored completely
-            (never mind that CSS says the default CSS applies to "visual",
-            which means both print and scree types.)
+	    So doing this would cause CSS to be ignored completely
+	    (never mind that CSS says the default CSS applies to "visual",
+	    which means both print and scree types.)
 
-                \@media print, screen {  P.code {..}  }
+		\@media print, screen {  P.code {..}  }
 
-            To work around that, we separate the definitions with
+	    To work around that, we separate the definitions with
 
-                P.code { .. }               // For screen
+		P.code { .. }               // For screen
 
-                \@media print { P.code      // for printer
-                {
-                    ..
-                }}
+		\@media print { P.code      // for printer
+		{
+		    ..
+		}}
 
-            And wish that some newer browser will render it right.
+	    And wish that some newer browser will render it right.
 
-        */
+	*/
 
-        /*   ///////////////////////////////////////////////// HEADINGS */
-
-        h1.default
-        {
-            font-family: bold x-large Arial,helvetica,Sans-serif;
-            padding-top: 10pt;
-        }
-
-        h2.default
-        {
-            font-family: bold large Arial,Helvetica,Sans-serif;
-        }
-
-        h3.default
-        {
-            font-family: bold medium Arial,Helvetica,Sans-serif;
-        }
-
-        h4.default
-        {
-            font-family: medium Arial,Helvetica,Sans-serif;
-        }
-
-        /*   ////////////////////////// Make pointing AHREF more visual */
-
-        body
-        {
-            $bodyFontType
-            $bodyFontSize
-
-            /*
-                More readable font, Like Arial in MS Word
-                The background color is grey
-
-                font-family: "verdana", sans-serif;
-                background-color: #dddddd;
-                foreground-color: #000000;
-
-                Traditional "Book" and newspaper font
-                font-family: "Times New Roman", serif;
-            */
-        }
-
-        a:link
-        {
-            font-style: italic;
-        }
-
-        /*   A name=... link references */
-
-        a.name
-        {
-            font-style: normal;
-        }
-
-        a:hover
-        {
-            color:           purple;
-            background:      #AFB;
-            text-decoration: none;
-        }
-
-            /* cancel above italic in TOC and Navigation buttons */
-
-        a.btn:link
-        {
-            font-style: normal;
-        }
-
-            /* each link in TOC */
-
-
-        a.toc
-        {
-            font-family: verdana, sans-serif;
-            font-style: normal;
-        }
-
-        a.toc:link
-        {
-            font-style: normal;
-        }
-
-            /* [toc] heading button which appears in non-frame html */
-
-        a.btn-toc:link
-        {
-            font-style: normal;
-            font-family: verdana, sans-serif;
-            /* font-size:  0.7em; */
-        }
-
-        /*  //////////////////////////////////// Format the code sections  */
-
-        /*  MSIE ok, Netscape nok: Indent text to same level to the right  */
-
-        blockquote
-        {
-            margin-right: 2em;
-        }
-
-        \@media print   { BLOCKQUOTE
-        {
-            margin-right: 0;
-        }}
-
-        samp.code
-        {
-            color: Navy;
-        }
-
-        hr.special
-        {
-            width: 50%;
-            text-align; left;
-        }
-
-        pre
-        {
-            font-family:   "Courier New", monospace;
-            font-size:     0.8em;
-            margin-top:    1em;
-            margin-bottom: 1em;
-        }
-
-        pre.code
-        {
-            color: Navy;
-        }
-
-        p.code, p.code1, p.code2
-        {
-            /*
-               margin-top:     0.4em;
-               margin-bottom:  0.4em;
-               line-height:    0.9em;
-            */
-
-            font-family:    "Courier New", monospace;
-            font-size:      0.8em;
-            color:          Navy;
-        }
-
-        /* //////////////////////// tables /////////////////////////// */
-
-        table
-        {
-            border: none;
-            width: 100%;
-            cellpadding: 10px;
-            cellspacing: 0px;
-        }
-
-        table.basic
-        {
-                font-family:    "Courier New", monospace;
-                color: Navy;
-        }
-
-        table.dashed
-        {
-
-                /* font-family: sans-serif; /*
-                /* background:  #F7DE9C; */
-
-                color: Navy;
-
-                border-top:     1px #999999 solid;
-                border-left:    1px #999999 solid;
-                border-right:   1px #666666 solid;
-                border-bottom:  1px #666666 solid;
-                border-width:   94%;
-                border-style: dashed; /* dotted */
-
-
-                /* line-height: 105%; */
-        }
-
-        table.solid
-        {
-                font-family:    "Courier New", monospace;
-                /* afont-size:      0.8em; */
-
-                color:          Navy;
-
-                /* font-family: sans-serif; /*
-                /* background:  #F7DE9C; */
-
-                border-top:     1px #CCCCCC solid;
-                border-left:    1px #CCCCCC solid; /* 999999 */
-                border-right:   1px #666666 solid;
-                border-bottom:  1px #666666 solid; /* dark grey */
-                /* line-height: 105%; */
-        }
-
-        /* Make 3D styled layout by thickening the boton + right. */
-
-        table.shade-3d
-        {
-                font-family:    "Courier New", monospace;
-                font-size:      0.8em;
-
-                color:          #999999; /* Navy; */
-
-                /* font-family: sans-serif; /*
-                /* background:  #F7DE9C; */
-
-                /* border-top:  1px #999999 solid; */
-                /* border-left: 1px #999999 solid; */
-                border-right:   4px #666666 solid;
-                border-bottom:  3px #666666 solid;
-                /* line-height: 105%; */
-        }
-
-        .shade-3d-attrib
-        {
-            /*
-                F9EDCC          Light Orange
-                FAEFD2          Even lighter Orange
-
-                #FFFFCC         Light yellow, lime
-
-            */
-
-            background: #FFFFCC;
-        }
-
-        table tr td pre
-        {
-                /*  Make PRE tables "airy" */
-                margin-top:    1em;
-                margin-bottom: 1em;
-        }
-
-        table.shade-normal
-        {
-                font-family:    "Courier New", monospace;
-                /* font-size:      0.9em; */
-                color:          Navy;
-        }
-
-        .shade-normal-attrib
-        {
-            /*  grey: EAEAEA, F0F0F0 FFFFCC
-                lime: F7F7DE CCFFCC
-                pinkish: E6F1FD D8E9FB C6DEFA FFEEFF (light ... darker)
-                slightly darker than F1F1F1: #EFEFEF;
-            */
-            background: #F1F1F1;
-        }
-
-        table.shade-normal2
-        {
-                font-family:    "Courier New", monospace;
-        }
-
-        .shade-normal2-attrib
-        {
-            background: #E0E0F0;
-        }
-
-        .shade-note-attrib
-        {
-            /*  darker is #E0E0F0; */
-            /* background: #E5ECF3; */
-            background: #E5ECF3;
-            font-family: Georgia, "New Century Schoolbook",
-                         Palatino, Verdana, Helvetica, serif;
-            font-size: 0.8em;
-        }
-
-        /* ..................................... colors ................. */
-
-        .color-white
-        {
-            color: Navy;
-            background: #FFFFFF;
-        }
-
-        .color-fg-navy
-        {
-            color: navy;
-        }
-
-        .color-fg-blue
-        {
-            color: blue;
-        }
-
-        .color-fg-teal
-        {
-            color: teal;
-        }
-
-        /*   Nice combination: teal-dark, beige2 and  beige-dark */
-
-        .color-teal-dark
-        {
-            color: #96EFF2;
-        }
-
-        .color-beige
-        {
-            color: Navy;
-            background: #F7F7DE;
-        }
-
-        .color-beige2
-        {
-            color: Navy;
-            background: #FAFACA;
-        }
-
-        .color-beige3
-        {
-            color: Navy;
-            background: #F5F5E9;
-        }
-
-        .color-beige-dark
-        {
-            color: Navy;
-            background: #CFEFBD;
-        }
-
-        .color-pink-dark
-        {
-            background: #E6F1FD;
-        }
-
-        .color-pink-medium
-        {
-            background: #D8E9FB;
-        }
-
-        .color-pink
-        {
-            /*  grey: EAEAEA, F0F0F0 FFFFCC
-                lime: F7F7DE CCFFCC
-                pinkish: E6F1FD D8E9FB C6DEFA FFEEFF (light ... darker)
-            */
-            background: #C6DEFA;
-        }
-
-        .color-pink-light
-        {
-            background: #FFEEFF;
-        }
-
-        .color-blue-light
-        {
-            background: #F0F0FF;
-        }
-
-        .color-blue-medium
-        {
-            background: #4A88BE;
-        }
-
-        /* ////////////////////////////////////////////// Format columns */
-
-        p.column3
-        {
-            color: Green;
-        }
-
-        p.column5
-        {
-            color: #87C0FF;   /* shaded casual blue */
-        }
-
-        p.column6
-        {
-            /* #809F69 is Forest green
-               But web safe colors are:
-               Lighter  ForestGreen: 66CC00
-               ForestGreen: #999966 669900 339900 669966
-
-            color: #669900;
-            font-family: "Goudy Old Style"
-            */
-            margin-left: 3em;
-            font-family: Georgia, "New Century Schoolbook",
-                         Palatino, Verdana, Arial, Helvetica;
-            font-size:  0.9em;
-        }
-
-            /* This is so called 3rd heading */
-
-        p.column7
-        {
-            font-style:  italic;
-            font-weight: bold;
-        }
-
-        \@media print { P.column7
-        {
-            font-style:  italic;
-            font-weight: bold;
-        }}
-
-        p.column8
-        {
-
-        }
-
-        p.column9
-        {
-            font-weight: bold;
-        }
-
-        p.column10
-        {
-            padding-top: 0;
-        }
-
-        em.quote10
-        {
-            /*
-                #FF00FF Fuchsia;
-                #0000FF Blue
-
-                #87C0FF casual blue
-                #87CAF0
-
-                #A0FFFF Very light blue
-
-                #809F69 = Forest Green , see /usr/lib/X11/rgb.txt
-
-                background-color:
-
-                color: #80871F ; Orange, short of
-
-                # font-family: "Gill Sans", sans-serif;
-
-                line-height: 0.9em;
-                font-style:  italic;
-                font-size:   0.8em;
-
-                line-height: 0.9em;
-                color: #008080;
-
-                background-color: #F5F5F5;
-                #809F69; forest green
-                #F5F5F5; Pale grey
-                #FFf098; pale green
-                ##bfefff; #ffefff; LightBlue1
-
-                background-color: #ffefff;
-
-                .................
-                #FFFCE7         Orange very light
-                #FFE7BF         Orange dark
-                #FFFFBF         Orange limon
-
-             */
-
-             /*
-             #  See a nice page at
-             #  http://www.cs.helsinki.fi/linux/
-             #  http://www.cs.helsinki.fi/include/tktl.css
-             #
-             #  3-4 of these first fonts have almost identical look
-             #  Browser will pick the one that is supported
-             */
-
-             font-family: lucida, lucida sans unicode, verdana, arial, "Trebuchet MS", helvetica, sans-serif;
-             background-color: #eeeeff;
-             font-size:   0.8em;
-        }
-
-        \@media print { em.quote10
-        {
-            font-style:  italic;
-            line-height: 0.9em;
-            font-size:   0.8em;
-        }}
-
-        p.column11
-        {
-            font-family: arial, verdana, helvetica, sans-serif;
-            font-size: 0.9em;
-            font-style: italic;
-            color: Fuchsia;
-        }
-
-        /* /////////////////////////////////////////////// Format words */
-
-        em.word
-        {
-            /* #809F69 Forest green */
-            color: #80B06A;  /*Darker Forest green */
-        }
-
-        strong.word
-        {
-
-        }
-
-        samp.word
-        {
-            color: #4C9CD4;
-            font-weight: bold;
-            font-family:    "Courier New", monospace;
-            font-size:      0.85em;
-        }
-
-        span.super
-        {
-            /* superscripts */
-            color: teal;
-            vertical-align: super;
-            font-family: Verdana, Arial, sans-serif;
-            font-size: 0.8em;
-        }
-
-        span.word-ref
-        {
-            color: teal;
-        }
-
-        span.word-big
-        {
-            color: teal;
-            font-size: 1.2em;
-        }
-
-        span.word-small
-        {
-            color: #CC66FF;
-            font-family: Verdana, Arial, sans-serif;
-            font-size: 0.7em;
-        }
-
-        /* /////////////////////////////////////////////// Format other */
-
-        /* 7th column starting with double quote */
-
-        span.quote7
-        {
-            /* color: Green; */
-            /* font-style: italic; */
-            font-family: Verdana;
-            font-weigh: bold;
-            font-size: 1em;
-        }
-
-        /* This appears in FRAME version: xxx-toc.html */
-
-        div.toc
-        {
-            font-size: 0.8em;
-        }
-
-        /* This appears in picture: the acption text beneath */
-
-        div.picture
-        {
-            font-style: italic;
-        }
-
-        /* This is the document info footer */
-
-        em.footer
-        {
-            font-size: 0.9em;
-        }
-    ); # end of double quote qq();
+	/*   ///////////////////////////////////////////////// HEADINGS */
+
+	h1.default
+	{
+	    font-family: bold x-large Arial,helvetica,Sans-serif;
+	    padding-top: 10pt;
+	}
+
+	h2.default
+	{
+	    font-family: bold large Arial,Helvetica,Sans-serif;
+	}
+
+	h3.default
+	{
+	    font-family: bold medium Arial,Helvetica,Sans-serif;
+	}
+
+	h4.default
+	{
+	    font-family: medium Arial,Helvetica,Sans-serif;
+	}
+
+	/*   ////////////////////////// Make pointing AHREF more visual */
+
+	body
+	{
+	    $bodyFontType
+	    $bodyFontSize
+
+	    /*
+		More readable font, Like Arial in MS Word
+		The background color is grey
+
+		font-family: "verdana", sans-serif;
+		background-color: #dddddd;
+		foreground-color: #000000;
+
+		Traditional "Book" and newspaper font
+		font-family: "Times New Roman", serif;
+	    */
+	}
+
+	a:link
+	{
+	    font-style: italic;
+	}
+
+	/*   A name=... link references */
+
+	a.name
+	{
+	    font-style: normal;
+	}
+
+	a:hover
+	{
+	    color:           purple;
+	    background:      #AFB;
+	    text-decoration: none;
+	}
+
+	    /* cancel above italic in TOC and Navigation buttons */
+
+	a.btn:link
+	{
+	    font-style: normal;
+	}
+
+	    /* each link in TOC */
+
+
+	a.toc
+	{
+	    font-family: verdana, sans-serif;
+	    font-style: normal;
+	}
+
+	a.toc:link
+	{
+	    font-style: normal;
+	}
+
+	    /* [toc] heading button which appears in non-frame html */
+
+	a.btn-toc:link
+	{
+	    font-style: normal;
+	    font-family: verdana, sans-serif;
+	    /* font-size:  0.7em; */
+	}
+
+	/*  //////////////////////////////////// Format the code sections  */
+
+	/*  MSIE ok, Netscape nok: Indent text to same level to the right  */
+
+	blockquote
+	{
+	    margin-right: 2em;
+	}
+
+	\@media print   { BLOCKQUOTE
+	{
+	    margin-right: 0;
+	}}
+
+	samp.code
+	{
+	    color: Navy;
+	}
+
+	hr.special
+	{
+	    width: 50%;
+	    text-align; left;
+	}
+
+	pre
+	{
+	    font-family:   "Courier New", monospace;
+	    font-size:     0.8em;
+	    margin-top:    1em;
+	    margin-bottom: 1em;
+	}
+
+	pre.code
+	{
+	    color: Navy;
+	}
+
+	p.code, p.code1, p.code2
+	{
+	    /*
+	       margin-top:     0.4em;
+	       margin-bottom:  0.4em;
+	       line-height:    0.9em;
+	    */
+
+	    font-family:    "Courier New", monospace;
+	    font-size:      0.8em;
+	    color:          Navy;
+	}
+
+	/* //////////////////////// tables /////////////////////////// */
+
+	table
+	{
+	    border: none;
+	    width: 100%;
+	    cellpadding: 10px;
+	    cellspacing: 0px;
+	}
+
+	table.basic
+	{
+		font-family:    "Courier New", monospace;
+		color: Navy;
+	}
+
+	table.dashed
+	{
+
+		/* font-family: sans-serif; /*
+		/* background:  #F7DE9C; */
+
+		color: Navy;
+
+		border-top:     1px #999999 solid;
+		border-left:    1px #999999 solid;
+		border-right:   1px #666666 solid;
+		border-bottom:  1px #666666 solid;
+		border-width:   94%;
+		border-style: dashed; /* dotted */
+
+
+		/* line-height: 105%; */
+	}
+
+	table.solid
+	{
+		font-family:    "Courier New", monospace;
+		/* afont-size:      0.8em; */
+
+		color:          Navy;
+
+		/* font-family: sans-serif; /*
+		/* background:  #F7DE9C; */
+
+		border-top:     1px #CCCCCC solid;
+		border-left:    1px #CCCCCC solid; /* 999999 */
+		border-right:   1px #666666 solid;
+		border-bottom:  1px #666666 solid; /* dark grey */
+		/* line-height: 105%; */
+	}
+
+	/* Make 3D styled layout by thickening the boton + right. */
+
+	table.shade-3d
+	{
+		font-family:    "Courier New", monospace;
+		font-size:      0.8em;
+
+		color:          #999999; /* Navy; */
+
+		/* font-family: sans-serif; /*
+		/* background:  #F7DE9C; */
+
+		/* border-top:  1px #999999 solid; */
+		/* border-left: 1px #999999 solid; */
+		border-right:   4px #666666 solid;
+		border-bottom:  3px #666666 solid;
+		/* line-height: 105%; */
+	}
+
+	.shade-3d-attrib
+	{
+	    /*
+		F9EDCC          Light Orange
+		FAEFD2          Even lighter Orange
+
+		#FFFFCC         Light yellow, lime
+
+	    */
+
+	    background: #FFFFCC;
+	}
+
+	table tr td pre
+	{
+		/*  Make PRE tables "airy" */
+		margin-top:    1em;
+		margin-bottom: 1em;
+	}
+
+	table.shade-normal
+	{
+		font-family:    "Courier New", monospace;
+		/* font-size:      0.9em; */
+		color:          Navy;
+	}
+
+	.shade-normal-attrib
+	{
+	    /*  grey: EAEAEA, F0F0F0 FFFFCC
+		lime: F7F7DE CCFFCC
+		pinkish: E6F1FD D8E9FB C6DEFA FFEEFF (light ... darker)
+		slightly darker than F1F1F1: #EFEFEF;
+	    */
+	    background: #F1F1F1;
+	}
+
+	table.shade-normal2
+	{
+		font-family:    "Courier New", monospace;
+	}
+
+	.shade-normal2-attrib
+	{
+	    background: #E0E0F0;
+	}
+
+	.shade-note-attrib
+	{
+	    /*  darker is #E0E0F0; */
+	    /* background: #E5ECF3; */
+	    background: #E5ECF3;
+	    font-family: Georgia, "New Century Schoolbook",
+			 Palatino, Verdana, Helvetica, serif;
+	    font-size: 0.8em;
+	}
+
+	/* ..................................... colors ................. */
+
+	.color-white
+	{
+	    color: Navy;
+	    background: #FFFFFF;
+	}
+
+	.color-fg-navy
+	{
+	    color: navy;
+	}
+
+	.color-fg-blue
+	{
+	    color: blue;
+	}
+
+	.color-fg-teal
+	{
+	    color: teal;
+	}
+
+	/*   Nice combination: teal-dark, beige2 and  beige-dark */
+
+	.color-teal-dark
+	{
+	    color: #96EFF2;
+	}
+
+	.color-beige
+	{
+	    color: Navy;
+	    background: #F7F7DE;
+	}
+
+	.color-beige2
+	{
+	    color: Navy;
+	    background: #FAFACA;
+	}
+
+	.color-beige3
+	{
+	    color: Navy;
+	    background: #F5F5E9;
+	}
+
+	.color-beige-dark
+	{
+	    color: Navy;
+	    background: #CFEFBD;
+	}
+
+	.color-pink-dark
+	{
+	    background: #E6F1FD;
+	}
+
+	.color-pink-medium
+	{
+	    background: #D8E9FB;
+	}
+
+	.color-pink
+	{
+	    /*  grey: EAEAEA, F0F0F0 FFFFCC
+		lime: F7F7DE CCFFCC
+		pinkish: E6F1FD D8E9FB C6DEFA FFEEFF (light ... darker)
+	    */
+	    background: #C6DEFA;
+	}
+
+	.color-pink-light
+	{
+	    background: #FFEEFF;
+	}
+
+	.color-blue-light
+	{
+	    background: #F0F0FF;
+	}
+
+	.color-blue-medium
+	{
+	    background: #4A88BE;
+	}
+
+	/* ////////////////////////////////////////////// Format columns */
+
+	p.column3
+	{
+	    color: Green;
+	}
+
+	p.column5
+	{
+	    color: #87C0FF;   /* shaded casual blue */
+	}
+
+	p.column6
+	{
+	    /* #809F69 is Forest green
+	       But web safe colors are:
+	       Lighter  ForestGreen: 66CC00
+	       ForestGreen: #999966 669900 339900 669966
+
+	    color: #669900;
+	    font-family: "Goudy Old Style"
+	    */
+	    margin-left: 3em;
+	    font-family: Georgia, "New Century Schoolbook",
+			 Palatino, Verdana, Arial, Helvetica;
+	    font-size:  0.9em;
+	}
+
+	    /* This is so called 3rd heading */
+
+	p.column7
+	{
+	    font-style:  italic;
+	    font-weight: bold;
+	}
+
+	\@media print { P.column7
+	{
+	    font-style:  italic;
+	    font-weight: bold;
+	}}
+
+	p.column8
+	{
+
+	}
+
+	p.column9
+	{
+	    font-weight: bold;
+	}
+
+	p.column10
+	{
+	    padding-top: 0;
+	}
+
+	em.quote10
+	{
+	    /*
+		#FF00FF Fuchsia;
+		#0000FF Blue
+
+		#87C0FF casual blue
+		#87CAF0
+
+		#A0FFFF Very light blue
+
+		#809F69 = Forest Green , see /usr/lib/X11/rgb.txt
+
+		background-color:
+
+		color: #80871F ; Orange, short of
+
+		# font-family: "Gill Sans", sans-serif;
+
+		line-height: 0.9em;
+		font-style:  italic;
+		font-size:   0.8em;
+
+		line-height: 0.9em;
+		color: #008080;
+
+		background-color: #F5F5F5;
+		#809F69; forest green
+		#F5F5F5; Pale grey
+		#FFf098; pale green
+		##bfefff; #ffefff; LightBlue1
+
+		background-color: #ffefff;
+
+		.................
+		#FFFCE7         Orange very light
+		#FFE7BF         Orange dark
+		#FFFFBF         Orange limon
+
+	     */
+
+	     /*
+	     #  See a nice page at
+	     #  http://www.cs.helsinki.fi/linux/
+	     #  http://www.cs.helsinki.fi/include/tktl.css
+	     #
+	     #  3-4 of these first fonts have almost identical look
+	     #  Browser will pick the one that is supported
+	     */
+
+	     font-family: lucida, lucida sans unicode, verdana, arial, "Trebuchet MS", helvetica, sans-serif;
+	     background-color: #eeeeff;
+	     font-size:   0.8em;
+	}
+
+	\@media print { em.quote10
+	{
+	    font-style:  italic;
+	    line-height: 0.9em;
+	    font-size:   0.8em;
+	}}
+
+	p.column11
+	{
+	    font-family: arial, verdana, helvetica, sans-serif;
+	    font-size: 0.9em;
+	    font-style: italic;
+	    color: Fuchsia;
+	}
+
+	/* /////////////////////////////////////////////// Format words */
+
+	em.word
+	{
+	    /* #809F69 Forest green */
+	    color: #80B06A;  /*Darker Forest green */
+	}
+
+	strong.word
+	{
+
+	}
+
+	samp.word
+	{
+	    color: #4C9CD4;
+	    font-weight: bold;
+	    font-family:    "Courier New", monospace;
+	    font-size:      0.85em;
+	}
+
+	span.super
+	{
+	    /* superscripts */
+	    color: teal;
+	    vertical-align: super;
+	    font-family: Verdana, Arial, sans-serif;
+	    font-size: 0.8em;
+	}
+
+	span.word-ref
+	{
+	    color: teal;
+	}
+
+	span.word-big
+	{
+	    color: teal;
+	    font-size: 1.2em;
+	}
+
+	span.word-small
+	{
+	    color: #CC66FF;
+	    font-family: Verdana, Arial, sans-serif;
+	    font-size: 0.7em;
+	}
+
+	/* /////////////////////////////////////////////// Format other */
+
+	/* 7th column starting with double quote */
+
+	span.quote7
+	{
+	    /* color: Green; */
+	    /* font-style: italic; */
+	    font-family: Verdana;
+	    font-weigh: bold;
+	    font-size: 1em;
+	}
+
+	/* This appears in FRAME version: xxx-toc.html */
+
+	div.toc
+	{
+	    font-size: 0.8em;
+	}
+
+	/* This appears in picture: the acption text beneath */
+
+	div.picture
+	{
+	    font-style: italic;
+	}
+
+	/* This is the document info footer */
+
+	em.footer
+	{
+	    font-size: 0.9em;
+	}
+); # end of double quote qq();
 }
 
 # ****************************************************************************
@@ -5622,16 +5622,16 @@ sub JavaScript (; $)
 
     if ( defined $JAVA_CODE )
     {
-        $JAVA_CODE;
+	$JAVA_CODE;
     }
     else
     {
-        my $css = CssData $type;
+	my $css = CssData $type;
 
-        #  won't work in Browsers....
-        #  <style type="text/css"  media="screen, print">
+	#  won't work in Browsers....
+	#  <style type="text/css"  media="screen, print">
 
-        return qq(
+	return qq(
 
     <style type="text/css">
 
@@ -5644,26 +5644,27 @@ $css
 
     <script type="text/javascript">
 
-        function MakeVisual(obj)
-        {
-            obj.style.fontWeight = "italic";
-        }
+	function MakeVisual(obj)
+	{
+	    obj.style.fontWeight = "italic";
+	}
 
-        function MakeNormal(obj)
-        {
-            obj.style.fontWeight = "normal";
-        }
+	function MakeNormal(obj)
+	{
+	    obj.style.fontWeight = "normal";
+	}
 
-        function IgnoreErrors()
-        {
-            return true;
-        }
+	function IgnoreErrors()
+	{
+	    return true;
+	}
 
-        window.onerror = IgnoreErrors;
+	window.onerror = IgnoreErrors;
 
     </script>
 
-        ); # end of qq()
+); # end of qq()
+
     }
 
 }
@@ -5709,25 +5710,25 @@ sub HtmlStartBasic ( % )
     my $rest        = $arg{-html}   || '' ;
 
     $debug  and  print "$id: INPUT title [$title] baseFile [$baseFile] "
-                       , "attrib [$attrib] rest [$rest]\n";
+		       , "attrib [$attrib] rest [$rest]\n";
 
     my $ret = HereQuote <<"........EOF";
-        $HTML_HASH{doctype}
+	$HTML_HASH{doctype}
 
-        $HTML_HASH{beg}
+	$HTML_HASH{beg}
 
-        <head>
-            <title>
-            $title
-            </title>
+	<head>
+	    <title>
+	    $title
+	    </title>
 ........EOF
 
     $ret .= join ''
-        , JavaScript()
-        , Base($baseFile, $attrib)
-        , $rest
-        , "</head>\n\n\n"
-        ;
+	, JavaScript()
+	, Base($baseFile, $attrib)
+	, $rest
+	, "</head>\n\n\n"
+	;
 
     $ret;
 }
@@ -5810,13 +5811,13 @@ sub MakeComment ($)
     my $txt = shift;
 
     join ''
-        , "\n\n<!--    "
-        , "." x 70
-        , "\n    $txt"
-        , "\n    "
-        , "." x 70
-        , "\n-->\n\n"
-        ;
+	, "\n\n<!--    "
+	, "." x 70
+	, "\n    $txt"
+	, "\n    "
+	, "." x 70
+	, "\n-->\n\n"
+	;
 }
 
 # ****************************************************************************
@@ -5866,20 +5867,20 @@ sub MakeToc ( % )
 
     if ( $debug   and  $frame )
     {
-        warn "$id: arg_dir $ARG_DIR $frameFrm, $frameToc, $frameTxt\n";
+	warn "$id: arg_dir $ARG_DIR $frameFrm, $frameToc, $frameTxt\n";
     }
 
     if ( 0 )                # disabled now
     {
-        $styleb = "<strong>";
-        $stylee = "</strong>";
+	$styleb = "<strong>";
+	$stylee = "</strong>";
     }
 
     # ........................................................ start ...
 
     if ( $frame )
     {
-        push @ret, <<"........EOF";
+	push @ret, <<"........EOF";
 $HTML_HASH{doctype}
 
 $HTML_HASH{beg}
@@ -5892,41 +5893,41 @@ $HTML_HASH{beg}
 
 ........EOF
 
-        push @ret,
-            , MakeMetaTags( -author => $author, -email => $email)
-            , qq(\n  <base target="body">\n)
-            , JavaScript( "toc" )
-            ;
+	push @ret,
+	    , MakeMetaTags( -author => $author, -email => $email)
+	    , qq(\n  <base target="body">\n)
+	    , JavaScript( "toc" )
+	    ;
 
-        push @ret, Here <<"........EOF";
+	push @ret, Here <<"........EOF";
 
-            </head>
+	    </head>
 
-            <body>
-            <div class="TOC">
+	    <body>
+	    <div class="TOC">
 
 ........EOF
 
-        # ......................................... write frame file ...
+	# ......................................... write frame file ...
 
-        my @frame;
+	my @frame;
 
-        my $head = HtmlStartBasic
-            -title      => $TITLE
-            , -file     => undef
-            , -attrib   => qq(TARGET="body")
-            , -html     => join '', MakeMetaTags(-author => $author,
-                                                 -email  => $email)
-            ;
+	my $head = HtmlStartBasic
+	    -title      => $TITLE
+	    , -file     => undef
+	    , -attrib   => qq(TARGET="body")
+	    , -html     => join '', MakeMetaTags(-author => $author,
+						 -email  => $email)
+	    ;
 
-        # push @frame, $head;
+	# push @frame, $head;
 
-        #   Set default value
+	#   Set default value
 
-        my $frameSize  = qq(cols="25%,75%")         if $frame !~ /=/;
-        my $attributes = qq(frameborder="0");    # Attributes
+	my $frameSize  = qq(cols="25%,75%")         if $frame !~ /=/;
+	my $attributes = qq(frameborder="0");    # Attributes
 
-        push @frame, <<"........EOF";
+	push @frame, <<"........EOF";
 $HTML_HASH{beg}
 
 <!--  [HTML 4.0] 7.5.1 In frameset documents the FRAMESET element
@@ -5935,15 +5936,15 @@ $HTML_HASH{beg}
 <frameset $frameSize>
 
     <frame name="toc"
-           id="toc"
-           src="$frameToc"
-           target="body"
-           $attributes >
+	   id="toc"
+	   src="$frameToc"
+	   target="body"
+	   $attributes >
 
     <frame name="body"
-           id="body"
-           src="$frameTxt"
-           $attributes >
+	   id="body"
+	   src="$frameTxt"
+	   $attributes >
 
 </frameset>
 
@@ -5951,15 +5952,15 @@ $HTML_HASH{beg}
 
 ........EOF
 
-        WriteFile $ARG_DIR . $frameFrm, \@frame;
+	WriteFile $ARG_DIR . $frameFrm, \@frame;
     }
     else
     {
-        $doc    = "";
-        my $toc = Language -toc;
+	$doc    = "";
+	my $toc = Language -toc;
 
-        push @ret , MakeComment "TABLE OF CONTENT START";
-        push @ret, <<"........EOF";
+	push @ret , MakeComment "TABLE OF CONTENT START";
+	push @ret, <<"........EOF";
 
 <div class="toc" id="toc">
 <a name="toc" id="toc" class="name"></a>
@@ -5978,41 +5979,41 @@ $HTML_HASH{beg}
 
     for ( @$headingArrayRef )
     {
-        $refname = $$headingHashRef{ $ARG };
+	$refname = $$headingHashRef{ $ARG };
 
 #        print "\n" if not /^\s+/;
-        $spc = "";
-        $spc = $1 if /^(\s+)/;
-        $txt = $1 if /^\s*(.*)\s*$/;
+	$spc = "";
+	$spc = $1 if /^(\s+)/;
+	$txt = $1 if /^\s*(.*)\s*$/;
 
-        $li = $str = "";
+	$li = $str = "";
 
-        if ( /^ +[A-Z0-9]/ )
-        {
-            $str =  "\n<ul>\n"  if $ul == 0;
-            $li  = "\t<li>";
-            $ul++;
-        }
-        else
-        {
-            $str = "</ul>\n"  if $ul != 0;
-            $ul = 0;
-        }
+	if ( /^ +[A-Z0-9]/ )
+	{
+	    $str =  "\n<ul>\n"  if $ul == 0;
+	    $li  = "\t<li>";
+	    $ul++;
+	}
+	else
+	{
+	    $str = "</ul>\n"  if $ul != 0;
+	    $ul = 0;
+	}
 
-        $ref = "#${refname}";
-        $ref = $frame . $ref   if defined $frame;
+	$ref = "#${refname}";
+	$ref = $frame . $ref   if defined $frame;
 
-        $str .= HereQuote <<"........EOF";
-            $spc$styleb
-            $li
-            <a href="$ref" class="toc">
-                $txt
-            </a>
-            $stylee$br
+	$str .= HereQuote <<"........EOF";
+	    $spc$styleb
+	    $li
+	    <a href="$ref" class="toc">
+		$txt
+	    </a>
+	    $stylee$br
 
 ........EOF
 
-        push @ret, $str;
+	push @ret, $str;
     }
 
     #  The closing table element.
@@ -6023,18 +6024,18 @@ $HTML_HASH{beg}
 
     if( $frame )
     {
-        push @ret, Here <<"........EOF";
-            </div>
-            </body>
-            </html>
+	push @ret, Here <<"........EOF";
+	    </div>
+	    </body>
+	    </html>
 ........EOF
     }
     else
     {
-        push @ret
-            , "</div>\n"
-            , MakeComment "TABLE OF CONTENT END"
-            ;
+	push @ret
+	    , "</div>\n"
+	    , MakeComment "TABLE OF CONTENT END"
+	    ;
     }
 
     $debug  and  PrintArray "$id", \@ret;
@@ -6096,100 +6097,100 @@ sub LinkCache ( % )
 
     if ( $debug > 1 )
     {
-        print "$id: action [$ARG] arg [$arg] "
-            , "act [$staticActive] code [$code]\n";
+	print "$id: action [$ARG] arg [$arg] "
+	    , "act [$staticActive] code [$code]\n";
     }
 
     if ( /-read/ )
     {
-        $staticActive = 1;      # start using cache
-        $staticFile   = $arg;
+	$staticActive = 1;      # start using cache
+	$staticFile   = $arg;
 
-        local *FILE;
+	local *FILE;
 
-        #   It is not an serious error if we can't open the cache.
-        #   This means, that user has deleted cache file and forcing
-        #   a full scan of every link.
+	#   It is not an serious error if we can't open the cache.
+	#   This means, that user has deleted cache file and forcing
+	#   a full scan of every link.
 
-        unless ( open FILE, "<$arg" )
-        {
-            $verb > 1  and  warn "$id: Cannot open $arg $ERRNO";
-            $ret = 0;
-        }
-        else
-        {
-            $verb and  print "$id: reading [$arg]\n";
+	unless ( open FILE, "<$arg" )
+	{
+	    $verb > 1  and  warn "$id: Cannot open $arg $ERRNO";
+	    $ret = 0;
+	}
+	else
+	{
+	    $verb and  print "$id: reading [$arg]\n";
 
-            while ( <FILE> )
-            {
-                #   Filter out empty lines and extra spaces
+	    while ( <FILE> )
+	    {
+		#   Filter out empty lines and extra spaces
 
-                s/^\s+//; s/\s+$//;
+		s/^\s+//; s/\s+$//;
 
-                $staticLinkCache{ $ARG } = $HTTP_CODE_OK if $ARG;
+		$staticLinkCache{ $ARG } = $HTTP_CODE_OK if $ARG;
 
-                $debug > 2 and  print "$id: -read => $ARG\n";
-            }
+		$debug > 2 and  print "$id: -read => $ARG\n";
+	    }
 
-            close FILE;
-        }
+	    close FILE;
+	}
     }
     elsif  ( $staticActive  and  /-write/ )
     {
-        $arg = $staticFile;         # Same as used in open
+	$arg = $staticFile;         # Same as used in open
 
-        $verb  and  print "$id: writing [$arg]\n";
+	$verb  and  print "$id: writing [$arg]\n";
 
-        my $stat = open my $FILE, "> $arg";
+	my $stat = open my $FILE, "> $arg";
 
-        unless ( $stat )
-        {
-            not $QUIET  and  warn "$id: Cannot write $arg $ERRNO";
-            $ret = 0;
-        }
-        else
-        {
-            binmode $FILE;
+	unless ( $stat )
+	{
+	    not $QUIET  and  warn "$id: Cannot write $arg $ERRNO";
+	    $ret = 0;
+	}
+	else
+	{
+	    binmode $FILE;
 
-            # PrintHash "$id",  \%staticLinkCache;
+	    # PrintHash "$id",  \%staticLinkCache;
 
-            while ( my($url, $ccode) = each %staticLinkCache )
-            {
-                if ( $ccode != $HTTP_CODE_OK )
-                {
-                    $debug > 2 and  print "$id: Ignored $url $ccode\n";
-                    next;
-                }
+	    while ( my($url, $ccode) = each %staticLinkCache )
+	    {
+		if ( $ccode != $HTTP_CODE_OK )
+		{
+		    $debug > 2 and  print "$id: Ignored $url $ccode\n";
+		    next;
+		}
 
-                $debug > 2  and  print "$id: write => $url\n";
+		$debug > 2  and  print "$id: write => $url\n";
 
-                if ( $url )
-                {
-                    print $FILE $url, "\n";
-                }
-            }
+		if ( $url )
+		{
+		    print $FILE $url, "\n";
+		}
+	    }
 
-            close $FILE;
-        }
+	    close $FILE;
+	}
     }
     elsif ( /-add/ )
     {
-        $staticLinkCache{ $arg } = $code;
-        $ret = 1;
+	$staticLinkCache{ $arg } = $code;
+	$ret = 1;
 
-        $debug > 1  and  print "$id: added ok\n";
+	$debug > 1  and  print "$id: added ok\n";
     }
     elsif ( /-exist/ )
     {
-        $ret = exists $staticLinkCache{$arg}
-               ? $staticLinkCache{$arg}
-               : 0;
+	$ret = exists $staticLinkCache{$arg}
+	       ? $staticLinkCache{$arg}
+	       : 0;
 
-        $verb > 1  and  print "$id: exist status [$ret]\n";
+	$verb > 1  and  print "$id: exist status [$ret]\n";
     }
     elsif ( $staticActive )
     {
-        die "$id: Unknown action [$ARG] arg [$arg]";
+	die "$id: Unknown action [$ARG] arg [$arg]";
     }
 
     $ret;
@@ -6226,7 +6227,7 @@ sub LinkHash (%)
 
     if ( not defined $LINK_HASH_CODE{ $error }  )
     {
-        $LINK_HASH_CODE{ $error } = $text;
+	$LINK_HASH_CODE{ $error } = $text;
     }
 }
 
@@ -6258,9 +6259,9 @@ sub LinkCheckLwp ($)
 
     if ( $code == $HTTP_CODE_OK )
     {
-        #   Found from cache. Last check gave OK to this link
-        $debug > 1 and  print "$id: Return; cached value $code $url\n";
-        return $code, "local-cache";
+	#   Found from cache. Last check gave OK to this link
+	$debug > 1 and  print "$id: Return; cached value $code $url\n";
+	return $code, "local-cache";
     }
 
     #  Note:  'HEAD' request doesn't actually download the
@@ -6276,43 +6277,43 @@ sub LinkCheckLwp ($)
     my $txt     = $obj->message;
 
     $debug  and
-        printf "$id: HEAD response [$ok] code [%d] msg [%s]\n"
-               , $obj->code
-               , $obj->message
-               ;
+	printf "$id: HEAD response [$ok] code [%d] msg [%s]\n"
+	       , $obj->code
+	       , $obj->message
+	       ;
 
     LinkCache -action => '-add'
-            , -arg    => $url
-            , -code   => $obj->code
-            ;
+	    , -arg    => $url
+	    , -code   => $obj->code
+	    ;
 
     #  GET request is disabled because it would call 2 time on
     #  fialure. Trust HEAD all the way.
 
     unless ( 0 and $status != $HTTP_CODE_OK  )
     {
-        #  Hm,
-        #  HEAD is not the total answer because there are still servers
-        #  that do not understand it.  If the HEAD fails, revert to GET.  HEAD
-        #  can only tell you that a URL has something behind it. It can't tell
-        #  you that it doesn't, necessarily.
+	#  Hm,
+	#  HEAD is not the total answer because there are still servers
+	#  that do not understand it.  If the HEAD fails, revert to GET.  HEAD
+	#  can only tell you that a URL has something behind it. It can't tell
+	#  you that it doesn't, necessarily.
 
-        my $ua2      = new LWP::UserAgent;
-        my $request2 = new HTTP::Request( 'GET', $url );
-        my $obj2     = $ua2->request( $request2 );
-        $status      = $obj2->code;
-        $txt         = $obj2->message;
+	my $ua2      = new LWP::UserAgent;
+	my $request2 = new HTTP::Request( 'GET', $url );
+	my $obj2     = $ua2->request( $request2 );
+	$status      = $obj2->code;
+	$txt         = $obj2->message;
 
-        $debug  and
-            printf "$id: GET response [$ok] code [%d] [%s]\n"
-                 , $obj2->code
-                 , $txt
-                 ;
+	$debug  and
+	    printf "$id: GET response [$ok] code [%d] [%s]\n"
+		 , $obj2->code
+		 , $txt
+		 ;
     }
 
     unless ( $status != $HTTP_CODE_OK )
     {
-        LinkHash -url => $url, -error => $status, -txt => $txt;
+	LinkHash -url => $url, -error => $status, -txt => $txt;
     }
 
     $status, $txt;
@@ -6345,19 +6346,19 @@ sub LinkCheckExternal ( % )
     $debug  and  print "$id: Checking... $url\n";
 
     my $regexp = 'example\.(com|org|net|info|biz)'
-                 . '|http://(localhost|127\.(0.0.)?1'
-                 . '|foo|bar|baz|quuz)\.'
-                 ;
+		 . '|http://(localhost|127\.(0.0.)?1'
+		 . '|foo|bar|baz|quuz)\.'
+		 ;
 
     my($ret, $txt) = (0, "");
 
     if ( $url =~ /$regexp/o )
     {
-        $verb  and  print "$id: Link [$url] excluded by regexp [$regexp]\n";
+	$verb  and  print "$id: Link [$url] excluded by regexp [$regexp]\n";
     }
     elsif ( $MODULE_LWP_OK )
     {
-        ($ret, $txt) = LinkCheckLwp $url;
+	($ret, $txt) = LinkCheckLwp $url;
     }
 
     $debug  and  warn "$id: RET [$ret] URL [$url] TEXT [$txt]\n";
@@ -6389,44 +6390,44 @@ sub Html2txt ($)
 
     unless ( defined $arrayRef )
     {
-        warn "$id: [ERROR] \$arrayRef is not defined";
-        return;
+	warn "$id: [ERROR] \$arrayRef is not defined";
+	return;
     }
 
     my ( @ret, $carry, $comment );
 
     for ( @$arrayRef )
     {
-        if ( 0 )        # enable/disable comment stripping
-        {
-            $comment = 1 if /<!/;
-            $comment = 0 if /<!.*>/;
-            $comment = 0 if /-->/;
+	if ( 0 )        # enable/disable comment stripping
+	{
+	    $comment = 1 if /<!/;
+	    $comment = 0 if /<!.*>/;
+	    $comment = 0 if /-->/;
 
-            next if $comment;
-        }
+	    next if $comment;
+	}
 
-        if ( $carry )
-        {
-            #   remove all until the first >
+	if ( $carry )
+	{
+	    #   remove all until the first >
 
-            next if not s/[^>]*>// ;
+	    next if not s/[^>]*>// ;
 
-            #   if we didn't do next, it succeeded -- reset carry
+	    #   if we didn't do next, it succeeded -- reset carry
 
-            $carry = 0;
-        }
+	    $carry = 0;
+	}
 
-        while( s/<[^>]*>//g ) { }
+	while( s/<[^>]*>//g ) { }
 
-        if( s/<.*$// )
-        {
-            $carry = 1;
-        }
+	if( s/<.*$// )
+	{
+	    $carry = 1;
+	}
 
-        $ARG = XlatHtml2tag $ARG;
+	$ARG = XlatHtml2tag $ARG;
 
-        push @ret,  $ARG;
+	push @ret,  $ARG;
     }
 
     $debug  and  print "$id: RET => [[[@ret]]]\n";
@@ -6460,8 +6461,8 @@ sub ReadLinksLinkExtractor (%)
 
     unless ( defined $arrayRef )
     {
-        warn "$id: [ERROR] \$arrayRef is not defined";
-        return;
+	warn "$id: [ERROR] \$arrayRef is not defined";
+	return;
     }
 
     local $ARG      = join '', @$arrayRef;
@@ -6471,20 +6472,20 @@ sub ReadLinksLinkExtractor (%)
 
     local *callback = sub
     {
-        my( $tag, %links) = @ARG;
+	my( $tag, %links) = @ARG;
 
-        #   Only look at "A" HREF links
+	#   Only look at "A" HREF links
 
-        if ( $tag eq "a" )
-        {
-            while ( my($key, $ref) = each %links )
-            {
-                #  Reference to URI::URL object
-                my $url = $ref->as_string();
+	if ( $tag eq "a" )
+	{
+	    while ( my($key, $ref) = each %links )
+	    {
+		#  Reference to URI::URL object
+		my $url = $ref->as_string();
 
-                push @list, $url;
-            }
-        }
+		push @list, $url;
+	    }
+	}
     };
 
     my $parser = HTML::LinkExtractor->new( \&callback, $base);
@@ -6500,7 +6501,7 @@ sub ReadLinksLinkExtractor (%)
 
     for my $link ( @list )
     {
-        $ret{$i++} = $link;
+	$ret{$i++} = $link;
     }
 
     %ret;
@@ -6536,8 +6537,8 @@ sub ReadLinksBasic (%)
 
     unless ( defined $arrayRef )
     {
-        warn "$id: [ERROR] \$arrayRef is not defined";
-        return;
+	warn "$id: [ERROR] \$arrayRef is not defined";
+	return;
     }
 
     local $ARG      = join '', @$arrayRef;      # Make on big line
@@ -6551,10 +6552,10 @@ sub ReadLinksBasic (%)
 
     if ( $file =~ m,^\s*(http://[^/\s]+), )
     {
-        $base = $1 . '/'; # Add trailing slash
-        $root = $base;
+	$base = $1 . '/'; # Add trailing slash
+	$root = $base;
 
-        $debug  and  print "$id: ROOT $root BASE $base\n";
+	$debug  and  print "$id: ROOT $root BASE $base\n";
     }
 
     my $tag    = '<\s*(?:A\s+HREF|IMG\s+SRC|LINK[^<>=]+HREF)\s*';
@@ -6564,120 +6565,120 @@ sub ReadLinksBasic (%)
 
     while
     (
-        m
-        {
-            (.?)
-            (
-                # http://URL:PORT
+	m
+	{
+	    (.?)
+	    (
+		# http://URL:PORT
 
-                http://[-A-Za-z.\d]+(?::\d+)?
+		http://[-A-Za-z.\d]+(?::\d+)?
 
-                #   the directory part is optional
-                #   Start with X ... until X is the last character
+		#   the directory part is optional
+		#   Start with X ... until X is the last character
 
-                $urlset*$lastch
+		$urlset*$lastch
 
-                |
+		|
 
-                $tag=\s*$quote?[^<>\"'\s]+
+		$tag=\s*$quote?[^<>\"'\s]+
 
-                #  (') Dummy comment to fix Emacs font loack for
-                #  quotation mark from previous line
+		#  (') Dummy comment to fix Emacs font loack for
+		#  quotation mark from previous line
 
-            )
-        }gmoix
+	    )
+	}gmoix
     )
     {
-        $char = $1;
-        $link = $2;
-        $tmp  = $PREMATCH;
+	$char = $1;
+	$link = $2;
+	$tmp  = $PREMATCH;
 
-        $debug > 4  and  print "$id: raw link   [$char] [$link]\n";
+	$debug > 4  and  print "$id: raw link   [$char] [$link]\n";
 
-        #      Fix mismatches http://example.org/links.html&gt
-        #      only GET parameters can have '?': this.php?arg=1&more=2
+	#      Fix mismatches http://example.org/links.html&gt
+	#      only GET parameters can have '?': this.php?arg=1&more=2
 
-        if ( $link !~ /[?]/  and  $link =~  /^(.+)&/ )
-        {
-            $link = $1;
-            $debug > 4  and  print "$id: fixed link [$link]\n";
-        }
+	if ( $link !~ /[?]/  and  $link =~  /^(.+)&/ )
+	{
+	    $link = $1;
+	    $debug > 4  and  print "$id: fixed link [$link]\n";
+	}
 
-        if ( $link =~ /mailto:/ )
-        {
-            $link = '';
-        }
+	if ( $link =~ /mailto:/ )
+	{
+	    $link = '';
+	}
 
-        if ( $link =~ m,(?:HREF|SRC)\s*=\s*$quote?(.+),oi )
-        {
-            #   (') Dummy comment to fix Emacs font lock quotation mark
-            #   from previous line
+	if ( $link =~ m,(?:HREF|SRC)\s*=\s*$quote?(.+),oi )
+	{
+	    #   (') Dummy comment to fix Emacs font lock quotation mark
+	    #   from previous line
 
-            $link = $1;
+	    $link = $1;
 
-            $debug > 2  and  print "$id: LINK  $link\n";
+	    $debug > 2  and  print "$id: LINK  $link\n";
 
-            #  Not an external http:// reference, so it's local link
+	    #  Not an external http:// reference, so it's local link
 
-            if ( $base  and  $link !~ m,//, )
-            {
-                my $glue = $base;
+	    if ( $base  and  $link !~ m,//, )
+	    {
+		my $glue = $base;
 
-                $link =~ m,^/,   and  $glue = $root;
-                $link = "$glue$link";
-            }
-        }
+		$link =~ m,^/,   and  $glue = $root;
+		$link = "$glue$link";
+	    }
+	}
 
-        $link =~ s/\s+$//;
+	$link =~ s/\s+$//;
 
-        $debug > 2   and  print "$id: AFTER $link\n";
+	$debug > 2   and  print "$id: AFTER $link\n";
 
-        if ( $char eq '-' )          # Ignore -http://this.is/example.html
-        {
-            not $QUIET  and  warn "$id: ignored MINUS url: $ARG\n";
-            next;
-        }
+	if ( $char eq '-' )          # Ignore -http://this.is/example.html
+	{
+	    not $QUIET  and  warn "$id: ignored MINUS url: $ARG\n";
+	    next;
+	}
 
-        #   Do not check the "tar.gz" links. or "url?args" cgi calls
+	#   Do not check the "tar.gz" links. or "url?args" cgi calls
 
-        if ( $link =~ m,\.(gz|tgz|Z|bz2|rar)$|\?, )
-        {
-            not $QUIET  and  warn "$id: ignored complex url: $ARG\n";
+	if ( $link =~ m,\.(gz|tgz|Z|bz2|rar)$|\?, )
+	{
+	    not $QUIET  and  warn "$id: ignored complex url: $ARG\n";
 
-            next if m,\?,;                          # forget cgi programs
+	    next if m,\?,;                          # forget cgi programs
 
-            # but try to verify at least directory
+	    # but try to verify at least directory
 
-            $link =~ s,(.*/),$1,;
-        }
+	    $link =~ s,(.*/),$1,;
+	}
 
-        if ( $link ne '' )
-        {
-            #   What is the line number so far before match?
-            my $i = 0;
+	if ( $link ne '' )
+	{
+	    #   What is the line number so far before match?
+	    my $i = 0;
 
-            $i++ while ( $tmp =~ /\n/g );
+	    $i++ while ( $tmp =~ /\n/g );
 
-            #  There can be many links at the the same line.
-            #  Like if page is generated with a tool, which outputs whole
-            #  page as single line.
+	    #  There can be many links at the the same line.
+	    #  Like if page is generated with a tool, which outputs whole
+	    #  page as single line.
 
-            my $count = 0;
-            my $name;
+	    my $count = 0;
+	    my $name;
 
-            while ( exists $ret{ $name = sprintf "$i=count%03d", $count } )
-            {
-                $count++;
-            }
+	    while ( exists $ret{ $name = sprintf "$i=count%03d", $count } )
+	    {
+		$count++;
+	    }
 
-            $debug  and  print "$id: ADDED $id $link\n";
-            $ret{ $name } = $link ;
-        }
+	    $debug  and  print "$id: ADDED $id $link\n";
+	    $ret{ $name } = $link ;
+	}
     }
 
     if ( $verb > 1  and  not keys %ret )
     {
-        print "$id:  WARNING No links found\n";
+	print "$id:  WARNING No links found\n";
     }
 
     %ret;
@@ -6708,15 +6709,15 @@ sub ReadLinksMain (%)
 
     if ( $debug )
     {
-        print "$id: file => " , $arg{-file};
+	print "$id: file => " , $arg{-file};
 
-        $debug > 6 and print
-            " content => CONTENT_START\n"
-            , @{ $arg{-array} }
-            , "\n$id: CONTENT_END"
-            ;
+	$debug > 6 and print
+	    " content => CONTENT_START\n"
+	    , @{ $arg{-array} }
+	    , "\n$id: CONTENT_END"
+	    ;
 
-        print "\n";
+	print "\n";
     }
 
     $MODULE_LINKEXTRACTOR_OK = 0;  #todo: 0.07 does not work
@@ -6727,11 +6728,11 @@ sub ReadLinksMain (%)
 
     if ( $MODULE_LINKEXTRACTOR_OK )
     {
-        %hash = ReadLinksLinkExtractor %arg;
+	%hash = ReadLinksLinkExtractor %arg;
     }
     else
     {
-        %hash = ReadLinksBasic %arg;
+	%hash = ReadLinksBasic %arg;
     }
 
     $debug > 4  and  PrintHash $id, \%hash;
@@ -6769,12 +6770,12 @@ sub LinkCheckMain ( % )
 
     if  ( not defined $arrayRef  or  not @$arrayRef )
     {
-        warn "$id: WARNING [$file] is empty\n";
-        return;
+	warn "$id: WARNING [$file] is empty\n";
+	return;
     }
 
     my %link = ReadLinksMain -array => $arrayRef
-                           , -file  => $file;
+			   , -file  => $file;
 
     $debug  and  PrintHash "$id: LINKS", \%link;
     $verb   and  print "$id: Validating links.\n";
@@ -6783,28 +6784,28 @@ sub LinkCheckMain ( % )
 
     for ( sort {$a <=> $b} keys %link  )
     {
-        my ($i) = $ARG =~ /^(\d+)/;
-        my $lnk = $link{ $ARG };
+	my ($i) = $ARG =~ /^(\d+)/;
+	my $lnk = $link{ $ARG };
 
-        my($status, $err) = LinkCheckExternal -url => $lnk;
+	my($status, $err) = LinkCheckExternal -url => $lnk;
 
-        not $QUIET   and print  "$file:$i:$lnk";
+	not $QUIET   and print  "$file:$i:$lnk";
 
-        my $text = "";
+	my $text = "";
 
-        if ( $err  and  $LINK_CHECK_ERR_TEXT_ONE_LINE )
-        {
-            ($text = $err) =~ s/\n/./;
-        }
+	if ( $err  and  $LINK_CHECK_ERR_TEXT_ONE_LINE )
+	{
+	    ($text = $err) =~ s/\n/./;
+	}
 
-        if ( not $QUIET )
-        {
-            print " $status $text\n";   # this print() is continuation...
-        }
-        elsif ( $status != 0  and  $status != $HTTP_CODE_OK )
-        {
-            printf "$file:$i:%-4d $lnk $text\n", $status;
-        }
+	if ( not $QUIET )
+	{
+	    print " $status $text\n";   # this print() is continuation...
+	}
+	elsif ( $status != 0  and  $status != $HTTP_CODE_OK )
+	{
+	    printf "$file:$i:%-4d $lnk $text\n", $status;
+	}
     }
 }
 
@@ -6835,11 +6836,11 @@ sub IsEmptyText ($)
     my $text = shift;
 
     if  ( not defined $text
-          or  $text eq ''
-          or  $text =~ /^\s+$|[Nn][Oo][Nn][Ee]$/
-        )
+	  or  $text eq ''
+	  or  $text =~ /^\s+$|[Nn][Oo][Nn][Ee]$/
+	)
     {
-        return 1;
+	return 1;
     }
 
     0;
@@ -6915,18 +6916,18 @@ sub IsBullet ($$)
 
     if ( $line =~ /^ {8}([*o.]) {3}(.+)/  )
     {
-        $$textRef = $2;     # fill return value
+	$$textRef = $2;     # fill return value
 
-        if ( $1 eq "o"  or   $1 eq "*" )
-        {
-            $debug and warn "$id: BULLET_TYPE_NORMAL >>$2\n";
-            $type = $BULLET_TYPE_NORMAL;
-        }
-        elsif ( $1 eq "." )
-        {
-            $debug and warn "$id: BULLET_TYPE_NUMBERED >>$2\n";
-            $type = $BULLET_TYPE_NUMBERED;
-        }
+	if ( $1 eq "o"  or   $1 eq "*" )
+	{
+	    $debug and warn "$id: BULLET_TYPE_NORMAL >>$2\n";
+	    $type = $BULLET_TYPE_NORMAL;
+	}
+	elsif ( $1 eq "." )
+	{
+	    $debug and warn "$id: BULLET_TYPE_NUMBERED >>$2\n";
+	    $type = $BULLET_TYPE_NUMBERED;
+	}
     }
 
     $type;
@@ -6984,29 +6985,29 @@ sub MakeMetaTags ( % )
 
     if ( $kwd =~ /\S+/ and $kwd !~ /^\S+$/ )
     {
-        #   "keywords" [according to Wilbur]
-        #   Provides keywords for search engines such as Infoseek or Alta
-        #   Vista. These are added to the keywords found in the document
-        #   itself. If you insert a keyword more than seven times here,
-        #   the whole tag will be ignored!
+	#   "keywords" [according to Wilbur]
+	#   Provides keywords for search engines such as Infoseek or Alta
+	#   Vista. These are added to the keywords found in the document
+	#   itself. If you insert a keyword more than seven times here,
+	#   the whole tag will be ignored!
 
-        if (  $kwd !~ /,/  )
-        {
-            $kwd = join ","  ,   split ' ', $kwd;
+	if (  $kwd !~ /,/  )
+	{
+	    $kwd = join ","  ,   split ' ', $kwd;
 
-            warn "$id: META KEYWORDS must have commas (fixed): ",
-                " [$kwd]";
-        }
+	    warn "$id: META KEYWORDS must have commas (fixed): ",
+		" [$kwd]";
+	}
 
-        push @ret, qq(  <$META="keywords"\n\tCONTENT="$kwd">\n\n);
+	push @ret, qq(  <$META="keywords"\n\tCONTENT="$kwd">\n\n);
     }
 
     if ( defined $desc )
     {
-        length($desc) > 1000
-            and warn "$id: META DESC over 1000 characters";
+	length($desc) > 1000
+	    and warn "$id: META DESC over 1000 characters";
 
-        push @ret, qq(  <$META="description"\n\tcontent="$desc">\n\n);
+	push @ret, qq(  <$META="description"\n\tcontent="$desc">\n\n);
     }
 
     # ................................................. general meta ...
@@ -7016,26 +7017,26 @@ sub MakeMetaTags ( % )
     push @ret, $charset;
 
     push @ret, qq(  <$META="Expires" )
-               . qq(content=") .  GetExpiryDate() . qq(">\n\n)
-               ;
+	       . qq(content=") .  GetExpiryDate() . qq(">\n\n)
+	       ;
 
     if ( defined $author  and  $author )
     {
-        $author = qq(  <$META="Author"\n\tcontent="$author">\n\n);
+	$author = qq(  <$META="Author"\n\tcontent="$author">\n\n);
     }
 
     if ( defined $email  and $email )
     {
-        $email = qq(  <$META="Made"\n\tcontent="mailto:$email">\n\n);
+	$email = qq(  <$META="Made"\n\tcontent="mailto:$email">\n\n);
 
     }
 
     my $gen = qq(  <$METAN="Generator"\n)
-            . qq(\tcontent=")                                       #font "
-            . GetDate()
-            . qq( Perl program $PROGNAME v$VERSION $URL)
-            . qq(">\n)                                              #font "
-            ;
+	    . qq(\tcontent=")                                       #font "
+	    . GetDate()
+	    . qq( Perl program $PROGNAME v$VERSION $URL)
+	    . qq(">\n)                                              #font "
+	    ;
 
     push @ret, "$author\n", "$email\n", "$gen\n";
 
@@ -7117,13 +7118,13 @@ EOF
     # IE is able to read the page.
 
     push @ret, HereQuote <<"........EOF";
-        $HTML_HASH{doctype}
+	$HTML_HASH{doctype}
 
-        $HTML_HASH{beg}
+	$HTML_HASH{beg}
 
-        <!--
-                Note: the LINK tags are used by advanced browsers.
-        -->
+	<!--
+		Note: the LINK tags are used by advanced browsers.
+	-->
 
 ........EOF
 
@@ -7133,22 +7134,22 @@ EOF
     $base = Base( basename FileFrameNameBody() ) if $FRAME;
 
     push @ret, HereQuote <<"........EOF";
-        <head>
+	<head>
 
-        <title>
-        $title
-        </title>
+	<title>
+	$title
+	</title>
 
-        $base
+	$base
 
 ........EOF
 
     push @ret, MakeMetaTags(
-        -author         => $author
-        , -email        => $email
-        , -keywords     => $metaKeywords
-        , -description  => $metaDesc
-        );
+	-author         => $author
+	, -email        => $email
+	, -keywords     => $metaKeywords
+	, -description  => $metaDesc
+	);
 
     # ....................................................... button ...
 
@@ -7166,44 +7167,44 @@ EOF
 
     if ( not IsEmptyText $butp )
     {
-        $tmp = "Previous document";
+	$tmp = "Previous document";
 
-        $link and push @ret, $tab , MakeLinkHtml("previous","$butp", $tmp);
+	$link and push @ret, $tab , MakeLinkHtml("previous","$butp", $tmp);
 
-        push @ret
-            , $tab
-            , MakeUrlRef( $butp, "[Previous]", $attr)
-            , "\n";
+	push @ret
+	    , $tab
+	    , MakeUrlRef( $butp, "[Previous]", $attr)
+	    , "\n";
     }
 
     if ( not IsEmptyText $butt )
     {
-        $tmp = "The homepage of site";
+	$tmp = "The homepage of site";
 
-        $link and push @ret, $tab , MakeLinkHtml("home","$butt", $tmp);
+	$link and push @ret, $tab , MakeLinkHtml("home","$butt", $tmp);
 
-        push @ret
-            , $tab
-            , MakeUrlRef( $butt, "[home]", $attr)
-            , "\n";
+	push @ret
+	    , $tab
+	    , MakeUrlRef( $butt, "[home]", $attr)
+	    , "\n";
     }
 
     if ( not IsEmptyText $butn )
     {
-        $tmp = "Next document";
+	$tmp = "Next document";
 
-        $link and push @ret, $tab . MakeLinkHtml("next","$butt", $tmp);
+	$link and push @ret, $tab . MakeLinkHtml("next","$butt", $tmp);
 
-        push @ret
-            , $tab
-            , MakeUrlRef( $butn, "[Next]", $attr)
-            , "\n";
+	push @ret
+	    , $tab
+	    , MakeUrlRef( $butn, "[Next]", $attr)
+	    , "\n";
     }
 
     push @ret
-        , JavaScript()
-        , "</head>\n\n"
-        , "<body $bodyAttr>\n";
+	, JavaScript()
+	, "</head>\n\n"
+	, "<body $bodyAttr>\n";
 
     $debug and  PrintArray "$id", \@ret;
 
@@ -7233,12 +7234,12 @@ sub PrintEndQuiet ()
     $debug  and  print "$id\n";
 
     join ''
-        , MakeComment "DOCUMENT END BLOCK"
-        , "<!--\n\n\n"
-        , "-->\n"
-        , "</body>\n"
-        , "</html>\n"
-        ;
+	, MakeComment "DOCUMENT END BLOCK"
+	, "<!--\n\n\n"
+	, "-->\n"
+	, "</body>\n"
+	, "</html>\n"
+	;
 }
 
 # ****************************************************************************
@@ -7268,23 +7269,23 @@ sub PrintEndSimple ($;$)
 
     if ( defined $OPT_EMAIL  and  $OPT_EMAIL )
     {
-        $email = qq(Contact: &lt;<a href="mailto:$email">)
-                 . qq($email</a>&gt;$HTML_HASH{br}\n)
+	$email = qq(Contact: &lt;<a href="mailto:$email">)
+		 . qq($email</a>&gt;$HTML_HASH{br}\n)
     }
 
     join ''
-        , MakeComment "DOCUMENT END BLOCK"
-        , "<!--\n\n\n"
-        , "-->\n"
-        , "$HTML_HASH{hr}\n\n"
-        , qq(<em    class="footer">)
-        , $email
-        , qq(Html date: $date$HTML_HASH{br}\n)
-        , "\n"
-        , "</em>\n\n"
-        , "</body>\n"
-        , "</html>\n"
-        ;
+	, MakeComment "DOCUMENT END BLOCK"
+	, "<!--\n\n\n"
+	, "-->\n"
+	, "$HTML_HASH{hr}\n\n"
+	, qq(<em    class="footer">)
+	, $email
+	, qq(Html date: $date$HTML_HASH{br}\n)
+	, "\n"
+	, "</em>\n\n"
+	, "</body>\n"
+	, "</html>\n"
+	;
 }
 
 # ****************************************************************************
@@ -7342,23 +7343,23 @@ EOF
 
     my $disc =  Here <<"........EOF";
 
-        $pbeg
-        Copyright &copy; $year by $author. This material may be
-        distributed subject to the terms and conditions set forth
-        in the Creative commons Attribution-ShareAlike License.
-        See http://creativecommons.org/
-        $pend
+	$pbeg
+	Copyright &copy; $year by $author. This material may be
+	distributed subject to the terms and conditions set forth
+	in the Creative commons Attribution-ShareAlike License.
+	See http://creativecommons.org/
+	$pend
 
 ........EOF
 
     if ( defined $file )              # Read the disclaimer from separate file.
     {
-        local *F;
-        open F, $file       or die "$id: Can't open [$file] $ERRNO";
-        binmode F;
+	local *F;
+	open F, $file       or die "$id: Can't open [$file] $ERRNO";
+	binmode F;
 
-        $disc = join '', <F>;
-        close F;
+	$disc = join '', <F>;
+	close F;
     }
 
     # ....................................................... footer ...
@@ -7368,34 +7369,33 @@ EOF
     $author ne '' and $author = qq(Document author: $author$br);
     $url    ne '' and $url    = qq(Url: <a href="$url">$url</a>$br);
     $email  ne '' and $email  =
-                  qq(Contact: &lt;<a href="mailto:$email">)
-                  . qq($email</a>&gt;$br);
+		  qq(Contact: &lt;<a href="mailto:$email">)
+		  . qq($email</a>&gt;$br);
 
     $author eq '' and $disc = '';
 
     push @ret, Here <<"........EOF";
 
-        $hr
+	$hr
 
-        <em    class="footer">
-        $disc
+	<em    class="footer">
+	$disc
 
-        $pbeg
-        This file has been automatically generated from plain text file
-        with
-        <a href="$URL">$PROGNAME</a>
-        $br
-        $pend
+	$pbeg
+	This file has been automatically generated from plain text file with
+	<a href="$URL">$PROGNAME</a>
+	$br
+	$pend
 
-        $author
-        $url
-        $email
-        Last updated: $date$br
+	$author
+	$url
+	$email
+	Last updated: $date$br
 
-        </em    class="footer">
+	</em    class="footer">
 
-        </body>
-        </html>
+	</body>
+	</html>
 ........EOF
 
     # ................................................. return value ...
@@ -7461,39 +7461,39 @@ EOF
     $base    = $BASE_URL if $FRAME;     # directory
 
     my @ret = PrintStart
-                -doc        => $doc
-                , -author   => $author
-                , -title    => $title
-                , -base     => $base
-                , -butt     => $BUT_TOP
-                , -butp     => $BUT_PREV
-                , -butn     => $BUT_NEXT
-                , -metaDesc => $description
-                , -metaKeywords => $keywords
-                , -bodyAttr => $HTML_BODY_ATTRIBUTES
-                , -email    => $email
-                ;
+		-doc        => $doc
+		, -author   => $author
+		, -title    => $title
+		, -base     => $base
+		, -butt     => $BUT_TOP
+		, -butp     => $BUT_PREV
+		, -butn     => $BUT_NEXT
+		, -metaDesc => $description
+		, -metaKeywords => $keywords
+		, -bodyAttr => $HTML_BODY_ATTRIBUTES
+		, -email    => $email
+		;
 
     unless ( $AS_IS )
     {
-        my @toc = MakeToc
-            -headingListRef     => \@HEADING_ARRAY
-            , -headingHashRef   => \%HEADING_HASH
-            , -doc              => $DOC
-            , -frame            => $FRAME
-            , -file             => $file
-            , -author           => $AUTHOR
-            , -email            => $OPT_EMAIL
-            ;
+	my @toc = MakeToc
+	    -headingListRef     => \@HEADING_ARRAY
+	    , -headingHashRef   => \%HEADING_HASH
+	    , -doc              => $DOC
+	    , -frame            => $FRAME
+	    , -file             => $file
+	    , -author           => $AUTHOR
+	    , -email            => $OPT_EMAIL
+	    ;
 
-        if ( $FRAME )
-        {
-            WriteFile FileFrameNameToc(), \@toc;
-        }
-        else
-        {
-            push @ret, @toc;
-        }
+	if ( $FRAME )
+	{
+	    WriteFile FileFrameNameToc(), \@toc;
+	}
+	else
+	{
+	    push @ret, @toc;
+	}
     }
 
     push @ret, @$arrayRef if defined $arrayRef;
@@ -7502,20 +7502,20 @@ EOF
 
     if ( $type eq $OUTPUT_TYPE_SIMPLE )
     {
-        push @ret, PrintEndSimple $DOC, $OPT_EMAIL;
+	push @ret, PrintEndSimple $DOC, $OPT_EMAIL;
     }
     elsif ( $type eq $OUTPUT_TYPE_QUIET )
     {
-        push @ret, PrintEndQuiet();
+	push @ret, PrintEndQuiet();
     }
     else
     {
-        push @ret, PrintEnd -doc => $DOC
-                    , -author    => $AUTHOR,
-                    , -url       => $DOC_URL
-                    , -file      => $DISCLAIMER_FILE
-                    , -email     => $OPT_EMAIL
-                    ;
+	push @ret, PrintEnd -doc => $DOC
+		    , -author    => $AUTHOR,
+		    , -url       => $DOC_URL
+		    , -file      => $DISCLAIMER_FILE
+		    , -email     => $OPT_EMAIL
+		    ;
     }
 
     \@ret;
@@ -7547,32 +7547,32 @@ sub KillToc ($)
 
     unless ( defined $arrayRef )
     {
-        warn "$id: [ERROR] \$arrayRef is not defined";
-        return;
+	warn "$id: [ERROR] \$arrayRef is not defined";
+	return;
     }
 
     my( @ret, $flag );
 
     for ( @$arrayRef )
     {
-        $flag = 1 if /^Table\s+of\s+contents\s*$/i;
+	$flag = 1 if /^Table\s+of\s+contents\s*$/i;
 
-        if ( $flag )
-        {
-            #  save next header
+	if ( $flag )
+	{
+	    #  save next header
 
-            next if /^Table/;
+	    next if /^Table/;
 
-            if ( /^[A-Z0-9]/ )
-            {
-                $flag = 0;
-            }
-            else
-            {
-                next;
-            }
-        }
-        push @ret, $ARG;
+	    if ( /^[A-Z0-9]/ )
+	    {
+		$flag = 0;
+	    }
+	    else
+	    {
+		next;
+	    }
+	}
+	push @ret, $ARG;
     }
 
     @ret;
@@ -7635,18 +7635,18 @@ sub MakeHeadingName ($)
     #       Pick first 1-8 words for header name
 
     if (
-           /($ws$ws$ws$ws$ws$ws$ws$ws$w)/o
-        or /($ws$ws$ws$ws$ws$ws$ws$w)/o
-        or /($ws$ws$ws$ws$ws$ws$w)/o
-        or /($ws$ws$ws$ws$ws$w)/o
-        or /($ws$ws$ws$ws$w)/o
-        or /($ws$ws$ws$w)/o
-        or /($ws$ws$w)/o
-        or /($ws$w)/o
-        or /($w)/o
+	   /($ws$ws$ws$ws$ws$ws$ws$ws$w)/o
+	or /($ws$ws$ws$ws$ws$ws$ws$w)/o
+	or /($ws$ws$ws$ws$ws$ws$w)/o
+	or /($ws$ws$ws$ws$ws$w)/o
+	or /($ws$ws$ws$ws$w)/o
+	or /($ws$ws$ws$w)/o
+	or /($ws$ws$w)/o
+	or /($ws$w)/o
+	or /($w)/o
        )
     {
-        $ARG = $1;
+	$ARG = $1;
     }
 
     $debug  > 2 and   print "$id: -3- $ARG\n";
@@ -7720,17 +7720,17 @@ sub HeaderArrayUpdate ($; $)
 
     if ( $clear )
     {
-        # Because this function "remembers" values, a NEW
-        # file handling must first clear the hash.
+	# Because this function "remembers" values, a NEW
+	# file handling must first clear the hash.
 
-        @HEADING_ARRAY  = ();
-        %HEADING_HASH   = ();
-        %staticNameHash = ();
-        $staticCounter  = 1;
+	@HEADING_ARRAY  = ();
+	%HEADING_HASH   = ();
+	%staticNameHash = ();
+	$staticCounter  = 1;
 
-        $debug > 2  and  print "$id: ARRAYS CLEARED .\n";
+	$debug > 2  and  print "$id: ARRAYS CLEARED .\n";
 
-        return;
+	return;
     }
 
     my $origHeading = $ARG;
@@ -7763,11 +7763,11 @@ sub HeaderArrayUpdate ($; $)
 
     if ( $NAME_UNIQ )               # use numbers for AHREF name=""
     {
-        $ARG = $staticCounter;
+	$ARG = $staticCounter;
     }
     else
     {
-        $ARG = MakeHeadingName $ARG;
+	$ARG = MakeHeadingName $ARG;
     }
 
     #   If MakeHeadingName() Did not get rid of all &auml; and other
@@ -7781,34 +7781,34 @@ sub HeaderArrayUpdate ($; $)
 
     if ( not defined $staticNameHash{ $ARG } ) # are 1-5 words unique?
     {
-        $debug and warn "$id: Added $ARG\n";
-        $staticNameHash{ $ARG } = $origHeading;     # add new
+	$debug and warn "$id: Added $ARG\n";
+	$staticNameHash{ $ARG } = $origHeading;     # add new
     }
     else
     {
-        print "$id: $staticNameHash{$ARG}"; # current value
+	print "$id: $staticNameHash{$ARG}"; # current value
 
-        PrintHash "$id: HEADING_HASH", \%HEADING_HASH, \*STDERR;
+	PrintHash "$id: HEADING_HASH", \%HEADING_HASH, \*STDERR;
 
-        warn Here <<"............EOF";
+	warn Here <<"............EOF";
 
-            $id:
-            LINE NOW  : $origHeading
-            ALREADY   : $staticNameHash{ $ARG }
-            CONVERSION: [$name] --> [$ARG]
+	    $id:
+	    LINE NOW  : $origHeading
+	    ALREADY   : $staticNameHash{ $ARG }
+	    CONVERSION: [$name] --> [$ARG]
 
-            Cannot pick 1-8 words to construct HTML <a name="...">
-            fragment identifier, because there already is an entry
-            with the same name. Please rename all heading so that they
-            do not have the same first 1-5 words.
+	    Cannot pick 1-8 words to construct HTML <a name="...">
+	    fragment identifier, because there already is an entry
+	    with the same name. Please rename all heading so that they
+	    do not have the same first 1-5 words.
 
-            Alternatively you have to turn on option --name-uniq which
-            forces using numbered NAME fragment identifiers instead
-            of more descriptive id strings from headings.
+	    Alternatively you have to turn on option --name-uniq which
+	    forces using numbered NAME fragment identifiers instead
+	    of more descriptive id strings from headings.
 
 ............EOF
 
-        die;
+	die;
     }
 
     # ............................................... update globals ...
@@ -7883,32 +7883,32 @@ sub MakeHeadingHtml ( % )
 
     if ( not $AS_IS and not $FRAME )
     {
-        my $attr = qq( class="btn-toc" );
+	my $attr = qq( class="btn-toc" );
 
-        #   It doesn't matter how the FONT is reduced, it
-        #   won't make the [toc] button any smaller inside the <h> tag.
-        #   -- too bad --
+	#   It doesn't matter how the FONT is reduced, it
+	#   won't make the [toc] button any smaller inside the <h> tag.
+	#   -- too bad --
 
-        if ( $OPT_HEADING_TOP_BUTTON )
-        {
-            my $toc = Language -toc;
+	if ( $OPT_HEADING_TOP_BUTTON )
+	{
+	    my $toc = Language -toc;
 
-            $button = qq(<font size"-2">)
-            .  MakeUrlRef( "#toc", "[$toc]", $attr)
-            .  "</font>"
-            ;
-        }
+	    $button = qq(<font size"-2">)
+	    .  MakeUrlRef( "#toc", "[$toc]", $attr)
+	    .  "</font>"
+	    ;
+	}
 
-        if ( 0 )
-        {
-            $button = MakeUrlRef
-            (
-                    "#toc",
-                    qq(<font size"-2">) . "[toc]" . "</font>"
-                    , $attr
-            );
+	if ( 0 )
+	{
+	    $button = MakeUrlRef
+	    (
+		    "#toc",
+		    qq(<font size"-2">) . "[toc]" . "</font>"
+		    , $attr
+	    );
 
-        }
+	}
     }
 
     $header =~ s/^\s+//;
@@ -7916,23 +7916,23 @@ sub MakeHeadingHtml ( % )
 
     if ( $level == 1 )
     {
-        my $hr = $AS_IS ? "" : $HTML_HASH{hr};
+	my $hr = $AS_IS ? "" : $HTML_HASH{hr};
 
-        $ret = HereQuote << "EOF";
-            $HTML_HASH{p_end}
-            $hr
-                <a name="$hname"  id="$hname"></a>
-                <h1>
-                $header
-                $button
-                </h1>
+	$ret = HereQuote << "EOF";
+	    $HTML_HASH{p_end}
+	    $hr
+		<a name="$hname"  id="$hname"></a>
+		<h1>
+		$header
+		$button
+		</h1>
 
 EOF
 
     }
     elsif ( $level > 1 )
     {
-        $ret = << "EOF";
+	$ret = << "EOF";
 
 $HTML_HASH{p_end}
   <a name="$hname" id="$hname"></a>
@@ -8017,155 +8017,155 @@ sub HtmlFixes ($)
 
     unless ( defined $arrRef )
     {
-        warn "$id: [ERROR] \$arrRef is not defined";
-        return;
+	warn "$id: [ERROR] \$arrRef is not defined";
+	return;
     }
 
     local $ARG = join '', @$arrRef;
 
     if ( 1 )  # Enabled
     {
-        my $tag = '\S+';  # $CSS_CODE_STYLE_NOTE;
+	my $tag = '\S+';  # $CSS_CODE_STYLE_NOTE;
 
-        #   Search <pre> tags and change style to "shade-note"
+	#   Search <pre> tags and change style to "shade-note"
 
-        s{
-            # $1
-            (
-                # $2
-                <table \s+ class=\"([^\"]+)\"\s*>
-                \s+    <tr>
-                # $3
-                \s+    <td \s+ class=\"([^\"]+)\"  \s+  valign=\"top\">
-                \s+   <pre>[ ]*[\r\n]+
-            )
-            # $4, $5, $6
-            (\s*$tag)(.+?)(</pre>) \s+
-        }
-        {
-            my $orig    = $1;
-            my $classT  = $2;
-            my $classTD = $3;
-            my $tagWord = $4;
-            my $text    = $5;
-            my $end     = $6;
+	s{
+	    # $1
+	    (
+		# $2
+		<table \s+ class=\"([^\"]+)\"\s*>
+		\s+    <tr>
+		# $3
+		\s+    <td \s+ class=\"([^\"]+)\"  \s+  valign=\"top\">
+		\s+   <pre>[ ]*[\r\n]+
+	    )
+	    # $4, $5, $6
+	    (\s*$tag)(.+?)(</pre>) \s+
+	}
+	{
+	    my $orig    = $1;
+	    my $classT  = $2;
+	    my $classTD = $3;
+	    my $tagWord = $4;
+	    my $text    = $5;
+	    my $end     = $6;
 
-            my $tagWord2 = XlatHtml2tag $tagWord; # Fix &gt; ==> ">"
-            my $tagcss   = $tagWord2 =~ /$CSS_CODE_STYLE_NOTE/o;
+	    my $tagWord2 = XlatHtml2tag $tagWord; # Fix &gt; ==> ">"
+	    my $tagcss   = $tagWord2 =~ /$CSS_CODE_STYLE_NOTE/o;
 
-            $debug > 7  and  print "$id: #STYLE-CSS [$CSS_CODE_STYLE_NOTE]"
-                                 , " word [$tagWord] tagWord2 [$tagWord2]"
-                                 , " tagcss [$tagcss]";
+	    $debug > 7  and  print "$id: #STYLE-CSS [$CSS_CODE_STYLE_NOTE]"
+				 , " word [$tagWord] tagWord2 [$tagWord2]"
+				 , " tagcss [$tagcss]";
 
-            my $pre     = 0;
-            my $table   = $orig;
-            my $found   = 0;
+	    my $pre     = 0;
+	    my $table   = $orig;
+	    my $found   = 0;
 
-            if ( $tagcss )
-            {
-                $table =~ s/$classT\"/shade-note\"/g;
-                $table =~ s/$classTD\"/shade-note-attrib\"/g;
-                $table =~ s,<(?i:pre)>,<b>$tagWord</b>,;
-                $end   = "";            # remove </pre>
-                $found = 1;
-            }
-            elsif ( $tagWord2 =~ /t2html::(\S+)/ )
-            {
-                #   Command directives for table rendering
-                #
-                #   #t2html::td:bgcolor="#FFFFFF":tableclass:dashed
-                #   #t2html::td:bgcolor="#FFFFFF":tableborder:1
-                #   #t2html::td:class=color-beige
+	    if ( $tagcss )
+	    {
+		$table =~ s/$classT\"/shade-note\"/g;
+		$table =~ s/$classTD\"/shade-note-attrib\"/g;
+		$table =~ s,<(?i:pre)>,<b>$tagWord</b>,;
+		$end   = "";            # remove </pre>
+		$found = 1;
+	    }
+	    elsif ( $tagWord2 =~ /t2html::(\S+)/ )
+	    {
+		#   Command directives for table rendering
+		#
+		#   #t2html::td:bgcolor="#FFFFFF":tableclass:dashed
+		#   #t2html::td:bgcolor="#FFFFFF":tableborder:1
+		#   #t2html::td:class=color-beige
 
-                my $directives = $1;
-                $directives    =~ s/_/ /g;
+		my $directives = $1;
+		$directives    =~ s/_/ /g;
 
-                $tagWord = "";      # Kill first line
-                $pre     = 1;       # Put PRE back
+		$tagWord = "";      # Kill first line
+		$pre     = 1;       # Put PRE back
 
-                while ( $directives =~ /([^:]+):([^:]+)/g )
-                {
-                    my ($key, $val) = ($1, $2);
+		while ( $directives =~ /([^:]+):([^:]+)/g )
+		{
+		    my ($key, $val) = ($1, $2);
 
-                    #  Fix for the HTML
-                    #  $key = class=color-beige
-                    #  => $key = class="color-beige"
+		    #  Fix for the HTML
+		    #  $key = class=color-beige
+		    #  => $key = class="color-beige"
 
-                    if ( $val =~ /=/  and  $val =~  /(.*)=([^\"']+)/ )
-                    {
-                        $val = qq($1="$2");
-                    }
+		    if ( $val =~ /=/  and  $val =~  /(.*)=([^\"']+)/ )
+		    {
+			$val = qq($1="$2");
+		    }
 
-                    if ( $key eq 'td' )
-                    {
-                        $table =~ s/((?i:td[^>]+))class=.[^\"']+./$1$val/g;
-                    }
-                    elsif ( $key eq 'table' )
-                    {
-                        $table =~ s/((?i:table\s+))[^>]+/$1$val/g;
-                    }
-                    elsif ( $key =~ /table(\S+)/ )
-                    {
-                        $key   = $1;
-                        $val   = qq("$val")  unless $val =~ /[\"']/;
-                        $table =~ s/((?i:table[^>]+))$key=.[^\"]+./$1$key=$val/g;
-                    }
-                }
-            }
+		    if ( $key eq 'td' )
+		    {
+			$table =~ s/((?i:td[^>]+))class=.[^\"']+./$1$val/g;
+		    }
+		    elsif ( $key eq 'table' )
+		    {
+			$table =~ s/((?i:table\s+))[^>]+/$1$val/g;
+		    }
+		    elsif ( $key =~ /table(\S+)/ )
+		    {
+			$key   = $1;
+			$val   = qq("$val")  unless $val =~ /[\"']/;
+			$table =~ s/((?i:table[^>]+))$key=.[^\"]+./$1$key=$val/g;
+		    }
+		}
+	    }
 
-            my ( $para, $rest ) = ("", "");
+	    my ( $para, $rest ) = ("", "");
 
-            #   This code is a bit hairy.
-            #   - If there a paragraph (\n\s*\n), then treat it as
-            #     individual TABLE.
-            #   - After this initial pragraph, the rest of
-            #     the text is returned back to the original <pre>
+	    #   This code is a bit hairy.
+	    #   - If there a paragraph (\n\s*\n), then treat it as
+	    #     individual TABLE.
+	    #   - After this initial pragraph, the rest of
+	    #     the text is returned back to the original <pre>
 
-            if ( $found  and  $text =~ /\A(.+?\S)\n\s*\n(.+)/sgm )
-            {
-                ( $para, $rest ) = ( $1, $2 );
+	    if ( $found  and  $text =~ /\A(.+?\S)\n\s*\n(.+)/sgm )
+	    {
+		( $para, $rest ) = ( $1, $2 );
 
-                $debug > 7  and  print "$id: PARAGRAPH [$para] [$rest]\n";
+		$debug > 7  and  print "$id: PARAGRAPH [$para] [$rest]\n";
 
-                $table = $orig;
-                $text  = $rest;
-                $pre   = 1;
+		$table = $orig;
+		$text  = $rest;
+		$pre   = 1;
 
-                $para =  XlatWordMarkup ( XlatTag2html $para );
-                $para = qq(<span class="note12">$tagWord</span> ) . $para;
+		$para =  XlatWordMarkup ( XlatTag2html $para );
+		$para = qq(<span class="note12">$tagWord</span> ) . $para;
 
-                $para = HtmlTable $para, "shade-note", "shade-note-attrib";
+		$para = HtmlTable $para, "shade-note", "shade-note-attrib";
 
-                #  Fix HREF tags back to normal html.
-                $para = XlatHtml2href $para;
-            }
-            else
-            {
-                $tagcss  and $tagWord = "";
-                $text = (XlatTag2html $tagWord . $text);
+		#  Fix HREF tags back to normal html.
+		$para = XlatHtml2href $para;
+	    }
+	    else
+	    {
+		$tagcss  and $tagWord = "";
+		$text = (XlatTag2html $tagWord . $text);
 
-                $debug > 7  and  print "$id: PARAGRAPH-ELSE tagcss [$tagcss]"
-                                     , " found [$found] text [$text]\n";
+		$debug > 7  and  print "$id: PARAGRAPH-ELSE tagcss [$tagcss]"
+				     , " found [$found] text [$text]\n";
 
-                $found  and  $text = XlatWordMarkup $text;
+		$found  and  $text = XlatWordMarkup $text;
 
-                #  Fix HREF tags back to normal html.
-                $text = XlatHtml2href $text;
+		#  Fix HREF tags back to normal html.
+		$text = XlatHtml2href $text;
 
-                $debug > 7  and  print "$id: PARAGRAPH-ELSE (final) text [$text]\n";
+		$debug > 7  and  print "$id: PARAGRAPH-ELSE (final) text [$text]\n";
 
-                # Separate paragraphs
-                # $text =~ s/^\s*$/    <p>/g;
-            }
+		# Separate paragraphs
+		# $text =~ s/^\s*$/    <p>/g;
+	    }
 
-            $text .= "</pre>\n" if $pre and $text !~ /<pre/i;
+	    $text .= "</pre>\n" if $pre and $text !~ /<pre/i;
 
-            my $ret = $para . $table . $text . $end;
+	    my $ret = $para . $table . $text . $end;
 
-            $debug > 7  and  print "$id: REPLACED [$ret]\n";
+	    $debug > 7  and  print "$id: REPLACED [$ret]\n";
 
-            $ret;
-        }esmgx;
+	    $ret;
+	}esmgx;
     }
 
     #   There must be no gaps here
@@ -8246,14 +8246,14 @@ sub DoLineUserTags ( $ )
 
     while ( my($key, $value) = each %REFERENCE_HASH )
     {
-        if ( /$key/ )
-        {
-            $debug  and  print "$id: $ARG -- KEY $key => VAL $value\n";
+	if ( /$key/ )
+	{
+	    $debug  and  print "$id: $ARG -- KEY $key => VAL $value\n";
 
-            s,$key,$value,gi;
+	    s,$key,$value,gi;
 
-            $debug  and  print "$id: $ARG";
-        }
+	    $debug  and  print "$id: $ARG";
+	}
     }
 
     $debug  and  print "$id: RET [$ARG]\n";
@@ -8283,19 +8283,19 @@ sub HtmlCodeSectionEnd ()
 
     if ( $CSS_CODE_STYLE  ne  -notset )
     {
-        #   This will format nicely in the generated HTML
+	#   This will format nicely in the generated HTML
 
-        my $html = << "EOF";
+	my $html = << "EOF";
     </pre>
     </td>
     </tr>
 </table>
 EOF
-        $html;
+	$html;
     }
     else
     {
-        "</pre>\n";
+	"</pre>\n";
     }
 }
 
@@ -8322,18 +8322,18 @@ sub HtmlCodeSectionStart ()
     my $html;
     my %style =
     (
-          -d3           => ["shade-3d"      , "shade-3d-attrib"]
-        , -shade        => ["shade-normal"  , "shade-normal-attrib" ]
-        , -shade2       => ["shade-normal2" , "shade-normal2-attrib" ]
+	  -d3           => ["shade-3d"      , "shade-3d-attrib"]
+	, -shade        => ["shade-normal"  , "shade-normal-attrib" ]
+	, -shade2       => ["shade-normal2" , "shade-normal2-attrib" ]
     );
 
     if( $CSS_CODE_STYLE  ne  -notset
-        and  my $arrRef = $style{$CSS_CODE_STYLE} )
+	and  my $arrRef = $style{$CSS_CODE_STYLE} )
     {
-        my ( $class, $attrib ) = @{ $arrRef } ;
+	my ( $class, $attrib ) = @{ $arrRef } ;
 
 
-        $html = << "EOF";
+	$html = << "EOF";
 <p>
 <table class="$class">
     <tr>
@@ -8343,7 +8343,7 @@ EOF
     }
     else
     {
-        $html = qq(\n<pre class="code">\n);
+	$html = qq(\n<pre class="code">\n);
     }
 
     $debug > 6  and  print "$id: RET [$html]";
@@ -8394,8 +8394,8 @@ sub DoLine ( % )
 
     unless ( defined $arrayRef )
     {
-        warn "$id: [ERROR] \$arrayRef is not defined";
-        return;
+	warn "$id: [ERROR] \$arrayRef is not defined";
+	return;
     }
 
     not defined $input      and warn "$id: INPUT not defined?";
@@ -8412,13 +8412,13 @@ sub DoLine ( % )
 
     my
     (
-        $s1
-        , $s2
-        , $hname
-        , $tmp
-        , $tmpLine
-        , $beg
-        , $end
+	$s1
+	, $s2
+	, $hname
+	, $tmp
+	, $tmpLine
+	, $beg
+	, $end
     );
 
     my $spaces      = 0;
@@ -8464,35 +8464,35 @@ sub DoLine ( % )
 
     unless ( $static7beg )
     {
-        $static7beg = $COLUMN_HASH{ beg7quote };
-        $static7end = $COLUMN_HASH{ end7quote };
+	$static7beg = $COLUMN_HASH{ beg7quote };
+	$static7end = $COLUMN_HASH{ end7quote };
     }
 
     # ................................................. command tags ...
 
     if  ( /^( {1,11})\.([^ \t.].*)/ )
     {
-        # The "DOT" code at the beginning of word. Notice that the dot
-        # code is efective only at columns 1..11
+	# The "DOT" code at the beginning of word. Notice that the dot
+	# code is efective only at columns 1..11
 
-        $debug > 6 and warn "BR $line <$ARG>\n";
+	$debug > 6 and warn "BR $line <$ARG>\n";
 
-        $isBrCode   = 1;
-        $s1         = $1;
-        $s2         = $2;
-        $ARG = $s1 . $s2;    #       Remove the DOT control code
+	$isBrCode   = 1;
+	$s1         = $1;
+	$s2         = $2;
+	$ARG = $s1 . $s2;    #       Remove the DOT control code
     }
 
     if ( /^([ \t]+),([^ \t,].*)/ )                  # The "P" tag
     {
-        # Remove the command from the output.
+	# Remove the command from the output.
 
-        $isPcode    = 1;
-        $s1         = $1;
-        $s2         = $2;
-        $ARG = $s1 . $s2;
+	$isPcode    = 1;
+	$s1         = $1;
+	$s2         = $2;
+	$ARG = $s1 . $s2;
 
-        $debug > 6 and warn "P-code $line $ARG\n";
+	$debug > 6 and warn "P-code $line $ARG\n";
     }
 
     # .................................................. Strip lines ...
@@ -8505,16 +8505,16 @@ sub DoLine ( % )
 
     if
     (
-        /^([\d.]*[\d]\s+)?End\s+of\s+(doc(ument)?|file).*$
-         |
-         ^([\d.]\s+)?End\s*$
-        /xi
+	/^([\d.]*[\d]\s+)?End\s+of\s+(doc(ument)?|file).*$
+	 |
+	 ^([\d.]\s+)?End\s*$
+	/xi
     )
     {
-        #   This is the marked that ends the dokument of file. Do not
-        #   print it.
+	#   This is the marked that ends the dokument of file. Do not
+	#   print it.
 
-        return "";
+	return "";
     }
 
     # ........................................ substitute user tags ...
@@ -8523,9 +8523,9 @@ sub DoLine ( % )
 
     if( /#URL-BASE/ )
     {
-        $debug > 6 and warn ">> $ARG";
+	$debug > 6 and warn ">> $ARG";
 
-        s,#URL-BASE,$base,gi;
+	s,#URL-BASE,$base,gi;
     }
 
     $ARG = XlatTag2html $ARG;
@@ -8541,27 +8541,27 @@ sub DoLine ( % )
     # .................................................... url-as-is ...
 
     if( /(.*)#URL-AS-IS-\s*(\S+)((?:&gt;|>).*)/ or
-        /(.*)#URL-AS-IS-\s*(\S+)(.*)/
+	/(.*)#URL-AS-IS-\s*(\S+)(.*)/
       )
     {
-        my $before = $1;
-        my $url    = $2;
-        my $after  = $3;
+	my $before = $1;
+	my $url    = $2;
+	my $after  = $3;
 
-        #   Extract the last part after directories "dir/dir/file.doc"
+	#   Extract the last part after directories "dir/dir/file.doc"
 
-        my $name   = $url;
+	my $name   = $url;
 
-        if ( $url =~ m,.*/(.*), )
-        {
-            $name = $1;
-        }
+	if ( $url =~ m,.*/(.*), )
+	{
+	    $name = $1;
+	}
 
-        $debug > 6 and warn "URL-AS-IS>> $url";
+	$debug > 6 and warn "URL-AS-IS>> $url";
 
-        $url =  qq(<a href="$url">$name</a>);
+	$url =  qq(<a href="$url">$name</a>);
 
-        $ARG = $before . $url . $after;
+	$ARG = $before . $url . $after;
     }
 
     # ......................................................... &rcs ...
@@ -8576,100 +8576,100 @@ sub DoLine ( % )
 
     if ( /^( +)[^ ]/ )
     {
-        ($spaces) = /^( +)[^ ]/;
-        $spaces   = length $spaces;
+	($spaces) = /^( +)[^ ]/;
+	$spaces   = length $spaces;
     }
 
     if ( /^ {8}[^ ]/o  )
     {
-        $isText = 1;
+	$isText = 1;
     }
     # elsif ( /^$s1(!!)([^!\n\r]*)$/o )
     elsif ( /^ {4}(!!)([^!\n\r]*)/o )
     {
-        #   A special !! code means adding <hr> tag
+	#   A special !! code means adding <hr> tag
 
-        if ( defined $2 )
-        {
-            $ARG = qq(\n<hr class="special"> \n)
-                .  qq(\t <strong><em> $2 </em></strong>$br \n)
-                ;
-        }
-        else
-        {
-             $ARG = "\n<hr> \n\t<!--  BREAK -->   $br\n";
-        }
+	if ( defined $2 )
+	{
+	    $ARG = qq(\n<hr class="special"> \n)
+		.  qq(\t <strong><em> $2 </em></strong>$br \n)
+		;
+	}
+	else
+	{
+	     $ARG = "\n<hr> \n\t<!--  BREAK -->   $br\n";
+	}
     }
     elsif ( $hlevel = IsHeading $ARG )
     {
 
-        $debug > 1  and warn "$id: IsHeading ok, $hlevel, $ARG\n";
+	$debug > 1  and warn "$id: IsHeading ok, $hlevel, $ARG\n";
 
-        $hname = HeaderArrayUpdate $ARG;
-        $ARG   = MakeHeadingHtml -header => $ARG
-                , -headerName            => $hname
-                , -headerLevel           => $hlevel
-                ;
+	$hname = HeaderArrayUpdate $ARG;
+	$ARG   = MakeHeadingHtml -header => $ARG
+		, -headerName            => $hname
+		, -headerLevel           => $hlevel
+		;
 
-        return $ARG;
+	return $ARG;
     }
     elsif
     (       /^ {12,}[^ ]/
-            and not $staticBulletMode
-            and not $isBullet
+	    and not $staticBulletMode
+	    and not $isBullet
     )
     {
-            $AsIs       = 1;
-            $isCode     = 1;
+	    $AsIs       = 1;
+	    $isCode     = 1;
 
-            #  Make it a little shorter by removing spaces
-            #  Otherwise the indent level is too deep
+	    #  Make it a little shorter by removing spaces
+	    #  Otherwise the indent level is too deep
 
-            $debug > 6  and  print "$id: PRE before [$ARG]\n";
+	    $debug > 6  and  print "$id: PRE before [$ARG]\n";
 
-            $ARG = substr $ARG, 6;
+	    $ARG = substr $ARG, 6;
 
-            $debug > 6  and  print "$id: PRE after [$ARG]\n";
+	    $debug > 6  and  print "$id: PRE after [$ARG]\n";
 
-            # $beg = $COLUMN_HASH{beg12};
-            # $end = $COLUMN_HASH{end12};
-            # $ARG = $beg . $ARG . $end;
+	    # $beg = $COLUMN_HASH{beg12};
+	    # $end = $COLUMN_HASH{end12};
+	    # $ARG = $beg . $ARG . $end;
     }
     elsif ( /^ {7}\&quot;(.*)\&quot;/o  )
     {
-        #  Remove quotes
-        $ARG = $1;
+	#  Remove quotes
+	$ARG = $1;
 
-        $debug > 1 and warn "pos7:$ARG\n";
+	$debug > 1 and warn "pos7:$ARG\n";
 
-        $beg = $static7beg;
-        $end = $static7end;
+	$beg = $static7beg;
+	$end = $static7end;
 
-        $ARG = $beg . $ARG . $end . $br;
-        $spaces = 8;                    # for <p class=column8>
+	$ARG = $beg . $ARG . $end . $br;
+	$spaces = 8;                    # for <p class=column8>
     }
 
     # ...................................................... picture ...
 
     if ( /IMG src=/i )
     {
-        if (  $line > 0  and  $AsIs  and  $prevEmpty )
-        {
-            #  if the Image reference #PIC is placed to the code column,
-            #  the <pre> tags are not good at all.
+	if (  $line > 0  and  $AsIs  and  $prevEmpty )
+	{
+	    #  if the Image reference #PIC is placed to the code column,
+	    #  the <pre> tags are not good at all.
 
-            if ( $staticPreMode )
-            {
-                #   Don't leave pictures inside pre tags.
+	    if ( $staticPreMode )
+	    {
+		#   Don't leave pictures inside pre tags.
 
-                my $html = HtmlCodeSectionEnd();
+		my $html = HtmlCodeSectionEnd();
 
-                $ARG = "$html\n\n$ARG";
-                $staticPreMode = 0;
-            }
-        }
+		$ARG = "$html\n\n$ARG";
+		$staticPreMode = 0;
+	    }
+	}
 
-        return "$ARG\n";
+	return "$ARG\n";
     }
 
     # .......................................................... PRE ...
@@ -8678,42 +8678,42 @@ sub DoLine ( % )
 
     if ( $line > 0  and  $AsIs  and  $prevEmpty )
     {
-        unless ( $staticPreMode )
-        {
-            my $html = HtmlCodeSectionStart();
-            $ARG = $html . $ARG;
+	unless ( $staticPreMode )
+	{
+	    my $html = HtmlCodeSectionStart();
+	    $ARG = $html . $ARG;
 
-            $staticPreMode = 1   unless $staticPreMode;
+	    $staticPreMode = 1   unless $staticPreMode;
 
-            if ( $staticPreMode )
-            {
-                $debug > 6  and  print "$id: PRE-1 [$ARG]\n";
-            }
-        }
+	    if ( $staticPreMode )
+	    {
+		$debug > 6  and  print "$id: PRE-1 [$ARG]\n";
+	    }
+	}
     }
 
     if ( not $AsIs and  $next !~ /^ {12,}[^ ]|^[\r\n]+$/ )
     {
-        #   Next non-empty line terminates PRE mode
+	#   Next non-empty line terminates PRE mode
 
-        if ( $staticPreMode )
-        {
-            my $html = HtmlCodeSectionEnd();
-            $ARG = "$html$ARG";
+	if ( $staticPreMode )
+	{
+	    my $html = HtmlCodeSectionEnd();
+	    $ARG = "$html$ARG";
 
-            $staticPreMode = 0;
+	    $staticPreMode = 0;
 
-            $debug > 6  and  print "$id: PRE-0 [$ARG]\n";
-        }
+	    $debug > 6  and  print "$id: PRE-0 [$ARG]\n";
+	}
     }
 
     # disable, not needed
 
     if (  0  and  $staticPreMode  and $AsIs  and
-          $CSS_CODE_STYLE  ne -notset
-        )
+	  $CSS_CODE_STYLE  ne -notset
+	)
     {
-        $ARG .= $br;
+	$ARG .= $br;
     }
 
 
@@ -8722,62 +8722,62 @@ sub DoLine ( % )
     # ...................................................... bullets ...
 
     $debug > 1 and  warn "$id: line $line: "
-                , " spaces $spaces "
-                , " PrevEmpty $prevEmpty "
-                , " NextEmpty $nextEmpty "
-                , " isPrevHdr $isPrevHdr "
-                , " hlevel $hlevel "
-                , " IsBR $isBrCode "
-                , " isPcode $isPcode "
-                , " IsBullet $isBullet "
-                , " StaticBulletMode $staticBulletMode\n"
-                , "ARG[$ARG]\n"
-                , "next[$next]\n"
-                ;
+		, " spaces $spaces "
+		, " PrevEmpty $prevEmpty "
+		, " NextEmpty $nextEmpty "
+		, " isPrevHdr $isPrevHdr "
+		, " hlevel $hlevel "
+		, " IsBR $isBrCode "
+		, " isPcode $isPcode "
+		, " IsBullet $isBullet "
+		, " StaticBulletMode $staticBulletMode\n"
+		, "ARG[$ARG]\n"
+		, "next[$next]\n"
+		;
 
     if ( $isBullet and $prevEmpty  )
     {
-        $s1 =   "<ul>";
-        $s1 =   "<ol>" if $isBullet eq $BULLET_TYPE_NUMBERED;
+	$s1 =   "<ul>";
+	$s1 =   "<ol>" if $isBullet eq $BULLET_TYPE_NUMBERED;
 
-        $ARG              = $s1 . "\n\t<li>" . $bulletText;
-        $staticBulletMode = 1;
-        $isBullet         = 0;  # we handled this. Marks as used.
+	$ARG              = $s1 . "\n\t<li>" . $bulletText;
+	$staticBulletMode = 1;
+	$isBullet         = 0;  # we handled this. Marks as used.
 
-        $debug > 1 and warn "______________BULLET ON [$isBullet] $ARG\n";
+	$debug > 1 and warn "______________BULLET ON [$isBullet] $ARG\n";
     }
 
     if ( ($isBullet or $staticBulletMode) and $nextEmpty )
     {
-        $s1 =   "</ul>";
-        $s1 =   "</ol>" if $isBullet eq $BULLET_TYPE_NUMBERED;
+	$s1 =   "</ul>";
+	$s1 =   "</ol>" if $isBullet eq $BULLET_TYPE_NUMBERED;
 
-        $ARG = "<li>$bulletText" if $isBullet;
+	$ARG = "<li>$bulletText" if $isBullet;
 
-        if ( not $isPcode )
-        {
-            #   if previous paragraph does not contain P code,
-            #   then terminate this bullet
+	if ( not $isPcode )
+	{
+	    #   if previous paragraph does not contain P code,
+	    #   then terminate this bullet
 
-            $staticBulletMode = 0;
-            $ARG              = "\t$ARG</li>\n$s1\n\n";
-        }
-        else
-        {
-            $ARG = "\t$ARG\n<p>\n";             # Continue in bullet mode
-        }
+	    $staticBulletMode = 0;
+	    $ARG              = "\t$ARG</li>\n$s1\n\n";
+	}
+	else
+	{
+	    $ARG = "\t$ARG\n<p>\n";             # Continue in bullet mode
+	}
 
-        $debug > 1 and warn "______________BULLET OFF [$isBullet] $ARG\n";
-        $isBullet = 0;
+	$debug > 1 and warn "______________BULLET OFF [$isBullet] $ARG\n";
+	$isBullet = 0;
     }
 
     if ( $isBullet )
     {
-        my $end = "\t</li>\n"  if $staticBulletMode > 1;
+	my $end = "\t</li>\n"  if $staticBulletMode > 1;
 
-        $ARG = "$end<li>$bulletText";
-        $staticBulletMode++;
-        $debug > 1  and warn "BULLET  $ARG\n";
+	$ARG = "$end<li>$bulletText";
+	$staticBulletMode++;
+	$debug > 1  and warn "BULLET  $ARG\n";
     }
 
     # ...................................... determining line context ...
@@ -8789,7 +8789,7 @@ sub DoLine ( % )
 
     if ( $spaces  == 1  or  $spaces == 2 )
     {
-        $AsIs = $isCode = 1;
+	$AsIs = $isCode = 1;
     }
 
     $debug > 6 and print "$id: %%P-before%% $ARG\n";
@@ -8820,61 +8820,61 @@ sub DoLine ( % )
 
     if
     (
-        $spaces > 0
+	$spaces > 0
 
-        and not $isCode
+	and not $isCode
 
-        # if this the above line was header, we must not insert P tag,
-        # because it would double the line spacing
-        # BUT, if user has moved this line out of col 8, go ahead
-        #
-        # 2007-03-01 not used any more
-        # and ( not $isPrevHdr or ($isPrevHdr and $spaces != 8 ))
+	# if this the above line was header, we must not insert P tag,
+	# because it would double the line spacing
+	# BUT, if user has moved this line out of col 8, go ahead
+	#
+	# 2007-03-01 not used any more
+	# and ( not $isPrevHdr or ($isPrevHdr and $spaces != 8 ))
 
-        and not $hlevel
-        and not $isBullet
-        and not $staticBulletMode
+	and not $hlevel
+	and not $isBullet
+	and not $staticBulletMode
 
-        #   If user has not prohibited using P code
+	#   If user has not prohibited using P code
 
-        and not $isPcode
+	and not $isPcode
 
-        #   these tags do not need P tag, otw line doubles
+	#   these tags do not need P tag, otw line doubles
 
-        and not /<pre>/i
+	and not /<pre>/i
     )
     {
-        my $code;
+	my $code;
 
-        $debug > 6 and
-            print "$id: %%P-in%% prevEmpty [$prevEmpty] nextEmpty [$nextEmpty]\n";
+	$debug > 6 and
+	    print "$id: %%P-in%% prevEmpty [$prevEmpty] nextEmpty [$nextEmpty]\n";
 
-        if ( $prevEmpty )
-        {
-            if ( exists $COLUMN_HASH{ "beg" . $spaces } )
-            {
-                $code = $COLUMN_HASH{ "beg" . $spaces };
-                $ARG = "\n$code\n$ARG";
-            }
-            elsif ( $spaces <= 12 )
-            {
-                $code = " class=" . qq("column) . $spaces . qq(");
-                $ARG = "\n<p$code>\n$ARG";
-            }
-        }
+	if ( $prevEmpty )
+	{
+	    if ( exists $COLUMN_HASH{ "beg" . $spaces } )
+	    {
+		$code = $COLUMN_HASH{ "beg" . $spaces };
+		$ARG = "\n$code\n$ARG";
+	    }
+	    elsif ( $spaces <= 12 )
+	    {
+		$code = " class=" . qq("column) . $spaces . qq(");
+		$ARG = "\n<p$code>\n$ARG";
+	    }
+	}
 
-        if ( $nextEmpty )
-        {
-            if ( exists $COLUMN_HASH{ "end" . $spaces } )
-            {
-                $code = $COLUMN_HASH{ "end" . $spaces };
-                $ARG .= $code . "\n";
-            }
-            elsif ( $spaces <= 12 )
-            {
-                # No </p> needed
-            }
-        }
+	if ( $nextEmpty )
+	{
+	    if ( exists $COLUMN_HASH{ "end" . $spaces } )
+	    {
+		$code = $COLUMN_HASH{ "end" . $spaces };
+		$ARG .= $code . "\n";
+	    }
+	    elsif ( $spaces <= 12 )
+	    {
+		# No </p> needed
+	    }
+	}
     }
 
     $debug > 6 and print "$id: %%P-after%% $ARG\n";
@@ -8888,41 +8888,41 @@ sub DoLine ( % )
 
     if ( not $AsIs )
     {
-        $ARG = XlatWordMarkup $ARG;
+	$ARG = XlatWordMarkup $ARG;
 
-        #   If already has /P then do nothing.
+	#   If already has /P then do nothing.
 
-        if ( $isBrCode  and  not m,</p>,i )
-        {
-            $ARG .= $br;
-        }
+	if ( $isBrCode  and  not m,</p>,i )
+	{
+	    $ARG .= $br;
+	}
     }
 
     # ...................................................... include ...
 
     if( /(.*)#INCLUDE-(\S+)(.*)/ )
     {
-        my $dir = dirname $file;
+	my $dir = dirname $file;
 
-        my $before = $1;
-        my $url    = $2;
-        my $after  = $3;
-        my $mode   = "";
+	my $before = $1;
+	my $url    = $2;
+	my $after  = $3;
+	my $mode   = "";
 
-        if ( $url =~ /^raw:(.*)/ )
-        {
-            $mode = -raw;
-            $url = $1;
-        }
+	if ( $url =~ /^raw:(.*)/ )
+	{
+	    $mode = -raw;
+	    $url = $1;
+	}
 
-        my $out = UrlInclude -dir => $dir, -url => $url, -mode => $mode;
+	my $out = UrlInclude -dir => $dir, -url => $url, -mode => $mode;
 
-        unless ( $out )
-        {
-            warn "$id: Include error '$url' in [$file:$ARG]";
-        }
+	unless ( $out )
+	{
+	    warn "$id: Include error '$url' in [$file:$ARG]";
+	}
 
-        $ARG = $before . $out . $after;
+	$ARG = $before . $out . $after;
 
     }
 
@@ -8981,8 +8981,8 @@ sub HandleOneFile ( % )
 
     unless ( defined $txt )
     {
-        warn "$id: [ERROR] \$txt is not defined";
-        return;
+	warn "$id: [ERROR] \$txt is not defined";
+	return;
     }
 
     $debug  and  warn << "EOF";
@@ -9014,8 +9014,8 @@ EOF
 
     unless ( defined @$txt[0] )
     {
-        warn "$id: [$file] No input lines found"; # We got no input
-        return;
+	warn "$id: [$file] No input lines found"; # We got no input
+	return;
     }
 
     # ..................................................... html2txt ...
@@ -9024,14 +9024,14 @@ EOF
 
     if ( defined @$txt[2] and IsHTML $txt )
     {
-        # warn "$id: Conversion to text:\n";
-        # @$txt = split /\n/, Html2txt($txt);
+	# warn "$id: Conversion to text:\n";
+	# @$txt = split /\n/, Html2txt($txt);
 
-        unless ( $LINK_CHECK or $LINK_CHECK_ERR_TEXT_ONE_LINE )
-        {
-            warn "$id: [WARNING] $file looks like HTML page.\n";
-            die "$id: Did you meant to add option for link check? See --help"
-        }
+	unless ( $LINK_CHECK or $LINK_CHECK_ERR_TEXT_ONE_LINE )
+	{
+	    warn "$id: [WARNING] $file looks like HTML page.\n";
+	    die "$id: Did you meant to add option for link check? See --help"
+	}
     }
 
     $txt =  DeleteEmailHeaders $txt     if $DELETE_EMAIL;
@@ -9045,60 +9045,60 @@ EOF
 
     if ( defined $regexp )
     {
-        @arr = SplitToFiles $regexp, $file, $splitUseFileNames, $txt;
-        print join("\n", @arr), "\n" ;
-        return;                             #todo:
+	@arr = SplitToFiles $regexp, $file, $splitUseFileNames, $txt;
+	print join("\n", @arr), "\n" ;
+	return;                             #todo:
     }
 
     #   Should we ignore some lines according to regexp ?
 
     if ( defined $DELETE_REGEXP  and  not $DELETE_REGEXP eq "")
     {
-        @$txt = grep !/$DELETE_REGEXP/o, @$txt ;
+	@$txt = grep !/$DELETE_REGEXP/o, @$txt ;
     }
 
     @$txt = expand @$txt;                    # Text::Tabs
 
     if ( $linkCheck )
     {
-        LinkCheckMain -file     => $file
-                  , -array      => $txt
-                  , -oneline    => $linkCheckOneLine
-                  ;
-        return;
+	LinkCheckMain -file     => $file
+		  , -array      => $txt
+		  , -oneline    => $linkCheckOneLine
+		  ;
+	return;
     }
     else
     {
-        HeaderArrayClear();
+	HeaderArrayClear();
 
-        for my $line ( @$txt )
-        {
-            if ( defined $line )
-            {
-                my $tmp = DoLine -line  => $line
-                    , -file             => $file
-                    , -base             => $BASE_URL
-                    , -lineNumber       => $i++
-                    , -lineArrayRef     => $txt
-                    ;
+	for my $line ( @$txt )
+	{
+	    if ( defined $line )
+	    {
+		my $tmp = DoLine -line  => $line
+		    , -file             => $file
+		    , -base             => $BASE_URL
+		    , -lineNumber       => $i++
+		    , -lineArrayRef     => $txt
+		    ;
 
-                push @arr, $tmp;
-            }
-        }
+		push @arr, $tmp;
+	    }
+	}
     }
 
     $htmlArrRef = PrintHtmlDoc
-        -arrayRef => \@arr
-        , -lines  => scalar @$txt
-        , -file   => $file
-        , -type   => $OUTPUT_TYPE
-        , -title  => $title
-        , -autor  => $author
-        , -doc    => $doc
-        , -email  => $email
-        , -metadescription => $metaDescription
-        , -metakeywords    => $metaKeywords
-        ;
+	-arrayRef => \@arr
+	, -lines  => scalar @$txt
+	, -file   => $file
+	, -type   => $OUTPUT_TYPE
+	, -title  => $title
+	, -autor  => $author
+	, -doc    => $doc
+	, -email  => $email
+	, -metadescription => $metaDescription
+	, -metakeywords    => $metaKeywords
+	;
 
     $htmlArrRef = HtmlFixes $htmlArrRef;
 
@@ -9106,45 +9106,45 @@ EOF
 
     if ( length $auto )
     {
-        my ( $name, $path, $extension ) = fileparse $file, '\.[^.]+$'; #font '
+	my ( $name, $path, $extension ) = fileparse $file, '\.[^.]+$'; #font '
 
 
-        $debug  and  print "$id: fileparse [$name] [$path] [$extension]\n";
+	$debug  and  print "$id: fileparse [$name] [$path] [$extension]\n";
 
 
-        if ( $auto =~ /../ )        # Suppose filename if more than 2 chars
-        {
-            $path = $auto;
-        }
+	if ( $auto =~ /../ )        # Suppose filename if more than 2 chars
+	{
+	    $path = $auto;
+	}
 
-        my $htmlFile = $path . $name . ".html";
+	my $htmlFile = $path . $name . ".html";
 
-        $verb  and  warn "$id: output automatic => $htmlFile\n";
+	$verb  and  warn "$id: output automatic => $htmlFile\n";
 
-        if ( $frame )
-        {
-            $htmlFile =  FileFrameNameBody();
-            WriteFile $htmlFile,  $htmlArrRef;
+	if ( $frame )
+	{
+	    $htmlFile =  FileFrameNameBody();
+	    WriteFile $htmlFile,  $htmlArrRef;
 
-            #   This is the file browser wants to read. Printed to stdout
+	    #   This is the file browser wants to read. Printed to stdout
 
-            $htmlFile = FileFrameNameMain();
-        }
-        else
-        {
-            $debug  and  print "$id: WRITE non-frame [$htmlFile]\n";
-            WriteFile $htmlFile,  $htmlArrRef;
-        }
+	    $htmlFile = FileFrameNameMain();
+	}
+	else
+	{
+	    $debug  and  print "$id: WRITE non-frame [$htmlFile]\n";
+	    WriteFile $htmlFile,  $htmlArrRef;
+	}
 
-        $htmlFile =~ s/$HOME_ABS_PATH/$HOME/  if defined $HOME_ABS_PATH;
+	$htmlFile =~ s/$HOME_ABS_PATH/$HOME/  if defined $HOME_ABS_PATH;
 
 
-        $PRINT      and print "$name\n";
-        $PRINT_URL  and print "file:$htmlFile\n"
+	$PRINT      and print "$name\n";
+	$PRINT_URL  and print "file:$htmlFile\n"
     }
     else
     {
-        print @$htmlArrRef;
+	print @$htmlArrRef;
     }
 
     $time and  warn "Lines: ", scalar @$txt, " $timeDiff secs\n";
@@ -9181,14 +9181,14 @@ sub TestPageRun ( $ $ ; $ )
 
     if ( grep /fail/i, @ret )
     {
-        print "$id: Please run the command manually and "
-              . "use absolute path names";
+	print "$id: Please run the command manually and "
+	      . "use absolute path names";
     }
     else
     {
-        print "    Original text : $fileText\n"
-            , "    Generated html: $fileHtml\n"
-            ;
+	print "    Original text : $fileText\n"
+	    , "    Generated html: $fileHtml\n"
+	    ;
     }
 
     print @ret   if @ret;
@@ -9405,7 +9405,7 @@ sub TestPage ( $ )
 
     unless (@test)
     {
-        die "[FATAL] Couldn't read DATA. Report this problem";
+	die "[FATAL] Couldn't read DATA. Report this problem";
     }
 
     WriteFile $fileText1, \@test;
@@ -9419,35 +9419,35 @@ sub TestPage ( $ )
 
     if ( not m,[/\\], )
     {
-        #   There is no absolute dir that we could refer to ourself.
-        #   the -S forces perl to search the path, but what if the progrma
-        #   is not in the PATH yet? --> failure.
+	#   There is no absolute dir that we could refer to ourself.
+	#   the -S forces perl to search the path, but what if the progrma
+	#   is not in the PATH yet? --> failure.
 
-        print "$id: WARNING No absolute PROGRAM_NAME $PROGRAM_NAME",
-              "$id: The automatic call may fail, if program is not in \$PATH;"
-              ;
+	print "$id: WARNING No absolute PROGRAM_NAME $PROGRAM_NAME",
+	      "$id: The automatic call may fail, if program is not in \$PATH;"
+	      ;
 
-        $cmd = "perl -S $PROGRAM_NAME";
+	$cmd = "perl -S $PROGRAM_NAME";
     }
     else
     {
-        $cmd = "perl $PROGRAM_NAME";
+	$cmd = "perl $PROGRAM_NAME";
     }
 
     # ..................................................... generate ...
 
     TestPageRun
-        "$cmd --css-code-bg --css-code-note=\"(?:Notice|Note):\""
-        . "  --css-file=\"$cssFile\""
-        . "  --quiet --simple --Out $fileText1"
-        , $fileText1, $fileHtml1
-        ;
+	"$cmd --css-code-bg --css-code-note=\"(?:Notice|Note):\""
+	. "  --css-file=\"$cssFile\""
+	. "  --quiet --simple --Out $fileText1"
+	, $fileText1, $fileHtml1
+	;
 
     TestPageRun
-        "$cmd --as-is --css-code-bg --css-code-note=\"(?:Notice|Note):\""
-        . "  --Out $fileText2"
-        , $fileText2, $fileHtml2
-        ;
+	"$cmd --as-is --css-code-bg --css-code-note=\"(?:Notice|Note):\""
+	. "  --Out $fileText2"
+	, $fileText2, $fileHtml2
+	;
 
 #     TestPageRun
 #         "$cmd --css-font-normal --Out $fileText3"
@@ -9499,18 +9499,18 @@ sub Html2Text ( @ )
 
     unless ( $staticLibChecked )
     {
-        $staticLibChecked = 1;
-        $staticLibStatus = LoadUrlSupport();
+	$staticLibChecked = 1;
+	$staticLibStatus = LoadUrlSupport();
 
-        if ( not $staticLibStatus  and  $verb )
-        {
-            warn "$id: Cannot Convert to HTML. Please get more Perl libraries.";
-        }
+	if ( not $staticLibStatus  and  $verb )
+	{
+	    warn "$id: Cannot Convert to HTML. Please get more Perl libraries.";
+	}
     }
 
     my $content   = join '', @page;
     my $formatter = new HTML::FormatText
-                ( leftmargin => 0, rightmargin => 76);
+		( leftmargin => 0, rightmargin => 76);
 
     # my $parser = HTML::Parser->new();
     # $parser->parse( join '', @list );
@@ -9562,19 +9562,19 @@ sub UrlGet ( $; $ )
 
     unless ( $staticLibChecked )
     {
-        $staticLibChecked = 1;
-        $staticLibStatus = LoadUrlSupport();
+	$staticLibChecked = 1;
+	$staticLibStatus = LoadUrlSupport();
 
-        if ( not $staticLibStatus  and  $verb )
-        {
-            warn "$id: Cannot check remote URLs. Please get more Perl libraries.";
-        }
+	if ( not $staticLibStatus  and  $verb )
+	{
+	    warn "$id: Cannot check remote URLs. Please get more Perl libraries.";
+	}
     }
 
     unless ( $staticLibStatus )
     {
-        $verb  and  print "$id: No URL support: $url\n";
-        return;
+	$verb  and  print "$id: No URL support: $url\n";
+	return;
     }
 
     my $ua      = new LWP::UserAgent;
@@ -9584,8 +9584,8 @@ sub UrlGet ( $; $ )
 
     unless ( $stat )
     {
-        warn "$id  ** error: $url ",  $obj->message, "\n";
-        return;
+	warn "$id  ** error: $url ",  $obj->message, "\n";
+	return;
     }
 
     my $content = $obj->content();
@@ -9594,15 +9594,15 @@ sub UrlGet ( $; $ )
 
     if ( $opt )
     {
-        $ret = Html2Text $content;
+	$ret = Html2Text $content;
 
-        if ( $ret =~ /TABLE NOT SHOWN/ )
-        {
-            $verb  and
-                print "$id: HTML to text conversion failed. Using original.";
+	if ( $ret =~ /TABLE NOT SHOWN/ )
+	{
+	    $verb  and
+		print "$id: HTML to text conversion failed. Using original.";
 
-            $ret = $content;
-        }
+	    $ret = $content;
+	}
     }
 
     $content;
@@ -9635,28 +9635,28 @@ sub OutputDir ( $ )
 
     if ( $ARG_PATH eq "stdin" )
     {
-        $ARG_PATH = "./stdout";
+	$ARG_PATH = "./stdout";
     }
     elsif ( $ARG_PATH !~ m,[/\\],  or $OUTPUT_DIR )
     {
 
-        $debug  and  print "$id: output dir [$OUTPUT_DIR]\n";
+	$debug  and  print "$id: output dir [$OUTPUT_DIR]\n";
 
-        if ( not defined $OUTPUT_DIR  or  $OUTPUT_DIR =~ /^\.$|^\s*$/ )
-        {
-            $ARG_PATH  = cwd();
-        }
-        else
-        {
-           $ARG_PATH = $OUTPUT_DIR;
-        }
+	if ( not defined $OUTPUT_DIR  or  $OUTPUT_DIR =~ /^\.$|^\s*$/ )
+	{
+	    $ARG_PATH  = cwd();
+	}
+	else
+	{
+	   $ARG_PATH = $OUTPUT_DIR;
+	}
 
-        $debug  and  print "$id: arg_path 1 [$ARG_PATH]\n";
+	$debug  and  print "$id: arg_path 1 [$ARG_PATH]\n";
 
-        $ARG_PATH .= "/"  if $ARG_PATH !~ m,/$,;
-        $ARG_PATH .= basename $file;
+	$ARG_PATH .= "/"  if $ARG_PATH !~ m,/$,;
+	$ARG_PATH .= basename $file;
 
-        $debug  and  print "$id: arg_path 2 [$ARG_PATH]\n";
+	$debug  and  print "$id: arg_path 2 [$ARG_PATH]\n";
     }
 
     ($ARG_FILE, $ARG_DIR) = fileparse $ARG_PATH;
@@ -9693,8 +9693,8 @@ sub GetFile ( % )
 
     if ( not $file  and  not $dir )
     {
-        warn "$id: [ERROR] file and dir arguments are empty.";
-        return;
+	warn "$id: [ERROR] file and dir arguments are empty.";
+	return;
     }
 
     my @content;
@@ -9703,48 +9703,48 @@ sub GetFile ( % )
 
     if ( $file =~ m,://, )
     {
-        my $content = UrlGet $file, -text;
+	my $content = UrlGet $file, -text;
 
-        if ( $content )
-        {
-            for my $line ( split /\r?\n/, $content )
-            {
-                push @content, $line . "\n";
-            }
-        }
+	if ( $content )
+	{
+	    for my $line ( split /\r?\n/, $content )
+	    {
+		push @content, $line . "\n";
+	    }
+	}
     }
     else
     {
-        if ( $file !~ m,[\\/]|^[-~]$,  and $dir )
-        {
-            $file  = "$dir/$file";
-        }
+	if ( $file !~ m,[\\/]|^[-~]$,  and $dir )
+	{
+	    $file  = "$dir/$file";
+	}
 
-        unless ( -f $file )
-        {
-            warn "$id: [WARNING] does not look like a file [$file]";
-            return;
-        }
+	unless ( -f $file )
+	{
+	    warn "$id: [WARNING] does not look like a file [$file]";
+	    return;
+	}
 
-        local *FILE;
+	local *FILE;
 
-        unless ( open FILE, $file )
-        {
-            warn "$id: Cannot open [$file] $ERRNO" ;
-        }
-        else
-        {
-            @content = <FILE>;
-        }
+	unless ( open FILE, $file )
+	{
+	    warn "$id: Cannot open [$file] $ERRNO" ;
+	}
+	else
+	{
+	    @content = <FILE>;
+	}
 
-        close FILE              or warn "$id: Cannot close [$file] $ERRNO";
+	close FILE              or warn "$id: Cannot close [$file] $ERRNO";
     }
 
     if ( $debug > 3 )
     {
-        print "$id: file [$file] [$file] CONTENT-START ["
-              , @content
-              , "] CONTENT-END\n";
+	print "$id: file [$file] [$file] CONTENT-START ["
+	      , @content
+	      , "] CONTENT-END\n";
     }
 
     @content;
@@ -9798,8 +9798,8 @@ sub InitArgs (%)
 
     if ( defined $OPT_EMAIL  and  $OPT_EMAIL ne '' )
     {
-        $OPT_EMAIL =~ s/[<>]//g;        # Do this automatic fix
-        CheckEmail $OPT_EMAIL;
+	$OPT_EMAIL =~ s/[<>]//g;        # Do this automatic fix
+	CheckEmail $OPT_EMAIL;
     }
 
     @ARGV;
@@ -9830,9 +9830,9 @@ sub Main ()
 
     if ( defined $cmdline  and  $cmdline =~ /(^|\s)(?:-d|--debug)[\s=]*(\d+)*/ )
     {
-        PrintArray "Main() started - ARGV (orig) ", \@ARGV;
+	PrintArray "Main() started - ARGV (orig) ", \@ARGV;
 
-        $debug = defined $2 ? $2 : 1;
+	$debug = defined $2 ? $2 : 1;
     }
 
     $debug  and  warn "main: ARGV before Initialize() call [@ARGV]\n";
@@ -9847,7 +9847,7 @@ sub Main ()
     $debug  and  warn "$id: ARGV before InitArgs() call [@ARGV]\n";
 
     @ARGV = InitArgs -verb => $origOptVerb
-                   , -argv => \@origARGV;
+		   , -argv => \@origARGV;
 
     $debug  and  warn "$id: ARGV after InitArgs() call [@ARGV]\n";
 
@@ -9868,122 +9868,122 @@ sub Main ()
 
     unless ( @ARGV  )
     {
-        warn "$id: No command line files, reading STDIN.";
-        push @ARGV, "-";
+	warn "$id: No command line files, reading STDIN.";
+	push @ARGV, "-";
     }
 
     for my $url ( @ARGV )
     {
-        my @content = GetFile -file => $url,
-                              -dir  => $dir;
+	my @content = GetFile -file => $url,
+			      -dir  => $dir;
 
-        my ($outFile, $outDir) = OutputDir $url;
+	my ($outFile, $outDir) = OutputDir $url;
 
-        # .............................................. auto detect ...
-        # See if this file should be converted at all
+	# .............................................. auto detect ...
+	# See if this file should be converted at all
 
-        if ( $OPT_AUTO_DETECT )
-        {
-            local $ARG;
-            my $ok;
+	if ( $OPT_AUTO_DETECT )
+	{
+	    local $ARG;
+	    my $ok;
 
-            for ( @content )
-            {
-                /$OPT_AUTO_DETECT/o  and  $ok = 1, last;
-            }
+	    for ( @content )
+	    {
+		/$OPT_AUTO_DETECT/o  and  $ok = 1, last;
+	    }
 
-            unless ( $ok )
-            {
-                $verb  and  print "$id: [AUTO-DETECT] skip $url\n";
-                next;
-            }
-        }
+	    unless ( $ok )
+	    {
+		$verb  and  print "$id: [AUTO-DETECT] skip $url\n";
+		next;
+	    }
+	}
 
-        # ....................................... ready to make html ...
+	# ....................................... ready to make html ...
 
-        $verb  and  warn "$id: Handling URL [$url]\n";
+	$verb  and  warn "$id: Handling URL [$url]\n";
 
-        # ............................................... directives ...
-        #  Read #T2HTML directives
+	# ............................................... directives ...
+	#  Read #T2HTML directives
 
-        $debug > 3  and  print "$id: content before\n<<<\n@content>>>\n";
+	$debug > 3  and  print "$id: content before\n<<<\n@content>>>\n";
 
-        my ($hashRef);
-        ( $hashRef, @content ) = XlatDirectives @content;
-        my %hash = %$hashRef;
+	my ($hashRef);
+	( $hashRef, @content ) = XlatDirectives @content;
+	my %hash = %$hashRef;
 
-        $debug > 3  and  print "$id: content after\n<<<\n@content>>>\n";
+	$debug > 3  and  print "$id: content after\n<<<\n@content>>>\n";
 
-        #   Create local function to access the hash structure.
+	#   Create local function to access the hash structure.
 
-        sub Hash($; $);
-        local *Hash = sub ($; $)
-        {
-            my ($key, $first) = @ARG;
+	sub Hash($; $);
+	local *Hash = sub ($; $)
+	{
+	    my ($key, $first) = @ARG;
 
-            if ( exists $hash{$key} )
-            {
-                my $ref     = $hash{$key};
-                my @values  = $first ? @$ref[0] : @$ref;
+	    if ( exists $hash{$key} )
+	    {
+		my $ref     = $hash{$key};
+		my @values  = $first ? @$ref[0] : @$ref;
 
-                if ( $debug > 2 )
-                {
-                    warn "$id.Hash: ($key, $first) => "
-                       , join( '::', @values)
-                       , "\n";
-                }
+		if ( $debug > 2 )
+		{
+		    warn "$id.Hash: ($key, $first) => "
+		       , join( '::', @values)
+		       , "\n";
+		}
 
-                return shift @values   if @values == 1;
-                return @values;
-            }
+		return shift @values   if @values == 1;
+		return @values;
+	    }
 
-            return ();
-        };
+	    return ();
+	};
 
-        # Cancel all embedded options if user did not want them.
+	# Cancel all embedded options if user did not want them.
 
-        %hash = () unless $OBEY_T2HTML_DIRECTIVES;
+	%hash = () unless $OBEY_T2HTML_DIRECTIVES;
 
-        my @options = Hash("option");
+	my @options = Hash("option");
 
-        if ( @options )
-        {
-            #   Parse user embedded command line directives
+	if ( @options )
+	{
+	    #   Parse user embedded command line directives
 
-            $debug  and  PrintArray "$id: #T2HTML-OPTION list ($url) "
-                                  , \@options;
+	    $debug  and  PrintArray "$id: #T2HTML-OPTION list ($url) "
+				  , \@options;
 
-            InitArgs -verb    => $origOptVerb
-                   , -argv    => \@origARGV
-                   , -argvadd => \@options;
-        }
+	    InitArgs -verb    => $origOptVerb
+		   , -argv    => \@origARGV
+		   , -argvadd => \@options;
+	}
 
-        my $title       = Hash("title", 1)  || "No title";
-        my $doc         = $DOC              || Hash("doc", 1);
-        my $author      = $AUTHOR           || Hash("author", 1);
-        my $email       = $OPT_EMAIL        || Hash("email", 1);
-        my $keywords    = $META_KEYWORDS    || Hash("metakeywords", 1);
-        my $description = $META_DESC        || Hash("metadescription", 1);
-        my $auto        = $OUTPUT_AUTOMATIC ? $outDir : "";
+	my $title       = Hash("title", 1)  || "No title";
+	my $doc         = $DOC              || Hash("doc", 1);
+	my $author      = $AUTHOR           || Hash("author", 1);
+	my $email       = $OPT_EMAIL        || Hash("email", 1);
+	my $keywords    = $META_KEYWORDS    || Hash("metakeywords", 1);
+	my $description = $META_DESC        || Hash("metadescription", 1);
+	my $auto        = $OUTPUT_AUTOMATIC ? $outDir : "";
 
-        if ( @content )
-        {
-            HandleOneFile -array    => \@content
-                , -title            => $title
-                , -doc              => $doc
-                , -author           => $author
-                , -email            => $email
-                , -file             => $url
-                , -regexp           => $SPLIT_REGEXP
-                , -split            => $SPLIT_NAME_FILENAMES
-                , -auto             => $auto
-                , -frame            => $FRAME
-                , -linkCheck        => $LINK_CHECK
-                , -linkCheckOneLine => $LINK_CHECK_ERR_TEXT_ONE_LINE
-                , -metakeywords     => $keywords
-                , -metadescription  => $description
-                ;
-        }
+	if ( @content )
+	{
+	    HandleOneFile -array    => \@content
+		, -title            => $title
+		, -doc              => $doc
+		, -author           => $author
+		, -email            => $email
+		, -file             => $url
+		, -regexp           => $SPLIT_REGEXP
+		, -split            => $SPLIT_NAME_FILENAMES
+		, -auto             => $auto
+		, -frame            => $FRAME
+		, -linkCheck        => $LINK_CHECK
+		, -linkCheckOneLine => $LINK_CHECK_ERR_TEXT_ONE_LINE
+		, -metakeywords     => $keywords
+		, -metadescription  => $description
+		;
+	}
     }
 
     LinkCache -action => '-write';
@@ -9998,7 +9998,7 @@ sub TestDriverLinkExtractor ()
 
     for my $lib ( "LWP::UserAgent", "HTML::LinkExtractor" )
     {
-        CheckModule "$lib"       or die "$id: $lib [ERROR] $ERRNO";
+	CheckModule "$lib"       or die "$id: $lib [ERROR] $ERRNO";
     }
 
     $MODULE_LINKEXTRACTOR_OK = 1;
@@ -10011,15 +10011,15 @@ sub TestDriverLinkExtractor ()
 
     if ( $response->is_success() )
     {
-        my %hash = ReadLinksMain -file  => $url
-                               , -array => [$response->content()]
-                               ;
+	my %hash = ReadLinksMain -file  => $url
+			       , -array => [$response->content()]
+			       ;
 
-        PrintHash "$id: $url ", \%hash, \*STDOUT;
+	PrintHash "$id: $url ", \%hash, \*STDOUT;
     }
     else
     {
-        warn "$ERRNO";
+	warn "$ERRNO";
     }
 }
 
@@ -10033,120 +10033,120 @@ Main();
 __DATA__
 t2html Test Page
 
-        #T2HTML-TITLE           Page title is embedded inside text file
-        #t2HTML-EMAIL           author@examle.com
-        #T2HTML-AUTHOR          John Doe
-        #T2HTML-METAKEYWORDS    test, html, example
-        #T2HTML-METADESCRIPTION This is test page of program t2html
+	#T2HTML-TITLE           Page title is embedded inside text file
+	#t2HTML-EMAIL           author@examle.com
+	#T2HTML-AUTHOR          John Doe
+	#T2HTML-METAKEYWORDS    test, html, example
+	#T2HTML-METADESCRIPTION This is test page of program t2html
 
-        Copyright (C) 1996-2007 Jari Aalto
+	Copyright (C) 1996-2007 Jari Aalto
 
-        License: This material may be distributed only subject to
-        the terms and conditions set forth in GNU General Public
-        License v2 or later; or, at your option, distributed under the
-        terms of GNU Free Documentation License version 1.2 or later
-        (GNU FDL).
+	License: This material may be distributed only subject to
+	the terms and conditions set forth in GNU General Public
+	License v2 or later; or, at your option, distributed under the
+	terms of GNU Free Documentation License version 1.2 or later
+	(GNU FDL).
 
-        This is a demonstration text of Perl Text To HTML
-        converter.
+	This is a demonstration text of Perl Text To HTML
+	converter.
 
     Headings
 
-        The tool provides for two heading levels. Combined with
-        bullets and numbered lists, it ought to be enough for most
-        purposes, unless you really like section 1.2.3.4.5
+	The tool provides for two heading levels. Combined with
+	bullets and numbered lists, it ought to be enough for most
+	purposes, unless you really like section 1.2.3.4.5
 
-        You can insert links to headings or other documents. The
-        convention is interior links are made by joining the first
-        four words of the heading with underscores, so they must be
-        unique. A link to a heading below looks like this in the text
-        document and generates the link shown. There also is syntax
-        for automatically inserting a base URL (see the tool
-        documentation).
+	You can insert links to headings or other documents. The
+	convention is interior links are made by joining the first
+	four words of the heading with underscores, so they must be
+	unique. A link to a heading below looks like this in the text
+	document and generates the link shown. There also is syntax
+	for automatically inserting a base URL (see the tool
+	documentation).
 
-        The following blue link is generated with markup code:
-        # REF #Markup ;(Markup);
+	The following blue link is generated with markup code:
+	# REF #Markup ;(Markup);
 
-        #REF #Markup ;(Markup);
+	#REF #Markup ;(Markup);
 
     Markup
 
-        The markup here is mostly based on column position, meaning
-        mostly no tags. The exceptions are special marks for bullets
-        and for emphasis. See later sections for the effects of column
-        position on the output HTML.
+	The markup here is mostly based on column position, meaning
+	mostly no tags. The exceptions are special marks for bullets
+	and for emphasis. See later sections for the effects of column
+	position on the output HTML.
 
-        .Text surrounded by = equals = comes out =another= =color=
-        .Text surrounded by backquote/forward quote comes out `color' `
-        .Text surrounded by * asterisks * comes out *italic* *text*
-        .Text surrounded by _ underscores _ comes out _bold_
-        .The long dash -- is signified with two consequent dashes (-)
-        .The plus-minus is signified with (+) and (-) markers combined +-4
-        .Big character "C" in parentheses ( C ) make a copyright sign (C)
-        .Registered trade mark sign (R) is big character "R" in parentheses ( R )
-        .Euro sign is small character "e" right after digit: 400e
-        .Degree sign is number "0" in parentheses just after number: 5(0)C
-        .Superscript is maerked with bracket immediately attached to text[see this]
-        .Special HTML entities can embedded in a normal way, like: &times; &lt; &gt; &le; &ge; &ne; &radic; &minus; &alpha; &beta; &gamma; &#402; &divide; &laquo; &raquo; - &ndash; &mdash; &asymp; &equiv; &lsaquo; &rsaquo; &sum; &infin; &trade;
+	.Text surrounded by = equals = comes out =another= =color=
+	.Text surrounded by backquote/forward quote comes out `color' `
+	.Text surrounded by * asterisks * comes out *italic* *text*
+	.Text surrounded by _ underscores _ comes out _bold_
+	.The long dash -- is signified with two consequent dashes (-)
+	.The plus-minus is signified with (+) and (-) markers combined +-4
+	.Big character "C" in parentheses ( C ) make a copyright sign (C)
+	.Registered trade mark sign (R) is big character "R" in parentheses ( R )
+	.Euro sign is small character "e" right after digit: 400e
+	.Degree sign is number "0" in parentheses just after number: 5(0)C
+	.Superscript is maerked with bracket immediately attached to text[see this]
+	.Special HTML entities can embedded in a normal way, like: &times; &lt; &gt; &le; &ge; &ne; &radic; &minus; &alpha; &beta; &gamma; &#402; &divide; &laquo; &raquo; - &ndash; &mdash; &asymp; &equiv; &lsaquo; &rsaquo; &sum; &infin; &trade;
 
 
     Emacs minor mode
 
-        If you use the advertised Emacs minor mode (tinytf.el) you can
-        easily renumber headings as you revise the text. Test is also
-        colorized as you edit content.
+	If you use the advertised Emacs minor mode (tinytf.el) you can
+	easily renumber headings as you revise the text. Test is also
+	colorized as you edit content.
 
-        The editing mode can automatically generate the table of
-        contents and the HTML generator can use it to generate a two
-        frame output with the TOC in the left frame as hotlinks to the
-        sections and subsections.
-        Visit http://freshmeat.net/projects/emacs-tiny-tools
+	The editing mode can automatically generate the table of
+	contents and the HTML generator can use it to generate a two
+	frame output with the TOC in the left frame as hotlinks to the
+	sections and subsections.
+	Visit http://freshmeat.net/projects/emacs-tiny-tools
 
     Bullets, lists, and links
 
-        This is ordinary text.
+	This is ordinary text.
 
-        o   This is a bullet paragraph with a continuation mark
-            (leading comma) in the last line. It will not work if the
-            ,comma is on the same line as the bullet.
+	o   This is a bullet paragraph with a continuation mark
+	    (leading comma) in the last line. It will not work if the
+	    ,comma is on the same line as the bullet.
 
-            This is a continued bullet paragraph. You use a leading
-            comma in the last line of the previous block to make a
-            continued item. This is ok except the paragraph fill code
-            (for the previous paragraph) cannot deal with it. Maybe
-            it is a hint not to do continued bullets, or a hint not to
-            put the comma in until you are done formatting.
+	    This is a continued bullet paragraph. You use a leading
+	    comma in the last line of the previous block to make a
+	    continued item. This is ok except the paragraph fill code
+	    (for the previous paragraph) cannot deal with it. Maybe
+	    it is a hint not to do continued bullets, or a hint not to
+	    put the comma in until you are done formatting.
 
-        o   The next bullet.  the sldjf sldjf sldkjf slkdjf sldkjf
-            lsdkjf slkdjf sldkjf sldkjf lskdj flskdjf lskdjf lsdkjf.
+	o   The next bullet.  the sldjf sldjf sldkjf slkdjf sldkjf
+	    lsdkjf slkdjf sldkjf sldkjf lskdj flskdjf lskdjf lsdkjf.
 
-        .   This is a numbered list, made with a '.' in column 8 of its
-            first line and text in column 12. You may not have blank
-            lines between the items.
-        .   Clickable email <gork@ork.com>.
-        .   Non-clickable email gork@ork.com.
-        .   Clickable link: http://this.com
-        .   Non-clickable link: -http://this.com.
-        .   Clickable file: file:/home/gork/x.txt.
+	.   This is a numbered list, made with a '.' in column 8 of its
+	    first line and text in column 12. You may not have blank
+	    lines between the items.
+	.   Clickable email <gork@ork.com>.
+	.   Non-clickable email gork@ork.com.
+	.   Clickable link: http://this.com
+	.   Non-clickable link: -http://this.com.
+	.   Clickable file: file:/home/gork/x.txt.
 
     Line breaking
 
-        Ordinary text with leading dot(.) forces line breaks in the HTML.
-        .Here is a line with forced break.
-        .Here is another line thatcontains dot-code at the beginning.
+	Ordinary text with leading dot(.) forces line breaks in the HTML.
+	.Here is a line with forced break.
+	.Here is another line thatcontains dot-code at the beginning.
 
     Specials
 
-        You can use superscripts[1], multiple[(2)] and almost
-        any[(ab)] and imaginable[IV superscripts]
+	You can use superscripts[1], multiple[(2)] and almost
+	any[(ab)] and imaginable[IV superscripts]
 
 Samples per column (heading level h1)
 
-        These samples show the range of effects produced by writing
-        text beginning in different columns.  The column numbers
-        referred to are columns in the source text, not (obviously)
-        the output. The column numbering is counted starting from 0,
-        _not_ _number_ _1_.
+	These samples show the range of effects produced by writing
+	text beginning in different columns.  The column numbers
+	referred to are columns in the source text, not (obviously)
+	the output. The column numbering is counted starting from 0,
+	_not_ _number_ _1_.
 
  Column 1, is undefined and nothing special.
 
@@ -10166,143 +10166,143 @@ Samples per column (heading level h1)
 
        "Column 7, start and end with double quote. Use for inner TOPICS"
 
-        Column 8, standard text _strong_ *emphasized*
+	Column 8, standard text _strong_ *emphasized*
 
-         Column 9, font weight bold, not italic.
+	 Column 9, font weight bold, not italic.
 
-          Column 10, quotation text, italic serif. This text has been made a
-          little smaller and condensed than the rest of the text.
-          More quotation text. More quotation text. More quotation text.
-          More quotation text. More quotation text. More quotation text.
-          More quotation text. More quotation text. More quotation text.
-          More quotation text. More quotation text. More quotation text.
+	  Column 10, quotation text, italic serif. This text has been made a
+	  little smaller and condensed than the rest of the text.
+	  More quotation text. More quotation text. More quotation text.
+	  More quotation text. More quotation text. More quotation text.
+	  More quotation text. More quotation text. More quotation text.
+	  More quotation text. More quotation text. More quotation text.
 
-           Column 11, another color, for questions, exercise texts etc.
+	   Column 11, another color, for questions, exercise texts etc.
 
-            Note: It is possible to say something important at
-            column 12, which is normally reserved for CODE.
-            You must supply options --css-code-bg and
-            --css-code-note=Note:
+	    Note: It is possible to say something important at
+	    column 12, which is normally reserved for CODE.
+	    You must supply options --css-code-bg and
+	    --css-code-note=Note:
 
-        Here is the code column 12:
+	Here is the code column 12:
 
-            Note: Here is something important to tell you about this code
-            This part of the text in first paragrah is rendered differently,
-            because it started with magic word _Note:_ The rest of the
-            pararagraphs are rendered as CODE.
+	    Note: Here is something important to tell you about this code
+	    This part of the text in first paragrah is rendered differently,
+	    because it started with magic word _Note:_ The rest of the
+	    pararagraphs are rendered as CODE.
 
-            /* Column 12 code */
-            /* 10pt courier navy */
-            // col 12 and beyond stay as is to preserve code formatting.
+	    /* Column 12 code */
+	    /* 10pt courier navy */
+	    // col 12 and beyond stay as is to preserve code formatting.
 
-            for( i=0 ; i < 10 ; i++ )
-            {
-                more();
-                whatever();
-            }
+	    for( i=0 ; i < 10 ; i++ )
+	    {
+		more();
+		whatever();
+	    }
 
     Another level 2 heading (column 4)
 
-        Here is more ordinary text.
+	Here is more ordinary text.
 
 Table rendering examples
 
-        These examples make sense only if the options *--css-code-bg*
-        (use gray background for column 12) and
-        *--css-code-note=Note:* have been turned on. If orfer to take
-        full advantage of all the possibilities, you should introduce
-        yourself to the HTML 4.01 specification and peek the CSS code
-        in the generated HTML: the *tableclass* can take an attribute
-        of the embedded default styles.
+	These examples make sense only if the options *--css-code-bg*
+	(use gray background for column 12) and
+	*--css-code-note=Note:* have been turned on. If orfer to take
+	full advantage of all the possibilities, you should introduce
+	yourself to the HTML 4.01 specification and peek the CSS code
+	in the generated HTML: the *tableclass* can take an attribute
+	of the embedded default styles.
 
-            Note: This is example 1 and `--css-code-note' options
-            reads 'First word' in paragraph at column 12 and
-            renders it differently. You can attache code right after
-            this note, which must occupy only one paragraph
+	    Note: This is example 1 and `--css-code-note' options
+	    reads 'First word' in paragraph at column 12 and
+	    renders it differently. You can attache code right after
+	    this note, which must occupy only one paragraph
 
-            --css-code-note=REGEXP      Regexp matches 'First word'
-            --css-code-bg
+	    --css-code-note=REGEXP      Regexp matches 'First word'
+	    --css-code-bg
 
-        Here is example 2 using table control code
-        #t2html::tableborder:1
+	Here is example 2 using table control code
+	#t2html::tableborder:1
 
-            #t2html::tableborder:1
+	    #t2html::tableborder:1
 
-            for ( i = 0; i++; i < 10 )
-            {
-                //  Doing something in this loop
-            }
+	    for ( i = 0; i++; i < 10 )
+	    {
+		//  Doing something in this loop
+	    }
 
-        Here is example 3 using table control code
-        #t2html::td:bgcolor=#FFEEFF:tableclass:solid
+	Here is example 3 using table control code
+	#t2html::td:bgcolor=#FFEEFF:tableclass:solid
 
-            #t2html::td:bgcolor=#FFEEFF:tableclass:solid
+	    #t2html::td:bgcolor=#FFEEFF:tableclass:solid
 
-            for ( i = 0; i++; i < 10 )
-            {
-                //  Doing something in this loop
-            }
+	    for ( i = 0; i++; i < 10 )
+	    {
+		//  Doing something in this loop
+	    }
 
-        Here is example 4 using table control code
-        #t2html::td:bgcolor=#CCFFCC
+	Here is example 4 using table control code
+	#t2html::td:bgcolor=#CCFFCC
 
-            #t2html::td:bgcolor=#CCFFCC
+	    #t2html::td:bgcolor=#CCFFCC
 
-            for ( i = 0; i++; i < 10 )
-            {
-                //  Doing something in this loop
-            }
+	    for ( i = 0; i++; i < 10 )
+	    {
+		//  Doing something in this loop
+	    }
 
-        Here is example 5 using table control code. Due to bug in
-        Opera 7-9.x, this exmaple may now show correctly. Please use
-        Firefox to see the effect.
-        #t2html::td:bgcolor=#FFFFFF:tableclass:dashed
+	Here is example 5 using table control code. Due to bug in
+	Opera 7-9.x, this exmaple may now show correctly. Please use
+	Firefox to see the effect.
+	#t2html::td:bgcolor=#FFFFFF:tableclass:dashed
 
-            #t2html::td:bgcolor=#FFFFFF:tableclass:dashed
+	    #t2html::td:bgcolor=#FFFFFF:tableclass:dashed
 
-            for ( i = 0; i++; i < 10 )
-            {
-                //  Doing something in this loop
-            }
+	    for ( i = 0; i++; i < 10 )
+	    {
+		//  Doing something in this loop
+	    }
 
-        Here is example 6 using multiple table control codes. Use
-        underscore sccharacter to separate different table attributes
-        from each other. The underscore will be vconverted into
-        SPACE. The double quotes around the VALUE are not strictly
-        required by HTML standard, but they are expected in XML.
-        #t2html::td:bgcolor="#EAEAEA":table:border=1_border=0_cellpadding="10"_cellspacing="0"
+	Here is example 6 using multiple table control codes. Use
+	underscore sccharacter to separate different table attributes
+	from each other. The underscore will be vconverted into
+	SPACE. The double quotes around the VALUE are not strictly
+	required by HTML standard, but they are expected in XML.
+	#t2html::td:bgcolor="#EAEAEA":table:border=1_border=0_cellpadding="10"_cellspacing="0"
 
-            #t2html::td:bgcolor="#EAEAEA":table:border=1_border=0_cellpadding="10"_cellspacing="0"
+	    #t2html::td:bgcolor="#EAEAEA":table:border=1_border=0_cellpadding="10"_cellspacing="0"
 
-            for ( i = 0; i++; i < 10 )
-            {
-                //  Doing something in this loop
-            }
+	    for ( i = 0; i++; i < 10 )
+	    {
+		//  Doing something in this loop
+	    }
 
-        Here is example 7 using table control code
-        #t2html::td:class=color-navy:table:cellpadding=0 which cancels
-        default grey coloring. The cellpadding must be zeroed, around
-        the text to make room.
+	Here is example 7 using table control code
+	#t2html::td:class=color-navy:table:cellpadding=0 which cancels
+	default grey coloring. The cellpadding must be zeroed, around
+	the text to make room.
 
-            #t2html::td:class=color-white:table:cellpadding=0
+	    #t2html::td:class=color-white:table:cellpadding=0
 
-            for ( i = 0; i++; i < 10 )
-            {
-                //  Doing something in this loop
-            }
+	    for ( i = 0; i++; i < 10 )
+	    {
+		//  Doing something in this loop
+	    }
 
 Conversion program
 
-        The perl program t2html turns the raw technical text format
-        into HTML. Among other things it can produce HTML files with
-        an index frame, a main frame, and a master that ties the two
-        together. It has features too numerous to list to control the
-        output. For details see the perldoc than is embeddedinside the
-        program:
+	The perl program t2html turns the raw technical text format
+	into HTML. Among other things it can produce HTML files with
+	an index frame, a main frame, and a master that ties the two
+	together. It has features too numerous to list to control the
+	output. For details see the perldoc than is embeddedinside the
+	program:
 
-            perl -S t2html --help | more
+	    perl -S t2html --help | more
 
-        The frame aware html pages are generated by adding the
-        *--html-frame* option.
+	The frame aware html pages are generated by adding the
+	*--html-frame* option.
 
 __END__

@@ -1,3 +1,8 @@
+2008-09-19  Jari Aalto  <jari.aalto@cante.net>
+
+	* t2html.pl (CssData): Move closing qq() so that no
+	extra whitespaces are written to EOL.
+
 2007-10-19  Jari Aalto  <jaalto@cante.cante.net>
 
 	* t2html.pl (HtmlFixes): Correct grouping expressions
