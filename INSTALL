@@ -4,29 +4,30 @@ Perl Text to HTML converter
 System wide install
 
         Run makefile with appropriate parameters. The program is
-        installed without any file extension.
+        installed without the .pl file suffix
 
-            make help
             make DESTDIR= prefix=/usr/local install
 
 Manual install:
 
         Copy bin/*.pl somewhere along $PATH or use
 
-            make DESTDIR=$HOME prefix=/usr install
+            make DESTDIR=$HOME prefix=/. install
 
 Optional
 
-        In order to use link checking feature (--Link* option), extra
-        Perl modules are needed:
+        In order to use the link checking feature (--Link* option), extra
+        Perl modules are needed. Check with these commands if they are
+	already installed.
 
             perl -MHTML::FormatText -e 'print ok'
             perl -MHTML::Parse      -e 'print ok'
             perl -MLWP::UserAgent   -e 'print ok'
 
-        To install these, visit http://cpan.perl.org or use:
+        To install them, visit http://cpan.perl.org or if you have
+	administrative rights to install software, use commands:
 
             perl -MCPAN -e shell
-            cpan> install <module>
+            cpan> install <module name>
 
 End of file
