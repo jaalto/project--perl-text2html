@@ -16,9 +16,9 @@
 \bCVS\b
 \bRCS\b
 \bSVN\b
-\.svn
+\.bzr
 \.git
-
+\.svn
 
 # Ignore build and install directories
 \.build
