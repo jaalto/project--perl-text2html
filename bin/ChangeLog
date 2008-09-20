@@ -1,3 +1,7 @@
+2008-09-20  Jari Aalto  <jari.aalto@cante.net>
+
+	* t2html.pl (JavaScript): Remove EOL whitespace from output.
+
 2008-09-19  Jari Aalto  <jari.aalto@cante.net>
 
 	* t2html.pl (CssData): Move closing qq() so that no

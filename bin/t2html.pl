@@ -118,7 +118,7 @@ IMPORT:             #   These are environment variables
     #   this file is saved. See Emacs module tinperl.el where the
     #   feature is implemented.
 
-    $VERSION = '2008.0919.2313';
+    $VERSION = '2008.0920.1435';
 
 # }}}
 # {{{ Initial setup
@@ -5627,6 +5627,7 @@ sub JavaScript (; $)
     else
     {
 	my $css = CssData $type;
+	$css =~ s/[ \t]+$//gm;
 
 	#  won't work in Browsers....
 	#  <style type="text/css"  media="screen, print">
