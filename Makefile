@@ -65,22 +65,17 @@ all: perl-shebang-fix
 
 install: all install-script-bin install-man1 install-doc
 
-# Rule: realclean - Clean everything
-realclean: distclean
-
 # Rule: html - Generate or update HTML documentation
 doc/conversion/index.html: doc/conversion/index.txt
 	perl -S t2html.pl --Auto-detect --Out --print-url $<
 
-html: doc/conversion/index.html
-
 # Rule: doc - Generate or update manual page documentation
-doc: bin/$(BIN).1
+man: bin/$(BIN).1
 
-# Rule: check - Check that program does not have compilation errors
-test:
-	perl -cw $(SRC)
+doc: man doc/conversion/index.html
 
-.PHONY: install install-doc install-man install-test realclean html test
+test: perl-test
+
+.PHONY: install doc test
 
 # End of file
