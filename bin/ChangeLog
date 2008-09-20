@@ -2,6 +2,8 @@
 
 	* t2html.pl (CssData): Move closing qq() so that no
 	extra whitespaces are written to EOL.
+	(MakeToc): <dic class=toc">, remove id=toc, because it
+	is already defined one line below. W3C validator error.
 
 2007-10-19  Jari Aalto  <jaalto@cante.cante.net>
 

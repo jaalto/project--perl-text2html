@@ -118,7 +118,7 @@ IMPORT:             #   These are environment variables
     #   this file is saved. See Emacs module tinperl.el where the
     #   feature is implemented.
 
-    $VERSION = '2008.0919.2235';
+    $VERSION = '2008.0919.2313';
 
 # }}}
 # {{{ Initial setup
@@ -5962,7 +5962,7 @@ $HTML_HASH{beg}
 	push @ret , MakeComment "TABLE OF CONTENT START";
 	push @ret, <<"........EOF";
 
-<div class="toc" id="toc">
+<div class="toc">
 <a name="toc" id="toc" class="name"></a>
 <h1>
     $toc
