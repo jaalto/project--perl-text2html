@@ -2,17 +2,16 @@ Perl Text to HTML converter
 ---------------------------
 
 Convert text files into HTML 4.01/CSS2 fromat. The text files are written
-naturally using headings and indented paragraphs. The is no markup language.
+naturally using headings and indented paragraphs. There are *only* _minimal_
+=markup= `tokens'.
 
-    bin/	    The program and project administration utilities
-    doc/            Documentation in various formats
-    etc/makefile    Administrative files; install and project management
+    bin/	    	The program and manual page *.1
+    doc/            	Documentation
 
 Important files
 
-    doc/txt/README.txt          General project information
-    doc/txt/LICENSE.txt 	Licensing information
-    bin/ChangeLog		Project change records
+    doc/license/ 	Licensing information
+    bin/ChangeLog 	Project change records
 
 Project contacts
 
