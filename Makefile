@@ -32,7 +32,7 @@ PL			= $(PACKAGE).pl
 BIN			= $(PACKAGE)
 SRC			= bin/$(PL)
 
-WWWROOT			= ..
+WWWROOT			= $(shell echo $$(pwd)/..)
 INSTALL_OBJS		= $(BIN)
 INSTALL_DOC_OBJS	= COPYING README
 INSTALL_MAN1_OBJS	= bin/*.1
