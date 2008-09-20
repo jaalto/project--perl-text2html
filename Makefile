@@ -19,11 +19,12 @@ endif
 
 MAKEDIR	= admin/mk
 
-include $(MAKEDIR)/vars.mk
-include $(MAKEDIR)/manifest.mk
 include $(MAKEDIR)/clean.mk
+include $(MAKEDIR)/install.mk
+include $(MAKEDIR)/manifest.mk
 include $(MAKEDIR)/perl.mk
 include $(MAKEDIR)/release.mk
+include $(MAKEDIR)/vars.mk
 include $(MAKEDIR)/www.mk
 
 PACKAGE			= t2html
