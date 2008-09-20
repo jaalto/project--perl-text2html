@@ -14,7 +14,7 @@
 #	<http://www.gnu.org/copyleft/gpl.html>.
 
 distclean: clean
-	rm -rf .build
+	rm -rf .build .sinst .inst tmp
 
 clean:
 	-find . -type f \

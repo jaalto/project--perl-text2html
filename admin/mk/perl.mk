@@ -25,6 +25,10 @@ perl-shebang-fix:
 	    fi							 \
 	fi
 
-.PHONY: perl-fix
+# Rule perl-test: Test PL_SCRIPT for compile errors
+perl-test:
+	perl -cw $(PL_SCRIPT)
+
+.PHONY: perl-fix perl-test
 
 # End of file
