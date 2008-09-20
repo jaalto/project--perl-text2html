@@ -1,5 +1,5 @@
 NAME
-    t2html.pl - Simple text to HTML converter. Relies on text indentation
+    t2html - Simple text to HTML converter. Relies on text indentation
     rules.
 
 README
@@ -64,25 +64,25 @@ README
 SYNOPSIS
     To convert text file into HTML:
 
-        t2html.pl [options] file.txt > file.html
+        t2html [options] file.txt > file.html
 
     In addition to making HTML pages, program includes feature to check
     broken links and report them in *egrep -n* like fashion:
 
-        t2html.pl --Link-check-single --quiet file.txt
+        t2html --Link-check-single --quiet file.txt
 
     To check links from multiple pages and cache good links to separate
     file, use --Link-cache option. The next link check will run much faster
     because cached valid links will not be fetched again. At regular
     intervals delete the link cache file to force complete check.
 
-        t2html.pl --Link-check-single --Link-cache ~/tmp/link.cache \
+        t2html --Link-check-single --Link-cache ~/tmp/link.cache \
                   --quiet file.txt
 
     In case there are need for slides, is is possible to plit big document
     into pieces according to toplevel headings:
 
-        t2html.pl --S1 --SN | t2html.pl --simple -Out
+        t2html --S1 --SN | t2html --simple -Out
 
 OPTIONS
   Html: Header and Footer options
@@ -168,7 +168,7 @@ OPTIONS
 
             # ... somewhere $prev or $next may get set, or then not
 
-            qx(t2html.pl --button-top "$top" --button-prev "$prev" --button-next "$next" ...);
+            qx(t2html --button-top "$top" --button-prev "$prev" --button-next "$next" ...);
 
             # End of sample program
 
@@ -202,7 +202,7 @@ OPTIONS
         Contents (NAME AHREF tags) in a document. The list is outputted to
         stderr, so that it can be separated:
 
-            % t2html.pl --Toc-url-print tmp.txt > file.html 2> toc-list.txt
+            % t2html --Toc-url-print tmp.txt > file.html 2> toc-list.txt
 
         Where would you need this? If you want to know the fragment
         identifies for your file, you need the list of names.
@@ -231,7 +231,7 @@ OPTIONS
         rope.
 
         With this options, instead of rendering column 12 text with
-        <PRE>..</PRE>, the text appears just like regular text, but with a
+        <pre>..</pre>, the text appears just like regular text, but with a
         twist. The background color of the text has been changed to darker
         grey to visually stand out form the text.
 
@@ -274,7 +274,7 @@ OPTIONS
                 }
 
         As if this were not enough, there are some special table control
-        directives that let you control the <TABLE>..</TABLE> which is put
+        directives that let you control the <table>..</table> which is put
         around the code section at column 12. Here are few examples:
 
             Here is example 1
@@ -315,7 +315,7 @@ OPTIONS
 
         Looks cryptic? Cannot help that and in order for you to completely
         understand what these directives do, you need to undertand what
-        elements can be added to the <TABLE> and <TD> tokens. Refer to HTML
+        elements can be added to the <table> and <td> tokens. Refer to HTML
         specification for available attributes. Here is briefing what you
         can do:
 
@@ -330,11 +330,11 @@ OPTIONS
 
             td:ATTRIBUTES
                |
-               This is converted into <TD attributes>
+               This is converted into <td attributes>
 
             table:ATTRIBUTES
                   |
-                  This is converted into <TABLE attributes>
+                  This is converted into <table attributes>
 
         There can be no spaces in the ATTRIBUTES, because the "First-word"
         must be one contiguous word. An underscore can be used in place of
@@ -342,16 +342,16 @@ OPTIONS
 
             table:border=1_width=94%
                   |
-                  Interpreted as <TABLE border="1" width="94%">
+                  Interpreted as <table border="1" width="94%">
 
         It is also possible to change the default CLASS style with word
         "tableclass". In order the CLASS to be useful, its CSS definitions
         must be either in the default configuration or supplied from a
         external file. See option --script-file.
 
-            tableclass:CLASS
+            tableclass:name
                        |
-                       Interpreted as <TABLE class="CLASS">
+                       Interpreted as <table class="name">
 
         For example, there are couple of default styles that can be used:
 
@@ -376,7 +376,7 @@ OPTIONS
         You can change any individual value of the default table definition
         which is:
 
-            <TABLE  class="shade-note">
+            <table  class="shade-note">
 
         To change e.g. only value cellpadding, you would say:
 
@@ -458,14 +458,14 @@ OPTIONS
         changed because they are reserved for headings. Here are some
         samples:
 
-            --html-column-beg="7quote <EM class='quote7'>"
-            --html-column-end="7quote </EM>"
+            --html-column-beg="7quote <em class='quote7'>"
+            --html-column-end="7quote </em>"
 
-            --html-column-beg="10    <PRE> class='column10'"
-            --html-column-end="10    </PRE>"
+            --html-column-beg="10    <pre> class='column10'"
+            --html-column-end="10    </pre>"
 
-            --html-column-beg="quote <SPAN class='word'>"
-            --html-column-end="quote </SPAN>"
+            --html-column-beg="quote <span class='word'>"
+            --html-column-end="quote </span>"
 
         Note: You can only give specifications up till column 12. If text is
         beyound column 12, it is interpreted like it were at column 12.
@@ -540,8 +540,8 @@ OPTIONS
         maintainer.
 
     --script-file FILE
-        Include java code that must be complete <SCRIPT...></SCRIPT> from
-        FILE. The code is put inside <HEAD> of each HTML.
+        Include java code that must be complete <script...></script> from
+        FILE. The code is put inside <head> of each HTML.
 
         The --script-file is a general way to import anything into the HEAD
         element. Eg. If you want to keep separate style definitions for all,
@@ -562,14 +562,14 @@ OPTIONS
         topic "7.4.4 Meta data"
 
     --name-uniq
-        First 1-4 words from the heading are used for the HTML *NAME* tags.
+        First 1-4 words from the heading are used for the HTML *name* tags.
         However, it is possible that two same headings start with exactly
         the same 1-4 words. In those cases you have to turn on this option.
         It will use counter 00 - 999 instead of words from headings to
-        construct HTML *NAME* references.
+        construct HTML *name* references.
 
         Please use this option only in emergencies, because referring to
-        jump block *NAME* via
+        jump block *name* via
 
             httpI://example.com/doc.html#header_name
 
@@ -590,7 +590,7 @@ OPTIONS
         but only if they look like HTML base files:
 
             find . -name "*.txt" -type f \
-                 -exec t2html.pl --Auto-detect --verbose --Out {} \;
+                 -exec t2html --Auto-detect --verbose --Out {} \;
 
         The command searches all *.txt files under current directory and
         feeds them to conversion program. The --Auto-detect only converts
@@ -648,7 +648,7 @@ OPTIONS
         dramatically improve long searches. Consider this example, where
         every text file is checked recursively.
 
-            $ t2html.pl --Link-check-single \
+            $ t2html --Link-check-single \
               --quiet --Link-cache ~tmp/link.cache \
               `find . -name "*.txt" -type f`
 
@@ -669,7 +669,7 @@ OPTIONS
         Print filename to stdout after HTML processing. Normally program
         prints no file names, only the generated HTML.
 
-            % t2html.pl --Out --print page.txt
+            % t2html --Out --print page.txt
 
             --> page.html
 
@@ -677,7 +677,7 @@ OPTIONS
         Print filename in URL format. This is useful if you want to check
         the layout immediately with your browser.
 
-            % t2html.pl --Out --print-url page.txt | xargs lynx
+            % t2html --Out --print-url page.txt | xargs lynx
 
             --> file: /users/foo/txt/page.html
 
@@ -789,7 +789,7 @@ DESCRIPTION
 
                Emphatised text at column 7, like heading level 3
 
-               "Special <EM> text at column 7 starts with double quote"
+               "Special <em> text at column 7 starts with double quote"
 
                 Another standard text block at column 8 txt txt txt
                 txt txt txt txt txt txt txt txt txt txt txt txt txt
@@ -805,7 +805,7 @@ DESCRIPTION
 
                     Column 12 and further is reserved for code examples
                     Column 12 and further is reserved for code examples
-                    All text here are surrounded by <PRE> HTML codes
+                    All text here are surrounded by <pre> HTML codes
                     (This CODE column in affected by --css-code* options,
                     see more ideas from there.)
 
@@ -845,7 +845,7 @@ DESCRIPTION
                     code, it tells this paragraph to continue in
                     bullet mode, otherwise this text at column 12
                     would be intepreted as code section surrpoundedn
-                    by <PRE> HTML codes.
+                    by <pre> HTML codes.
 
                 *   Bullet 2, text starts at column 12
                 *   Bullet 3. Bullets are adviced to keep together
@@ -862,8 +862,8 @@ DESCRIPTION
                 .This line has BR code and is displayed in line by itself.
                 .This line has BR code and is displayed in line by itself.
 
-                !! This adds an <HR> HTML code, text in line is marked with
-                !! <STRONG> <EM>
+                !! This adds an <hr> HTML code, text in line is marked with
+                !! <strong> <em>
 
                "This is emphasised text starting at column 7"
                 .And this text is put after the previous line with BR code
@@ -902,12 +902,12 @@ DESCRIPTION
         are 0 and 4 and the heading must start with big letter or number
 
     *   at column 4, if the text starts with small letter, that line is
-        interpreted as <STRONG>
+        interpreted as <strong>
 
-    *   A HTML <HR> mark is added just before printing heading at level 1.
+    *   A HTML <hr> mark is added just before printing heading at level 1.
 
     *   The headings are gathered, the TOC is built and inserted to the
-        beginning of HTML page. The HTML <NAME> references used in TOC are
+        beginning of HTML page. The HTML <name> references used in TOC are
         the first 4 sequential words from the headings. Make sure your
         headings are uniquely named, otherwise there will be same NAME
         references in the generated HTML. Spaces are converted into
@@ -921,18 +921,18 @@ TEXT PLACEMENT RULES
     *   Text at column 0 is undefined if it does not start with big letter
         or number to indicate Heading level 1.
 
-    *   Text between colums 1-3 is marked with <EM>
+    *   Text between colums 1-3 is marked with <em>
 
     *   Column 4 is reserved for heading level 2
 
-    *   Text between colums 5-7 is marked with <STRONG>
+    *   Text between colums 5-7 is marked with <strong>
 
-    *   Text at column 7 is <EM> if the first character is double quote.
+    *   Text at column 7 is <em> if the first character is double quote.
 
-    *   Column 10 is reserved for <EM> text. If you want to quote someone or
+    *   Column 10 is reserved for <em> text. If you want to quote someone or
         to add reference text, place the text in this column.
 
-    *   Text at colums 9,11 are marked with <STRONG>
+    *   Text at colums 9,11 are marked with <strong>
 
     Column 8 for text and special codes
 
@@ -943,9 +943,9 @@ TEXT PLACEMENT RULES
 
     Column 12 is special
 
-    *   Column 12 is treated specially: block is started with <PRE> and
-        lines are marked as <SAMP></SAMP>. When the last text at *column* 12
-        is found, the block is closed with </PRE> Note follwing example
+    *   Column 12 is treated specially: block is started with <pre> and
+        lines are marked as <samp></samp>. When the last text at *column* 12
+        is found, the block is closed with </pre> Note follwing example
 
             txt txt txt         ;evenly placed block, fine, do it like this
             txt txt
@@ -961,18 +961,18 @@ TEXT PLACEMENT RULES
 
   Additional tokens for use at column 8
     *   If there is "."(dot) at the beginning of a line and immediately
-        non-whitespace, then <BR> code is added to the end of line.
+        non-whitespace, then <br> code is added to the end of line.
 
             .This line has BR code at the end.
             While these two line are joined together
             by your browser, depending on the frame width.
 
-    *   If there is ","(comma) then the <P> code is not inserted if the
+    *   If there is ","(comma) then the <p> code is not inserted if the
         previous line is empty. If you use both "."(dot) and ","(comma),
         they must be in order dot-comma. The ","(comma) works differently if
         it is used in bullet
 
-        A <P> is always added if there is separation of paragraphs, but when
+        A <p> is always added if there is separation of paragraphs, but when
         you are writing a bullet, there is a problem, because a bullet exist
         only as long as text is kept together
 
@@ -981,7 +981,7 @@ TEXT PLACEMENT RULES
 
         But to write bullets tat spread multiple paragraphs, you must
         instruct that those are to kept together and the text in next
-        paragraph is not <SAMPLE> while it is placed at column 12
+        paragraph is not <sample> while it is placed at column 12
 
             *   This is a bullet and it has all text ketp together
                 ,even if there is another line in the bullet.
@@ -996,16 +996,16 @@ TEXT PLACEMENT RULES
 
   Special text markings
     italic, bold, code, small, big tokens
-            _this_      is intepreted as <STRONG class='word'>this</STRONG>
-            *this*      is intepreted as <EM class='word'>this</EM>
-            `this'      is intepreted as <SAMPLE class='word'>this</SAMPLE> `
+            _this_      is intepreted as <strong class='word'>this</strong>
+            *this*      is intepreted as <em class='word'>this</em>
+            `this'      is intepreted as <sample class='word'>this</sample> `
 
         Exra modifiers that can be mixed with the above. Usually if you want
         bigger font, CAPITALIZE THE WORDS.
 
-            =this=      is intepreted as <SPAN class="word-small">this</SPAN>
-            +this+      is intepreted as <SPAN class="word-big">this</SPAN>
-            word [this] is intepreted as <SPAN class="word-ref">this</SPAN>
+            =this=      is intepreted as <span class="word-small">this</span>
+            +this+      is intepreted as <span class="word-big">this</span>
+            word [this] is intepreted as <span class="word-ref">this</span>
 
     supercripting
             word[this]  is intepreted as superscript. You can use like
@@ -1031,25 +1031,25 @@ TEXT PLACEMENT RULES
         needed. The isea is simple: you write HTML as usual but double every
         < and > characters, like:
 
-            <<P>>
+            <<p>>
 
         The other rule is that all, let's repeat, ALL PURE HTML must be kept
         together. There must be no line breaks between pure HTML lines. This
         is "invalid:"
 
-            <<TABLE>
+            <<table>
 
-                <<TR>>One
-                <<TR>>two
+                <<tr>>one
+                <<tr>>two
 
-            <</TABLE>>
+            <</table>>
 
         The pure HTML must be written without separating newlines:
 
-            <<TABLE>
-                <<TR>>One
-                <<TR>>two
-            <</TABLE>>
+            <<table>
+                <<tr>>one
+                <<tr>>two
+            <</table>>
 
         This "doubling" affects normal text writing rules as well. If you
         write documents, where you describe Unix styled HERE-documents, you
@@ -1068,8 +1068,8 @@ TEXT PLACEMENT RULES
 
     drawing a short separator
         A !! (two exclamation marks) at text column (position 8) causes
-        adding immediate <HR> code. Any text after !! in the same line is
-        written with <STRONG> <EM> and inserted just after <HR> code,
+        adding immediate <hr> code. any text after !! in the same line is
+        written with <strong> <em> and inserted just after <hr> code,
         therefore the word formatting commands have no effect in this line.
 
   Http and email marking control
@@ -1168,15 +1168,15 @@ EMBEDDED DIRECTIVES INSIDE TEXT
         picture below, only the lines within the BODY, marked with !!, are
         included:
 
-            <HTML>
-              <HEAD>
+            <html>
+              <head>
                 ...
-              </HEAD>
-              <BODY>
-                This text                 !!
-                And more of this          !!
-              </BODY>
-            </HTML>
+              </head>
+              <body>
+                this text                 !!
+                and more of this          !!
+              </body>
+            </html>
 
         Examples:
 
@@ -1194,8 +1194,8 @@ EMBEDDED DIRECTIVES INSIDE TEXT
 
             2.  The Text that appears below picture
 
-            3.  Additional attributes that are attached inside <IMG> tag.
-                For <IMG width="200" height="200">, the line would
+            3.  Additional attributes that are attached inside <img> tag.
+                For <img width="200" height="200">, the line would
                 read:
 
                 #PIC some.png#Caption Text#width=200 length=200##
@@ -1208,7 +1208,7 @@ EMBEDDED DIRECTIVES INSIDE TEXT
         --no-picture-alt.
 
     Fragment identifiers for named tags
-        #REF command is used for refering to HTML <NAME> tag inside current
+        #REF command is used for refering to HTML <name> tag inside current
         document. The whole command must be placed on one single line and
         cannot be broken to multiple lines. An example:
 
@@ -1248,7 +1248,7 @@ EMBEDDED DIRECTIVES INSIDE TEXT
 
         Th generated HTML code will read:
 
-            <A HREF="doc/mytext.doc">mytext.doc</A>
+            <a href="doc/mytext.doc">mytext.doc</a>
 
 TABLE OF CONTENT HEADING
     If there is heading 1, which is named exactly "Table of Contents", then
@@ -1268,7 +1268,7 @@ TROUBLESHOOTING
     Next, you may have put text at wrong column position. Remember that the
     regular text is at column 8.
 
-    If generated HTML suddendly starts using only one font, eg <PRE>, then
+    If generated HTML suddendly starts using only one font, eg <pre>, then
     you have forgot to close the block. Make it read even, like this:
 
         Code block
@@ -1282,11 +1282,11 @@ TROUBLESHOOTING
 EXAMPLES
     To print the test page and show all the possibilities:
 
-        % t2html.pl --test-page
+        % t2html --test-page
 
     To make simple HTML page without any meta information:
 
-        % t2html.pl --title "Html Page Title" --author "Mr. Foo" \
+        % t2html --title "Html Page Title" --author "Mr. Foo" \
           --simple --Out --print file.txt
 
     If you have periodic post in email format, use --delete-email-headers to
@@ -1302,7 +1302,7 @@ EXAMPLES
     colors and frames. Pay attention to switch *--html-body* which defines
     document language.
 
-        % t2html.pl                                         \
+        % t2html                                         \
         --print                                             \
         --Out                                               \
         --author    "Mr. foo"                               \
@@ -1325,20 +1325,20 @@ EXAMPLES
     To check links and print status of all links in par with the http error
     message (most verbose):
 
-        % t2html.pl --link-check file.txt | tee link-error.log
+        % t2html --link-check file.txt | tee link-error.log
 
     To print only problematic links:
 
-        % t2html.pl --link-check --quiet file.txt | tee link-error.log
+        % t2html --link-check --quiet file.txt | tee link-error.log
 
     To print terse output in egep -n like manner: line number, link and
     error code:
 
-        % t2html.pl --link-check-single --quiet file.txt | tee link-error.log
+        % t2html --link-check-single --quiet file.txt | tee link-error.log
 
     To split large document into pieces, and convert each piece to HTML:
 
-        % t2html.pl --split1 --split-name file.txt | t2html --simple -Out
+        % t2html --split1 --split-name file.txt | t2html --simple -Out
 
 ENVIRONMENT
     EMAIL
@@ -1427,646 +1427,646 @@ See option --css-file to replace default CSS.
 
 
 
-        /*
+	/*
 
-            ///////////////////////////////////////////////////////////
-               NOTE    NOTE    NOTE    NOTE    NOTE    NOTE    NOTE
+	    ///////////////////////////////////////////////////////////
+	       NOTE    NOTE    NOTE    NOTE    NOTE    NOTE    NOTE
 
-            This is the default CSS 2.0 generated by the program,
-            please see "t2html.pl --help" for option --script-file
-            to import your own CSS and Java definitions into the page.
+	    This is the default CSS 2.0 generated by the program,
+	    please see "t2html --help" for option --script-file
+	    to import your own CSS and Java definitions into the page.
 
-            XHTML note: at page http://www.w3.org/TR/xhtml1/#guidelines
-            It is recommended that CSS2 with XHTML use lowercase
-            element and attribute names
+	    XHTML note: at page http://www.w3.org/TR/xhtml1/#guidelines
+	    It is recommended that CSS2 with XHTML use lowercase
+	    element and attribute names
 
-            This default CSS2 has been validated according to
-            http://jigsaw.w3.org/css-validator/validator-uri.html.en
+	    This default CSS2 has been validated according to
+	    http://jigsaw.w3.org/css-validator/validator-uri.html.en
 
-            To design colors, visit:
-            http://www.btexact.com/people/rigdence/colours/
+	    To design colors, visit:
+	    http://www.btexact.com/people/rigdence/colours/
 
-               NOTE    NOTE    NOTE    NOTE    NOTE    NOTE    NOTE
-            ///////////////////////////////////////////////////////////
+	       NOTE    NOTE    NOTE    NOTE    NOTE    NOTE    NOTE
+	    ///////////////////////////////////////////////////////////
 
-            Comments on the CSS tags:
+	    Comments on the CSS tags:
 
-            -   block-width: "thin" (Netscape ok, MSIE nok)
+	    -   block-width: "thin" (Netscape ok, MSIE nok)
 
-            NETSCAPE 4.05
+	    NETSCAPE 4.05
 
-            -  In general does not render CSS very well. Eg
-               font size changes does not show up in screen.
-            -  :hover property is not recognised
+	    -  In general does not render CSS very well. Eg
+	       font size changes does not show up in screen.
+	    -  :hover property is not recognised
 
-            NETSCAPE 4.75 as of 2000-10-01
+	    NETSCAPE 4.75 as of 2000-10-01
 
-            -  Shows garbage for stylesheet section that marked CITATION.
-               (IE has no trouble to show it)
+	    -  Shows garbage for stylesheet section that marked CITATION.
+	       (IE has no trouble to show it)
 
-            MSIE 4.0+
+	    MSIE 4.0+
 
-            - Renders CSS very well.
+	    - Renders CSS very well.
 
-            Media types
+	    Media types
 
-            - Netscape does not transfer the CSS element definitions to
-              the "print" media as it should. They only affect Browser
-              or media "screen"
-            - That is why you really have to say EM STRONG ... /STRONG EM
-              to get that kind of text seen in printer too. You cannot
-              just define P.column7 { ... }
+	    - Netscape does not transfer the CSS element definitions to
+	      the "print" media as it should. They only affect Browser
+	      or media "screen"
+	    - That is why you really have to say EM STRONG ... /STRONG EM
+	      to get that kind of text seen in printer too. You cannot
+	      just define P.column7 { ... }
 
-            The @media CSS definition is not supported by Netscape 4.05
-            I do not know if MSIE 4.0 supports it.
+	    The @media CSS definition is not supported by Netscape 4.05
+	    I do not know if MSIE 4.0 supports it.
 
-            So doing this would cause CSS to be ignored completely
-            (never mind that CSS says the default CSS applies to "visual",
-            which means both print and scree types.)
+	    So doing this would cause CSS to be ignored completely
+	    (never mind that CSS says the default CSS applies to "visual",
+	    which means both print and scree types.)
 
-                @media print, screen {  P.code {..}  }
+		@media print, screen {  P.code {..}  }
 
-            To work around that, we separate the definitions with
+	    To work around that, we separate the definitions with
 
-                P.code { .. }               // For screen
+		P.code { .. }               // For screen
 
-                @media print { P.code      // for printer
-                {
-                    ..
-                }}
+		@media print { P.code      // for printer
+		{
+		    ..
+		}}
 
-            And wish that some newer browser will render it right.
+	    And wish that some newer browser will render it right.
 
-        */
+	*/
 
-        /*   ///////////////////////////////////////////////// HEADINGS */
+	/*   ///////////////////////////////////////////////// HEADINGS */
 
-        h1.default
-        {
-            font-family: bold x-large Arial,helvetica,Sans-serif;
-            padding-top: 10pt;
-        }
+	h1.default
+	{
+	    font-family: bold x-large Arial,helvetica,Sans-serif;
+	    padding-top: 10pt;
+	}
 
-        h2.default
-        {
-            font-family: bold large Arial,Helvetica,Sans-serif;
-        }
+	h2.default
+	{
+	    font-family: bold large Arial,Helvetica,Sans-serif;
+	}
 
-        h3.default
-        {
-            font-family: bold medium Arial,Helvetica,Sans-serif;
-        }
+	h3.default
+	{
+	    font-family: bold medium Arial,Helvetica,Sans-serif;
+	}
 
-        h4.default
-        {
-            font-family: medium Arial,Helvetica,Sans-serif;
-        }
+	h4.default
+	{
+	    font-family: medium Arial,Helvetica,Sans-serif;
+	}
 
-        /*   ////////////////////////// Make pointing AHREF more visual */
+	/*   ////////////////////////// Make pointing AHREF more visual */
 
-        body
-        {
-            
-            
-
-            /*
-                More readable font, Like Arial in MS Word
-                The background color is grey
-
-                font-family: "verdana", sans-serif;
-                background-color: #dddddd;
-                foreground-color: #000000;
-
-                Traditional "Book" and newspaper font
-                font-family: "Times New Roman", serif;
-            */
-        }
-
-        a:link
-        {
-            font-style: italic;
-        }
-
-        /*   A name=... link references */
-
-        a.name
-        {
-            font-style: normal;
-        }
-
-        a:hover
-        {
-            color:           purple;
-            background:      #AFB;
-            text-decoration: none;
-        }
-
-            /* cancel above italic in TOC and Navigation buttons */
-
-        a.btn:link
-        {
-            font-style: normal;
-        }
-
-            /* each link in TOC */
-
-
-        a.toc
-        {
-            font-family: verdana, sans-serif;
-            font-style: normal;
-        }
-
-        a.toc:link
-        {
-            font-style: normal;
-        }
-
-            /* [toc] heading button which appears in non-frame html */
-
-        a.btn-toc:link
-        {
-            font-style: normal;
-            font-family: verdana, sans-serif;
-            /* font-size:  0.7em; */
-        }
-
-        /*  //////////////////////////////////// Format the code sections  */
-
-        /*  MSIE ok, Netscape nok: Indent text to same level to the right  */
-
-        blockquote
-        {
-            margin-right: 2em;
-        }
-
-        @media print   { BLOCKQUOTE
-        {
-            margin-right: 0;
-        }}
-
-        samp.code
-        {
-            color: Navy;
-        }
-
-        hr.special
-        {
-            width: 50%;
-            text-align; left;
-        }
-
-        pre
-        {
-            font-family:   "Courier New", monospace;
-            font-size:     0.8em;
-            margin-top:    1em;
-            margin-bottom: 1em;
-        }
-
-        pre.code
-        {
-            color: Navy;
-        }
-
-        p.code, p.code1, p.code2
-        {
-            /*
-               margin-top:     0.4em;
-               margin-bottom:  0.4em;
-               line-height:    0.9em;
-            */
-
-            font-family:    "Courier New", monospace;
-            font-size:      0.8em;
-            color:          Navy;
-        }
-
-        /* //////////////////////// tables /////////////////////////// */
-
-        table
-        {
-            border: none;
-            width: 100%;
-            cellpadding: 10px;
-            cellspacing: 0px;
-        }
-
-        table.basic
-        {
-                font-family:    "Courier New", monospace;
-                color: Navy;
-        }
-
-        table.dashed
-        {
-
-                /* font-family: sans-serif; /*
-                /* background:  #F7DE9C; */
-
-                color: Navy;
-
-                border-top:     1px #999999 solid;
-                border-left:    1px #999999 solid;
-                border-right:   1px #666666 solid;
-                border-bottom:  1px #666666 solid;
-                border-width:   94%;
-                border-style: dashed; /* dotted */
-
-
-                /* line-height: 105%; */
-        }
-
-        table.solid
-        {
-                font-family:    "Courier New", monospace;
-                /* afont-size:      0.8em; */
-
-                color:          Navy;
-
-                /* font-family: sans-serif; /*
-                /* background:  #F7DE9C; */
-
-                border-top:     1px #CCCCCC solid;
-                border-left:    1px #CCCCCC solid; /* 999999 */
-                border-right:   1px #666666 solid;
-                border-bottom:  1px #666666 solid; /* dark grey */
-                /* line-height: 105%; */
-        }
-
-        /* Make 3D styled layout by thickening the boton + right. */
-
-        table.shade-3d
-        {
-                font-family:    "Courier New", monospace;
-                font-size:      0.8em;
-
-                color:          #999999; /* Navy; */
-
-                /* font-family: sans-serif; /*
-                /* background:  #F7DE9C; */
-
-                /* border-top:  1px #999999 solid; */
-                /* border-left: 1px #999999 solid; */
-                border-right:   4px #666666 solid;
-                border-bottom:  3px #666666 solid;
-                /* line-height: 105%; */
-        }
-
-        .shade-3d-attrib
-        {
-            /*
-                F9EDCC          Light Orange
-                FAEFD2          Even lighter Orange
-
-                #FFFFCC         Light yellow, lime
-
-            */
-
-            background: #FFFFCC;
-        }
-
-        table tr td pre
-        {
-                /*  Make PRE tables "airy" */
-                margin-top:    1em;
-                margin-bottom: 1em;
-        }
-
-        table.shade-normal
-        {
-                font-family:    "Courier New", monospace;
-                /* font-size:      0.9em; */
-                color:          Navy;
-        }
-
-        .shade-normal-attrib
-        {
-            /*  grey: EAEAEA, F0F0F0 FFFFCC
-                lime: F7F7DE CCFFCC
-                pinkish: E6F1FD D8E9FB C6DEFA FFEEFF (light ... darker)
-                slightly darker than F1F1F1: #EFEFEF;
-            */
-            background: #F1F1F1;
-        }
-
-        table.shade-normal2
-        {
-                font-family:    "Courier New", monospace;
-        }
-
-        .shade-normal2-attrib
-        {
-            background: #E0E0F0;
-        }
-
-        .shade-note-attrib
-        {
-            /*  darker is #E0E0F0; */
-            /* background: #E5ECF3; */
-            background: #E5ECF3;
-            font-family: Georgia, "New Century Schoolbook",
-                         Palatino, Verdana, Helvetica, serif;
-            font-size: 0.8em;
-        }
-
-        /* ..................................... colors ................. */
-
-        .color-white
-        {
-            color: Navy;
-            background: #FFFFFF;
-        }
-
-        .color-fg-navy
-        {
-            color: navy;
-        }
-
-        .color-fg-blue
-        {
-            color: blue;
-        }
-
-        .color-fg-teal
-        {
-            color: teal;
-        }
-
-        /*   Nice combination: teal-dark, beige2 and  beige-dark */
-
-        .color-teal-dark
-        {
-            color: #96EFF2;
-        }
-
-        .color-beige
-        {
-            color: Navy;
-            background: #F7F7DE;
-        }
-
-        .color-beige2
-        {
-            color: Navy;
-            background: #FAFACA;
-        }
-
-        .color-beige3
-        {
-            color: Navy;
-            background: #F5F5E9;
-        }
-
-        .color-beige-dark
-        {
-            color: Navy;
-            background: #CFEFBD;
-        }
-
-        .color-pink-dark
-        {
-            background: #E6F1FD;
-        }
-
-        .color-pink-medium
-        {
-            background: #D8E9FB;
-        }
-
-        .color-pink
-        {
-            /*  grey: EAEAEA, F0F0F0 FFFFCC
-                lime: F7F7DE CCFFCC
-                pinkish: E6F1FD D8E9FB C6DEFA FFEEFF (light ... darker)
-            */
-            background: #C6DEFA;
-        }
-
-        .color-pink-light
-        {
-            background: #FFEEFF;
-        }
-
-        .color-blue-light
-        {
-            background: #F0F0FF;
-        }
-
-        .color-blue-medium
-        {
-            background: #4A88BE;
-        }
-
-        /* ////////////////////////////////////////////// Format columns */
-
-        p.column3
-        {
-            color: Green;
-        }
-
-        p.column5
-        {
-            color: #87C0FF;   /* shaded casual blue */
-        }
-
-        p.column6
-        {
-            /* #809F69 is Forest green
-               But web safe colors are:
-               Lighter  ForestGreen: 66CC00
-               ForestGreen: #999966 669900 339900 669966
-
-            color: #669900;
-            font-family: "Goudy Old Style"
-            */
-            margin-left: 3em;
-            font-family: Georgia, "New Century Schoolbook",
-                         Palatino, Verdana, Arial, Helvetica;
-            font-size:  0.9em;
-        }
-
-            /* This is so called 3rd heading */
-
-        p.column7
-        {
-            font-style:  italic;
-            font-weight: bold;
-        }
-
-        @media print { P.column7
-        {
-            font-style:  italic;
-            font-weight: bold;
-        }}
-
-        p.column8
-        {
-
-        }
-
-        p.column9
-        {
-            font-weight: bold;
-        }
-
-        p.column10
-        {
-            padding-top: 0;
-        }
-
-        em.quote10
-        {
-            /*
-                #FF00FF Fuchsia;
-                #0000FF Blue
-
-                #87C0FF casual blue
-                #87CAF0
-
-                #A0FFFF Very light blue
-
-                #809F69 = Forest Green , see /usr/lib/X11/rgb.txt
-
-                background-color:
-
-                color: #80871F ; Orange, short of
-
-                # font-family: "Gill Sans", sans-serif;
-
-                line-height: 0.9em;
-                font-style:  italic;
-                font-size:   0.8em;
-
-                line-height: 0.9em;
-                color: #008080;
-
-                background-color: #F5F5F5;
-                #809F69; forest green
-                #F5F5F5; Pale grey
-                #FFf098; pale green
-                ##bfefff; #ffefff; LightBlue1
-
-                background-color: #ffefff;
-
-                .................
-                #FFFCE7         Orange very light
-                #FFE7BF         Orange dark
-                #FFFFBF         Orange limon
-
-             */
-
-             /*
-             #  See a nice page at
-             #  http://www.cs.helsinki.fi/linux/
-             #  http://www.cs.helsinki.fi/include/tktl.css
-             #
-             #  3-4 of these first fonts have almost identical look
-             #  Browser will pick the one that is supported
-             */
-
-             font-family: lucida, lucida sans unicode, verdana, arial, "Trebuchet MS", helvetica, sans-serif;
-             background-color: #eeeeff;
-             font-size:   0.8em;
-        }
-
-        @media print { em.quote10
-        {
-            font-style:  italic;
-            line-height: 0.9em;
-            font-size:   0.8em;
-        }}
-
-        p.column11
-        {
-            font-family: arial, verdana, helvetica, sans-serif;
-            font-size: 0.9em;
-            font-style: italic;
-            color: Fuchsia;
-        }
-
-        /* /////////////////////////////////////////////// Format words */
-
-        em.word
-        {
-            /* #809F69 Forest green */
-            color: #80B06A;  /*Darker Forest green */
-        }
-
-        strong.word
-        {
-
-        }
-
-        samp.word
-        {
-            color: #4C9CD4;
-            font-weight: bold;
-            font-family:    "Courier New", monospace;
-            font-size:      0.85em;
-        }
-
-        span.super
-        {
-            /* superscripts */
-            color: teal;
-            vertical-align: super;
-            font-family: Verdana, Arial, sans-serif;
-            font-size: 0.8em;
-        }
-
-        span.word-ref
-        {
-            color: teal;
-        }
-
-        span.word-big
-        {
-            color: teal;
-            font-size: 1.2em;
-        }
-
-        span.word-small
-        {
-            color: #CC66FF;
-            font-family: Verdana, Arial, sans-serif;
-            font-size: 0.7em;
-        }
-
-        /* /////////////////////////////////////////////// Format other */
-
-        /* 7th column starting with double quote */
-
-        span.quote7
-        {
-            /* color: Green; */
-            /* font-style: italic; */
-            font-family: Verdana;
-            font-weigh: bold;
-            font-size: 1em;
-        }
-
-        /* This appears in FRAME version: xxx-toc.html */
-
-        div.toc
-        {
-            font-size: 0.8em;
-        }
-
-        /* This appears in picture: the acption text beneath */
-
-        div.picture
-        {
-            font-style: italic;
-        }
-
-        /* This is the document info footer */
-
-        em.footer
-        {
-            font-size: 0.9em;
-        }
-    
+	body
+	{
+
+
+
+	    /*
+		More readable font, Like Arial in MS Word
+		The background color is grey
+
+		font-family: "verdana", sans-serif;
+		background-color: #dddddd;
+		foreground-color: #000000;
+
+		Traditional "Book" and newspaper font
+		font-family: "Times New Roman", serif;
+	    */
+	}
+
+	a:link
+	{
+	    font-style: italic;
+	}
+
+	/*   A name=... link references */
+
+	a.name
+	{
+	    font-style: normal;
+	}
+
+	a:hover
+	{
+	    color:           purple;
+	    background:      #AFB;
+	    text-decoration: none;
+	}
+
+	    /* cancel above italic in TOC and Navigation buttons */
+
+	a.btn:link
+	{
+	    font-style: normal;
+	}
+
+	    /* each link in TOC */
+
+
+	a.toc
+	{
+	    font-family: verdana, sans-serif;
+	    font-style: normal;
+	}
+
+	a.toc:link
+	{
+	    font-style: normal;
+	}
+
+	    /* [toc] heading button which appears in non-frame html */
+
+	a.btn-toc:link
+	{
+	    font-style: normal;
+	    font-family: verdana, sans-serif;
+	    /* font-size:  0.7em; */
+	}
+
+	/*  //////////////////////////////////// Format the code sections  */
+
+	/*  MSIE ok, Netscape nok: Indent text to same level to the right  */
+
+	blockquote
+	{
+	    margin-right: 2em;
+	}
+
+	@media print   { BLOCKQUOTE
+	{
+	    margin-right: 0;
+	}}
+
+	samp.code
+	{
+	    color: Navy;
+	}
+
+	hr.special
+	{
+	    width: 50%;
+	    text-align; left;
+	}
+
+	pre
+	{
+	    font-family:   "Courier New", monospace;
+	    font-size:     0.8em;
+	    margin-top:    1em;
+	    margin-bottom: 1em;
+	}
+
+	pre.code
+	{
+	    color: Navy;
+	}
+
+	p.code, p.code1, p.code2
+	{
+	    /*
+	       margin-top:     0.4em;
+	       margin-bottom:  0.4em;
+	       line-height:    0.9em;
+	    */
+
+	    font-family:    "Courier New", monospace;
+	    font-size:      0.8em;
+	    color:          Navy;
+	}
+
+	/* //////////////////////// tables /////////////////////////// */
+
+	table
+	{
+	    border: none;
+	    width: 100%;
+	    cellpadding: 10px;
+	    cellspacing: 0px;
+	}
+
+	table.basic
+	{
+		font-family:    "Courier New", monospace;
+		color: Navy;
+	}
+
+	table.dashed
+	{
+
+		/* font-family: sans-serif; /*
+		/* background:  #F7DE9C; */
+
+		color: Navy;
+
+		border-top:     1px #999999 solid;
+		border-left:    1px #999999 solid;
+		border-right:   1px #666666 solid;
+		border-bottom:  1px #666666 solid;
+		border-width:   94%;
+		border-style: dashed; /* dotted */
+
+
+		/* line-height: 105%; */
+	}
+
+	table.solid
+	{
+		font-family:    "Courier New", monospace;
+		/* afont-size:      0.8em; */
+
+		color:          Navy;
+
+		/* font-family: sans-serif; /*
+		/* background:  #F7DE9C; */
+
+		border-top:     1px #CCCCCC solid;
+		border-left:    1px #CCCCCC solid; /* 999999 */
+		border-right:   1px #666666 solid;
+		border-bottom:  1px #666666 solid; /* dark grey */
+		/* line-height: 105%; */
+	}
+
+	/* Make 3D styled layout by thickening the boton + right. */
+
+	table.shade-3d
+	{
+		font-family:    "Courier New", monospace;
+		font-size:      0.8em;
+
+		color:          #999999; /* Navy; */
+
+		/* font-family: sans-serif; /*
+		/* background:  #F7DE9C; */
+
+		/* border-top:  1px #999999 solid; */
+		/* border-left: 1px #999999 solid; */
+		border-right:   4px #666666 solid;
+		border-bottom:  3px #666666 solid;
+		/* line-height: 105%; */
+	}
+
+	.shade-3d-attrib
+	{
+	    /*
+		F9EDCC          Light Orange
+		FAEFD2          Even lighter Orange
+
+		#FFFFCC         Light yellow, lime
+
+	    */
+
+	    background: #FFFFCC;
+	}
+
+	table tr td pre
+	{
+		/*  Make PRE tables "airy" */
+		margin-top:    1em;
+		margin-bottom: 1em;
+	}
+
+	table.shade-normal
+	{
+		font-family:    "Courier New", monospace;
+		/* font-size:      0.9em; */
+		color:          Navy;
+	}
+
+	.shade-normal-attrib
+	{
+	    /*  grey: EAEAEA, F0F0F0 FFFFCC
+		lime: F7F7DE CCFFCC
+		pinkish: E6F1FD D8E9FB C6DEFA FFEEFF (light ... darker)
+		slightly darker than F1F1F1: #EFEFEF;
+	    */
+	    background: #F1F1F1;
+	}
+
+	table.shade-normal2
+	{
+		font-family:    "Courier New", monospace;
+	}
+
+	.shade-normal2-attrib
+	{
+	    background: #E0E0F0;
+	}
+
+	.shade-note-attrib
+	{
+	    /*  darker is #E0E0F0; */
+	    /* background: #E5ECF3; */
+	    background: #E5ECF3;
+	    font-family: Georgia, "New Century Schoolbook",
+			 Palatino, Verdana, Helvetica, serif;
+	    font-size: 0.8em;
+	}
+
+	/* ..................................... colors ................. */
+
+	.color-white
+	{
+	    color: Navy;
+	    background: #FFFFFF;
+	}
+
+	.color-fg-navy
+	{
+	    color: navy;
+	}
+
+	.color-fg-blue
+	{
+	    color: blue;
+	}
+
+	.color-fg-teal
+	{
+	    color: teal;
+	}
+
+	/*   Nice combination: teal-dark, beige2 and  beige-dark */
+
+	.color-teal-dark
+	{
+	    color: #96EFF2;
+	}
+
+	.color-beige
+	{
+	    color: Navy;
+	    background: #F7F7DE;
+	}
+
+	.color-beige2
+	{
+	    color: Navy;
+	    background: #FAFACA;
+	}
+
+	.color-beige3
+	{
+	    color: Navy;
+	    background: #F5F5E9;
+	}
+
+	.color-beige-dark
+	{
+	    color: Navy;
+	    background: #CFEFBD;
+	}
+
+	.color-pink-dark
+	{
+	    background: #E6F1FD;
+	}
+
+	.color-pink-medium
+	{
+	    background: #D8E9FB;
+	}
+
+	.color-pink
+	{
+	    /*  grey: EAEAEA, F0F0F0 FFFFCC
+		lime: F7F7DE CCFFCC
+		pinkish: E6F1FD D8E9FB C6DEFA FFEEFF (light ... darker)
+	    */
+	    background: #C6DEFA;
+	}
+
+	.color-pink-light
+	{
+	    background: #FFEEFF;
+	}
+
+	.color-blue-light
+	{
+	    background: #F0F0FF;
+	}
+
+	.color-blue-medium
+	{
+	    background: #4A88BE;
+	}
+
+	/* ////////////////////////////////////////////// Format columns */
+
+	p.column3
+	{
+	    color: Green;
+	}
+
+	p.column5
+	{
+	    color: #87C0FF;   /* shaded casual blue */
+	}
+
+	p.column6
+	{
+	    /* #809F69 is Forest green
+	       But web safe colors are:
+	       Lighter  ForestGreen: 66CC00
+	       ForestGreen: #999966 669900 339900 669966
+
+	    color: #669900;
+	    font-family: "Goudy Old Style"
+	    */
+	    margin-left: 3em;
+	    font-family: Georgia, "New Century Schoolbook",
+			 Palatino, Verdana, Arial, Helvetica;
+	    font-size:  0.9em;
+	}
+
+	    /* This is so called 3rd heading */
+
+	p.column7
+	{
+	    font-style:  italic;
+	    font-weight: bold;
+	}
+
+	@media print { P.column7
+	{
+	    font-style:  italic;
+	    font-weight: bold;
+	}}
+
+	p.column8
+	{
+
+	}
+
+	p.column9
+	{
+	    font-weight: bold;
+	}
+
+	p.column10
+	{
+	    padding-top: 0;
+	}
+
+	em.quote10
+	{
+	    /*
+		#FF00FF Fuchsia;
+		#0000FF Blue
+
+		#87C0FF casual blue
+		#87CAF0
+
+		#A0FFFF Very light blue
+
+		#809F69 = Forest Green , see /usr/lib/X11/rgb.txt
+
+		background-color:
+
+		color: #80871F ; Orange, short of
+
+		# font-family: "Gill Sans", sans-serif;
+
+		line-height: 0.9em;
+		font-style:  italic;
+		font-size:   0.8em;
+
+		line-height: 0.9em;
+		color: #008080;
+
+		background-color: #F5F5F5;
+		#809F69; forest green
+		#F5F5F5; Pale grey
+		#FFf098; pale green
+		##bfefff; #ffefff; LightBlue1
+
+		background-color: #ffefff;
+
+		.................
+		#FFFCE7         Orange very light
+		#FFE7BF         Orange dark
+		#FFFFBF         Orange limon
+
+	     */
+
+	     /*
+	     #  See a nice page at
+	     #  http://www.cs.helsinki.fi/linux/
+	     #  http://www.cs.helsinki.fi/include/tktl.css
+	     #
+	     #  3-4 of these first fonts have almost identical look
+	     #  Browser will pick the one that is supported
+	     */
+
+	     font-family: lucida, lucida sans unicode, verdana, arial, "Trebuchet MS", helvetica, sans-serif;
+	     background-color: #eeeeff;
+	     font-size:   0.8em;
+	}
+
+	@media print { em.quote10
+	{
+	    font-style:  italic;
+	    line-height: 0.9em;
+	    font-size:   0.8em;
+	}}
+
+	p.column11
+	{
+	    font-family: arial, verdana, helvetica, sans-serif;
+	    font-size: 0.9em;
+	    font-style: italic;
+	    color: Fuchsia;
+	}
+
+	/* /////////////////////////////////////////////// Format words */
+
+	em.word
+	{
+	    /* #809F69 Forest green */
+	    color: #80B06A;  /*Darker Forest green */
+	}
+
+	strong.word
+	{
+
+	}
+
+	samp.word
+	{
+	    color: #4C9CD4;
+	    font-weight: bold;
+	    font-family:    "Courier New", monospace;
+	    font-size:      0.85em;
+	}
+
+	span.super
+	{
+	    /* superscripts */
+	    color: teal;
+	    vertical-align: super;
+	    font-family: Verdana, Arial, sans-serif;
+	    font-size: 0.8em;
+	}
+
+	span.word-ref
+	{
+	    color: teal;
+	}
+
+	span.word-big
+	{
+	    color: teal;
+	    font-size: 1.2em;
+	}
+
+	span.word-small
+	{
+	    color: #CC66FF;
+	    font-family: Verdana, Arial, sans-serif;
+	    font-size: 0.7em;
+	}
+
+	/* /////////////////////////////////////////////// Format other */
+
+	/* 7th column starting with double quote */
+
+	span.quote7
+	{
+	    /* color: Green; */
+	    /* font-style: italic; */
+	    font-family: Verdana;
+	    font-weigh: bold;
+	    font-size: 1em;
+	}
+
+	/* This appears in FRAME version: xxx-toc.html */
+
+	div.toc
+	{
+	    font-size: 0.8em;
+	}
+
+	/* This appears in picture: the acption text beneath */
+
+	div.picture
+	{
+	    font-style: italic;
+	}
+
+	/* This is the document info footer */
+
+	em.footer
+	{
+	    font-size: 0.9em;
+	}
+
 
     </style>
 
@@ -2075,23 +2075,22 @@ See option --css-file to replace default CSS.
 
     <script type="text/javascript">
 
-        function MakeVisual(obj)
-        {
-            obj.style.fontWeight = "italic";
-        }
+	function MakeVisual(obj)
+	{
+	    obj.style.fontWeight = "italic";
+	}
 
-        function MakeNormal(obj)
-        {
-            obj.style.fontWeight = "normal";
-        }
+	function MakeNormal(obj)
+	{
+	    obj.style.fontWeight = "normal";
+	}
 
-        function IgnoreErrors()
-        {
-            return true;
-        }
+	function IgnoreErrors()
+	{
+	    return true;
+	}
 
-        window.onerror = IgnoreErrors;
+	window.onerror = IgnoreErrors;
 
     </script>
 
-        

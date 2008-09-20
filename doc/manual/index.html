@@ -2,15 +2,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>t2html.pl - Simple text to HTML converter. Relies on text indentation rules.</title>
+<title>t2html - Simple text to HTML converter. Relies on text indentation rules.</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<link rev="made" href="mailto:rurban@x-ray.at" />
+<link rev="made" href="mailto:root@localhost" />
 </head>
 
 <body style="background-color: white">
 
-<p><a name="__index__"></a></p>
+
 <!-- INDEX BEGIN -->
+<div name="index">
+<p><a name="__index__"></a></p>
 
 <ul>
 
@@ -71,14 +73,16 @@
 	<li><a href="#availability">AVAILABILITY</a></li>
 	<li><a href="#author">AUTHOR</a></li>
 </ul>
+
+<hr name="index" />
+</div>
 <!-- INDEX END -->
 
-<hr />
 <p>
 </p>
 <hr />
 <h1><a name="name">NAME</a></h1>
-<p>t2html.pl - Simple text to HTML converter. Relies on text indentation rules.</p>
+<p>t2html - Simple text to HTML converter. Relies on text indentation rules.</p>
 <p>
 </p>
 <hr />
@@ -133,22 +137,22 @@ See project <a href="http://freshmeat.net/projects/emacs-tiny-tools">http://fres
 <h1><a name="synopsis">SYNOPSIS</a></h1>
 <p>To convert text file into HTML:</p>
 <pre>
-    t2html.pl [options] file.txt &gt; file.html</pre>
+    t2html [options] file.txt &gt; file.html</pre>
 <p>In addition to making HTML pages, program includes feature to check broken
 links and report them in <em>egrep -n</em> like fashion:</p>
 <pre>
-    t2html.pl --Link-check-single --quiet file.txt</pre>
+    t2html --Link-check-single --quiet file.txt</pre>
 <p>To check links from multiple pages and cache good links to separate file,
 use <strong>--Link-cache</strong> option. The next link check will run much faster
 because cached valid links will not be fetched again. At regular intervals
 delete the link cache file to force complete check.</p>
 <pre>
-    t2html.pl --Link-check-single --Link-cache ~/tmp/link.cache \
+    t2html --Link-check-single --Link-cache ~/tmp/link.cache \
               --quiet file.txt</pre>
 <p>In case there are need for slides, is is possible to plit big document into
 pieces according to toplevel headings:</p>
 <pre>
-    t2html.pl --S1 --SN | t2html.pl --simple -Out</pre>
+    t2html --S1 --SN | t2html --simple -Out</pre>
 <p>
 </p>
 <hr />
@@ -157,79 +161,65 @@ pieces according to toplevel headings:</p>
 </p>
 <h2><a name="html__header_and_footer_options">Html: Header and Footer options</a></h2>
 <dl>
-<dt><strong><a name="item__2d_2das_2dis"><strong>--as-is</strong></a></strong>
+<dt><strong><a name="as_is" class="item"><strong>--as-is</strong></a></strong></dt>
 
 <dd>
 <p>Any extra HTML formatting or text manipulation is suppressed. Text is
 preserved as it appears in file. Use this option if you plan to deliver or
 and print the text as seen.</p>
-</dd>
-<dd>
 <pre>
     o  If file contains &quot;Table of Contents&quot; it is not removed
     o  Table of Content block is not created (it usually would)</pre>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dauthor__2da_str"><strong>--author -a STR</strong></a></strong>
+<dt><strong><a name="author_a_str" class="item"><strong>--author -a STR</strong></a></strong></dt>
 
 <dd>
-<p>Author of document e.g. <strong>--author ``John Doe''</strong></p>
+<p>Author of document e.g. <strong>--author &quot;John Doe&quot;</strong></p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2ddisclaimer_2dfile_file"><strong>--disclaimer-file</strong> FILE</a></strong>
+<dt><strong><a name="disclaimer_file_file" class="item"><strong>--disclaimer-file</strong> FILE</a></strong></dt>
 
 <dd>
 <p>The text that appears at the footer is read from this file. If not given
 the default copyright text is added. Options <code>--quiet</code> and
 <code>--simple</code> suppress disclaimers.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2ddocument_file"><strong>--document FILE</strong></a></strong>
+<dt><strong><a name="document_file" class="item"><strong>--document FILE</strong></a></strong></dt>
 
 <dd>
 <p><strong>Name</strong> of the document or filename. You could list all
 alternative URLs to the document with this option.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2demail__2de_email"><strong>--email -e EMAIL</strong></a></strong>
+<dt><strong><a name="email_e_email" class="item"><strong>--email -e EMAIL</strong></a></strong></dt>
 
 <dd>
 <p>The contact address of the author of the document. Must be pure email
-address with no ``&lt;'' and ``&gt;'' characters included. Eg.
+address with no &quot;&lt;&quot; and &quot;&gt;&quot; characters included. Eg.
 <strong>--email <a href="mailto:foo@example.com">foo@example.com</a></strong></p>
-</dd>
-<dd>
 <pre>
     --email &quot;&lt;me@here.com&gt;&quot;     WRONG
     --email &quot;me@here.com&quot;       right</pre>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dsimple__2ds"><strong>--simple</strong> <strong>-s</strong></a></strong>
+<dt><strong><a name="simple_s" class="item"><strong>--simple</strong> <strong>-s</strong></a></strong></dt>
 
 <dd>
 <p>Print minimum footer only: contact, email and date. Use <code>--quiet</code> to
 completely discard footer.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dt2html_2dtags"><strong>--t2html-tags</strong></a></strong>
+<dt><strong><a name="t2html_tags" class="item"><strong>--t2html-tags</strong></a></strong></dt>
 
 <dd>
 <p>Allow processing embedded #T2HTML-&lt;tag&gt; directives inside file. See full
 explanation by reading topic <code>EMBEDDED DIRECTIVES INSIDE TEXT</code>. By
-default, you do not need to to supply this option - it is ``on'' by default.</p>
-</dd>
-<dd>
-<p>To disregard embedded directives in text file, supply ``no'' option:
+default, you do not need to to supply this option - it is &quot;on&quot; by default.</p>
+<p>To disregard embedded directives in text file, supply &quot;no&quot; option:
 <strong>--not2html-tags</strong>.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dtitle_str__2dt_str"><strong>--title STR</strong> <strong>-t STR</strong></a></strong>
+<dt><strong><a name="title_str_t_str" class="item"><strong>--title STR</strong> <strong>-t STR</strong></a></strong></dt>
 
 <dd>
 <p>The title text that appears in top frame of browser.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2durl_url"><strong>--url URL</strong></a></strong>
+<dt><strong><a name="url_url" class="item"><strong>--url URL</strong></a></strong></dt>
 
 </dl>
 <p>Location of the HTML file. When <strong>--document</strong> gave the name, this gives the
@@ -238,7 +228,7 @@ location. This information is printed at the Footer.</p>
 </p>
 <h2><a name="html__navigation_urls">Html: Navigation urls</a></h2>
 <dl>
-<dt><strong><a name="item__2d_2dbase_url"><strong>--base URL</strong></a></strong>
+<dt><strong><a name="base_url" class="item"><strong>--base URL</strong></a></strong></dt>
 
 <dd>
 <p>URL location of the HTML file in the <strong>destination site</strong> where it will be
@@ -246,123 +236,87 @@ put available. This option is needed only if the document is hosted on a
 FTP server (rare, but possible). A FTP server based document cannot use
 Table Of Contents links (fragment <em>#tag</em> identifiers) unless HTML tag BASE
 is also defined.</p>
-</dd>
-<dd>
 <p>The argument can be full URL to the document:</p>
-</dd>
-<dd>
 <pre>
     --base <a href="ftp://ftp.example.com/file.html">ftp://ftp.example.com/file.html</a>
     --base <a href="ftp://ftp.example.com/">ftp://ftp.example.com/</a></pre>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dbutton_2dheading_2dtop"><strong>--button-heading-top</strong></a></strong>
+<dt><strong><a name="button_heading_top" class="item"><strong>--button-heading-top</strong></a></strong></dt>
 
 <dd>
 <p>Add additional <strong>[toc]</strong> navigation button to the end of each heading. This
 may be useful in long non-framed HTML files.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dbutton_2dtop_url"><strong>--button-top URL</strong></a></strong>
+<dt><strong><a name="button_top_url" class="item"><strong>--button-top URL</strong></a></strong></dt>
 
 <dd>
 <p>Buttons are placed at the top of document in order: [previous][top][next]
 and <em>--button-*</em> options define the URLs.</p>
-</dd>
-<dd>
 <p>If URL is string <em>none</em> then no button is inserted. This may be handy if
 the buttons are defined by a separate program. And example using Perl:</p>
-</dd>
-<dd>
 <pre>
     #!/usr/bin/perl</pre>
-</dd>
-<dd>
 <pre>
     my $top   = &quot;index.html&quot;;             # set defaults
     my $prev  = &quot;none&quot;;
     my $next  = &quot;none&quot;;</pre>
-</dd>
-<dd>
 <pre>
     # ... somewhere $prev or $next may get set, or then not</pre>
-</dd>
-<dd>
 <pre>
-    qx(t2html.pl --button-top &quot;$top&quot; --button-prev &quot;$prev&quot; --button-next &quot;$next&quot; ...);</pre>
-</dd>
-<dd>
+    qx(t2html --button-top &quot;$top&quot; --button-prev &quot;$prev&quot; --button-next &quot;$next&quot; ...);</pre>
 <pre>
     # End of sample program</pre>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dbutton_2dprev_url"><strong>--button-prev URL</strong></a></strong>
+<dt><strong><a name="button_prev_url" class="item"><strong>--button-prev URL</strong></a></strong></dt>
 
 <dd>
 <p>URL to go to previous document or string <em>none</em>.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dbutton_2dnext_url"><strong>--button-next URL</strong></a></strong>
+<dt><strong><a name="button_next_url" class="item"><strong>--button-next URL</strong></a></strong></dt>
 
 <dd>
 <p>URL to go to next document or string <em>none</em>.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dreference_tag_3dvalue"><strong>--reference tag=value</strong></a></strong>
+<dt><strong><a name="reference_tag_value" class="item"><strong>--reference tag=value</strong></a></strong></dt>
 
 <dd>
 <p>You can add any custom references (tags) inside text and get them expand to
 any value. This option can be given multiple times and every occurrance
 of TAG is replaced with VALUE. E.g. when given following options:</p>
-</dd>
-<dd>
 <pre>
     --reference &quot;#HOME-URL=<a href="http://www.example.com/dir&quot">http://www.example.com/dir&quot</a>;
     --reference &quot;#ARCHIVE-URL=<a href="http://www.example.com/dir/dir2&quot">http://www.example.com/dir/dir2&quot</a>;</pre>
-</dd>
-<dd>
 <p>When referenced in text, the generated HTML includes expanded expanded to
 values. An example text:</p>
-</dd>
-<dd>
 <pre>
         The homepage is #HOME-URL/page.html and the mirrot page it at
         #ARCHIVE-URL/page.html where you can find the latest version.</pre>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dreference_2dseparator_string"><strong>--reference-separator STRING</strong></a></strong>
+<dt><strong><a name="reference_separator_string" class="item"><strong>--reference-separator STRING</strong></a></strong></dt>
 
 <dd>
 <p>See above. String that is used to split the TAG and VALUE. Default is equal
-sign ``=''.</p>
+sign &quot;=&quot;.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dtoc_2durl_2dprint__2dt"><strong>--Toc-url-print -T</strong></a></strong>
+<dt><strong><a name="toc_url_print_t" class="item"><strong>--Toc-url-print -T</strong></a></strong></dt>
 
 <dd>
 <p>Display URLs (contructed from headings) that build up the Table of Contents
 (NAME AHREF tags) in a document. The list is outputted to stderr, so that
 it can be separated:</p>
-</dd>
-<dd>
 <pre>
-    % t2html.pl --Toc-url-print tmp.txt &gt; file.html 2&gt; toc-list.txt</pre>
-</dd>
-<dd>
+    % t2html --Toc-url-print tmp.txt &gt; file.html 2&gt; toc-list.txt</pre>
 <p>Where would you need this? If you want to know the fragment identifies
 for your file, you need the list of names.</p>
-</dd>
-<dd>
 <pre>
   <a href="http://www.example.com/myfile.html#fragment-identifier">http://www.example.com/myfile.html#fragment-identifier</a></pre>
 </dd>
-</li>
 </dl>
 <p>
 </p>
 <h2><a name="html__controlling_css_generation__html_tables_">Html: Controlling CSS generation (HTML tables)</a></h2>
 <dl>
-<dt><strong><a name="item__2d_2dcss_2dcode_2dbg"><strong>--css-code-bg</strong></a></strong>
+<dt><strong><a name="css_code_bg" class="item"><strong>--css-code-bg</strong></a></strong></dt>
 
 <dd>
 <p>This option affects how the code section (column 12) is rendered. Normally
@@ -370,255 +324,159 @@ the section is surrounded with a &lt;pre&gt;..&lt;/pre&gt; codes, but with this
 options, something more fancier is used. The code is wrapped inside a
 &lt;table&gt;...&lt;/table&gt; and the background color is set to a shade of gray.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dcss_2dcode_2dnote__22regexp_22"><strong>--css-code-note ``REGEXP'' </strong></a></strong>
+<dt><strong><a name="css_code_note_regexp" class="item"><strong>--css-code-note &quot;REGEXP&quot; </strong></a></strong></dt>
 
 <dd>
 <p>Option <strong>--css-code-bg</strong> is required to activate this option. A special word
 defined using regexp (defualt is 'Note:') will mark code sections specially.
 The <code>first word</code> is matched against the supplied Perl regexp.</p>
-</dd>
-<dd>
 <p>The supplied regexp must not, repeat, must not, include any matching group
 operators. This simply means, that grouping parenthesis like
 <code>(one|two|three)</code> are not allowed. You must use the Perl non-grouping ones
 like <code>(?:one|two|three)</code>. Please refer to perl manual page [perlre] if
 this short introduction did not give enough rope.</p>
-</dd>
-<dd>
-<p>With this options, instead of rendering column 12 text with &lt;PRE&gt;..&lt;/PRE&gt;,
+<p>With this options, instead of rendering column 12 text with &lt;pre&gt;..&lt;/pre&gt;,
 the text appears just like regular text, but with a twist. The background
 color of the text has been changed to darker grey to visually stand out
 form the text.</p>
-</dd>
-<dd>
 <p>An example will clarify. Suppose that you passed options <strong>--css-code-bg</strong>
 and <strong>--css-code-note='(?:Notice|Note):'</strong>, which instructed to treat the
 first paragraphs at column 12 differently. Like this:</p>
-</dd>
-<dd>
 <pre>
     This is the regular text that appears somewhere at column 8.
     It may contain several lines of text in this paragraph.</pre>
-</dd>
-<dd>
 <pre>
         Notice: Here is the special section, at column 12,
         and the first word in this paragraph is 'Notice:'.
         Only that makes this paragraph at column 12 special.</pre>
-</dd>
-<dd>
 <pre>
     Now, we have some code to show to the user:</pre>
-</dd>
-<dd>
 <pre>
         for ( i = 0; i++; i &lt; 10 )
         {
             //  Doing something in this loop
         }</pre>
-</dd>
-<dd>
 <p>One note, text written with initial special word, like <code>Notice:</code>,
 must all fit in one full pragraph. Any other paragraphs that follow,
 are rendered as code sections. Like here:</p>
-</dd>
-<dd>
 <pre>
     This is the regular text that appears somewhere
     It may contain several lines of text in this paragraph</pre>
-</dd>
-<dd>
 <pre>
         Notice: Here is the special section, at column 12,
         and the first word in this paragraph is 'Notice:'
         which makes it special</pre>
-</dd>
-<dd>
 <pre>
         Hoewver, this paragraph IS NOT rendered specially
         any more. Only the first paragraph above.</pre>
-</dd>
-<dd>
 <pre>
         for ( i = 0; i++; i &lt; 10 )
         {
             //  Doing something in this loop
         }</pre>
-</dd>
-<dd>
 <p>As if this were not enough, there are some special table control
-directives that let you control the &lt;TABLE&gt;..&lt;/TABLE&gt; which is
+directives that let you control the &lt;table&gt;..&lt;/table&gt; which is
 put around the code section at column 12. Here are few examples:</p>
-</dd>
-<dd>
 <pre>
     Here is example 1</pre>
-</dd>
-<dd>
 <pre>
         #t2html::td:bgcolor=#F7F7DE</pre>
-</dd>
-<dd>
 <pre>
         for ( i = 0; i++; i &lt; 10 )
         {
             //  Doing something in this loop
         }</pre>
-</dd>
-<dd>
 <pre>
     Here is example 2</pre>
-</dd>
-<dd>
 <pre>
         #t2html::td:bgcolor=#F7F7DE:tableborder:1</pre>
-</dd>
-<dd>
 <pre>
         for ( i = 0; i++; i &lt; 10 )
         {
             //  Doing something in this loop
         }</pre>
-</dd>
-<dd>
 <pre>
     Here is example 3</pre>
-</dd>
-<dd>
 <pre>
         #t2html::td:bgcolor=&quot;#FFFFFF&quot;:tableclass:dashed</pre>
-</dd>
-<dd>
 <pre>
         for ( i = 0; i++; i &lt; 10 )
         {
             //  Doing something in this loop
         }</pre>
-</dd>
-<dd>
 <pre>
     Here is example 4</pre>
-</dd>
-<dd>
 <pre>
         #t2html::td:bgcolor=&quot;#FFFFFF&quot;:table:border=1_width=94%_border=0_cellpadding=&quot;10&quot;_cellspacing=&quot;0&quot;</pre>
-</dd>
-<dd>
 <pre>
         for ( i = 0; i++; i &lt; 10 )
         {
             //  Doing something in this loop
         }</pre>
-</dd>
-<dd>
 <p>Looks cryptic? Cannot help that and in order for you to completely
 understand what these directives do, you need to undertand what elements
-can be added to the &lt;TABLE&gt; and &lt;TD&gt; tokens. Refer to HTML specification
+can be added to the &lt;table&gt; and &lt;td&gt; tokens. Refer to HTML specification
 for available attributes. Here is briefing what you can do:</p>
-</dd>
-<dd>
 <p>The start command is:</p>
-</dd>
-<dd>
 <pre>
     #t2html::
             |
             After this comes attribute pairs in form key:value
             and multiple ones as key1:value1:key2:value2 ...</pre>
-</dd>
-<dd>
 <p>The <code>key:value</code> pairs can be:</p>
-</dd>
-<dd>
 <pre>
     td:ATTRIBUTES
        |
-       This is converted into &lt;TD attributes&gt;</pre>
-</dd>
-<dd>
+       This is converted into &lt;td attributes&gt;</pre>
 <pre>
     table:ATTRIBUTES
           |
-          This is converted into &lt;TABLE attributes&gt;</pre>
-</dd>
-<dd>
+          This is converted into &lt;table attributes&gt;</pre>
 <p>There can be no spaces in the ATTRIBUTES, because the <code>First-word</code> must
 be one contiguous word. An underscore can be used in place of space:</p>
-</dd>
-<dd>
 <pre>
     table:border=1_width=94%
           |
-          Interpreted as &lt;TABLE border=&quot;1&quot; width=&quot;94%&quot;&gt;</pre>
-</dd>
-<dd>
+          Interpreted as &lt;table border=&quot;1&quot; width=&quot;94%&quot;&gt;</pre>
 <p>It is also possible to change the default CLASS style with word
 <code>tableclass</code>. In order the CLASS to be useful, its CSS definitions must be
 either in the default configuration or supplied from a external file.
 See option <strong>--script-file</strong>.</p>
-</dd>
-<dd>
 <pre>
-    tableclass:CLASS
+    tableclass:name
                |
-               Interpreted as &lt;TABLE class=&quot;CLASS&quot;&gt;</pre>
-</dd>
-<dd>
+               Interpreted as &lt;table class=&quot;name&quot;&gt;</pre>
 <p>For example, there are couple of default styles that can be used:</p>
-</dd>
-<dd>
 <pre>
     1) Here is CLASS &quot;dashed&quot; example</pre>
-</dd>
-<dd>
 <pre>
         #t2html::tableclass:dashed</pre>
-</dd>
-<dd>
 <pre>
             for ( i = 0; i++; i &lt; 10 )
             {
                 //  Doing something in this loop
             }</pre>
-</dd>
-<dd>
 <pre>
     2) Here is CLASS &quot;solid&quot; example:</pre>
-</dd>
-<dd>
 <pre>
         #t2html::tableclass:solid</pre>
-</dd>
-<dd>
 <pre>
             for ( i = 0; i++; i &lt; 10 )
             {
                 //  Doing something in this loop
             }</pre>
-</dd>
-<dd>
 <p>You can change any individual value of the default table
 definition which is:</p>
-</dd>
-<dd>
 <pre>
-    &lt;TABLE  class=&quot;shade-note&quot;&gt;</pre>
-</dd>
-<dd>
+    &lt;table  class=&quot;shade-note&quot;&gt;</pre>
 <p>To change e.g. only value cellpadding, you would say:</p>
-</dd>
-<dd>
 <pre>
      #t2html::table:tablecellpadding:2</pre>
-</dd>
-<dd>
 <p>If you are unsure what all of these were about, simply run program with
 <strong>--test-page</strong> and look at the source and generated HTML files. That
 should offer more rope to experiment with.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dcss_2dfile_file"><strong>--css-file FILE</strong></a></strong>
+<dt><strong><a name="css_file_file" class="item"><strong>--css-file FILE</strong></a></strong></dt>
 
 <dd>
 <p>Include &lt;LINK ...&gt; which refers to external CSS style definition source.
@@ -627,136 +485,97 @@ because that option imports whole content inside HEAD tag. This option
 can appear multiple times and the external CSS files are added in
 listed order.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dcss_2dfont_2dtype_css_2ddefinition"><strong>--css-font-type CSS-DEFINITION</strong></a></strong>
+<dt><strong><a name="css_font_type_css_definition" class="item"><strong>--css-font-type CSS-DEFINITION</strong></a></strong></dt>
 
 <dd>
 <p>Set the BODY element's font defintion to CSS-DEFINITION. The
 default value used is the regular typeset used in newspapers and books:</p>
-</dd>
-<dd>
 <pre>
     --css-font-type='font-family: &quot;Times New Roman&quot;, serif;'</pre>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dcss_2dfont_2dsize_css_2ddefinition"><strong>--css-font-size CSS-DEFINITION</strong></a></strong>
+<dt><strong><a name="css_font_size_css_definition" class="item"><strong>--css-font-size CSS-DEFINITION</strong></a></strong></dt>
 
 <dd>
 <p>Set the body element's font size to CSS-DEFINITION. The default font
 size is expressed in points:</p>
-</dd>
-<dd>
 <pre>
     --css-font-size=&quot;font-size: 12pt;&quot;</pre>
 </dd>
-</li>
 </dl>
 <p>
 </p>
 <h2><a name="html__controlling_the_body_of_document">Html: Controlling the body of document</a></h2>
 <dl>
-<dt><strong><a name="item__2d_2ddelete_regexp"><strong>--delete REGEXP</strong></a></strong>
+<dt><strong><a name="delete_regexp" class="item"><strong>--delete REGEXP</strong></a></strong></dt>
 
 <dd>
 <p>Delete lines matching perl REGEXP. This is useful if you use some document
 tool that uses navigation tags in the text file that you do not want to show
 up in generated HTML.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2ddelete_2demail_2dheaders"><strong>--delete-email-headers</strong></a></strong>
+<dt><strong><a name="delete_email_headers" class="item"><strong>--delete-email-headers</strong></a></strong></dt>
 
 <dd>
 <p>Delete email headers at the beginning of file, until first empty line that
 starts the body. If you keep your document ready for Usenet news posting, they
 may contain headers and body:</p>
-</dd>
-<dd>
 <pre>
     From: ...
     Newsgroups: ...
     X-Sender-Info:
     Summary:</pre>
-</dd>
-<dd>
 <pre>
     BODY-OF-TEXT</pre>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dnodelete_2ddefault"><strong>--nodelete-default</strong></a></strong>
+<dt><strong><a name="nodelete_default" class="item"><strong>--nodelete-default</strong></a></strong></dt>
 
 <dd>
 <p>Use this option to suppress default text deletion (which is on).</p>
-</dd>
-<dd>
 <p>Emacs <code>folding.el</code> package and vi can be used with any text or
 programming language to place sections of text between tags <strong>{{{</strong> and
 <strong>}}}</strong>. You can open or close such folds. This allows keeping big
 documents in order and manageable quite easily. For Emacs support,
 see. <a href="ftp://ftp.csd.uu.se/pub/users/andersl/beta/">ftp://ftp.csd.uu.se/pub/users/andersl/beta/</a></p>
-</dd>
-<dd>
 <p>The default value deletes these markers and special comments
 <code>#_comment</code> which make it possible to cinlude your own notes which
 are not included in the generated output.</p>
-</dd>
-<dd>
 <pre>
   {{{ Security section</pre>
-</dd>
-<dd>
 <pre>
   #_comment Make sure you revise this section to
   #_comment the next release</pre>
-</dd>
-<dd>
 <pre>
   The seecurity is an important issue in everyday administration...
   More text ...</pre>
-</dd>
-<dd>
 <pre>
   }}}</pre>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dhtml_2dbody_str"><strong>--html-body STR</strong></a></strong>
+<dt><strong><a name="html_body_str" class="item"><strong>--html-body STR</strong></a></strong></dt>
 
 <dd>
 <p>Additional attributes to add to HTML tag &lt;BODY&gt;. You could e.g. define
 language of the text with <strong>--html-body LANG=en</strong> which would generate
-HTML tag &lt;BODY LANG=``en''&gt; See section ``SEE ALSO'' for ISO 639.</p>
+HTML tag &lt;BODY LANG=&quot;en&quot;&gt; See section &quot;SEE ALSO&quot; for ISO 639.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dhtml_2dcolumn_2dbeg_3d_22spec_html_2dspec_22"><strong>--html-column-beg=``SPEC HTML-SPEC''</strong></a></strong>
+<dt><strong><a name="html_column_beg_spec_html_spec" class="item"><strong>--html-column-beg=&quot;SPEC HTML-SPEC&quot;</strong></a></strong></dt>
 
 <dd>
 <p>The default interpretation of columns 1,2,3  5,6,7,8,9,10,11,12 can be
 changed with <em>beg</em> and <em>end</em> swithes. Columns 0,4 can't be changed because
 they are reserved for headings. Here are some samples:</p>
-</dd>
-<dd>
 <pre>
-    --html-column-beg=&quot;7quote &lt;EM class='quote7'&gt;&quot;
-    --html-column-end=&quot;7quote &lt;/EM&gt;&quot;</pre>
-</dd>
-<dd>
+    --html-column-beg=&quot;7quote &lt;em class='quote7'&gt;&quot;
+    --html-column-end=&quot;7quote &lt;/em&gt;&quot;</pre>
 <pre>
-    --html-column-beg=&quot;10    &lt;PRE&gt; class='column10'&quot;
-    --html-column-end=&quot;10    &lt;/PRE&gt;&quot;</pre>
-</dd>
-<dd>
+    --html-column-beg=&quot;10    &lt;pre&gt; class='column10'&quot;
+    --html-column-end=&quot;10    &lt;/pre&gt;&quot;</pre>
 <pre>
-    --html-column-beg=&quot;quote &lt;SPAN class='word'&gt;&quot;
-    --html-column-end=&quot;quote &lt;/SPAN&gt;&quot;</pre>
-</dd>
-<dd>
+    --html-column-beg=&quot;quote &lt;span class='word'&gt;&quot;
+    --html-column-end=&quot;quote &lt;/span&gt;&quot;</pre>
 <p><strong>Note:</strong> You can only give specifications up till column 12. If text
 is beyound column 12, it is interpreted like it were at column 12.</p>
-</dd>
-<dd>
 <p>In addition to column number, the <em>SPEC</em> can also be one of the
 following strings</p>
-</dd>
-<dd>
 <pre>
     Spec    equivalent word markup
     ------------------------------
@@ -766,20 +585,14 @@ following strings</p>
     small   +
     big     =
     ref     []   like: [Michael] referred to [rfc822]</pre>
-</dd>
-<dd>
 <pre>
     Other available Specs
     ------------------------------
     7quote      When column 7 starts with double quote.</pre>
-</dd>
-<dd>
 <p>For style sheet values for each color, refer to <em>class</em> attribute and use
 <strong>--script-file</strong> option to import definitions. Usually /usr/lib/X11/rgb.txt
 lists possible color values and the HTML standard at <a href="http://www.w3.org/">http://www.w3.org/</a>
 defines following standard named colors:</p>
-</dd>
-<dd>
 <pre>
     Black       #000000  Maroon  #800000
     Green       #008000  Navy    #000080
@@ -790,413 +603,306 @@ defines following standard named colors:</p>
     White       #FFFFFF  Fuchsia #FF00FF
     Yellow      #FFFF00  Aqua    #00FFFF</pre>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dhtml_2dcolumn_2dend_3d_22col_html_2dspec_22"><strong>--html-column-end=``COL HTML-SPEC''</strong></a></strong>
+<dt><strong><a name="html_column_end_col_html_spec" class="item"><strong>--html-column-end=&quot;COL HTML-SPEC&quot;</strong></a></strong></dt>
 
 <dd>
 <p>See <strong>--html-column-beg</strong></p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dhtml_2dfont_size"><strong>--html-font SIZE</strong></a></strong>
+<dt><strong><a name="html_font_size" class="item"><strong>--html-font SIZE</strong></a></strong></dt>
 
 <dd>
 <p>Define FONT SIZE. It might be useful to set bigger font size for presentations.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dhtml_2dframe__2df__5bframe_2dparams_5d"><strong>--html-frame -F [FRAME-PARAMS]</strong></a></strong>
+<dt><strong><a name="html_frame_f_frame_params" class="item"><strong>--html-frame -F [FRAME-PARAMS]</strong></a></strong></dt>
 
 <dd>
 <p>If given, then three separate HTML files are generated. The left frame will
 contain TOC and right frame contains rest of the text. The <em>FRAME-PARAMS</em>
 can be any valid parameters for HTML tag FRAMESET. The default is
 <code>cols=&quot;25%,75%&quot;</code>.</p>
-</dd>
-<dd>
 <p>Using this implies <strong>--Out</strong> option automatically, because three files
 cannot be printed to stdout.</p>
-</dd>
-<dd>
 <pre>
     file.html</pre>
-</dd>
-<dd>
 <pre>
     --&gt; file.html       The Frame file, point browser here
         file-toc.html   Left frame (navigation)
         file-body.html  Right frame (content)</pre>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dlanguage_id"><strong>--language ID</strong></a></strong>
+<dt><strong><a name="language_id" class="item"><strong>--language ID</strong></a></strong></dt>
 
 <dd>
-<p>Use language ID, a two character ISO identifier like ``en'' for English
+<p>Use language ID, a two character ISO identifier like &quot;en&quot; for English
 during the generation of HTML. This only affects the text that is shown to
-end-user, like text ``Table Of contents''. The default setting is ``en''. See
-section ``SEE ALSO'' for standards ISO 639 and ISO 3166 for proper codes.</p>
-</dd>
-<dd>
+end-user, like text &quot;Table Of contents&quot;. The default setting is &quot;en&quot;. See
+section &quot;SEE ALSO&quot; for standards ISO 639 and ISO 3166 for proper codes.</p>
 <p>The selected langauge changes propgram's internal arrays in two ways: 1)
-Instead of default ``Table of ocntents'' heading the national langaugage
-equivalent will be used 2) The text ``Pic'' below embedded sequentially
+Instead of default &quot;Table of ocntents&quot; heading the national langaugage
+equivalent will be used 2) The text &quot;Pic&quot; below embedded sequentially
 numbered pictures will use natinal equivalent.</p>
+<p>If your languagae is not supported, please send the phrase for &quot;Table of
+contents&quot; and word &quot;Pic&quot; in your langauge to the maintainer.</p>
 </dd>
-<dd>
-<p>If your languagae is not supported, please send the phrase for ``Table of
-contents'' and word ``Pic'' in your langauge to the maintainer.</p>
-</dd>
-</li>
-<dt><strong><a name="item__2d_2dscript_2dfile_file"><strong>--script-file FILE</strong></a></strong>
+<dt><strong><a name="script_file_file" class="item"><strong>--script-file FILE</strong></a></strong></dt>
 
 <dd>
-<p>Include java code that must be complete &lt;SCRIPT...&gt;&lt;/SCRIPT&gt; from FILE. The
-code is put inside &lt;HEAD&gt; of each HTML.</p>
-</dd>
-<dd>
+<p>Include java code that must be complete &lt;script...&gt;&lt;/script&gt; from FILE. The
+code is put inside &lt;head&gt; of each HTML.</p>
 <p>The <strong>--script-file</strong> is a general way to import anything into the HEAD
 element. Eg. If you want to keep separate style definitions for
 all, you could only import a pointer to a style sheet.
 See <em>14.3.2 Specifying external style sheets</em> in HTML 4.0 standard.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dmeta_2dkeywords_str"><strong>--meta-keywords STR</strong></a></strong>
+<dt><strong><a name="meta_keywords_str" class="item"><strong>--meta-keywords STR</strong></a></strong></dt>
 
 <dd>
-<p>Meta keywords. Used by search engines. Separate kwywords like ``AA, BB, CC''
-with commas. Refer to HTML 4.01 specification and topic ``7.4.4 Meta data''
+<p>Meta keywords. Used by search engines. Separate kwywords like &quot;AA, BB, CC&quot;
+with commas. Refer to HTML 4.01 specification and topic &quot;7.4.4 Meta data&quot;
 and see <a href="http://www.htmlhelp.com/reference/wilbur/">http://www.htmlhelp.com/reference/wilbur/</a> and</p>
-</dd>
-<dd>
 <pre>
     --meta-keywords &quot;AA,BB,CC&quot;</pre>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dmeta_2ddescription_str"><strong>--meta-description STR</strong></a></strong>
+<dt><strong><a name="meta_description_str" class="item"><strong>--meta-description STR</strong></a></strong></dt>
 
 <dd>
 <p>Meta description. Include description string, max 1000 characters. This is
 used by search engines. Refer to HTML 4.01 specification and topic
-``7.4.4 Meta data''</p>
+&quot;7.4.4 Meta data&quot;</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dname_2duniq"><strong>--name-uniq</strong></a></strong>
+<dt><strong><a name="name_uniq" class="item"><strong>--name-uniq</strong></a></strong></dt>
 
 <dd>
-<p>First 1-4 words from the heading are used for the HTML <em>NAME</em> tags.
+<p>First 1-4 words from the heading are used for the HTML <em>name</em> tags.
 However, it is possible that two same headings start with exactly the same
 1-4 words. In those cases you have to turn on this option. It will use
-counter 00 - 999 instead of words from headings to construct HTML <em>NAME</em>
+counter 00 - 999 instead of words from headings to construct HTML <em>name</em>
 references.</p>
-</dd>
-<dd>
 <p>Please use this option only in emergencies, because referring to jump block
-<em>NAME</em> via</p>
-</dd>
-<dd>
+<em>name</em> via</p>
 <pre>
     httpI://example.com/doc.html#header_name</pre>
-</dd>
-<dd>
 <p>is more convenient than using obscure reference</p>
-</dd>
-<dd>
 <pre>
     httpI://example.com/doc.html#11</pre>
-</dd>
-<dd>
 <p>In addition, each time you add a new heading the number changes, whereas
 the symbolic name picked from heading stays as long as you do not change
 the heading. Think about welfare of your netizens who bookmark you pages.
 Try to make headings to not have same subjects and you do not need this
 option.</p>
 </dd>
-</li>
 </dl>
 <p>
 </p>
 <h2><a name="document_maintenance_and_batch_job_commands">Document maintenance and batch job commands</a></h2>
 <dl>
-<dt><strong><a name="item__2d_2dauto_2ddetect"><strong>--Auto-detect</strong></a></strong>
+<dt><strong><a name="auto_detect" class="item"><strong>--Auto-detect</strong></a></strong></dt>
 
 <dd>
 <p>Convert file only if tag <code>#T2HTML-</code> is found from file. This option
 is handy if you run a batch command to convert all files to HTML, but
 only if they look like HTML base files:</p>
-</dd>
-<dd>
 <pre>
     find . -name &quot;*.txt&quot; -type f \
-         -exec t2html.pl --Auto-detect --verbose --Out {} \;</pre>
-</dd>
-<dd>
+         -exec t2html --Auto-detect --verbose --Out {} \;</pre>
 <p>The command searches all *.txt files under current directory and feeds
 them to conversion program. The <strong>--Auto-detect</strong> only converts files
 which include <code>#T2HTML-</code> directives. Other text files are not
 converted.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dlink_2dcheck__2dl"><strong>--link-check -l</strong></a></strong>
+<dt><strong><a name="link_check_l" class="item"><strong>--link-check -l</strong></a></strong></dt>
 
 <dd>
 <p>Check all http and ftp links.
 <em>This option is supposed to be run standalone</em>
 Option <strong>--quiet</strong> has special meaning when used with link check.</p>
-</dd>
-<dd>
 <p>With this option you can regularly validate your document and remove dead
 links or update moved links. Problematic links are outputted to <em>stderr</em>.
 This link check feature is available only if you have the LWP web
 library installed. Program will check if you have it at runtime.</p>
-</dd>
-<dd>
 <p>Links that are big, e.g. which match <em>tar.gz .zip ...</em> or that run
 programs (links with ? character) are ignored because the GET request
 used in checking would return whole content of the link and it would.
 be too expensive.</p>
-</dd>
-<dd>
 <p>A suggestion: When you put binary links to your documents, add them with
 space:</p>
-</dd>
-<dd>
 <pre>
     <a href="http://example.com/dir/dir/">http://example.com/dir/dir/</a> filename.tar.gz</pre>
-</dd>
-<dd>
 <p>Then the program <em>does</em> check the http addresses. Users may not be
 able to get the file at one click, checker can validate at least the
 directory. If you are not the owner of the link, it is also possible
 that the file has moved of new version name has appeared.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dlink_2dcheck_2dsingle__2dl"><strong>--Link-check-single -L</strong></a></strong>
+<dt><strong><a name="link_check_single_l" class="item"><strong>--Link-check-single -L</strong></a></strong></dt>
 
 <dd>
 <p>Print condensed output in <em>grep -n</em> like manner <em>FILE:LINE:MESSAGE</em></p>
-</dd>
-<dd>
 <p>This option concatenates the url response text to single line, so that you
 can view the messages in one line. You can use programming tools (like
 Emacs M-x compile) that can parse standard grep syntax to jump to locations
 in your document to correct the links later.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dout__2do"><strong>--Out -O</strong></a></strong>
+<dt><strong><a name="out_o" class="item"><strong>--Out -O</strong></a></strong></dt>
 
 <dd>
 <p>write generated HTML to file that is derived from the input filename.</p>
-</dd>
-<dd>
 <pre>
     --Out --print /dir/file            --&gt; /dir/file.html
     --Out --print /dir/file.txt        --&gt; /dir/file.html
     --Out --print /dir/file.this.txt   --&gt; /dir/file.this.html</pre>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dlink_2dcache_cache_file"><strong>--Link-cache CACHE_FILE</strong></a></strong>
+<dt><strong><a name="link_cache_cache_file" class="item"><strong>--Link-cache CACHE_FILE</strong></a></strong></dt>
 
 <dd>
 <p>When links are checked periodically, it would be quite a rigorous to
 check every link every time that has already succeeded. In order to
-save link checking time, the ``ok'' links can be cached into separate
+save link checking time, the &quot;ok&quot; links can be cached into separate
 file. Next time you check the links, the cache is opened and only
 links found that were not in the cache are checked. This should
 dramatically improve long searches. Consider this example, where
 every text file is checked recursively.</p>
-</dd>
-<dd>
 <pre>
-    $ t2html.pl --Link-check-single \
+    $ t2html --Link-check-single \
       --quiet --Link-cache ~tmp/link.cache \
       `find . -name &quot;*.txt&quot; -type f`</pre>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dout_2ddir_dir"><strong>--Out-dir DIR</strong></a></strong>
+<dt><strong><a name="out_dir_dir" class="item"><strong>--Out-dir DIR</strong></a></strong></dt>
 
 <dd>
 <p>Like <strong>--Out</strong>, but chop the directory part and write output files to
 DIR. The following would generate the HTML file to current directory:</p>
-</dd>
-<dd>
 <pre>
     --Out-dir .</pre>
-</dd>
-<dd>
 <p>If you have automated tool that fills in the directory, you can use word
 <strong>none</strong> to ignore this option. The following is a no-op, it will not generate
-output to directory ``none'':</p>
-</dd>
-<dd>
+output to directory &quot;none&quot;:</p>
 <pre>
     --Out-dir none</pre>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dprint__2dp"><strong>--print -p</strong></a></strong>
+<dt><strong><a name="print_p" class="item"><strong>--print -p</strong></a></strong></dt>
 
 <dd>
 <p>Print filename to stdout after HTML processing. Normally program prints
 no file names, only the generated HTML.</p>
-</dd>
-<dd>
 <pre>
-    % t2html.pl --Out --print page.txt</pre>
-</dd>
-<dd>
+    % t2html --Out --print page.txt</pre>
 <pre>
     --&gt; page.html</pre>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dprint_2durl__2dp"><strong>--print-url -P</strong></a></strong>
+<dt><strong><a name="print_url_p" class="item"><strong>--print-url -P</strong></a></strong></dt>
 
 <dd>
 <p>Print filename in URL format. This is useful if you want to check the
 layout immediately with your browser.</p>
-</dd>
-<dd>
 <pre>
-    % t2html.pl --Out --print-url page.txt | xargs lynx</pre>
-</dd>
-<dd>
+    % t2html --Out --print-url page.txt | xargs lynx</pre>
 <pre>
     --&gt; file: /users/foo/txt/page.html</pre>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dsplit_regexp"><strong>--split REGEXP</strong></a></strong>
+<dt><strong><a name="split_regexp" class="item"><strong>--split REGEXP</strong></a></strong></dt>
 
 <dd>
 <p>Split document into smaller pieces when REGEXP matches. <em>Split commands
 are standalone</em>, meaning, that it starts and quits. No HTML conversion for
 the file is engaged.</p>
-</dd>
-<dd>
 <p>If REGEXP is found from the line, it is a start point of a split. E.g. to
 split according to toplevel headings, which have no numbering, you would
 use:</p>
-</dd>
-<dd>
 <pre>
     --split '^[A-Z]'</pre>
-</dd>
-<dd>
 <p>A sequential numbers, 3 digits, are added to the generated partials:</p>
-</dd>
-<dd>
 <pre>
     filename.txt-NNN</pre>
-</dd>
-<dd>
 <p>The split feature is handy if you want to generate slides from each heading:
 First split the document, then convert each part to HTML and finally print
 each part (page) separately to printer.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dsplit1__2d_2ds1"><strong>--split1 --S1</strong></a></strong>
+<dt><strong><a name="split1_s1" class="item"><strong>--split1 --S1</strong></a></strong></dt>
 
 <dd>
 <p>This is shorthand of <strong>--split</strong> command. Define regexp to split on toplevel
 heading.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dsplit2__2d_2ds2"><strong>--split2 --S2</strong></a></strong>
+<dt><strong><a name="split2_s2" class="item"><strong>--split2 --S2</strong></a></strong></dt>
 
 <dd>
 <p>This is shorthand of <strong>--split</strong> command. Define regexp to split on second
 level heading.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dsplit_2dnamed_2dfiles__2d_2dsn"><strong>--split-named-files --SN</strong></a></strong>
+<dt><strong><a name="split_named_files_sn" class="item"><strong>--split-named-files --SN</strong></a></strong></dt>
 
 <dd>
 <p>Additional directive for split commands. If you split e.g. by headings using
 <strong>--split1</strong>, it would be more informative to generate filenames according
 to first few words from the heading name. Suppose the heading names where
 split occur were:</p>
-</dd>
-<dd>
 <pre>
     Program guidelines
     Conclusion</pre>
-</dd>
-<dd>
 <p>Then the generated partial filenames would be as follows.</p>
-</dd>
-<dd>
 <pre>
     FILENAME-program_guidelines
     FILENAME-conclusion</pre>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dxhtml"><strong>--Xhtml</strong></a></strong>
+<dt><strong><a name="xhtml" class="item"><strong>--Xhtml</strong></a></strong></dt>
 
 <dd>
 <p>Render using strict XHTML. This means using &lt;hr/&gt;, &lt;br/&gt; and paragraphs
 use &lt;p&gt;..&lt;/p&gt;.</p>
-</dd>
-<dd>
 <p><code>Note: this option is experimental. See BUGS</code></p>
 </dd>
-</li>
 </dl>
 <p>
 </p>
 <h2><a name="miscellaneous_options">Miscellaneous options</a></h2>
 <dl>
-<dt><strong><a name="item__2d_2ddebug_level"><strong>--debug LEVEL</strong></a></strong>
+<dt><strong><a name="debug_level" class="item"><strong>--debug LEVEL</strong></a></strong></dt>
 
 <dd>
 <p>Turn on debug with positive LEVEL number. Zero means no debug.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dhelp__2dh"><strong>--help -h</strong></a></strong>
+<dt><strong><a name="help_h" class="item"><strong>--help -h</strong></a></strong></dt>
 
 <dd>
 <p>Print help screen.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dhelp_2dhtml"><strong>--Help-html</strong></a></strong>
+<dt><strong><a name="help_html" class="item"><strong>--Help-html</strong></a></strong></dt>
 
 <dd>
 <p>Print help in HTML format.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dhelp_2dman"><strong>--Help-man</strong></a></strong>
+<dt><strong><a name="help_man" class="item"><strong>--Help-man</strong></a></strong></dt>
 
 <dd>
 <p>Print help page in Unix manual page format. You want to feed this output to
 <strong>nroff -man</strong> in order to read it.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dtest_2dpage"><strong>--test-page</strong></a></strong>
+<dt><strong><a name="test_page" class="item"><strong>--test-page</strong></a></strong></dt>
 
 <dd>
 <p>Print the test page: HTML and example text file that demonstrates
 the capabilities.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dtime"><strong>--time</strong></a></strong>
+<dt><strong><a name="time" class="item"><strong>--time</strong></a></strong></dt>
 
 <dd>
 <p>Print to stderr time spent used for handling the file.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dverbose__5blevel_5d"><strong>--verbose [LEVEL]</strong></a></strong>
+<dt><strong><a name="verbose_level" class="item"><strong>--verbose [LEVEL]</strong></a></strong></dt>
 
 <dd>
 <p>Print verbose messages.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dquiet__2dq"><strong>--quiet -q</strong></a></strong>
+<dt><strong><a name="quiet_q" class="item"><strong>--quiet -q</strong></a></strong></dt>
 
 <dd>
 <p>Print no footer at all. This option has different meaning if
 <em>--link-check</em> option is turned on: print only errorneous links.</p>
 </dd>
-</li>
-<dt><strong><a name="item__2d_2dversion__2dv"><strong>--Version -V</strong></a></strong>
+<dt><strong><a name="version_v" class="item"><strong>--Version -V</strong></a></strong></dt>
 
 <dd>
 <p>Print program version information.</p>
 </dd>
-</li>
 </dl>
 <p>
 </p>
@@ -1231,7 +937,7 @@ called 'Technical format' (TF)</p>
 <pre>
            Emphatised text at column 7, like heading level 3</pre>
 <pre>
-           &quot;Special &lt;EM&gt; text at column 7 starts with double quote&quot;</pre>
+           &quot;Special &lt;em&gt; text at column 7 starts with double quote&quot;</pre>
 <pre>
             Another standard text block at column 8 txt txt txt
             txt txt txt txt txt txt txt txt txt txt txt txt txt
@@ -1247,7 +953,7 @@ called 'Technical format' (TF)</p>
 <pre>
                 Column 12 and further is reserved for code examples
                 Column 12 and further is reserved for code examples
-                All text here are surrounded by &lt;PRE&gt; HTML codes
+                All text here are surrounded by &lt;pre&gt; HTML codes
                 (This CODE column in affected by --css-code* options,
                 see more ideas from there.)</pre>
 <pre>
@@ -1287,7 +993,7 @@ called 'Technical format' (TF)</p>
                 code, it tells this paragraph to continue in
                 bullet mode, otherwise this text at column 12
                 would be intepreted as code section surrpoundedn
-                by &lt;PRE&gt; HTML codes.</pre>
+                by &lt;pre&gt; HTML codes.</pre>
 <pre>
             *   Bullet 2, text starts at column 12
             *   Bullet 3. Bullets are adviced to keep together
@@ -1304,8 +1010,8 @@ called 'Technical format' (TF)</p>
             .This line has BR code and is displayed in line by itself.
             .This line has BR code and is displayed in line by itself.</pre>
 <pre>
-            !! This adds an &lt;HR&gt; HTML code, text in line is marked with
-            !! &lt;STRONG&gt; &lt;EM&gt;</pre>
+            !! This adds an &lt;hr&gt; HTML code, text in line is marked with
+            !! &lt;strong&gt; &lt;em&gt;</pre>
 <pre>
            &quot;This is emphasised text starting at column 7&quot;
             .And this text is put after the previous line with BR code
@@ -1347,14 +1053,14 @@ and 4 and the heading must start with big letter or number</p>
 </li>
 <li>
 <p>at column 4, if the text starts with small letter, that line is interpreted
-as &lt;STRONG&gt;</p>
+as &lt;strong&gt;</p>
 </li>
 <li>
-<p>A HTML &lt;HR&gt; mark is added just before printing heading at level 1.</p>
+<p>A HTML &lt;hr&gt; mark is added just before printing heading at level 1.</p>
 </li>
 <li>
 <p>The headings are gathered, the TOC is built and inserted to the beginning
-of HTML page. The HTML &lt;NAME&gt; references used in TOC are the first 4
+of HTML page. The HTML &lt;name&gt; references used in TOC are the first 4
 sequential words from the headings. Make sure your headings are uniquely
 named, otherwise there will be same NAME references in the generated HTML.
 Spaces are converted into underscore when joining the words. If you can not
@@ -1376,23 +1082,23 @@ switch</p>
 to indicate Heading level 1.</p>
 </li>
 <li>
-<p>Text between colums 1-3 is marked with &lt;EM&gt;</p>
+<p>Text between colums 1-3 is marked with &lt;em&gt;</p>
 </li>
 <li>
 <p>Column 4 is reserved for heading level 2</p>
 </li>
 <li>
-<p>Text between colums 5-7 is marked with &lt;STRONG&gt;</p>
+<p>Text between colums 5-7 is marked with &lt;strong&gt;</p>
 </li>
 <li>
-<p>Text at column 7 is &lt;EM&gt; if the first character is double quote.</p>
+<p>Text at column 7 is &lt;em&gt; if the first character is double quote.</p>
 </li>
 <li>
-<p>Column 10 is reserved for &lt;EM&gt; text. If you want to quote someone
+<p>Column 10 is reserved for &lt;em&gt; text. If you want to quote someone
 or to add reference text, place the text in this column.</p>
 </li>
 <li>
-<p>Text at colums 9,11 are marked with &lt;STRONG&gt;</p>
+<p>Text at colums 9,11 are marked with &lt;strong&gt;</p>
 </li>
 </ul>
 <p>Column 8 for text and special codes</p>
@@ -1407,9 +1113,9 @@ or to add reference text, place the text in this column.</p>
 <p>Column 12 is special</p>
 <ul>
 <li>
-<p>Column 12 is treated specially: block is started with &lt;PRE&gt; and lines are
-marked as &lt;SAMP&gt;&lt;/SAMP&gt;. When the last text at <em>column</em> 12 is found, the
-block is closed with &lt;/PRE&gt; Note follwing example</p>
+<p>Column 12 is treated specially: block is started with &lt;pre&gt; and lines are
+marked as &lt;samp&gt;&lt;/samp&gt;. When the last text at <em>column</em> 12 is found, the
+block is closed with &lt;/pre&gt; Note follwing example</p>
 <pre>
     txt txt txt         ;evenly placed block, fine, do it like this
     txt txt</pre>
@@ -1430,17 +1136,17 @@ block is closed with &lt;/PRE&gt; Note follwing example</p>
 <ul>
 <li>
 <p>If there is <code>.</code>(dot) at the beginning of a line and immediately
-non-whitespace, then &lt;BR&gt; code is added to the end of line.</p>
+non-whitespace, then &lt;br&gt; code is added to the end of line.</p>
 <pre>
     .This line has BR code at the end.
     While these two line are joined together
     by your browser, depending on the frame width.</pre>
 </li>
 <li>
-<p>If there is <code>,</code>(comma) then the &lt;P&gt; code is not inserted if the previous
+<p>If there is <code>,</code>(comma) then the &lt;p&gt; code is not inserted if the previous
 line is empty. If you use both <code>.</code>(dot) and <code>,</code>(comma), they must be in
 order dot-comma. The <code>,</code>(comma) works differently if it is used in bullet</p>
-<p>A &lt;P&gt; is always added if there is separation of paragraphs, but when you are
+<p>A &lt;p&gt; is always added if there is separation of paragraphs, but when you are
 writing a bullet, there is a problem, because a bullet exist only as long
 as text is kept together</p>
 <pre>
@@ -1448,7 +1154,7 @@ as text is kept together</p>
         even if there is another line in the bullet.</pre>
 <p>But to write bullets tat spread multiple paragraphs, you must instruct
 that those are to kept together and the text in next paragraph is
-not &lt;SAMPLE&gt; while it is placed at column 12</p>
+not &lt;sample&gt; while it is placed at column 12</p>
 <pre>
     *   This is a bullet and it has all text ketp together
         ,even if there is another line in the bullet.</pre>
@@ -1466,25 +1172,21 @@ not &lt;SAMPLE&gt; while it is placed at column 12</p>
 </p>
 <h2><a name="special_text_markings">Special text markings</a></h2>
 <dl>
-<dt><strong><a name="item_italic_2c_bold_2c_code_2c_small_2c_big_tokens">italic, bold, code, small, big tokens</a></strong>
+<dt><strong><a name="italic_bold_code_small_big_tokens" class="item">italic, bold, code, small, big tokens</a></strong></dt>
 
 <dd>
 <pre>
-    _this_      is intepreted as &lt;STRONG class='word'&gt;this&lt;/STRONG&gt;
-    *this*      is intepreted as &lt;EM class='word'&gt;this&lt;/EM&gt;
-    `this'      is intepreted as &lt;SAMPLE class='word'&gt;this&lt;/SAMPLE&gt; `</pre>
-</dd>
-<dd>
+    _this_      is intepreted as &lt;strong class='word'&gt;this&lt;/strong&gt;
+    *this*      is intepreted as &lt;em class='word'&gt;this&lt;/em&gt;
+    `this'      is intepreted as &lt;sample class='word'&gt;this&lt;/sample&gt; `</pre>
 <p>Exra modifiers that can be mixed with the above. Usually if you want
 bigger font, CAPITALIZE THE WORDS.</p>
-</dd>
-<dd>
 <pre>
-    =this=      is intepreted as &lt;SPAN class=&quot;word-small&quot;&gt;this&lt;/SPAN&gt;
-    +this+      is intepreted as &lt;SPAN class=&quot;word-big&quot;&gt;this&lt;/SPAN&gt;
-    word [this] is intepreted as &lt;SPAN class=&quot;word-ref&quot;&gt;this&lt;/SPAN&gt;</pre>
+    =this=      is intepreted as &lt;span class=&quot;word-small&quot;&gt;this&lt;/span&gt;
+    +this+      is intepreted as &lt;span class=&quot;word-big&quot;&gt;this&lt;/span&gt;
+    word [this] is intepreted as &lt;span class=&quot;word-ref&quot;&gt;this&lt;/span&gt;</pre>
 </dd>
-<dt><strong><a name="item_supercripting">supercripting</a></strong>
+<dt><strong><a name="supercripting" class="item">supercripting</a></strong></dt>
 
 <dd>
 <pre>
@@ -1493,13 +1195,11 @@ bigger font, CAPITALIZE THE WORDS.</p>
                 imaginable[IV superscritps] as long as the left
                 bracket is attached to the word.</pre>
 </dd>
-<dt><strong><a name="item_embedding_standard_html_tokens">embedding standard HTML tokens</a></strong>
+<dt><strong><a name="embedding_standard_html_tokens" class="item">embedding standard HTML tokens</a></strong></dt>
 
 <dd>
 <p>Stanadard special HTML entities can be added inside text in a normal way,
 either using sybolic names or the hash code. Here are exmples</p>
-</dd>
-<dd>
 <pre>
     &amp;times; &amp;lt; &amp;gt; &amp;le; &amp;ge; &amp;ne; &amp;radic; &amp;minus;
     &amp;alpha; &amp;beta; &amp;gamma; &amp;divide;
@@ -1509,80 +1209,55 @@ either using sybolic names or the hash code. Here are exmples</p>
     &amp;trade; &amp;copy; &amp;reg;
     &amp;euro; &amp;pound; &amp;yen;</pre>
 </dd>
-</li>
-<dt><strong><a name="item_embedding_pure_html_into_text">embedding PURE HTML into text</a></strong>
+<dt><strong><a name="embedding_pure_html_into_text" class="item">embedding PURE HTML into text</a></strong></dt>
 
 <dd>
 <p><strong>this feature is highly experimental</strong>. It is possible to embed
 pure HTML inside text in occasions, where e.g. some special
 formatting is needed. The isea is simple: you write HTML as usual
 but double every &lt; and &gt; characters, like:</p>
-</dd>
-<dd>
 <pre>
-    &lt;&lt;P&gt;&gt;</pre>
-</dd>
-<dd>
+    &lt;&lt;p&gt;&gt;</pre>
 <p>The other rule is that all, let's repeat, ALL PURE HTML must be
 kept together. There must be no line breaks between pure HTML
 lines. This is <code>invalid:</code></p>
-</dd>
-<dd>
 <pre>
-    &lt;&lt;TABLE&gt;</pre>
-</dd>
-<dd>
+    &lt;&lt;table&gt;</pre>
 <pre>
-        &lt;&lt;TR&gt;&gt;One
-        &lt;&lt;TR&gt;&gt;two</pre>
-</dd>
-<dd>
+        &lt;&lt;tr&gt;&gt;one
+        &lt;&lt;tr&gt;&gt;two</pre>
 <pre>
-    &lt;&lt;/TABLE&gt;&gt;</pre>
-</dd>
-<dd>
+    &lt;&lt;/table&gt;&gt;</pre>
 <p>The pure HTML must be written without separating newlines:</p>
-</dd>
-<dd>
 <pre>
-    &lt;&lt;TABLE&gt;
-        &lt;&lt;TR&gt;&gt;One
-        &lt;&lt;TR&gt;&gt;two
-    &lt;&lt;/TABLE&gt;&gt;</pre>
-</dd>
-<dd>
-<p>This ``doubling'' affects normal text writing rules as well. If you write
+    &lt;&lt;table&gt;
+        &lt;&lt;tr&gt;&gt;one
+        &lt;&lt;tr&gt;&gt;two
+    &lt;&lt;/table&gt;&gt;</pre>
+<p>This &quot;doubling&quot; affects normal text writing rules as well. If you write
 documents, where you describe Unix styled HERE-documents, you MUST NOT put
 the tokens next to each other:</p>
-</dd>
-<dd>
 <pre>
         bash$ cat&lt;&lt;EOF              # DON'T! It will confuse parser.
         one
         EOF</pre>
-</dd>
-<dd>
-<p>You must write the above code example using spaces to prevent ``&lt;&lt;'' from
+<p>You must write the above code example using spaces to prevent &quot;&lt;&lt;&quot; from
 interpreting as PURE HTML:</p>
-</dd>
-<dd>
 <pre>
         bash$ cat &lt;&lt; EOF            # RIGHT, add spaces
         one
         EOF</pre>
 </dd>
-</li>
 </dl>
 <dl>
-<dt><strong><a name="item_drawing_a_short_separator">drawing a short separator</a></strong>
+<dt><strong><a name="drawing_a_short_separator" class="item">drawing a short separator</a></strong></dt>
 
 <dd>
 <p>A !! (two exclamation marks) at text column (position 8) causes adding
-immediate &lt;HR&gt; code. Any text after !! in the same line is written with
-&lt;STRONG&gt; &lt;EM&gt; and inserted just after &lt;HR&gt; code, therefore the word
+immediate &lt;hr&gt; code. any text after !! in the same line is written with
+&lt;strong&gt; &lt;em&gt; and inserted just after &lt;hr&gt; code, therefore the word
 formatting commands have no effect in this line.</p>
 </dd>
-</li>
 </dl>
 <p>
 </p>
@@ -1613,12 +1288,12 @@ clickable.</p>
 <h2><a name="lists_and_bullets">Lists and bullets</a></h2>
 <ul>
 <li>
-<p>The bulletin table is contructed if there is ``o'' or ``*'' at column 8 and 3
+<p>The bulletin table is contructed if there is &quot;o&quot; or &quot;*&quot; at column 8 and 3
 spaces after it, so that text starts at column 12. Bulleted lines are
 adviced to be kept together; no spaces between bullet blocks.</p>
 </li>
 <li>
-<p>The ordered list is started with ``.'', a dot, and written like bullet where
+<p>The ordered list is started with &quot;.&quot;, a dot, and written like bullet where
 text starts at column 12.</p>
 </li>
 </ul>
@@ -1639,18 +1314,14 @@ break to separate paragraphs.</p>
 <hr />
 <h1><a name="embedded_directives_inside_text">EMBEDDED DIRECTIVES INSIDE TEXT</a></h1>
 <dl>
-<dt><strong><a name="item_command_line_options">Command line options</a></strong>
+<dt><strong><a name="command_line_options" class="item">Command line options</a></strong></dt>
 
 <dd>
 <p>You can cancel obeying all embedded directives by supplying option
 <strong>--not2html-tags</strong>.</p>
-</dd>
-<dd>
 <p>You can include these lines anywhere in the document and their content
 is included in HTML output. Each directive line must fit in one line and
 it cannot be broken to separate lines.</p>
-</dd>
-<dd>
 <pre>
     #T2HTML-TITLE            &lt;as passed option --title&gt;
     #T2HTML-EMAIL            &lt;as passed option --email&gt;
@@ -1658,23 +1329,15 @@ it cannot be broken to separate lines.</p>
     #T2HTML-DOC              &lt;as passed option --doc&gt;
     #T2HTML-METAKEYWORDS     &lt;as passed option --meta-keywords&gt;
     #T2HTML-METADESCRIPTION  &lt;as passed option --meta-description&gt;</pre>
-</dd>
-<dd>
 <p>You can pass command line options embedded in the file. Like if you
 wanted the CODE section (column 12) to be coloured with shade of gray,
 you could add:</p>
-</dd>
-<dd>
 <pre>
     #T2HTML-OPTION  --css-code-bg</pre>
-</dd>
-<dd>
 <p>Or you could request turning on particular options. Notice that each line
 is exactly as you have passed the argument in command line. Imagine
 surrounding double quoted around lines that are arguments to the
 associated options.</p>
-</dd>
-<dd>
 <pre>
     #T2HTML-OPTION  --as-is
     #T2HTML-OPTION  --quiet
@@ -1685,150 +1348,101 @@ associated options.</p>
     #T2HTML-OPTION --css-code-bg
     #T2HTML-OPTION --css-code-note
     #T2HTML-OPTION (?:Note|Notice|Warning):</pre>
-</dd>
-<dd>
 <p>You can also embed your own comments to the text. These are stripped away:</p>
-</dd>
-<dd>
 <pre>
     #T2HTML-COMMENT  You comment here
     #T2HTML-COMMENT  You another comment here</pre>
 </dd>
-</li>
-<dt><strong><a name="item_embedding_files">Embedding files</a></strong>
+<dt><strong><a name="embedding_files" class="item">Embedding files</a></strong></dt>
 
 <dd>
 <p>#INCLUDE- command</p>
-</dd>
-<dd>
 <p>This is used to include the content into current current position. The URL
 can be a filename reference, where every $VAR is subtituted from the
-environment variables. The <code>tilde(~)</code> expansion is not supported. The
+environment variables. The tilde(~) expansion is not supported. The
 included filename is operating system supported path location.</p>
-</dd>
-<dd>
 <p>A prefix <code>raw:</code> disables any normal formatting. The file content is
 included as is.</p>
-</dd>
-<dd>
 <p>The URL can also be a HTTP reference to a remote location, whose content is
 included at the point. In case of remote content or when filename ends to
 extension <code>.html</code> or <code>.html</code>, the content is stripped in order to make
 the inclusion of the content possible. In picture below, only the lines
 within the BODY, marked with !!, are included:</p>
-</dd>
-<dd>
 <pre>
-    &lt;HTML&gt;
-      &lt;HEAD&gt;
+    &lt;html&gt;
+      &lt;head&gt;
         ...
-      &lt;/HEAD&gt;
-      &lt;BODY&gt;
-        This text                 !!
-        And more of this          !!
-      &lt;/BODY&gt;
-    &lt;/HTML&gt;</pre>
-</dd>
-<dd>
+      &lt;/head&gt;
+      &lt;body&gt;
+        this text                 !!
+        and more of this          !!
+      &lt;/body&gt;
+    &lt;/html&gt;</pre>
 <p>Examples:</p>
-</dd>
-<dd>
 <pre>
     #INCLUDE-$HOME/lib/html/picture1.html
     #INCLUDE-<a href="http://www.example.com/code.html">http://www.example.com/code.html</a>
     #INCLUDE-raw:example/code.html</pre>
 </dd>
-</li>
-<dt><strong><a name="item_embedding_pictures">Embedding pictures</a></strong>
+<dt><strong><a name="embedding_pictures" class="item">Embedding pictures</a></strong></dt>
 
 <dd>
 <p>#PIC command is used to include pictures into the text</p>
-</dd>
-<dd>
 <pre>
     #PIC picture.png#Caption Text#Picture HTML attributes#align#
           (1)        (2)          (3)                     (4)</pre>
-</dd>
-<dd>
 <pre>
     1.  The NAME or URL address of the picturere. Like image/this.png</pre>
-</dd>
-<dd>
 <pre>
     2.  The Text that appears below picture</pre>
-</dd>
-<dd>
 <pre>
-    3.  Additional attributes that are attached inside &lt;IMG&gt; tag.
-        For &lt;IMG width=&quot;200&quot; height=&quot;200&quot;&gt;, the line would
+    3.  Additional attributes that are attached inside &lt;img&gt; tag.
+        For &lt;img width=&quot;200&quot; height=&quot;200&quot;&gt;, the line would
         read:</pre>
-</dd>
-<dd>
 <pre>
         #PIC some.png#Caption Text#width=200 length=200##</pre>
-</dd>
-<dd>
 <pre>
     4.  The position of image: &quot;left&quot; (default), &quot;center&quot;, &quot;right&quot;</pre>
-</dd>
-<dd>
 <p>Note: The <code>Caption Text</code> will also become the ALT text of the image
 which is used in case the browser is not capable of showing pictures.
 You can suppress the ALT text with option <strong>--no-picture-alt</strong>.</p>
 </dd>
-</li>
-<dt><strong><a name="item_fragment_identifiers_for_named_tags">Fragment identifiers for named tags</a></strong>
+<dt><strong><a name="fragment_identifiers_for_named_tags" class="item">Fragment identifiers for named tags</a></strong></dt>
 
 <dd>
-<p>#REF command is used for refering to HTML &lt;NAME&gt; tag inside current
+<p>#REF command is used for refering to HTML &lt;name&gt; tag inside current
 document. The whole command must be placed on one single line and
 cannot be broken to multiple lines. An example:</p>
-</dd>
-<dd>
 <pre>
     #REF #how_to_profile;(Note: profiling);
           (1)            (2)</pre>
-</dd>
-<dd>
 <pre>
     1.  The NAME HTML tag reference in current document, a single word.
         This can also be a full URL link.
         You can get NAME list by enabling --Toc-url-print option.</pre>
-</dd>
-<dd>
 <pre>
     2.  The clickable text is delimited by ; characters.</pre>
 </dd>
-</li>
-<dt><strong><a name="item_referring_to_external_documents_2e">Referring to external documents.</a></strong>
+<dt><strong><a name="referring_to_external_documents" class="item">Referring to external documents.</a></strong></dt>
 
 <dd>
 <p><code>#URL</code> tag can be used to embed URLs inline, so that the full
 link is not visible. Only the shown text is used to jump to URL.
 This directive cannot be broken to separate lines,</p>
-</dd>
-<dd>
 <pre>
      #URL&lt;FULL-HTTP-LINK&gt; &lt;embedded inline text&gt;
          |               |
          |               whitespace allowed here
          Must be kept together</pre>
-</dd>
-<dd>
 <p>Like if written:</p>
-</dd>
-<dd>
 <pre>
      See search engine #URL&lt;<a href="http://www.google.com&gt">http://www.google.com&gt</a>; &lt;Google&gt;</pre>
 </dd>
-</li>
-<dt><strong><a name="item_referring_to_local_documents_2e">Referring to local documents.</a></strong>
+<dt><strong><a name="referring_to_local_documents" class="item">Referring to local documents.</a></strong></dt>
 
 <dd>
 <p><code>#URL-AS-IS-</code> is a shorthand to announce the filename, while
 referring to local disk location.</p>
-</dd>
-<dd>
 <pre>
                 Pay attention. The syntax is &quot;URL-AS-IS-&quot;, so that
                 whole contruct is treated as one word.
@@ -1836,21 +1450,16 @@ referring to local disk location.</p>
                 +------------
      #URL-AS-IS-doc/mytext.doc The rest of the seen text can
      be written immediately after the tag.</pre>
-</dd>
-<dd>
 <p>Th generated HTML code will read:</p>
-</dd>
-<dd>
 <pre>
-    &lt;A HREF=&quot;doc/mytext.doc&quot;&gt;mytext.doc&lt;/A&gt;</pre>
+    &lt;a href=&quot;doc/mytext.doc&quot;&gt;mytext.doc&lt;/a&gt;</pre>
 </dd>
-</li>
 </dl>
 <p>
 </p>
 <hr />
 <h1><a name="table_of_content_heading">TABLE OF CONTENT HEADING</a></h1>
-<p>If there is heading 1, which is named exactly ``Table of Contents'', then all
+<p>If there is heading 1, which is named exactly &quot;Table of Contents&quot;, then all
 text up to next heading are discarded from the generated HTML file. This is
 done because program generates its own TOC. It is supposed that you use
 some text formatting program to generate the toc for you in .txt file and
@@ -1869,25 +1478,25 @@ empty line between paragraphs, keep <em>one</em> empty line between body
 text and bullet. Make it your mantra: <em>one</em> <em>one</em> <em>one</em> ...</p>
 <p>Next, you may have put text at wrong column position. Remember that the
 regular text is at column 8.</p>
-<p>If generated HTML suddendly starts using only one font, eg &lt;PRE&gt;, then
+<p>If generated HTML suddendly starts using only one font, eg &lt;pre&gt;, then
 you have forgot to close the block. Make it read even, like this:</p>
 <pre>
     Code block
         Code block
         Code block
     ;;  Add empty comment here to &quot;close&quot; the code example at column 12</pre>
-<p>Headings start with a big letter or number, likein ``Heading'', not
-``heading''. Double check the spelling.</p>
+<p>Headings start with a big letter or number, likein &quot;Heading&quot;, not
+&quot;heading&quot;. Double check the spelling.</p>
 <p>
 </p>
 <hr />
 <h1><a name="examples">EXAMPLES</a></h1>
 <p>To print the test page and show all the possibilities:</p>
 <pre>
-    % t2html.pl --test-page</pre>
+    % t2html --test-page</pre>
 <p>To make simple HTML page without any meta information:</p>
 <pre>
-    % t2html.pl --title &quot;Html Page Title&quot; --author &quot;Mr. Foo&quot; \
+    % t2html --title &quot;Html Page Title&quot; --author &quot;Mr. Foo&quot; \
       --simple --Out --print file.txt</pre>
 <p>If you have periodic post in email format, use <strong>--delete-email-headers</strong> to
 ignore the header text:</p>
@@ -1900,7 +1509,7 @@ ignore the header text:</p>
 and frames. Pay attention to switch <em>--html-body</em> which defines document
 language.</p>
 <pre>
-    % t2html.pl                                         \
+    % t2html                                         \
     --print                                             \
     --Out                                               \
     --author    &quot;Mr. foo&quot;                               \
@@ -1922,43 +1531,41 @@ language.</p>
 <p>To check links and print status of all links in par with the http error
 message (most verbose):</p>
 <pre>
-    % t2html.pl --link-check file.txt | tee link-error.log</pre>
+    % t2html --link-check file.txt | tee link-error.log</pre>
 <p>To print only problematic links:</p>
 <pre>
-    % t2html.pl --link-check --quiet file.txt | tee link-error.log</pre>
+    % t2html --link-check --quiet file.txt | tee link-error.log</pre>
 <p>To print terse output in egep -n like manner: line number, link and
 error code:</p>
 <pre>
-    % t2html.pl --link-check-single --quiet file.txt | tee link-error.log</pre>
+    % t2html --link-check-single --quiet file.txt | tee link-error.log</pre>
 <p>To split large document into pieces, and convert each piece to HTML:</p>
 <pre>
-    % t2html.pl --split1 --split-name file.txt | t2html --simple -Out</pre>
+    % t2html --split1 --split-name file.txt | t2html --simple -Out</pre>
 <p>
 </p>
 <hr />
 <h1><a name="environment">ENVIRONMENT</a></h1>
 <dl>
-<dt><strong><a name="item_email"><strong>EMAIL</strong></a></strong>
+<dt><strong><a name="email" class="item"><strong>EMAIL</strong></a></strong></dt>
 
 <dd>
 <p>If environment variable <em>EMAIL</em> is defined, it is used in footer for
 contact address. Option <strong>--email</strong> overrides environment setting.</p>
 </dd>
-</li>
-<dt><strong><a name="item_lang"><strong>LANG</strong></a></strong>
+<dt><strong><a name="lang" class="item"><strong>LANG</strong></a></strong></dt>
 
 <dd>
 <p>The default language setting for switch <code>--language</code> Make sure the
 first two characters contains the language definition, like in:
 LANG=en.iso88591</p>
 </dd>
-</li>
 </dl>
 <p>
 </p>
 <hr />
 <h1><a name="see_also">SEE ALSO</a></h1>
-<p><code>perl(1)</code> <code>html2ps(1)</code> <code>htmlpp(1)</code></p>
+<p><code>perl(1)</code> html2ps(1) <code>htmlpp(1)</code></p>
 <p>
 </p>
 <h2><a name="related_programs">Related programs</a></h2>
