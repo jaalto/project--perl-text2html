@@ -6,7 +6,7 @@
 #
 #  File id
 #
-#       Copyright (C) 1996-2007 Jari Aalto
+#       Copyright (C) 1996-2008 Jari Aalto
 #
 #       This program is free software; you can redistribute it and/or
 #       modify it under the terms of the GNU General Public License as
@@ -118,7 +118,7 @@ IMPORT:             #   These are environment variables
     #   this file is saved. See Emacs module tinperl.el where the
     #   feature is implemented.
 
-    $VERSION = '2008.0920.1435';
+    $VERSION = '2008.0920.1605';
 
 # }}}
 # {{{ Initial setup
@@ -1019,16 +1019,16 @@ EOF
 	$debug  and
 	    print "$id: Reading CSS and Java definitions form $SCRIPT_FILE\n";
 
-	if ( open FILE, "< $SCRIPT_FILE" )
-	{
-	    $JAVA_CODE = join '', <FILE>;
-	    close FILE;
-	}
-	else
-	{
-	    warn "$id: Couldn't read [$SCRIPT_FILE] $ERRNO";
-	    $JAVA_CODE = "<!-- ERROR: couldn't import -->";
-	}
+        if ( open FILE, "<", $SCRIPT_FILE )
+        {
+            $JAVA_CODE = join '', <FILE>;
+            close FILE;
+        }
+        else
+        {
+            warn "$id: Couldn't read [$SCRIPT_FILE] $ERRNO";
+            $JAVA_CODE = "<!-- ERROR: couldn't import -->";
+        }
     }
 
     if ( $LINK_CHECK )
@@ -1044,9 +1044,9 @@ EOF
 	}
     }
 
-    $OUTPUT_TYPE  = $OUTPUT_TYPE_UNDEFINED;
-    $OUTPUT_TYPE  = $OUTPUT_TYPE_SIMPLE   if $OUTPUT_SIMPLE;
-    $OUTPUT_TYPE  = $OUTPUT_TYPE_QUIET    if $QUIET;
+    $OUTPUT_TYPE = $OUTPUT_TYPE_UNDEFINED;
+    $OUTPUT_TYPE = $OUTPUT_TYPE_SIMPLE   if $OUTPUT_SIMPLE;
+    $OUTPUT_TYPE = $OUTPUT_TYPE_QUIET    if $QUIET;
 
     if ( defined $OPT_AUTO_DETECT )
     {
@@ -2552,22 +2552,6 @@ Like if written:
 
      See search engine #URL<http://www.google.com> <Google>
 
-=item Referring to local documents.
-
-C<#URL-AS-IS-> is a shorthand to announce the filename, while
-referring to local disk location.
-
-		Pay attention. The syntax is "URL-AS-IS-", so that
-		whole contruct is treated as one word.
-		|
-		+------------
-     #URL-AS-IS-doc/mytext.doc The rest of the seen text can
-     be written immediately after the tag.
-
-Th generated HTML code will read:
-
-    <a href="doc/mytext.doc">mytext.doc</a>
-
 =back
 
 =head1 TABLE OF CONTENT HEADING
@@ -2752,7 +2736,7 @@ Homepage is at http://freshmeat.net/projects/perl-text2html
 
 =head1 AUTHOR
 
-Copyright (C) 1996-2006 Jari Aalto. This program is free software; you can
+Copyright (C) 1996-2008 Jari Aalto. This program is free software; you can
 redistribute it and/or modify it under the same terms as Perl itself or in
 terms of Gnu General Public license v2 or later.
 
@@ -4595,7 +4579,7 @@ sub WriteFile ($$)
 	return;
     }
 
-    open  my $FILE, "> $file" or die "$id: Cannot write to [$file] $ERRNO";
+    open  my $FILE, ">", $file or die "$id: Cannot write to [$file] $ERRNO";
     binmode $FILE;
 
     my $type =  ref $value;
@@ -4762,6 +4746,10 @@ sub RemoveHTMLaround ($)
 
     $debug > 2  and  print "$id: [$ARG]\n";
 
+    #  Remove <!DOCTYPE
+
+    s,<!DOCTYPE.*,,;
+
     #   Delete everything up til <body>
     #   Delete everything after  </body>
 
@@ -4840,11 +4828,11 @@ sub UrlInclude (%)
 	local *FILE;
 	$url = EnvExpand $url;
 
-	unless ( open FILE, "< $url" )
-	{
-	    $verb  and  warn "Cannot open '$url' $ERRNO";
-	    return;
-	}
+        unless ( open FILE, "<", $url )
+        {
+            $verb  and  warn "[WARN] Cannot open '$url' $ERRNO";
+            return;
+        }
 
 	$ret = join '', <FILE>;
 	close FILE;
@@ -4854,13 +4842,16 @@ sub UrlInclude (%)
 	    $ret = RemoveHTMLaround $ret;
 	}
 
-	unless ( $mode )
-	{
-	    $ret = DoLineUserTags($ret);
-	    $ret = XlatTag2html $ret;
-	    $ret = XlatRef $ret;
-	    $ret = XlatPicture $ret;
+        $debug > 2  and  print "$id: content of [$url] START:"
+                             . $ret
+                             . "$id: content of [$url] END:\n";
 
+        unless ( $mode )
+        {
+            $ret = DoLineUserTags($ret);
+            $ret = XlatTag2html $ret;
+            $ret = XlatRef $ret;
+            $ret = XlatPicture $ret;
 	    $ret = XlatUrlInline $ret;
 	    $ret = XlatUrl $ret;
 	    $ret = XlatMailto $ret;
@@ -6113,14 +6104,14 @@ sub LinkCache ( % )
 	#   This means, that user has deleted cache file and forcing
 	#   a full scan of every link.
 
-	unless ( open FILE, "<$arg" )
-	{
-	    $verb > 1  and  warn "$id: Cannot open $arg $ERRNO";
-	    $ret = 0;
-	}
-	else
-	{
-	    $verb and  print "$id: reading [$arg]\n";
+        unless ( open FILE, "<", $arg )
+        {
+            $verb > 1  and  warn "$id: Cannot open $arg $ERRNO";
+            $ret = 0;
+        }
+        else
+        {
+            $verb and  print "$id: reading [$arg]\n";
 
 	    while ( <FILE> )
 	    {
@@ -6142,7 +6133,7 @@ sub LinkCache ( % )
 
 	$verb  and  print "$id: writing [$arg]\n";
 
-	my $stat = open my $FILE, "> $arg";
+        my $stat = open my $FILE, ">", $arg;
 
 	unless ( $stat )
 	{
@@ -7003,7 +6994,7 @@ sub MakeMetaTags ( % )
 	push @ret, qq(  <$META="keywords"\n\tCONTENT="$kwd">\n\n);
     }
 
-    if ( defined $desc )
+    if ( $desc = /\S/ )
     {
 	length($desc) > 1000
 	    and warn "$id: META DESC over 1000 characters";
@@ -8924,7 +8915,6 @@ sub DoLine ( % )
 	}
 
 	$ARG = $before . $out . $after;
-
     }
 
     $debug > 6  and  print "$id: RET [$ARG]\n";
@@ -10039,17 +10029,6 @@ t2html Test Page
 	#T2HTML-AUTHOR          John Doe
 	#T2HTML-METAKEYWORDS    test, html, example
 	#T2HTML-METADESCRIPTION This is test page of program t2html
-
-	Copyright (C) 1996-2007 Jari Aalto
-
-	License: This material may be distributed only subject to
-	the terms and conditions set forth in GNU General Public
-	License v2 or later; or, at your option, distributed under the
-	terms of GNU Free Documentation License version 1.2 or later
-	(GNU FDL).
-
-	This is a demonstration text of Perl Text To HTML
-	converter.
 
     Headings
 

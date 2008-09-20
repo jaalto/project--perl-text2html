@@ -1,5 +1,4 @@
 #!/usr/bin/make -f
-#
 #	Copyright (C) 1997-2009 Jari Aalto
 #
 #	This program is free software; you can redistribute it and/or

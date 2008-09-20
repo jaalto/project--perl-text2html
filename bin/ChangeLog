@@ -9,6 +9,23 @@
 	(MakeToc): <dic class=toc">, remove id=toc, because it
 	is already defined one line below. W3C validator error.
 
+2008-03-25  Jari Aalto  <jari.aalto@tamk.fi>
+
+	* t2html.pl (HandleCommandLineArgs): Use 3way open() call.
+	(WriteFile): Use 3way open() call.
+	(UrlInclude): Use 3way open() call.
+	(LinkCache): Use 3way open() call.
+
+2007-11-08  Jari Aalto  <jaalto@cante.cante.net>
+
+	* t2html.pl (MakeMetaTags): If no description was given,
+	do not output description http-equiv tag.
+
+2007-10-23  Jari Aalto  <jaalto@cante.cante.net>
+
+	* t2html.pl (CssData::border-width): Change value from 94% to
+	'thin'. This makes the dashed table display correctly in Opera.
+
 2007-10-19  Jari Aalto  <jaalto@cante.cante.net>
 
 	* t2html.pl (HtmlFixes): Correct grouping expressions
@@ -19,6 +36,10 @@
 	it as wished.
 
 2007-10-12  Jari Aalto  <jari.aalto@cante.cante.net>
+
+	* t2html.pl (HELP::Referring to local documents):
+	Removed documentation of option '#URL-AS-IS-'. This
+	is superceded by generic '#URL'
 
 	* t2html.pl (UrlInclude): Fixed reading of
 	function argument. This made 'raw:' include mode to

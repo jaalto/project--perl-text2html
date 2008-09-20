@@ -1438,22 +1438,6 @@ This directive cannot be broken to separate lines,</p>
 <pre>
      See search engine #URL&lt;<a href="http://www.google.com&gt">http://www.google.com&gt</a>; &lt;Google&gt;</pre>
 </dd>
-<dt><strong><a name="referring_to_local_documents" class="item">Referring to local documents.</a></strong></dt>
-
-<dd>
-<p><code>#URL-AS-IS-</code> is a shorthand to announce the filename, while
-referring to local disk location.</p>
-<pre>
-                Pay attention. The syntax is &quot;URL-AS-IS-&quot;, so that
-                whole contruct is treated as one word.
-                |
-                +------------
-     #URL-AS-IS-doc/mytext.doc The rest of the seen text can
-     be written immediately after the tag.</pre>
-<p>Th generated HTML code will read:</p>
-<pre>
-    &lt;a href=&quot;doc/mytext.doc&quot;&gt;mytext.doc&lt;/a&gt;</pre>
-</dd>
 </dl>
 <p>
 </p>
@@ -1634,7 +1618,7 @@ instead of included link extracting algorithm.</p>
 </p>
 <hr />
 <h1><a name="author">AUTHOR</a></h1>
-<p>Copyright (C) 1996-2006 Jari Aalto. This program is free software; you can
+<p>Copyright (C) 1996-2008 Jari Aalto. This program is free software; you can
 redistribute it and/or modify it under the same terms as Perl itself or in
 terms of Gnu General Public license v2 or later.</p>
 <p>This documentation may be distributed subject to the terms and

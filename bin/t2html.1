@@ -1505,25 +1505,6 @@ Like if written:
 .Vb 1
 \&     See search engine #URL<http://www.google.com> <Google>
 .Ve
-.IP "Referring to local documents." 4
-.IX Item "Referring to local documents."
-\&\f(CW\*(C`#URL\-AS\-IS\-\*(C'\fR is a shorthand to announce the filename, while
-referring to local disk location.
-.Sp
-.Vb 6
-\&                Pay attention. The syntax is "URL\-AS\-IS\-", so that
-\&                whole contruct is treated as one word.
-\&                |
-\&                +\-\-\-\-\-\-\-\-\-\-\-\-
-\&     #URL\-AS\-IS\-doc/mytext.doc The rest of the seen text can
-\&     be written immediately after the tag.
-.Ve
-.Sp
-Th generated \s-1HTML\s0 code will read:
-.Sp
-.Vb 1
-\&    <a href="doc/mytext.doc">mytext.doc</a>
-.Ve
 .SH "TABLE OF CONTENT HEADING"
 .IX Header "TABLE OF CONTENT HEADING"
 If there is heading 1, which is named exactly \*(L"Table of Contents\*(R", then all
@@ -1707,7 +1688,7 @@ instead of included link extracting algorithm.
 Homepage is at http://freshmeat.net/projects/perl\-text2html
 .SH "AUTHOR"
 .IX Header "AUTHOR"
-Copyright (C) 1996\-2006 Jari Aalto. This program is free software; you can
+Copyright (C) 1996\-2008 Jari Aalto. This program is free software; you can
 redistribute it and/or modify it under the same terms as Perl itself or in
 terms of Gnu General Public license v2 or later.
 .PP
