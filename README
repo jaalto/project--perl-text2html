@@ -5,6 +5,7 @@ Convert text files into HTML 4.01/CSS2 fromat. The text files are written
 naturally using headings and indented paragraphs. There are *only* _minimal_
 =markup= `tokens'.
 
+    admin/		Administrative files for the project
     bin/	    	The program and manual page *.1
     doc/            	Documentation
 
