@@ -14,7 +14,7 @@
 #	Visit <http://www.gnu.org/copyleft/gpl.html>.
 
 # Rule: perl-fix - Change 1st line in *.pl file to match system perl
-perl-fix:
+perl-shebang-fix:
 	@export perl=`which perl`;				 \
 	if [ "$$perl" ] && [ "$$perl" != "/usr/bin/perl" ]; then \
 	    echo "Fixing Perl location to #!$$perl";		 \
