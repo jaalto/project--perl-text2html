@@ -26,10 +26,15 @@ install-man1:
 	$(INSTALL_BIN) $(INSTALL_MAN1_OBJS) $(MANDIR1)
 
 # Compiled programs need strip "-s" option during install
+# Install without filename extention
 install-script-bin:
 	# Rule install-script-bin - install scripts
 	$(INSTALL_BIN) -d $(BINDIR)
-	$(INSTALL_BIN) $(INSTALL_BIN_S_OBJS) $(BINDIR)
+	for f in $(INSTALL_BIN_S_OBJS); \
+	do \
+		dest=$$(basename $$f | sed -e 's/.pl//' -e 's/.py//' ); \
+		$(INSTALL_BIN) $$f $(BINDIR)/$$dest; \
+	done
 
 # Rule install-test - for Maintainer only
 install-test:
