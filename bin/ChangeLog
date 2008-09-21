@@ -1,3 +1,7 @@
+2008-09-21  Jari Aalto  <jari.aalto@cante.net>
+
+	* t2html.pl (HandleOneFile): Write proper file:/// URL.
+
 2008-09-20  Jari Aalto  <jari.aalto@cante.net>
 
 	* t2html.pl (JavaScript): Remove EOL whitespace from output.

@@ -118,7 +118,7 @@ IMPORT:             #   These are environment variables
     #   this file is saved. See Emacs module tinperl.el where the
     #   feature is implemented.
 
-    $VERSION = '2008.0920.1605';
+    $VERSION = '2008.0921.2243';
 
 # }}}
 # {{{ Initial setup
@@ -1076,7 +1076,7 @@ EOF
 	#   We can't print absolute references like:
 	#   file:/usr136/users/PM3/foo/file.html because that cannot
 	#   be swallowed by browser. We must canonilise it to $HOME
-	#   format file:/users/foo/file.html
+	#   format file:///users/foo/file.html
 	#
 	#   Find out where is HOME
 
@@ -9131,7 +9131,7 @@ EOF
 
 
 	$PRINT      and print "$name\n";
-	$PRINT_URL  and print "file:$htmlFile\n"
+	$PRINT_URL  and print "file:///$htmlFile\n"
     }
     else
     {
