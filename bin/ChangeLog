@@ -1,3 +1,12 @@
+2008-09-25  Jari Aalto  <jari.aalto@cante.net>
+
+	* t2html.pl
+	(HELP::Special text markings): Document subscript support.
+	(XlatWordMarkup): Add subscript support.
+	(Initialize): Add subscript support.
+	(MakeComment): Remove extra spaces.
+	(PrintEnd): Fix </em ...> by removing class=...
+
 2008-09-21  Jari Aalto  <jari.aalto@cante.net>
 
 	* t2html.pl (HandleOneFile): Write proper file:/// URL.

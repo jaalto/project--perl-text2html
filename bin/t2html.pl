@@ -300,6 +300,9 @@ sub Initialize ()
 	, superscriptbeg  => qq(<span class="super">)
 	, superscriptend  => "</span>"
 
+	, subscriptbeg  => qq(<span class="sub">)
+	, subscriptend  => "</span>"
+
     );
 
     # ..................................................... language ...
@@ -2283,12 +2286,20 @@ bigger font, CAPITALIZE THE WORDS.
     +this+      is intepreted as <span class="word-big">this</span>
     word [this] is intepreted as <span class="word-ref">this</span>
 
-=item supercripting
+=item superscripting
 
     word[this]  is intepreted as superscript. You can use like
 		this[1], multiple[(2)] and almost any[(ab)] and
 		imaginable[IV superscritps] as long as the left
 		bracket is attached to the word.
+
+=item subscripting
+
+    12[[10]]    is representation of value 12 un base 10.
+                This is intepreted as subscript. You can use like
+		this[[1]], multiple[[(2)]] and almost any[[(ab)]] and
+		imaginable[[IV superscritps]] as long as *two* left
+		brackets are attached to the word.
 
 =item embedding standard HTML tokens
 
@@ -3489,6 +3500,9 @@ sub XlatHtml2tag ($)
     my $staticBegSup;
     my $staticEndSup;
 
+    my $staticBegSub;
+    my $staticEndSub;
+
     my $staticBegQuote;
     my $staticEndQuote;
 
@@ -3523,6 +3537,9 @@ sub XlatWordMarkup ($; $)
 
 	$staticBegSup = $COLUMN_HASH{ superscriptbeg };
 	$staticEndSup = $COLUMN_HASH{ superscriptend };
+
+	$staticBegSub = $COLUMN_HASH{ subscriptbeg };
+	$staticEndSub = $COLUMN_HASH{ subscriptend };
 
 	$staticBegQuote = $COLUMN_HASH{ begquote };
 	$staticEndQuote = $COLUMN_HASH{ endquote };
@@ -3622,6 +3639,22 @@ sub XlatWordMarkup ($; $)
 
 	 $debug > 3  and  print "$id: after [this here] [$ARG]";
 
+	#   Value 1234[[10]] is base 10.
+
+	$beg = $staticBegSub;
+	$end = $staticEndSub;
+
+	s{
+	    ([^\s\'\",!?;.(<>])
+	    \[\[
+		([^][\r\n]+)
+	    \]\]
+	    ([\s\,.:;]|$)
+	 }
+	 {$1$beg$2$end$3}gx;
+
+	 $debug > 3  and  print "$id: after this[subscript] [$ARG]";
+
 	#   Superscripts, raised to a "power"
 	#   professor John says[1]
 
@@ -3638,7 +3671,6 @@ sub XlatWordMarkup ($; $)
 	 {$1$beg$2$end$3}gx;
 
 	 $debug > 3  and  print "$id: after this[superscript] [$ARG]";
-
     }
 
     $debug > 2  and  print "$id: RETURN $ARG";
@@ -5532,6 +5564,15 @@ sub CssData ( ; $ )
 	    font-size: 0.8em;
 	}
 
+	span.sub
+	{
+	    /* subscripts */
+	    color: teal;
+	    vertical-align: sub;
+	    font-family: Verdana, Arial, sans-serif;
+	    font-size: 0.8em;
+	}
+
 	span.word-ref
 	{
 	    color: teal;
@@ -5803,10 +5844,10 @@ sub MakeComment ($)
     my $txt = shift;
 
     join ''
-	, "\n\n<!--    "
+	, "\n\n<!-- "
 	, "." x 70
-	, "\n    $txt"
-	, "\n    "
+	, "\n     $txt"
+	, "\n     "
 	, "." x 70
 	, "\n-->\n\n"
 	;
@@ -7370,7 +7411,7 @@ EOF
 
 	$hr
 
-	<em    class="footer">
+	<em class="footer">
 	$disc
 
 	$pbeg
@@ -7384,7 +7425,7 @@ EOF
 	$email
 	Last updated: $date$br
 
-	</em    class="footer">
+	</em>
 
 	</body>
 	</html>
