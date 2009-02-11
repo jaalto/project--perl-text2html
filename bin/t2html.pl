@@ -4027,21 +4027,20 @@ sub XlatDirectives (@)
 
     for ( @content )
     {
-	if ( /^(.*)\s*#T2HTML-(\S+)\s+(.*\S)/i )
+	if ( /^(.*)\s*#T2HTML-(\S+)\s+(.*\S)/i )   # Directive + value
 	{
-	    $debug  > 2 and  warn "$id: if-1a [$ARG]\n";
+	    $debug  > 2 and  warn "$id: if-1 [$ARG]\n";
 
 	    my ($line, $name, $value) = ($1, $2, $3);
 
-	    $debug  > 2 and  warn "$id: if if-2b ($name,$value,[$line])\n";
+	    $debug  > 2 and  warn "$id: if-2 ($name,$value,[$line])\n";
+
+	    push @ret, $line . "\n"   if  $line =~ /\S/;
+	    $name = lc $name;
 
 	    next if $name =~ /comment/i;
 
-	    push @ret, $line   if  $line =~ /\S/;
-	    $name = lc $name;
-
-
-	    $verb > 1  and  print "$id: if-1c [$name] = [$value]\n";
+	    $verb > 1  and  print "$id: if-3 [$name] = [$value]\n";
 
 	    unless ( defined $hash{$name} )
 	    {
@@ -4054,11 +4053,11 @@ sub XlatDirectives (@)
 		$hash{ $name } = $arrRef;
 	    }
 	}
-	elsif ( /^(.*)\s*#T2HTML-(\S+)/i )
+	elsif ( /^(.*)\s*#T2HTML-(\S+)/i )	# Plain directive
 	{
 	    #  Empty directive
 
-	    $debug  and print "$id: $ARG";
+	    $debug  and print "$id: elsif 1 $ARG";
 
 	    my $line = $1;
 
@@ -4072,9 +4071,7 @@ sub XlatDirectives (@)
 	}
     }
 
-
     $debug  and  PrintHash("$id: RET", \%hash);
-
 
     \%hash, @ret;
 }

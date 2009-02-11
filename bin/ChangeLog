@@ -1,3 +1,13 @@
+2009-02-11  Jari Aalto  <jari.aalto@cante.net>
+
+	* t2html.pl (XlatDirectives): Adjust #t2html-* directive handling.
+	Do not delete whole line, but only text starting at the directive.
+	This makes it possible to embed them beside lines:
+
+		example text #t2html-comment ....
+        =>
+		example text
+
 2008-09-25  Jari Aalto  <jari.aalto@cante.net>
 
 	* t2html.pl
