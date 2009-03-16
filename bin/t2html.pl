@@ -118,7 +118,7 @@ IMPORT:             #   These are environment variables
     #   this file is saved. See Emacs module tinperl.el where the
     #   feature is implemented.
 
-    $VERSION = '2008.0921.2243';
+    $VERSION = '2009.0316.2304';
 
 # }}}
 # {{{ Initial setup
@@ -8238,6 +8238,11 @@ sub HtmlFixes ($)
 
     s,(</h[2-7]>\s+)([^<]),$1<p>$2,gi;
 
+    #  Correct raw HTML entity translations.
+    #  &amp;#35; => &#35;
+
+    s,&amp;(#\d\d?\d?;),&$1,gi;
+
     #  Final clean up: remove trailing spaces
 
     s,[ \t]+$,,mg;
@@ -10233,7 +10238,7 @@ Table rendering examples
 	in the generated HTML: the *tableclass* can take an attribute
 	of the embedded default styles.
 
-	    Note: This is example 1 and `--css-code-note' options
+	    Note: This is example 1 and '--css-code-note' options
 	    reads 'First word' in paragraph at column 12 and
 	    renders it differently. You can attache code right after
 	    this note, which must occupy only one paragraph
