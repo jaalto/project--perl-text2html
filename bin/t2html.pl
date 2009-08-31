@@ -87,7 +87,7 @@ use autouse 'Pod::Html'     => qw( pod2html                   );
 # Perl 5.x bug, doesn't work
 #use autouse 'Pod::Text'     => qw( pod2text                   );
 
-#  Loaded only with --Help-man
+#  Loaded only with --help-man
 #  use Pod::Man
 
 use locale;
@@ -686,7 +686,8 @@ sub HandleCommandLineArgs ()
 
     my ( @reference , $referenceSeparator );
     my ( $fontNormal, $fontReadable, $linkCacheFile );
-    my ( $help, $helpHTML, $helpMan, $version, $testpage, $code3d );
+    my ( $help, $helpHTML, $helpMan, $helpCss);
+    my ( $version, $testpage, $code3d );
     my ( $codeBg, $codeBg2, $codeNote );
 
     # .................................................... read args ...
@@ -706,14 +707,16 @@ sub HandleCommandLineArgs ()
     #  Name "Getopt::DEBUG" used only once: possible typo at ...
 
     $Getopt::DEBUG = 1;
+    $Getopt::DEBUG = 1;
 
     GetOptions      # Getopt::Long
     (
 	  "debug:i"                 => \$debug
 	, "d:i"                     => \$debug
 	, "h|help"                  => \$help
-	, "Help-html"               => \$helpHTML
-	, "Help-man"                => \$helpMan
+	, "help-html"               => \$helpHTML
+	, "help-man"                => \$helpMan
+	, "help-css"                => \$helpCss
 	, "test-page"               => \$testpage
 	, "Version"                 => \$version
 	, "verbose:i"               => \$verb
@@ -808,6 +811,7 @@ sub HandleCommandLineArgs ()
     }
 
     $help       and  Help();
+    $helpCss    and  HelpCss();
     $helpHTML   and  Help(undef, -html);
     $helpMan    and  Help(undef, -man);
     $testpage   and  TestPage();
@@ -1946,16 +1950,23 @@ Turn on debug with positive LEVEL number. Zero means no debug.
 
 =item B<--help -h>
 
-Print help screen.
+Print help screen. Terminates program.
 
-=item B<--Help-html>
+=item B<--help-css>
 
-Print help in HTML format.
+Print default CSS used. Terminates program. You can copy and modify
+this output and instruct to use your own with B<--css-file=FILE>.
+You can also embed the option to files with C<#T2HTML-OPTION>
+directive.
 
-=item B<--Help-man>
+=item B<--help-html>
+
+Print help in HTML format. Terminates program.
+
+=item B<--help-man>
 
 Print help page in Unix manual page format. You want to feed this output to
-B<nroff -man> in order to read it.
+B<nroff -man> in order to read it. Terminates program.
 
 =item B<--test-page>
 
@@ -1997,103 +2008,103 @@ called 'Technical format' (TF)
      The column positions are currently undeined and may not
      format correcly. Do ot place text at columns 1,2,3
 
-	This is heading2 at column 4 started with big letter
+ This is heading2 at column 4 started with big letter
 
-	    Standard text starts at column 8, you can *emphatize*
-	    text or make it _strong_ and write =SmallText= or
-	    +BigText+ show variable name `ThisIsAlsoVariable'.
-	    You can `_*nest*_' `the' markup. more txt in this
-	    paragraph txt txt txt txt txt txt txt txt txt txt txt
-	    txt txt txt txt txt txt txt txt txt txt txt txt txt
-	    txt txt txt txt txt txt txt txt txt txt txt txt txt
-	    txt
+     Standard text starts at column 8, you can *emphatize*
+     text or make it _strong_ and write =SmallText= or
+     +BigText+ show variable name `ThisIsAlsoVariable'.
+     You can `_*nest*_' `the' markup. more txt in this
+     paragraph txt txt txt txt txt txt txt txt txt txt txt
+     txt txt txt txt txt txt txt txt txt txt txt txt txt
+     txt txt txt txt txt txt txt txt txt txt txt txt txt
+     txt
 
-	  Normal but colored text is between columns 5, 6
+   Normal but colored text is between columns 5, 6
 
-	   Emphatised text at column 7, like heading level 3
+    Emphatised text at column 7, like heading level 3
 
-	   "Special <em> text at column 7 starts with double quote"
+    "Special <em> text at column 7 starts with double quote"
 
-	    Another standard text block at column 8 txt txt txt
-	    txt txt txt txt txt txt txt txt txt txt txt txt txt
-	    txt txt txt txt txt txt txt txt txt txt txt txt txt
-	    txt txt txt txt txt txt txt
+     Another standard text block at column 8 txt txt txt
+     txt txt txt txt txt txt txt txt txt txt txt txt txt
+     txt txt txt txt txt txt txt txt txt txt txt txt txt
+     txt txt txt txt txt txt txt
 
-	     strong text at columns 9 and 11
+      strong text at columns 9 and 11
 
-	      Column 10 is normally reserved for quotations
-	      Column 10 is normally reserved for quotations
-	      Column 10 is normally reserved for quotations
-	      Column 10 is normally reserved for quotations
+       Column 10 is normally reserved for quotations
+       Column 10 is normally reserved for quotations
+       Column 10 is normally reserved for quotations
+       Column 10 is normally reserved for quotations
 
-		Column 12 and further is reserved for code examples
-		Column 12 and further is reserved for code examples
-		All text here are surrounded by <pre> HTML codes
-		(This CODE column in affected by --css-code* options,
-		see more ideas from there.)
+  Column 12 and further is reserved for code examples
+  Column 12 and further is reserved for code examples
+  All text here are surrounded by <pre> HTML codes
+  (This CODE column in affected by --css-code* options,
+  see more ideas from there.)
 
-	Heading2 at column 4 again
+ Heading2 at column 4 again
 
-	   If you want something like Heading level 3, use colum 7 (bold)
+    If you want something like Heading level 3, use colum 7 (bold)
 
-	    txt txt txt txt txt txt txt txt txt txt txt txt
-	    txt txt txt txt txt txt txt txt txt txt txt txt
-	    txt txt txt txt txt txt txt txt txt txt txt txt
+     txt txt txt txt txt txt txt txt txt txt txt txt
+     txt txt txt txt txt txt txt txt txt txt txt txt
+     txt txt txt txt txt txt txt txt txt txt txt txt
 
-	     [1998-09-10 comp.lang.perl.misc Mr. Foo said]
+      [1998-09-10 comp.lang.perl.misc Mr. Foo said]
 
-	      cited text cited text cited text cited text cited
-	      text cited text cited text cited text cited text
-	      cited text cited text cited text cited text cited
-	      text cited text
+       cited text cited text cited text cited text cited
+       text cited text cited text cited text cited text
+       cited text cited text cited text cited text cited
+       text cited text
 
-	     [1998-09-10 comp.lang.perl.misc Mr. Bar said]
+      [1998-09-10 comp.lang.perl.misc Mr. Bar said]
 
-	      cited text cited text cited text cited text cited
-	      text cited text cited text cited text cited text
-	      cited text cited text cited text cited text cited
-	      text cited text
+       cited text cited text cited text cited text cited
+       text cited text cited text cited text cited text
+       cited text cited text cited text cited text cited
+       text cited text
 
-	   If you want something like Heading level 3, use colum 7 (bold)
+    If you want something like Heading level 3, use colum 7 (bold)
 
-	    txt txt txt txt txt txt txt txt txt txt txt txt
-	    txt txt txt txt txt txt txt txt txt txt txt txt
-	    txt txt txt txt txt txt txt txt txt txt txt txt
+     txt txt txt txt txt txt txt txt txt txt txt txt
+     txt txt txt txt txt txt txt txt txt txt txt txt
+     txt txt txt txt txt txt txt txt txt txt txt txt
 
-	    *   Bullet 1 text starts at column 1
-		txt txt txt txt txt txt txt txt
-		,txt txt txt txt txt txt txt txt
+     *   Bullet 1 text starts at column 1
+  txt txt txt txt txt txt txt txt
+  ,txt txt txt txt txt txt txt txt
 
-		Notice that previous paragraph ends to P-comma
-		code, it tells this paragraph to continue in
-		bullet mode, otherwise this text at column 12
-		would be intepreted as code section surrpoundedn
-		by <pre> HTML codes.
+  Notice that previous paragraph ends to P-comma
+  code, it tells this paragraph to continue in
+  bullet mode, otherwise this text at column 12
+  would be intepreted as code section surrpoundedn
+  by <pre> HTML codes.
 
-	    *   Bullet 2, text starts at column 12
-	    *   Bullet 3. Bullets are adviced to keep together
-	    *   Bullet 4. Bullets are adviced to keep together
+     *   Bullet 2, text starts at column 12
+     *   Bullet 3. Bullets are adviced to keep together
+     *   Bullet 4. Bullets are adviced to keep together
 
-	    .   This is ordered list nbr 1, text starts at column 12
-	    .   This is ordered list nbr 2
-	    .   This is ordered list nbr 3
+     .   This is ordered list nbr 1, text starts at column 12
+     .   This is ordered list nbr 2
+     .   This is ordered list nbr 3
 
-	    .This line has BR, notice the DOT-code at beginning
-	     of line. It is efective only at columns 1..11,
-	     because column 12 is reserved for code examples.
+     .This line has BR, notice the DOT-code at beginning
+      of line. It is efective only at columns 1..11,
+      because column 12 is reserved for code examples.
 
-	    .This line has BR code and is displayed in line by itself.
-	    .This line has BR code and is displayed in line by itself.
+     .This line has BR code and is displayed in line by itself.
+     .This line has BR code and is displayed in line by itself.
 
-	    !! This adds an <hr> HTML code, text in line is marked with
-	    !! <strong> <em>
+     !! This adds an <hr> HTML code, text in line is marked with
+     !! <strong> <em>
 
-	   "This is emphasised text starting at column 7"
-	    .And this text is put after the previous line with BR code
-	   "This starts as separate line just below previous one"
-	    .And continues again as usual with BR code
+    "This is emphasised text starting at column 7"
+     .And this text is put after the previous line with BR code
+    "This starts as separate line just below previous one"
+     .And continues again as usual with BR code
 
-	    See the document #URL-BASE/document.txt, where #URL-BASE
+     See the document #URL-BASE/document.txt, where #URL-BASE
 	    tag is substituted with contents of --base switch.
 
 	    Make this email address clickable <account@example.com>
@@ -2789,12 +2800,6 @@ sub Help (;$ $)
 	$debug  and  print "$id: no options\n";
 
 	system "pod2text $PROGRAM_NAME";
-
-	print "\n\n"
-	, "Default CSS and JAVA code inserted to the beginning of each file\n"
-	, "See option --css-file to replace default CSS.\n"
-	, JavaScript()
-	;
     }
 
     if ( defined $msg )
@@ -2802,6 +2807,17 @@ sub Help (;$ $)
 	print $msg;
 	exit 1;
     }
+
+    exit 0;
+}
+
+sub HelpCss ()
+{
+    print "\n\n"
+    , "Default CSS and JAVA code inserted to the beginning of each file\n"
+    , "See option --css-file to replace default CSS.\n"
+    , JavaScript()
+    ;
 
     exit 0;
 }
