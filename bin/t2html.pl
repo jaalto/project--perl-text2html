@@ -6,7 +6,7 @@
 #
 #  File id
 #
-#       Copyright (C) 1996-2008 Jari Aalto
+#       Copyright (C) 1996-2009 Jari Aalto
 #
 #       This program is free software; you can redistribute it and/or
 #       modify it under the terms of the GNU General Public License as
@@ -82,8 +82,10 @@ use strict;
 #       Perl "word"
 
 use autouse 'Carp'          => qw( croak carp cluck confess   );
-use autouse 'Pod::Text'     => qw( pod2text                   );
 use autouse 'Pod::Html'     => qw( pod2html                   );
+
+# Perl 5.x bug, doesn't work
+#use autouse 'Pod::Text'     => qw( pod2text                   );
 
 #  Loaded only with --Help-man
 #  use Pod::Man
@@ -2747,7 +2749,7 @@ Homepage is at http://freshmeat.net/projects/perl-text2html
 
 =head1 AUTHOR
 
-Copyright (C) 1996-2008 Jari Aalto. This program is free software; you can
+Copyright (C) 1996-2009 Jari Aalto. This program is free software; you can
 redistribute it and/or modify it under the same terms as Perl itself or in
 terms of Gnu General Public license v2 or later.
 
@@ -2786,7 +2788,8 @@ sub Help (;$ $)
     {
 	$debug  and  print "$id: no options\n";
 
-	pod2text $PROGRAM_NAME;
+	system "pod2text $PROGRAM_NAME";
+
 	print "\n\n"
 	, "Default CSS and JAVA code inserted to the beginning of each file\n"
 	, "See option --css-file to replace default CSS.\n"
