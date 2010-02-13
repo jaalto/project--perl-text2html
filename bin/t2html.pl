@@ -7430,11 +7430,9 @@ EOF
 	<em class="footer">
 	$disc
 
-	$pbeg
 	This file has been automatically generated from plain text file with
 	<a href="$URL">$PROGNAME</a>
 	$br
-	$pend
 
 	$author
 	$url

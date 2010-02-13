@@ -1,7 +1,14 @@
+2010-02-13 Sat  Jari Aalto  <jari.aalto@cante.net>
+
+	* t2html.pl (PrintEnd): at 'This file has been automatically generated'
+	do not suppond using <P></P> tags as HTML standard does not allow it.
+
 2009-08-31  Jari Aalto  <jari.aalto@cante.net>
 
 	* t2html.pl (Help): Fix Perl 5.x problem where
 	Pod::Text is broken.
+	(HandleCommandLineArgs): Add --help-css.
+	Change all --help-* options to lowercase.
 
 2009-03-16  Jari Aalto  <jari.aalto@cante.net>
 
@@ -274,7 +281,7 @@
 
         * t2html.pl
         - Many, many changes. All HTMl tags are now lowercase due to
-          xhtml compatibility. The XHTMÖ tags are now in a hash table
+          xhtml compatibility. The XHTM tags are now in a hash table
           instead of hard coded to the program.
         - Versions after this date are probably unstable and may produce
           incorrect HTML.
