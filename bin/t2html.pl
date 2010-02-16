@@ -8264,10 +8264,10 @@ sub HtmlFixes ($)
     s,&amp;(#\d\d?\d?;),&$1,gi;
 
     # Remove dead code
-    # <p>
-    # <p>
+    # <p>    <p>    <p>
+    # <p>    <ul>   <ol>
 
-    s,<p>\s+(<p[ >]),$1,mg;
+    s,<p>\s+(<(?:p|[ou]l)[ >]),$1,mg;
 
     #  Final clean up: remove trailing spaces
 
