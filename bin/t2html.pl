@@ -333,7 +333,8 @@ sub Initialize ()
     sub Here($);
 
     my $doctype = Here <<"EOF";
-	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+	          "http://www.w3.org/TR/html4/loose.dtd">
 EOF
 
     my $doctype_frame = HereQuote <<"EOF";
@@ -8030,6 +8031,8 @@ sub HtmlTable ( $$$ )
 #       to give finishing touch to those glitches that remained in the
 #       HTML.
 #
+#       No, this is not optimal solution, but the practical one.
+#
 #   INPUT PARAMETERS
 #
 #       \@html      Final HTML
@@ -8242,6 +8245,12 @@ sub HtmlFixes ($)
     #  &amp;#35; => &#35;
 
     s,&amp;(#\d\d?\d?;),&$1,gi;
+
+    # Remove dead code
+    # <p>
+    # <p>
+
+    s,<p>\s+(<p[ >]),$1,mg;
 
     #  Final clean up: remove trailing spaces
 

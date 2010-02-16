@@ -1,3 +1,9 @@
+2010-02-16  Jari Aalto  <jari.aalto@cante.net>
+
+	* t2html.pl (Initialize): add "http://www.w3.org/TR/html4/loose.dtd"
+	to doctype to fix W3C validator informational message.
+	(HtmlFixes): remove duplicate <p><p> occurrances.
+
 2009-02-11  Jari Aalto  <jari.aalto@cante.net>
 
 	* t2html.pl (XlatDirectives): Adjust #t2html-* directive handling.
