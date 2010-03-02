@@ -4,7 +4,7 @@ README: Perl Text to HTML converter
 Convert text file into HTML 4.01/CSS2 format. The is written in
 natural white paper format by using standard headings and indented
 paragraphs at standard tab position column 8. The text can *contain*
-_ASCII_ =markup= `tokens'. Embedding HTML is also posible via INCLUDE
+_ASCII_ =markup= `tokens'. Embedding HTML is also possible via INCLUDE
 directives.
 
     admin/		Administrative files for the project
