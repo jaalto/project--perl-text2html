@@ -110,7 +110,7 @@ use vars qw ( $VERSION );
 #   this file is saved. See Emacs module tinperl.el where the
 #   feature is implemented.
 
-$VERSION = '2010.0302.0944';
+$VERSION = '2010.0302.1022';
 
 # }}}
 # {{{ Initial setup
@@ -1157,7 +1157,17 @@ t2html - Simple text to HTML converter. Relies on text indentation rules.
 =head1 DESCRIPTION
 
 Convert pure text files into nice looking, possibly framed, HTML
-pages.
+pages. An example of conversion:
+
+  1. Plain text source code
+  http://pm-doc.git.sourceforge.net/git/gitweb.cgi?p=pm-doc/pm-doc;a=blob_plain;f=doc/index.txt;hb=HEAD
+
+  2. reusult of conversion with custom --css-file option:
+  http://pm-doc.sourceforge.net/pm-tips.html
+  http://pm-doc.sourceforge.net/pm-tips.css
+
+  3. An Emacs mode tinytf.el for writing the text files (optional)
+  https://savannah.nongnu.org/projects/emacs-tiny-tools
 
 B<Requirements for the input ascii files>
 
