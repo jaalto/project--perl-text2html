@@ -17,8 +17,8 @@
 <ul>
 
 	<li><a href="#name">NAME</a></li>
-	<li><a href="#readme">README</a></li>
 	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
 	<li><a href="#options">OPTIONS</a></li>
 	<ul>
 
@@ -30,7 +30,7 @@
 		<li><a href="#miscellaneous_options">Miscellaneous options</a></li>
 	</ul>
 
-	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#format_description">FORMAT DESCRIPTION</a></li>
 	<ul>
 
 		<li><a href="#used_headings">USED HEADINGS</a></li>
@@ -69,7 +69,6 @@
 	<li><a href="#script_categories">SCRIPT CATEGORIES</a></li>
 	<li><a href="#prerequisites">PREREQUISITES</a></li>
 	<li><a href="#corequisites">COREQUISITES</a></li>
-	<li><a href="#osnames">OSNAMES</a></li>
 	<li><a href="#availability">AVAILABILITY</a></li>
 	<li><a href="#author">AUTHOR</a></li>
 </ul>
@@ -86,8 +85,15 @@
 <p>
 </p>
 <hr />
-<h1><a name="readme">README</a></h1>
-<p>Convert pure text files into nice looking, possibly framed, HTML pages.</p>
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+    t2html [options] file.txt &gt; file.html</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>Convert pure text files into nice looking, possibly framed, HTML
+pages.</p>
 <p><strong>Requirements for the input ascii files</strong></p>
 <p>The file must be written in Technical Format, whose layout is described in
 the this manual. Basicly the idea is simple and there are only two heading
@@ -131,28 +137,6 @@ them.</p>
 fontification with colors, Indentation control, bullet filling,
 heading renumbering, word markup, syntax highlighting etc.
 See project <a href="http://freshmeat.net/projects/emacs-tiny-tools">http://freshmeat.net/projects/emacs-tiny-tools</a></p>
-<p>
-</p>
-<hr />
-<h1><a name="synopsis">SYNOPSIS</a></h1>
-<p>To convert text file into HTML:</p>
-<pre>
-    t2html [options] file.txt &gt; file.html</pre>
-<p>In addition to making HTML pages, program includes feature to check broken
-links and report them in <em>egrep -n</em> like fashion:</p>
-<pre>
-    t2html --Link-check-single --quiet file.txt</pre>
-<p>To check links from multiple pages and cache good links to separate file,
-use <strong>--Link-cache</strong> option. The next link check will run much faster
-because cached valid links will not be fetched again. At regular intervals
-delete the link cache file to force complete check.</p>
-<pre>
-    t2html --Link-check-single --Link-cache ~/tmp/link.cache \
-              --quiet file.txt</pre>
-<p>In case there are need for slides, is is possible to plit big document into
-pieces according to toplevel headings:</p>
-<pre>
-    t2html --S1 --SN | t2html --simple -Out</pre>
 <p>
 </p>
 <hr />
@@ -292,20 +276,20 @@ values. An example text:</p>
         The homepage is #HOME-URL/page.html and the mirrot page it at
         #ARCHIVE-URL/page.html where you can find the latest version.</pre>
 </dd>
-<dt><strong><a name="reference_separator_string" class="item"><strong>--reference-separator STRING</strong></a></strong></dt>
+<dt><strong><a name="r_reference_separator_string" class="item"><strong>-R, --reference-separator STRING</strong></a></strong></dt>
 
 <dd>
 <p>See above. String that is used to split the TAG and VALUE. Default is equal
 sign &quot;=&quot;.</p>
 </dd>
-<dt><strong><a name="toc_url_print_t" class="item"><strong>--Toc-url-print -T</strong></a></strong></dt>
+<dt><strong><a name="t_toc_url_print" class="item"><strong>-T, --toc-url-print</strong></a></strong></dt>
 
 <dd>
 <p>Display URLs (contructed from headings) that build up the Table of Contents
 (NAME AHREF tags) in a document. The list is outputted to stderr, so that
 it can be separated:</p>
 <pre>
-    % t2html --Toc-url-print tmp.txt &gt; file.html 2&gt; toc-list.txt</pre>
+    % t2html --toc-url-print tmp.txt &gt; file.html 2&gt; toc-list.txt</pre>
 <p>Where would you need this? If you want to know the fragment identifies
 for your file, you need the list of names.</p>
 <pre>
@@ -613,14 +597,14 @@ defines following standard named colors:</p>
 <dd>
 <p>Define FONT SIZE. It might be useful to set bigger font size for presentations.</p>
 </dd>
-<dt><strong><a name="html_frame_f_frame_params" class="item"><strong>--html-frame -F [FRAME-PARAMS]</strong></a></strong></dt>
+<dt><strong><a name="f_html_frame_frame_params" class="item"><strong>-F, --html-frame [FRAME-PARAMS]</strong></a></strong></dt>
 
 <dd>
 <p>If given, then three separate HTML files are generated. The left frame will
 contain TOC and right frame contains rest of the text. The <em>FRAME-PARAMS</em>
 can be any valid parameters for HTML tag FRAMESET. The default is
 <code>cols=&quot;25%,75%&quot;</code>.</p>
-<p>Using this implies <strong>--Out</strong> option automatically, because three files
+<p>Using this implies <strong>--out</strong> option automatically, because three files
 cannot be printed to stdout.</p>
 <pre>
     file.html</pre>
@@ -695,7 +679,7 @@ option.</p>
 </p>
 <h2><a name="document_maintenance_and_batch_job_commands">Document maintenance and batch job commands</a></h2>
 <dl>
-<dt><strong><a name="auto_detect" class="item"><strong>--Auto-detect</strong></a></strong></dt>
+<dt><strong><a name="a_auto_detect" class="item"><strong>-A, --auto-detect</strong></a></strong></dt>
 
 <dd>
 <p>Convert file only if tag <code>#T2HTML-</code> is found from file. This option
@@ -703,9 +687,9 @@ is handy if you run a batch command to convert all files to HTML, but
 only if they look like HTML base files:</p>
 <pre>
     find . -name &quot;*.txt&quot; -type f \
-         -exec t2html --Auto-detect --verbose --Out {} \;</pre>
+         -exec t2html --auto-detect --verbose --out {} \;</pre>
 <p>The command searches all *.txt files under current directory and feeds
-them to conversion program. The <strong>--Auto-detect</strong> only converts files
+them to conversion program. The <strong>--auto-detect</strong> only converts files
 which include <code>#T2HTML-</code> directives. Other text files are not
 converted.</p>
 </dd>
@@ -732,7 +716,7 @@ able to get the file at one click, checker can validate at least the
 directory. If you are not the owner of the link, it is also possible
 that the file has moved of new version name has appeared.</p>
 </dd>
-<dt><strong><a name="link_check_single_l" class="item"><strong>--Link-check-single -L</strong></a></strong></dt>
+<dt><strong><a name="l_link_check_single" class="item"><strong>-L, --link-check-single</strong></a></strong></dt>
 
 <dd>
 <p>Print condensed output in <em>grep -n</em> like manner <em>FILE:LINE:MESSAGE</em></p>
@@ -741,16 +725,16 @@ can view the messages in one line. You can use programming tools (like
 Emacs M-x compile) that can parse standard grep syntax to jump to locations
 in your document to correct the links later.</p>
 </dd>
-<dt><strong><a name="out_o" class="item"><strong>--Out -O</strong></a></strong></dt>
+<dt><strong><a name="o_out" class="item"><strong>-o, --out</strong></a></strong></dt>
 
 <dd>
 <p>write generated HTML to file that is derived from the input filename.</p>
 <pre>
-    --Out --print /dir/file            --&gt; /dir/file.html
-    --Out --print /dir/file.txt        --&gt; /dir/file.html
-    --Out --print /dir/file.this.txt   --&gt; /dir/file.this.html</pre>
+    --out --print /dir/file            --&gt; /dir/file.html
+    --out --print /dir/file.txt        --&gt; /dir/file.html
+    --out --print /dir/file.this.txt   --&gt; /dir/file.this.html</pre>
 </dd>
-<dt><strong><a name="link_cache_cache_file" class="item"><strong>--Link-cache CACHE_FILE</strong></a></strong></dt>
+<dt><strong><a name="link_cache_cache_file" class="item"><strong>--link-cache CACHE_FILE</strong></a></strong></dt>
 
 <dd>
 <p>When links are checked periodically, it would be quite a rigorous to
@@ -761,40 +745,40 @@ links found that were not in the cache are checked. This should
 dramatically improve long searches. Consider this example, where
 every text file is checked recursively.</p>
 <pre>
-    $ t2html --Link-check-single \
-      --quiet --Link-cache ~tmp/link.cache \
+    $ t2html --link-check-single \
+      --quiet --link-cache ~tmp/link.cache \
       `find . -name &quot;*.txt&quot; -type f`</pre>
 </dd>
-<dt><strong><a name="out_dir_dir" class="item"><strong>--Out-dir DIR</strong></a></strong></dt>
+<dt><strong><a name="o_out_dir_dir" class="item"><strong>-O, --out-dir DIR</strong></a></strong></dt>
 
 <dd>
-<p>Like <strong>--Out</strong>, but chop the directory part and write output files to
+<p>Like <strong>--out</strong>, but chop the directory part and write output files to
 DIR. The following would generate the HTML file to current directory:</p>
 <pre>
-    --Out-dir .</pre>
+    --out-dir .</pre>
 <p>If you have automated tool that fills in the directory, you can use word
 <strong>none</strong> to ignore this option. The following is a no-op, it will not generate
 output to directory &quot;none&quot;:</p>
 <pre>
-    --Out-dir none</pre>
+    --out-dir none</pre>
 </dd>
-<dt><strong><a name="print_p" class="item"><strong>--print -p</strong></a></strong></dt>
+<dt><strong><a name="p_print" class="item"><strong>-p, --print</strong></a></strong></dt>
 
 <dd>
 <p>Print filename to stdout after HTML processing. Normally program prints
 no file names, only the generated HTML.</p>
 <pre>
-    % t2html --Out --print page.txt</pre>
+    % t2html --out --print page.txt</pre>
 <pre>
     --&gt; page.html</pre>
 </dd>
-<dt><strong><a name="print_url_p" class="item"><strong>--print-url -P</strong></a></strong></dt>
+<dt><strong><a name="p_print_url" class="item"><strong>-P, --print-url</strong></a></strong></dt>
 
 <dd>
 <p>Print filename in URL format. This is useful if you want to check the
 layout immediately with your browser.</p>
 <pre>
-    % t2html --Out --print-url page.txt | xargs lynx</pre>
+    % t2html --out --print-url page.txt | xargs lynx</pre>
 <pre>
     --&gt; file: /users/foo/txt/page.html</pre>
 </dd>
@@ -816,19 +800,19 @@ use:</p>
 First split the document, then convert each part to HTML and finally print
 each part (page) separately to printer.</p>
 </dd>
-<dt><strong><a name="split1_s1" class="item"><strong>--split1 --S1</strong></a></strong></dt>
+<dt><strong><a name="s1_split1" class="item"><strong>-S1, --split1</strong></a></strong></dt>
 
 <dd>
 <p>This is shorthand of <strong>--split</strong> command. Define regexp to split on toplevel
 heading.</p>
 </dd>
-<dt><strong><a name="split2_s2" class="item"><strong>--split2 --S2</strong></a></strong></dt>
+<dt><strong><a name="s2_split2" class="item"><strong>-S2, --split2</strong></a></strong></dt>
 
 <dd>
 <p>This is shorthand of <strong>--split</strong> command. Define regexp to split on second
 level heading.</p>
 </dd>
-<dt><strong><a name="split_named_files_sn" class="item"><strong>--split-named-files --SN</strong></a></strong></dt>
+<dt><strong><a name="sn_split_named_files" class="item"><strong>-SN, --split-named-files</strong></a></strong></dt>
 
 <dd>
 <p>Additional directive for split commands. If you split e.g. by headings using
@@ -843,7 +827,7 @@ split occur were:</p>
     FILENAME-program_guidelines
     FILENAME-conclusion</pre>
 </dd>
-<dt><strong><a name="xhtml" class="item"><strong>--Xhtml</strong></a></strong></dt>
+<dt><strong><a name="x_xhtml" class="item"><strong>-X, --xhtml</strong></a></strong></dt>
 
 <dd>
 <p>Render using strict XHTML. This means using &lt;hr/&gt;, &lt;br/&gt; and paragraphs
@@ -863,18 +847,26 @@ use &lt;p&gt;..&lt;/p&gt;.</p>
 <dt><strong><a name="help_h" class="item"><strong>--help -h</strong></a></strong></dt>
 
 <dd>
-<p>Print help screen.</p>
+<p>Print help screen. Terminates program.</p>
 </dd>
-<dt><strong><a name="help_html" class="item"><strong>--Help-html</strong></a></strong></dt>
+<dt><strong><a name="help_css" class="item"><strong>--help-css</strong></a></strong></dt>
 
 <dd>
-<p>Print help in HTML format.</p>
+<p>Print default CSS used. Terminates program. You can copy and modify
+this output and instruct to use your own with <strong>--css-file=FILE</strong>.
+You can also embed the option to files with <code>#T2HTML-OPTION</code>
+directive.</p>
 </dd>
-<dt><strong><a name="help_man" class="item"><strong>--Help-man</strong></a></strong></dt>
+<dt><strong><a name="help_html" class="item"><strong>--help-html</strong></a></strong></dt>
+
+<dd>
+<p>Print help in HTML format. Terminates program.</p>
+</dd>
+<dt><strong><a name="help_man" class="item"><strong>--help-man</strong></a></strong></dt>
 
 <dd>
 <p>Print help page in Unix manual page format. You want to feed this output to
-<strong>nroff -man</strong> in order to read it.</p>
+<strong>nroff -man</strong> in order to read it. Terminates program.</p>
 </dd>
 <dt><strong><a name="test_page" class="item"><strong>--test-page</strong></a></strong></dt>
 
@@ -887,18 +879,18 @@ the capabilities.</p>
 <dd>
 <p>Print to stderr time spent used for handling the file.</p>
 </dd>
-<dt><strong><a name="verbose_level" class="item"><strong>--verbose [LEVEL]</strong></a></strong></dt>
+<dt><strong><a name="v_verbose_level" class="item"><strong>-v, --verbose [LEVEL]</strong></a></strong></dt>
 
 <dd>
 <p>Print verbose messages.</p>
 </dd>
-<dt><strong><a name="quiet_q" class="item"><strong>--quiet -q</strong></a></strong></dt>
+<dt><strong><a name="q_quiet" class="item"><strong>-q, --quiet</strong></a></strong></dt>
 
 <dd>
 <p>Print no footer at all. This option has different meaning if
 <em>--link-check</em> option is turned on: print only errorneous links.</p>
 </dd>
-<dt><strong><a name="version_v" class="item"><strong>--Version -V</strong></a></strong></dt>
+<dt><strong><a name="v_version" class="item"><strong>V, --version</strong></a></strong></dt>
 
 <dd>
 <p>Print program version information.</p>
@@ -907,140 +899,110 @@ the capabilities.</p>
 <p>
 </p>
 <hr />
-<h1><a name="description">DESCRIPTION</a></h1>
-<p>This is simple text to HTML converter. Unlike other tools, this
-tries to minimize the use of text tags to format the document,
-The basic idea is to rely on indentation level, and the layout used is
-called 'Technical format' (TF)</p>
+<h1><a name="format_description">FORMAT DESCRIPTION</a></h1>
+<p>Program converts text files to HTML. The basic idea is to rely on
+indentation level, and the layout used is called 'Technical format'
+(TF) where only minimal conventions are used to mark italic, bold etc.
+text. The Basic principles can be demonstrated below. Notice the
+column poisiton ruler at the top:</p>
 <pre>
-    --//-- decription start</pre>
+ --//-- decription start</pre>
 <pre>
-    0123456789 123456789 123456789 123456789 123456789 column numbers</pre>
+ 123456789 123456789 123456789 123456789 123456789 column numbers</pre>
 <pre>
-    Heading 1 starts from left with big letter</pre>
+ Heading 1 starts with a big letter at leftmost column 1</pre>
 <pre>
-     The column positions are currently undeined and may not
-     format correcly. Do ot place text at columns 1,2,3</pre>
+  The column positions 1,2,3 are currently undefined and may not
+  format correctly. Do ot place text at columns 1,2 or 3.</pre>
 <pre>
-        This is heading2 at column 4 started with big letter</pre>
+     Heading level 2 starts at half-tab column 4 with a big letter</pre>
 <pre>
-            Standard text starts at column 8, you can *emphatize*
-            text or make it _strong_ and write =SmallText= or
-            +BigText+ show variable name `ThisIsAlsoVariable'.
-            You can `_*nest*_' `the' markup. more txt in this
-            paragraph txt txt txt txt txt txt txt txt txt txt txt
-            txt txt txt txt txt txt txt txt txt txt txt txt txt
-            txt txt txt txt txt txt txt txt txt txt txt txt txt
-            txt</pre>
+      Normal but colored text at columns 5</pre>
 <pre>
-          Normal but colored text is between columns 5, 6</pre>
+       Normal but colored text at columns 6</pre>
 <pre>
-           Emphatised text at column 7, like heading level 3</pre>
+        Heading 3 can be considered at position TAB minus 1, column 7.</pre>
 <pre>
-           &quot;Special &lt;em&gt; text at column 7 starts with double quote&quot;</pre>
+        &quot;Special &lt;em&gt; text at column 7 starts with double quote&quot;</pre>
 <pre>
-            Another standard text block at column 8 txt txt txt
-            txt txt txt txt txt txt txt txt txt txt txt txt txt
-            txt txt txt txt txt txt txt txt txt txt txt txt txt
-            txt txt txt txt txt txt txt</pre>
+         Standard text starts at column 8, you can *emphatize* text or
+         make it _strong_ and write =SmallText= or +BigText+ show
+         variable name `ThisIsAlsoVariable'. You can `_*nest*_' `the'
+         markup. more txt in this paragraph txt txt txt txt txt txt
+         txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt
+         txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt
+         txt txt</pre>
 <pre>
-             strong text at columns 9 and 11</pre>
+          Strong text at column 9</pre>
 <pre>
-              Column 10 is normally reserved for quotations
-              Column 10 is normally reserved for quotations
-              Column 10 is normally reserved for quotations
-              Column 10 is normally reserved for quotations</pre>
+           Column 10 is reserved for quotations
+           Column 10 is reserved for quotations
+           Column 10 is reserved for quotations
+           Column 10 is reserved for quotations</pre>
 <pre>
-                Column 12 and further is reserved for code examples
-                Column 12 and further is reserved for code examples
-                All text here are surrounded by &lt;pre&gt; HTML codes
-                (This CODE column in affected by --css-code* options,
-                see more ideas from there.)</pre>
+          Strong text at column 11</pre>
 <pre>
-        Heading2 at column 4 again</pre>
+           Column 12 and further is reserved for code examples
+           Column 12 and further is reserved for code examples
+           All text here are surrounded by &lt;pre&gt; HTML codes
+           This CODE column in affected by the --css-code* options.</pre>
 <pre>
-           If you want something like Heading level 3, use colum 7 (bold)</pre>
+     Heading 2 at column 4 again</pre>
 <pre>
-            txt txt txt txt txt txt txt txt txt txt txt txt
-            txt txt txt txt txt txt txt txt txt txt txt txt
-            txt txt txt txt txt txt txt txt txt txt txt txt</pre>
+        If you want something like Heading level 3, use column 7 (bold)</pre>
 <pre>
-             [1998-09-10 comp.lang.perl.misc Mr. Foo said]</pre>
+         Column 8. Standard tab position. txt txt txt txt txt txt txt
+         txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt
+         txt txt txt txt txt txt txt txt txt txt txt txt txt txt
+         [1998-09-10 Mr. Foo said]:</pre>
 <pre>
-              cited text cited text cited text cited text cited
-              text cited text cited text cited text cited text
-              cited text cited text cited text cited text cited
-              text cited text</pre>
+           cited text cited text cited text cited text cited
+           text cited text cited text cited text cited text
+           cited text cited text cited text cited text cited
+           text cited text</pre>
 <pre>
-             [1998-09-10 comp.lang.perl.misc Mr. Bar said]</pre>
+         *   Bullet at column 8. Notice 3 spaces after (*), so
+             text starts at half-tab forward at column 12.
+         *   Bullet. txt txt txt txt txt txt txt txt txt txt txt txt
+         *   Bullet. txt txt txt txt txt txt txt txt txt txt txt txt
+             ,txt txt txt txt</pre>
 <pre>
-              cited text cited text cited text cited text cited
-              text cited text cited text cited text cited text
-              cited text cited text cited text cited text cited
-              text cited text</pre>
+             Notice that previous paragraph ends to P-comma
+             code, it tells this paragraph to continue in
+             bullet mode, otherwise this text at column 12
+             would be intepreted as code section surrpoundedn
+             by &lt;pre&gt; HTML codes.</pre>
 <pre>
-           If you want something like Heading level 3, use colum 7 (bold)</pre>
+         .   This is ordered list.
+         .   This is ordered list.
+         .   This is ordered list.</pre>
 <pre>
-            txt txt txt txt txt txt txt txt txt txt txt txt
-            txt txt txt txt txt txt txt txt txt txt txt txt
-            txt txt txt txt txt txt txt txt txt txt txt txt</pre>
+         .This line starts wirg dot and is displayed in line by itself.
+         .This line starts wirg dot and is displayed in line by itself.</pre>
 <pre>
-            *   Bullet 1 text starts at column 1
-                txt txt txt txt txt txt txt txt
-                ,txt txt txt txt txt txt txt txt</pre>
+         !! This adds an &lt;hr&gt; HTML code, text in line is marked with
+         !! &lt;strong&gt; &lt;em&gt;</pre>
 <pre>
-                Notice that previous paragraph ends to P-comma
-                code, it tells this paragraph to continue in
-                bullet mode, otherwise this text at column 12
-                would be intepreted as code section surrpoundedn
-                by &lt;pre&gt; HTML codes.</pre>
+         Make this email address clickable &lt;account@tt.com&gt; Do not
+         make this email address clickable bar@example.com, because it
+         is only an example and not a real address. Notice that the
+         last one was not surrounded by &lt;&gt;. Common login names like
+         foo, bar, quux, or internet site 'example' are ignored
+         automatically.</pre>
 <pre>
-            *   Bullet 2, text starts at column 12
-            *   Bullet 3. Bullets are adviced to keep together
-            *   Bullet 4. Bullets are adviced to keep together</pre>
+         Also do not make &lt; this@example.com&gt; because there is extra
+         white space. This may be more convenient way to disable email
+         addresses temporarily.</pre>
 <pre>
-            .   This is ordered list nbr 1, text starts at column 12
-            .   This is ordered list nbr 2
-            .   This is ordered list nbr 3</pre>
+ Heading1 again at colum 0</pre>
 <pre>
-            .This line has BR, notice the DOT-code at beginning
-             of line. It is efective only at columns 1..11,
-             because column 12 is reserved for code examples.</pre>
+     Subheading at colum 4</pre>
 <pre>
-            .This line has BR code and is displayed in line by itself.
-            .This line has BR code and is displayed in line by itself.</pre>
+         And regular text, column 8 txt txt txt txt txt txt txt txt txt
+         txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt
+         txt txt txt txt txt txt txt txt txt txt txt</pre>
 <pre>
-            !! This adds an &lt;hr&gt; HTML code, text in line is marked with
-            !! &lt;strong&gt; &lt;em&gt;</pre>
-<pre>
-           &quot;This is emphasised text starting at column 7&quot;
-            .And this text is put after the previous line with BR code
-           &quot;This starts as separate line just below previous one&quot;
-            .And continues again as usual with BR code</pre>
-<pre>
-            See the document #URL-BASE/document.txt, where #URL-BASE
-            tag is substituted with contents of --base switch.</pre>
-<pre>
-            Make this email address clickable &lt;account@example.com&gt;</pre>
-<pre>
-            Do not make this email address clickable bar@example.com,
-            because it is only an example and not a real address. Notice
-            that the last one was not surrounded by &lt;&gt;. Common login names
-            like foo, bar, quux are also ignored automatically.</pre>
-<pre>
-            Also do not make &lt; this@example.com&gt; because there is extra
-            white spaces. This may be more convenient way to disable
-            email addresses temporarily.</pre>
-<pre>
-    Heading1 again at colum 0</pre>
-<pre>
-        Subheading at colum 4</pre>
-<pre>
-            And regular text, column 8 txt txt txt txt txt txt txt txt txt
-            txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt
-            txt txt txt txt txt txt txt txt txt txt txt</pre>
-<pre>
-    --//-- decription end</pre>
+ --//-- decription end</pre>
 <p>That is it, there is the whole layout described. More formally the rules
 of text formatting are secribed below.</p>
 <p>
@@ -1138,9 +1100,9 @@ block is closed with &lt;/pre&gt; Note follwing example</p>
 <p>If there is <code>.</code>(dot) at the beginning of a line and immediately
 non-whitespace, then &lt;br&gt; code is added to the end of line.</p>
 <pre>
-    .This line has BR code at the end.
+    .This line will have a &lt;BR&gt; HTML tag at the end.
     While these two line are joined together
-    by your browser, depending on the frame width.</pre>
+    by the browser, depending on the frame width.</pre>
 </li>
 <li>
 <p>If there is <code>,</code>(comma) then the &lt;p&gt; code is not inserted if the previous
@@ -1160,7 +1122,7 @@ not &lt;sample&gt; while it is placed at column 12</p>
         ,even if there is another line in the bullet.</pre>
 <pre>
         This is new paragrah to the previous bullet and this is
-        not a text sample. See COMMa-code below.</pre>
+        not a text sample. See continued COMMA-code above.</pre>
 <pre>
     *   This is new bullet</pre>
 <pre>
@@ -1184,9 +1146,9 @@ bigger font, CAPITALIZE THE WORDS.</p>
 <pre>
     =this=      is intepreted as &lt;span class=&quot;word-small&quot;&gt;this&lt;/span&gt;
     +this+      is intepreted as &lt;span class=&quot;word-big&quot;&gt;this&lt;/span&gt;
-    word [this] is intepreted as &lt;span class=&quot;word-ref&quot;&gt;this&lt;/span&gt;</pre>
+    [this]      is intepreted as &lt;span class=&quot;word-ref&quot;&gt;this&lt;/span&gt;</pre>
 </dd>
-<dt><strong><a name="supercripting" class="item">supercripting</a></strong></dt>
+<dt><strong><a name="superscripting" class="item">superscripting</a></strong></dt>
 
 <dd>
 <pre>
@@ -1195,11 +1157,21 @@ bigger font, CAPITALIZE THE WORDS.</p>
                 imaginable[IV superscritps] as long as the left
                 bracket is attached to the word.</pre>
 </dd>
+<dt><strong><a name="subscripting" class="item">subscripting</a></strong></dt>
+
+<dd>
+<pre>
+    12[[10]]    is representation of value 12 un base 10.
+                This is intepreted as subscript. You can use like
+                this[[1]], multiple[[(2)]] and almost any[[(ab)]] and
+                imaginable[[IV superscritps]] as long as *two* left
+                brackets are attached to the word.</pre>
+</dd>
 <dt><strong><a name="embedding_standard_html_tokens" class="item">embedding standard HTML tokens</a></strong></dt>
 
 <dd>
 <p>Stanadard special HTML entities can be added inside text in a normal way,
-either using sybolic names or the hash code. Here are exmples</p>
+either using sybolic names or the hash code. Here are exmples:</p>
 <pre>
     &amp;times; &amp;lt; &amp;gt; &amp;le; &amp;ge; &amp;ne; &amp;radic; &amp;minus;
     &amp;alpha; &amp;beta; &amp;gamma; &amp;divide;
@@ -1212,15 +1184,14 @@ either using sybolic names or the hash code. Here are exmples</p>
 <dt><strong><a name="embedding_pure_html_into_text" class="item">embedding PURE HTML into text</a></strong></dt>
 
 <dd>
-<p><strong>this feature is highly experimental</strong>. It is possible to embed
-pure HTML inside text in occasions, where e.g. some special
-formatting is needed. The isea is simple: you write HTML as usual
-but double every &lt; and &gt; characters, like:</p>
+<p><strong>This feature is highly experimental</strong>. It is possible to embed pure
+HTML inside text in occasions, where e.g. some special formatting is
+needed. The isea is simple: you write HTML as usual but double every '&lt;'
+and '&gt;' characters, like:</p>
 <pre>
     &lt;&lt;p&gt;&gt;</pre>
-<p>The other rule is that all, let's repeat, ALL PURE HTML must be
-kept together. There must be no line breaks between pure HTML
-lines. This is <code>invalid:</code></p>
+<p>The other rule is that all PURE HTML must be kept together. There must
+be no line breaks between pure HTML lines. This is incorrect:</p>
 <pre>
     &lt;&lt;table&gt;</pre>
 <pre>
@@ -1228,7 +1199,7 @@ lines. This is <code>invalid:</code></p>
         &lt;&lt;tr&gt;&gt;two</pre>
 <pre>
     &lt;&lt;/table&gt;&gt;</pre>
-<p>The pure HTML must be written without separating newlines:</p>
+<p>The pure HTML must be written without extra newlines:</p>
 <pre>
     &lt;&lt;table&gt;
         &lt;&lt;tr&gt;&gt;one
@@ -1238,7 +1209,7 @@ lines. This is <code>invalid:</code></p>
 documents, where you describe Unix styled HERE-documents, you MUST NOT put
 the tokens next to each other:</p>
 <pre>
-        bash$ cat&lt;&lt;EOF              # DON'T! It will confuse parser.
+        bash$ cat&lt;&lt;EOF              # DON'T, this will confuse parser.
         one
         EOF</pre>
 <p>You must write the above code example using spaces to prevent &quot;&lt;&lt;&quot; from
@@ -1419,7 +1390,7 @@ cannot be broken to multiple lines. An example:</p>
 <pre>
     1.  The NAME HTML tag reference in current document, a single word.
         This can also be a full URL link.
-        You can get NAME list by enabling --Toc-url-print option.</pre>
+        You can get NAME list by enabling --toc-url-print option.</pre>
 <pre>
     2.  The clickable text is delimited by ; characters.</pre>
 </dd>
@@ -1477,25 +1448,25 @@ you have forgot to close the block. Make it read even, like this:</p>
 <h1><a name="examples">EXAMPLES</a></h1>
 <p>To print the test page and show all the possibilities:</p>
 <pre>
-    % t2html --test-page</pre>
+    t2html --test-page</pre>
 <p>To make simple HTML page without any meta information:</p>
 <pre>
-    % t2html --title &quot;Html Page Title&quot; --author &quot;Mr. Foo&quot; \
-      --simple --Out --print file.txt</pre>
+    t2html --title &quot;Html Page Title&quot; --author &quot;Mr. Foo&quot; \
+           --simple --out --print file.txt</pre>
 <p>If you have periodic post in email format, use <strong>--delete-email-headers</strong> to
 ignore the header text:</p>
 <pre>
-    % t2html --Out --print --delete-email-headers page.txt</pre>
+    t2html --out --print --delete-email-headers page.txt</pre>
 <p>To make page fast</p>
 <pre>
-    % t2html --html-frame --Out --print page.txt</pre>
+    t2html --html-frame --out --print page.txt</pre>
 <p>To convert page from a text document, including meta tags, buttons, colors
 and frames. Pay attention to switch <em>--html-body</em> which defines document
 language.</p>
 <pre>
-    % t2html                                         \
+    t2html                                              \
     --print                                             \
-    --Out                                               \
+    --out                                               \
     --author    &quot;Mr. foo&quot;                               \
     --email     &quot;foo@example.com&quot;                       \
     --title     &quot;This is manual page of page BAR&quot;       \
@@ -1515,17 +1486,25 @@ language.</p>
 <p>To check links and print status of all links in par with the http error
 message (most verbose):</p>
 <pre>
-    % t2html --link-check file.txt | tee link-error.log</pre>
+    t2html --link-check file.txt | tee link-error.log</pre>
 <p>To print only problematic links:</p>
 <pre>
-    % t2html --link-check --quiet file.txt | tee link-error.log</pre>
+    t2html --link-check --quiet file.txt | tee link-error.log</pre>
 <p>To print terse output in egep -n like manner: line number, link and
 error code:</p>
 <pre>
-    % t2html --link-check-single --quiet file.txt | tee link-error.log</pre>
+    t2html --link-check-single --quiet file.txt | tee link-error.log</pre>
+<p>To check links from multiple pages and cache good links to separate file,
+use <strong>--link-cache</strong> option. The next link check will run much faster
+because cached valid links will not be fetched again. At regular intervals
+delete the link cache file to force complete check.</p>
+<pre>
+    t2html --link-check-single \
+           --link-cache $HOME/tmp/link.cache \
+           --quiet file.txt</pre>
 <p>To split large document into pieces, and convert each piece to HTML:</p>
 <pre>
-    % t2html --split1 --split-name file.txt | t2html --simple -Out</pre>
+    t2html --split1 --split-name file.txt | t2html --simple --out</pre>
 <p>
 </p>
 <hr />
@@ -1549,7 +1528,10 @@ LANG=en.iso88591</p>
 </p>
 <hr />
 <h1><a name="see_also">SEE ALSO</a></h1>
-<p><code>perl(1)</code> html2ps(1) <code>htmlpp(1)</code></p>
+<p><code>asciidoc(1)</code>
+html2ps(1)
+<code>htmlpp(1)</code>
+<code>markdown(1)</code></p>
 <p>
 </p>
 <h2><a name="related_programs">Related programs</a></h2>
@@ -1580,8 +1562,8 @@ package tinytf.el in project <a href="http://freshmeat.net/projects/emacs-tiny-t
 <p>The implementation was originally designed to work linewise, so it is
 unfortunately impossible to add or modify any existing feature to look for
 items that span more than one line.</p>
-<p>At the time being, it is not to be expect the option <strong>--Xhtml</strong> to
-produce syntactically valid markup.</p>
+<p>As the options <strong>--xhtml</strong> was much later added, it may not produce
+completely syntactically valid markup.</p>
 <p>
 </p>
 <hr />
@@ -1592,23 +1574,16 @@ html</p>
 </p>
 <hr />
 <h1><a name="prerequisites">PREREQUISITES</a></h1>
-<p>No additional CPAN modules needed for text to HTML conversion. If link
-check feature is used to to validate URL links, then following modules are
-needed from CPAN <code>use LWP::UserAgent</code> <code>HTML::FormatText</code> and
-<code>HTML::Parse</code></p>
+<p>No additional CPAN modules needed for text to HTML conversion.</p>
 <p>
 </p>
 <hr />
 <h1><a name="corequisites">COREQUISITES</a></h1>
-<p>If module <code>LWP::UserAgent</code> is available, program can be used to verify the
-URL links.</p>
+<p>If link check feature is used to to validate URL links, then following
+modules are needed from CPAN <code>use LWP::UserAgent</code> <code>HTML::FormatText</code>
+and <code>HTML::Parse</code></p>
 <p>If you module <code>HTML::LinkExtractor</code> is available, it is used
 instead of included link extracting algorithm.</p>
-<p>
-</p>
-<hr />
-<h1><a name="osnames">OSNAMES</a></h1>
-<p><code>any</code></p>
 <p>
 </p>
 <hr />
@@ -1618,9 +1593,9 @@ instead of included link extracting algorithm.</p>
 </p>
 <hr />
 <h1><a name="author">AUTHOR</a></h1>
-<p>Copyright (C) 1996-2009 Jari Aalto. This program is free software; you can
-redistribute it and/or modify it under the same terms as Perl itself or in
-terms of Gnu General Public license v2 or later.</p>
+<p>This program is free software; you can redistribute and/or modify
+program under the terms of GNU General Public license either version 2
+of the License, or (at your option) any later version.</p>
 <p>This documentation may be distributed subject to the terms and
 conditions set forth in GNU General Public License v2 or later; or, at
 your option, distributed under the terms of GNU Free Documentation

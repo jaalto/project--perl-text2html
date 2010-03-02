@@ -2,7 +2,10 @@ NAME
     t2html - Simple text to HTML converter. Relies on text indentation
     rules.
 
-README
+SYNOPSIS
+        t2html [options] file.txt > file.html
+
+DESCRIPTION
     Convert pure text files into nice looking, possibly framed, HTML pages.
 
     Requirements for the input ascii files
@@ -60,29 +63,6 @@ README
     with colors, Indentation control, bullet filling, heading renumbering,
     word markup, syntax highlighting etc. See project
     http://freshmeat.net/projects/emacs-tiny-tools
-
-SYNOPSIS
-    To convert text file into HTML:
-
-        t2html [options] file.txt > file.html
-
-    In addition to making HTML pages, program includes feature to check
-    broken links and report them in *egrep -n* like fashion:
-
-        t2html --Link-check-single --quiet file.txt
-
-    To check links from multiple pages and cache good links to separate
-    file, use --Link-cache option. The next link check will run much faster
-    because cached valid links will not be fetched again. At regular
-    intervals delete the link cache file to force complete check.
-
-        t2html --Link-check-single --Link-cache ~/tmp/link.cache \
-                  --quiet file.txt
-
-    In case there are need for slides, is is possible to plit big document
-    into pieces according to toplevel headings:
-
-        t2html --S1 --SN | t2html --simple -Out
 
 OPTIONS
   Html: Header and Footer options
@@ -193,16 +173,16 @@ OPTIONS
                 The homepage is #HOME-URL/page.html and the mirrot page it at
                 #ARCHIVE-URL/page.html where you can find the latest version.
 
-    --reference-separator STRING
+    -R, --reference-separator STRING
         See above. String that is used to split the TAG and VALUE. Default
         is equal sign "=".
 
-    --Toc-url-print -T
+    -T, --toc-url-print
         Display URLs (contructed from headings) that build up the Table of
         Contents (NAME AHREF tags) in a document. The list is outputted to
         stderr, so that it can be separated:
 
-            % t2html --Toc-url-print tmp.txt > file.html 2> toc-list.txt
+            % t2html --toc-url-print tmp.txt > file.html 2> toc-list.txt
 
         Where would you need this? If you want to know the fragment
         identifies for your file, you need the list of names.
@@ -508,13 +488,13 @@ OPTIONS
         Define FONT SIZE. It might be useful to set bigger font size for
         presentations.
 
-    --html-frame -F [FRAME-PARAMS]
+    -F, --html-frame [FRAME-PARAMS]
         If given, then three separate HTML files are generated. The left
         frame will contain TOC and right frame contains rest of the text.
         The *FRAME-PARAMS* can be any valid parameters for HTML tag
         FRAMESET. The default is "cols="25%,75%"".
 
-        Using this implies --Out option automatically, because three files
+        Using this implies --out option automatically, because three files
         cannot be printed to stdout.
 
             file.html
@@ -584,16 +564,16 @@ OPTIONS
         and you do not need this option.
 
   Document maintenance and batch job commands
-    --Auto-detect
+    -A, --auto-detect
         Convert file only if tag "#T2HTML-" is found from file. This option
         is handy if you run a batch command to convert all files to HTML,
         but only if they look like HTML base files:
 
             find . -name "*.txt" -type f \
-                 -exec t2html --Auto-detect --verbose --Out {} \;
+                 -exec t2html --auto-detect --verbose --out {} \;
 
         The command searches all *.txt files under current directory and
-        feeds them to conversion program. The --Auto-detect only converts
+        feeds them to conversion program. The --auto-detect only converts
         files which include "#T2HTML-" directives. Other text files are not
         converted.
 
@@ -623,7 +603,7 @@ OPTIONS
         directory. If you are not the owner of the link, it is also possible
         that the file has moved of new version name has appeared.
 
-    --Link-check-single -L
+    -L, --link-check-single
         Print condensed output in *grep -n* like manner *FILE:LINE:MESSAGE*
 
         This option concatenates the url response text to single line, so
@@ -631,15 +611,15 @@ OPTIONS
         tools (like Emacs M-x compile) that can parse standard grep syntax
         to jump to locations in your document to correct the links later.
 
-    --Out -O
+    -o, --out
         write generated HTML to file that is derived from the input
         filename.
 
-            --Out --print /dir/file            --> /dir/file.html
-            --Out --print /dir/file.txt        --> /dir/file.html
-            --Out --print /dir/file.this.txt   --> /dir/file.this.html
+            --out --print /dir/file            --> /dir/file.html
+            --out --print /dir/file.txt        --> /dir/file.html
+            --out --print /dir/file.this.txt   --> /dir/file.this.html
 
-    --Link-cache CACHE_FILE
+    --link-cache CACHE_FILE
         When links are checked periodically, it would be quite a rigorous to
         check every link every time that has already succeeded. In order to
         save link checking time, the "ok" links can be cached into separate
@@ -648,36 +628,36 @@ OPTIONS
         dramatically improve long searches. Consider this example, where
         every text file is checked recursively.
 
-            $ t2html --Link-check-single \
-              --quiet --Link-cache ~tmp/link.cache \
+            $ t2html --link-check-single \
+              --quiet --link-cache ~tmp/link.cache \
               `find . -name "*.txt" -type f`
 
-    --Out-dir DIR
-        Like --Out, but chop the directory part and write output files to
+    -O, --out-dir DIR
+        Like --out, but chop the directory part and write output files to
         DIR. The following would generate the HTML file to current
         directory:
 
-            --Out-dir .
+            --out-dir .
 
         If you have automated tool that fills in the directory, you can use
         word none to ignore this option. The following is a no-op, it will
         not generate output to directory "none":
 
-            --Out-dir none
+            --out-dir none
 
-    --print -p
+    -p, --print
         Print filename to stdout after HTML processing. Normally program
         prints no file names, only the generated HTML.
 
-            % t2html --Out --print page.txt
+            % t2html --out --print page.txt
 
             --> page.html
 
-    --print-url -P
+    -P, --print-url
         Print filename in URL format. This is useful if you want to check
         the layout immediately with your browser.
 
-            % t2html --Out --print-url page.txt | xargs lynx
+            % t2html --out --print-url page.txt | xargs lynx
 
             --> file: /users/foo/txt/page.html
 
@@ -700,15 +680,15 @@ OPTIONS
         heading: First split the document, then convert each part to HTML
         and finally print each part (page) separately to printer.
 
-    --split1 --S1
+    -S1, --split1
         This is shorthand of --split command. Define regexp to split on
         toplevel heading.
 
-    --split2 --S2
+    -S2, --split2
         This is shorthand of --split command. Define regexp to split on
         second level heading.
 
-    --split-named-files --SN
+    -SN, --split-named-files
         Additional directive for split commands. If you split e.g. by
         headings using --split1, it would be more informative to generate
         filenames according to first few words from the heading name.
@@ -722,7 +702,7 @@ OPTIONS
             FILENAME-program_guidelines
             FILENAME-conclusion
 
-    --Xhtml
+    -X, --xhtml
         Render using strict XHTML. This means using <hr/>, <br/> and
         paragraphs use <p>..</p>.
 
@@ -733,14 +713,19 @@ OPTIONS
         Turn on debug with positive LEVEL number. Zero means no debug.
 
     --help -h
-        Print help screen.
+        Print help screen. Terminates program.
 
-    --Help-html
-        Print help in HTML format.
+    --help-css
+        Print default CSS used. Terminates program. You can copy and modify
+        this output and instruct to use your own with --css-file=FILE. You
+        can also embed the option to files with "#T2HTML-OPTION" directive.
 
-    --Help-man
+    --help-html
+        Print help in HTML format. Terminates program.
+
+    --help-man
         Print help page in Unix manual page format. You want to feed this
-        output to nroff -man in order to read it.
+        output to nroff -man in order to read it. Terminates program.
 
     --test-page
         Print the test page: HTML and example text file that demonstrates
@@ -749,150 +734,123 @@ OPTIONS
     --time
         Print to stderr time spent used for handling the file.
 
-    --verbose [LEVEL]
+    -v, --verbose [LEVEL]
         Print verbose messages.
 
-    --quiet -q
+    -q, --quiet
         Print no footer at all. This option has different meaning if
         *--link-check* option is turned on: print only errorneous links.
 
-    --Version -V
+    V, --version
         Print program version information.
 
-DESCRIPTION
-    This is simple text to HTML converter. Unlike other tools, this tries to
-    minimize the use of text tags to format the document, The basic idea is
-    to rely on indentation level, and the layout used is called 'Technical
-    format' (TF)
+FORMAT DESCRIPTION
+    Program converts text files to HTML. The basic idea is to rely on
+    indentation level, and the layout used is called 'Technical format' (TF)
+    where only minimal conventions are used to mark italic, bold etc. text.
+    The Basic principles can be demonstrated below. Notice the column
+    poisiton ruler at the top:
 
-        --//-- decription start
+     --//-- decription start
 
-        0123456789 123456789 123456789 123456789 123456789 column numbers
+     123456789 123456789 123456789 123456789 123456789 column numbers
 
-        Heading 1 starts from left with big letter
+     Heading 1 starts with a big letter at leftmost column 1
 
-         The column positions are currently undeined and may not
-         format correcly. Do ot place text at columns 1,2,3
+      The column positions 1,2,3 are currently undefined and may not
+      format correctly. Do ot place text at columns 1,2 or 3.
 
-            This is heading2 at column 4 started with big letter
+         Heading level 2 starts at half-tab column 4 with a big letter
 
-                Standard text starts at column 8, you can *emphatize*
-                text or make it _strong_ and write =SmallText= or
-                +BigText+ show variable name `ThisIsAlsoVariable'.
-                You can `_*nest*_' `the' markup. more txt in this
-                paragraph txt txt txt txt txt txt txt txt txt txt txt
-                txt txt txt txt txt txt txt txt txt txt txt txt txt
-                txt txt txt txt txt txt txt txt txt txt txt txt txt
-                txt
+          Normal but colored text at columns 5
 
-              Normal but colored text is between columns 5, 6
+           Normal but colored text at columns 6
 
-               Emphatised text at column 7, like heading level 3
+            Heading 3 can be considered at position TAB minus 1, column 7.
 
-               "Special <em> text at column 7 starts with double quote"
+            "Special <em> text at column 7 starts with double quote"
 
-                Another standard text block at column 8 txt txt txt
-                txt txt txt txt txt txt txt txt txt txt txt txt txt
-                txt txt txt txt txt txt txt txt txt txt txt txt txt
-                txt txt txt txt txt txt txt
+             Standard text starts at column 8, you can *emphatize* text or
+             make it _strong_ and write =SmallText= or +BigText+ show
+             variable name `ThisIsAlsoVariable'. You can `_*nest*_' `the'
+             markup. more txt in this paragraph txt txt txt txt txt txt
+             txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt
+             txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt
+             txt txt
 
-                 strong text at columns 9 and 11
+              Strong text at column 9
 
-                  Column 10 is normally reserved for quotations
-                  Column 10 is normally reserved for quotations
-                  Column 10 is normally reserved for quotations
-                  Column 10 is normally reserved for quotations
+               Column 10 is reserved for quotations
+               Column 10 is reserved for quotations
+               Column 10 is reserved for quotations
+               Column 10 is reserved for quotations
 
-                    Column 12 and further is reserved for code examples
-                    Column 12 and further is reserved for code examples
-                    All text here are surrounded by <pre> HTML codes
-                    (This CODE column in affected by --css-code* options,
-                    see more ideas from there.)
+              Strong text at column 11
 
-            Heading2 at column 4 again
+               Column 12 and further is reserved for code examples
+               Column 12 and further is reserved for code examples
+               All text here are surrounded by <pre> HTML codes
+               This CODE column in affected by the --css-code* options.
 
-               If you want something like Heading level 3, use colum 7 (bold)
+         Heading 2 at column 4 again
 
-                txt txt txt txt txt txt txt txt txt txt txt txt
-                txt txt txt txt txt txt txt txt txt txt txt txt
-                txt txt txt txt txt txt txt txt txt txt txt txt
+            If you want something like Heading level 3, use column 7 (bold)
 
-                 [1998-09-10 comp.lang.perl.misc Mr. Foo said]
+             Column 8. Standard tab position. txt txt txt txt txt txt txt
+             txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt
+             txt txt txt txt txt txt txt txt txt txt txt txt txt txt
+             [1998-09-10 Mr. Foo said]:
 
-                  cited text cited text cited text cited text cited
-                  text cited text cited text cited text cited text
-                  cited text cited text cited text cited text cited
-                  text cited text
+               cited text cited text cited text cited text cited
+               text cited text cited text cited text cited text
+               cited text cited text cited text cited text cited
+               text cited text
 
-                 [1998-09-10 comp.lang.perl.misc Mr. Bar said]
 
-                  cited text cited text cited text cited text cited
-                  text cited text cited text cited text cited text
-                  cited text cited text cited text cited text cited
-                  text cited text
+             *   Bullet at column 8. Notice 3 spaces after (*), so
+                 text starts at half-tab forward at column 12.
+             *   Bullet. txt txt txt txt txt txt txt txt txt txt txt txt
+             *   Bullet. txt txt txt txt txt txt txt txt txt txt txt txt
+                 ,txt txt txt txt
 
-               If you want something like Heading level 3, use colum 7 (bold)
+                 Notice that previous paragraph ends to P-comma
+                 code, it tells this paragraph to continue in
+                 bullet mode, otherwise this text at column 12
+                 would be intepreted as code section surrpoundedn
+                 by <pre> HTML codes.
 
-                txt txt txt txt txt txt txt txt txt txt txt txt
-                txt txt txt txt txt txt txt txt txt txt txt txt
-                txt txt txt txt txt txt txt txt txt txt txt txt
 
-                *   Bullet 1 text starts at column 1
-                    txt txt txt txt txt txt txt txt
-                    ,txt txt txt txt txt txt txt txt
+             .   This is ordered list.
+             .   This is ordered list.
+             .   This is ordered list.
 
-                    Notice that previous paragraph ends to P-comma
-                    code, it tells this paragraph to continue in
-                    bullet mode, otherwise this text at column 12
-                    would be intepreted as code section surrpoundedn
-                    by <pre> HTML codes.
 
-                *   Bullet 2, text starts at column 12
-                *   Bullet 3. Bullets are adviced to keep together
-                *   Bullet 4. Bullets are adviced to keep together
+             .This line starts wirg dot and is displayed in line by itself.
+             .This line starts wirg dot and is displayed in line by itself.
 
-                .   This is ordered list nbr 1, text starts at column 12
-                .   This is ordered list nbr 2
-                .   This is ordered list nbr 3
+             !! This adds an <hr> HTML code, text in line is marked with
+             !! <strong> <em>
 
-                .This line has BR, notice the DOT-code at beginning
-                 of line. It is efective only at columns 1..11,
-                 because column 12 is reserved for code examples.
+             Make this email address clickable <account@tt.com> Do not
+             make this email address clickable bar@example.com, because it
+             is only an example and not a real address. Notice that the
+             last one was not surrounded by <>. Common login names like
+             foo, bar, quux, or internet site 'example' are ignored
+             automatically.
 
-                .This line has BR code and is displayed in line by itself.
-                .This line has BR code and is displayed in line by itself.
+             Also do not make < this@example.com> because there is extra
+             white space. This may be more convenient way to disable email
+             addresses temporarily.
 
-                !! This adds an <hr> HTML code, text in line is marked with
-                !! <strong> <em>
+     Heading1 again at colum 0
 
-               "This is emphasised text starting at column 7"
-                .And this text is put after the previous line with BR code
-               "This starts as separate line just below previous one"
-                .And continues again as usual with BR code
+         Subheading at colum 4
 
-                See the document #URL-BASE/document.txt, where #URL-BASE
-                tag is substituted with contents of --base switch.
+             And regular text, column 8 txt txt txt txt txt txt txt txt txt
+             txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt
+             txt txt txt txt txt txt txt txt txt txt txt
 
-                Make this email address clickable <account@example.com>
-
-                Do not make this email address clickable bar@example.com,
-                because it is only an example and not a real address. Notice
-                that the last one was not surrounded by <>. Common login names
-                like foo, bar, quux are also ignored automatically.
-
-                Also do not make < this@example.com> because there is extra
-                white spaces. This may be more convenient way to disable
-                email addresses temporarily.
-
-        Heading1 again at colum 0
-
-            Subheading at colum 4
-
-                And regular text, column 8 txt txt txt txt txt txt txt txt txt
-                txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt
-                txt txt txt txt txt txt txt txt txt txt txt
-
-        --//-- decription end
+     --//-- decription end
 
     That is it, there is the whole layout described. More formally the rules
     of text formatting are secribed below.
@@ -963,9 +921,9 @@ TEXT PLACEMENT RULES
     *   If there is "."(dot) at the beginning of a line and immediately
         non-whitespace, then <br> code is added to the end of line.
 
-            .This line has BR code at the end.
+            .This line will have a <BR> HTML tag at the end.
             While these two line are joined together
-            by your browser, depending on the frame width.
+            by the browser, depending on the frame width.
 
     *   If there is ","(comma) then the <p> code is not inserted if the
         previous line is empty. If you use both "."(dot) and ","(comma),
@@ -987,7 +945,7 @@ TEXT PLACEMENT RULES
                 ,even if there is another line in the bullet.
 
                 This is new paragrah to the previous bullet and this is
-                not a text sample. See COMMa-code below.
+                not a text sample. See continued COMMA-code above.
 
             *   This is new bullet
 
@@ -1005,17 +963,24 @@ TEXT PLACEMENT RULES
 
             =this=      is intepreted as <span class="word-small">this</span>
             +this+      is intepreted as <span class="word-big">this</span>
-            word [this] is intepreted as <span class="word-ref">this</span>
+            [this]      is intepreted as <span class="word-ref">this</span>
 
-    supercripting
+    superscripting
             word[this]  is intepreted as superscript. You can use like
                         this[1], multiple[(2)] and almost any[(ab)] and
                         imaginable[IV superscritps] as long as the left
                         bracket is attached to the word.
 
+    subscripting
+            12[[10]]    is representation of value 12 un base 10.
+                        This is intepreted as subscript. You can use like
+                        this[[1]], multiple[[(2)]] and almost any[[(ab)]] and
+                        imaginable[[IV superscritps]] as long as *two* left
+                        brackets are attached to the word.
+
     embedding standard HTML tokens
         Stanadard special HTML entities can be added inside text in a normal
-        way, either using sybolic names or the hash code. Here are exmples
+        way, either using sybolic names or the hash code. Here are exmples:
 
             &times; &lt; &gt; &le; &ge; &ne; &radic; &minus;
             &alpha; &beta; &gamma; &divide;
@@ -1026,16 +991,15 @@ TEXT PLACEMENT RULES
             &euro; &pound; &yen;
 
     embedding PURE HTML into text
-        this feature is highly experimental. It is possible to embed pure
+        This feature is highly experimental. It is possible to embed pure
         HTML inside text in occasions, where e.g. some special formatting is
         needed. The isea is simple: you write HTML as usual but double every
-        < and > characters, like:
+        '<' and '>' characters, like:
 
             <<p>>
 
-        The other rule is that all, let's repeat, ALL PURE HTML must be kept
-        together. There must be no line breaks between pure HTML lines. This
-        is "invalid:"
+        The other rule is that all PURE HTML must be kept together. There
+        must be no line breaks between pure HTML lines. This is incorrect:
 
             <<table>
 
@@ -1044,7 +1008,7 @@ TEXT PLACEMENT RULES
 
             <</table>>
 
-        The pure HTML must be written without separating newlines:
+        The pure HTML must be written without extra newlines:
 
             <<table>
                 <<tr>>one
@@ -1055,7 +1019,7 @@ TEXT PLACEMENT RULES
         write documents, where you describe Unix styled HERE-documents, you
         MUST NOT put the tokens next to each other:
 
-                bash$ cat<<EOF              # DON'T! It will confuse parser.
+                bash$ cat<<EOF              # DON'T, this will confuse parser.
                 one
                 EOF
 
@@ -1217,7 +1181,7 @@ EMBEDDED DIRECTIVES INSIDE TEXT
 
             1.  The NAME HTML tag reference in current document, a single word.
                 This can also be a full URL link.
-                You can get NAME list by enabling --Toc-url-print option.
+                You can get NAME list by enabling --toc-url-print option.
 
             2.  The clickable text is delimited by ; characters.
 
@@ -1267,29 +1231,29 @@ TROUBLESHOOTING
 EXAMPLES
     To print the test page and show all the possibilities:
 
-        % t2html --test-page
+        t2html --test-page
 
     To make simple HTML page without any meta information:
 
-        % t2html --title "Html Page Title" --author "Mr. Foo" \
-          --simple --Out --print file.txt
+        t2html --title "Html Page Title" --author "Mr. Foo" \
+               --simple --out --print file.txt
 
     If you have periodic post in email format, use --delete-email-headers to
     ignore the header text:
 
-        % t2html --Out --print --delete-email-headers page.txt
+        t2html --out --print --delete-email-headers page.txt
 
     To make page fast
 
-        % t2html --html-frame --Out --print page.txt
+        t2html --html-frame --out --print page.txt
 
     To convert page from a text document, including meta tags, buttons,
     colors and frames. Pay attention to switch *--html-body* which defines
     document language.
 
-        % t2html                                         \
+        t2html                                              \
         --print                                             \
-        --Out                                               \
+        --out                                               \
         --author    "Mr. foo"                               \
         --email     "foo@example.com"                       \
         --title     "This is manual page of page BAR"       \
@@ -1310,20 +1274,29 @@ EXAMPLES
     To check links and print status of all links in par with the http error
     message (most verbose):
 
-        % t2html --link-check file.txt | tee link-error.log
+        t2html --link-check file.txt | tee link-error.log
 
     To print only problematic links:
 
-        % t2html --link-check --quiet file.txt | tee link-error.log
+        t2html --link-check --quiet file.txt | tee link-error.log
 
     To print terse output in egep -n like manner: line number, link and
     error code:
 
-        % t2html --link-check-single --quiet file.txt | tee link-error.log
+        t2html --link-check-single --quiet file.txt | tee link-error.log
+
+    To check links from multiple pages and cache good links to separate
+    file, use --link-cache option. The next link check will run much faster
+    because cached valid links will not be fetched again. At regular
+    intervals delete the link cache file to force complete check.
+
+        t2html --link-check-single \
+               --link-cache $HOME/tmp/link.cache \
+               --quiet file.txt
 
     To split large document into pieces, and convert each piece to HTML:
 
-        % t2html --split1 --split-name file.txt | t2html --simple -Out
+        t2html --split1 --split-name file.txt | t2html --simple --out
 
 ENVIRONMENT
     EMAIL
@@ -1336,7 +1309,7 @@ ENVIRONMENT
         LANG=en.iso88591
 
 SEE ALSO
-    perl(1) html2ps(1) htmlpp(1)
+    asciidoc(1) html2ps(1) htmlpp(1) markdown(1)
 
   Related programs
     Jan Kärrman <jan@tdb.uu.se> has written Perl html2ps which was
@@ -1367,715 +1340,33 @@ BUGS
     unfortunately impossible to add or modify any existing feature to look
     for items that span more than one line.
 
-    At the time being, it is not to be expect the option --Xhtml to produce
-    syntactically valid markup.
+    As the options --xhtml was much later added, it may not produce
+    completely syntactically valid markup.
 
 SCRIPT CATEGORIES
     CPAN/Administrative html
 
 PREREQUISITES
-    No additional CPAN modules needed for text to HTML conversion. If link
-    check feature is used to to validate URL links, then following modules
-    are needed from CPAN "use LWP::UserAgent" "HTML::FormatText" and
-    "HTML::Parse"
+    No additional CPAN modules needed for text to HTML conversion.
 
 COREQUISITES
-    If module "LWP::UserAgent" is available, program can be used to verify
-    the URL links.
+    If link check feature is used to to validate URL links, then following
+    modules are needed from CPAN "use LWP::UserAgent" "HTML::FormatText" and
+    "HTML::Parse"
 
     If you module "HTML::LinkExtractor" is available, it is used instead of
     included link extracting algorithm.
-
-OSNAMES
-    "any"
 
 AVAILABILITY
     Homepage is at http://freshmeat.net/projects/perl-text2html
 
 AUTHOR
-    Copyright (C) 1996-2009 Jari Aalto. This program is free software; you
-    can redistribute it and/or modify it under the same terms as Perl itself
-    or in terms of Gnu General Public license v2 or later.
+    This program is free software; you can redistribute and/or modify
+    program under the terms of GNU General Public license either version 2
+    of the License, or (at your option) any later version.
 
     This documentation may be distributed subject to the terms and
     conditions set forth in GNU General Public License v2 or later; or, at
     your option, distributed under the terms of GNU Free Documentation
     License version 1.2 or later (GNU FDL).
-
-
-
-Default CSS and JAVA code inserted to the beginning of each file
-See option --css-file to replace default CSS.
-
-
-    <style type="text/css">
-
-
-
-	/*
-
-	    ///////////////////////////////////////////////////////////
-	       NOTE    NOTE    NOTE    NOTE    NOTE    NOTE    NOTE
-
-	    This is the default CSS 2.0 generated by the program,
-	    please see "t2html --help" for option --script-file
-	    to import your own CSS and Java definitions into the page.
-
-	    XHTML note: at page http://www.w3.org/TR/xhtml1/#guidelines
-	    It is recommended that CSS2 with XHTML use lowercase
-	    element and attribute names
-
-	    This default CSS2 has been validated according to
-	    http://jigsaw.w3.org/css-validator/validator-uri.html.en
-
-	    To design colors, visit:
-	    http://www.btexact.com/people/rigdence/colours/
-
-	       NOTE    NOTE    NOTE    NOTE    NOTE    NOTE    NOTE
-	    ///////////////////////////////////////////////////////////
-
-	    Comments on the CSS tags:
-
-	    -   block-width: "thin" (Netscape ok, MSIE nok)
-
-	    NETSCAPE 4.05
-
-	    -  In general does not render CSS very well. Eg
-	       font size changes does not show up in screen.
-	    -  :hover property is not recognised
-
-	    NETSCAPE 4.75 as of 2000-10-01
-
-	    -  Shows garbage for stylesheet section that marked CITATION.
-	       (IE has no trouble to show it)
-
-	    MSIE 4.0+
-
-	    - Renders CSS very well.
-
-	    Media types
-
-	    - Netscape does not transfer the CSS element definitions to
-	      the "print" media as it should. They only affect Browser
-	      or media "screen"
-	    - That is why you really have to say EM STRONG ... /STRONG EM
-	      to get that kind of text seen in printer too. You cannot
-	      just define P.column7 { ... }
-
-	    The @media CSS definition is not supported by Netscape 4.05
-	    I do not know if MSIE 4.0 supports it.
-
-	    So doing this would cause CSS to be ignored completely
-	    (never mind that CSS says the default CSS applies to "visual",
-	    which means both print and scree types.)
-
-		@media print, screen {  P.code {..}  }
-
-	    To work around that, we separate the definitions with
-
-		P.code { .. }               // For screen
-
-		@media print { P.code      // for printer
-		{
-		    ..
-		}}
-
-	    And wish that some newer browser will render it right.
-
-	*/
-
-	/*   ///////////////////////////////////////////////// HEADINGS */
-
-	h1.default
-	{
-	    font-family: bold x-large Arial,helvetica,Sans-serif;
-	    padding-top: 10pt;
-	}
-
-	h2.default
-	{
-	    font-family: bold large Arial,Helvetica,Sans-serif;
-	}
-
-	h3.default
-	{
-	    font-family: bold medium Arial,Helvetica,Sans-serif;
-	}
-
-	h4.default
-	{
-	    font-family: medium Arial,Helvetica,Sans-serif;
-	}
-
-	/*   ////////////////////////// Make pointing AHREF more visual */
-
-	body
-	{
-
-
-
-	    /*
-		More readable font, Like Arial in MS Word
-		The background color is grey
-
-		font-family: "verdana", sans-serif;
-		background-color: #dddddd;
-		foreground-color: #000000;
-
-		Traditional "Book" and newspaper font
-		font-family: "Times New Roman", serif;
-	    */
-	}
-
-	a:link
-	{
-	    font-style: italic;
-	}
-
-	/*   A name=... link references */
-
-	a.name
-	{
-	    font-style: normal;
-	}
-
-	a:hover
-	{
-	    color:           purple;
-	    background:      #AFB;
-	    text-decoration: none;
-	}
-
-	    /* cancel above italic in TOC and Navigation buttons */
-
-	a.btn:link
-	{
-	    font-style: normal;
-	}
-
-	    /* each link in TOC */
-
-
-	a.toc
-	{
-	    font-family: verdana, sans-serif;
-	    font-style: normal;
-	}
-
-	a.toc:link
-	{
-	    font-style: normal;
-	}
-
-	    /* [toc] heading button which appears in non-frame html */
-
-	a.btn-toc:link
-	{
-	    font-style: normal;
-	    font-family: verdana, sans-serif;
-	    /* font-size:  0.7em; */
-	}
-
-	/*  //////////////////////////////////// Format the code sections  */
-
-	/*  MSIE ok, Netscape nok: Indent text to same level to the right  */
-
-	blockquote
-	{
-	    margin-right: 2em;
-	}
-
-	@media print   { BLOCKQUOTE
-	{
-	    margin-right: 0;
-	}}
-
-	samp.code
-	{
-	    color: Navy;
-	}
-
-	hr.special
-	{
-	    width: 50%;
-	    text-align; left;
-	}
-
-	pre
-	{
-	    font-family:   "Courier New", monospace;
-	    font-size:     0.8em;
-	    margin-top:    1em;
-	    margin-bottom: 1em;
-	}
-
-	pre.code
-	{
-	    color: Navy;
-	}
-
-	p.code, p.code1, p.code2
-	{
-	    /*
-	       margin-top:     0.4em;
-	       margin-bottom:  0.4em;
-	       line-height:    0.9em;
-	    */
-
-	    font-family:    "Courier New", monospace;
-	    font-size:      0.8em;
-	    color:          Navy;
-	}
-
-	/* //////////////////////// tables /////////////////////////// */
-
-	table
-	{
-	    border: none;
-	    width: 100%;
-	    cellpadding: 10px;
-	    cellspacing: 0px;
-	}
-
-	table.basic
-	{
-		font-family:    "Courier New", monospace;
-		color: Navy;
-	}
-
-	table.dashed
-	{
-
-		/* font-family: sans-serif; /*
-		/* background:  #F7DE9C; */
-
-		color: Navy;
-
-		border-top:     1px #999999 solid;
-		border-left:    1px #999999 solid;
-		border-right:   1px #666666 solid;
-		border-bottom:  1px #666666 solid;
-		border-width:   94%;
-		border-style: dashed; /* dotted */
-
-
-		/* line-height: 105%; */
-	}
-
-	table.solid
-	{
-		font-family:    "Courier New", monospace;
-		/* afont-size:      0.8em; */
-
-		color:          Navy;
-
-		/* font-family: sans-serif; /*
-		/* background:  #F7DE9C; */
-
-		border-top:     1px #CCCCCC solid;
-		border-left:    1px #CCCCCC solid; /* 999999 */
-		border-right:   1px #666666 solid;
-		border-bottom:  1px #666666 solid; /* dark grey */
-		/* line-height: 105%; */
-	}
-
-	/* Make 3D styled layout by thickening the boton + right. */
-
-	table.shade-3d
-	{
-		font-family:    "Courier New", monospace;
-		font-size:      0.8em;
-
-		color:          #999999; /* Navy; */
-
-		/* font-family: sans-serif; /*
-		/* background:  #F7DE9C; */
-
-		/* border-top:  1px #999999 solid; */
-		/* border-left: 1px #999999 solid; */
-		border-right:   4px #666666 solid;
-		border-bottom:  3px #666666 solid;
-		/* line-height: 105%; */
-	}
-
-	.shade-3d-attrib
-	{
-	    /*
-		F9EDCC          Light Orange
-		FAEFD2          Even lighter Orange
-
-		#FFFFCC         Light yellow, lime
-
-	    */
-
-	    background: #FFFFCC;
-	}
-
-	table tr td pre
-	{
-		/*  Make PRE tables "airy" */
-		margin-top:    1em;
-		margin-bottom: 1em;
-	}
-
-	table.shade-normal
-	{
-		font-family:    "Courier New", monospace;
-		/* font-size:      0.9em; */
-		color:          Navy;
-	}
-
-	.shade-normal-attrib
-	{
-	    /*  grey: EAEAEA, F0F0F0 FFFFCC
-		lime: F7F7DE CCFFCC
-		pinkish: E6F1FD D8E9FB C6DEFA FFEEFF (light ... darker)
-		slightly darker than F1F1F1: #EFEFEF;
-	    */
-	    background: #F1F1F1;
-	}
-
-	table.shade-normal2
-	{
-		font-family:    "Courier New", monospace;
-	}
-
-	.shade-normal2-attrib
-	{
-	    background: #E0E0F0;
-	}
-
-	.shade-note-attrib
-	{
-	    /*  darker is #E0E0F0; */
-	    /* background: #E5ECF3; */
-	    background: #E5ECF3;
-	    font-family: Georgia, "New Century Schoolbook",
-			 Palatino, Verdana, Helvetica, serif;
-	    font-size: 0.8em;
-	}
-
-	/* ..................................... colors ................. */
-
-	.color-white
-	{
-	    color: Navy;
-	    background: #FFFFFF;
-	}
-
-	.color-fg-navy
-	{
-	    color: navy;
-	}
-
-	.color-fg-blue
-	{
-	    color: blue;
-	}
-
-	.color-fg-teal
-	{
-	    color: teal;
-	}
-
-	/*   Nice combination: teal-dark, beige2 and  beige-dark */
-
-	.color-teal-dark
-	{
-	    color: #96EFF2;
-	}
-
-	.color-beige
-	{
-	    color: Navy;
-	    background: #F7F7DE;
-	}
-
-	.color-beige2
-	{
-	    color: Navy;
-	    background: #FAFACA;
-	}
-
-	.color-beige3
-	{
-	    color: Navy;
-	    background: #F5F5E9;
-	}
-
-	.color-beige-dark
-	{
-	    color: Navy;
-	    background: #CFEFBD;
-	}
-
-	.color-pink-dark
-	{
-	    background: #E6F1FD;
-	}
-
-	.color-pink-medium
-	{
-	    background: #D8E9FB;
-	}
-
-	.color-pink
-	{
-	    /*  grey: EAEAEA, F0F0F0 FFFFCC
-		lime: F7F7DE CCFFCC
-		pinkish: E6F1FD D8E9FB C6DEFA FFEEFF (light ... darker)
-	    */
-	    background: #C6DEFA;
-	}
-
-	.color-pink-light
-	{
-	    background: #FFEEFF;
-	}
-
-	.color-blue-light
-	{
-	    background: #F0F0FF;
-	}
-
-	.color-blue-medium
-	{
-	    background: #4A88BE;
-	}
-
-	/* ////////////////////////////////////////////// Format columns */
-
-	p.column3
-	{
-	    color: Green;
-	}
-
-	p.column5
-	{
-	    color: #87C0FF;   /* shaded casual blue */
-	}
-
-	p.column6
-	{
-	    /* #809F69 is Forest green
-	       But web safe colors are:
-	       Lighter  ForestGreen: 66CC00
-	       ForestGreen: #999966 669900 339900 669966
-
-	    color: #669900;
-	    font-family: "Goudy Old Style"
-	    */
-	    margin-left: 3em;
-	    font-family: Georgia, "New Century Schoolbook",
-			 Palatino, Verdana, Arial, Helvetica;
-	    font-size:  0.9em;
-	}
-
-	    /* This is so called 3rd heading */
-
-	p.column7
-	{
-	    font-style:  italic;
-	    font-weight: bold;
-	}
-
-	@media print { P.column7
-	{
-	    font-style:  italic;
-	    font-weight: bold;
-	}}
-
-	p.column8
-	{
-
-	}
-
-	p.column9
-	{
-	    font-weight: bold;
-	}
-
-	p.column10
-	{
-	    padding-top: 0;
-	}
-
-	em.quote10
-	{
-	    /*
-		#FF00FF Fuchsia;
-		#0000FF Blue
-
-		#87C0FF casual blue
-		#87CAF0
-
-		#A0FFFF Very light blue
-
-		#809F69 = Forest Green , see /usr/lib/X11/rgb.txt
-
-		background-color:
-
-		color: #80871F ; Orange, short of
-
-		# font-family: "Gill Sans", sans-serif;
-
-		line-height: 0.9em;
-		font-style:  italic;
-		font-size:   0.8em;
-
-		line-height: 0.9em;
-		color: #008080;
-
-		background-color: #F5F5F5;
-		#809F69; forest green
-		#F5F5F5; Pale grey
-		#FFf098; pale green
-		##bfefff; #ffefff; LightBlue1
-
-		background-color: #ffefff;
-
-		.................
-		#FFFCE7         Orange very light
-		#FFE7BF         Orange dark
-		#FFFFBF         Orange limon
-
-	     */
-
-	     /*
-	     #  See a nice page at
-	     #  http://www.cs.helsinki.fi/linux/
-	     #  http://www.cs.helsinki.fi/include/tktl.css
-	     #
-	     #  3-4 of these first fonts have almost identical look
-	     #  Browser will pick the one that is supported
-	     */
-
-	     font-family: lucida, lucida sans unicode, verdana, arial, "Trebuchet MS", helvetica, sans-serif;
-	     background-color: #eeeeff;
-	     font-size:   0.8em;
-	}
-
-	@media print { em.quote10
-	{
-	    font-style:  italic;
-	    line-height: 0.9em;
-	    font-size:   0.8em;
-	}}
-
-	p.column11
-	{
-	    font-family: arial, verdana, helvetica, sans-serif;
-	    font-size: 0.9em;
-	    font-style: italic;
-	    color: Fuchsia;
-	}
-
-	/* /////////////////////////////////////////////// Format words */
-
-	em.word
-	{
-	    /* #809F69 Forest green */
-	    color: #80B06A;  /*Darker Forest green */
-	}
-
-	strong.word
-	{
-
-	}
-
-	samp.word
-	{
-	    color: #4C9CD4;
-	    font-weight: bold;
-	    font-family:    "Courier New", monospace;
-	    font-size:      0.85em;
-	}
-
-	span.super
-	{
-	    /* superscripts */
-	    color: teal;
-	    vertical-align: super;
-	    font-family: Verdana, Arial, sans-serif;
-	    font-size: 0.8em;
-	}
-
-	span.word-ref
-	{
-	    color: teal;
-	}
-
-	span.word-big
-	{
-	    color: teal;
-	    font-size: 1.2em;
-	}
-
-	span.word-small
-	{
-	    color: #CC66FF;
-	    font-family: Verdana, Arial, sans-serif;
-	    font-size: 0.7em;
-	}
-
-	/* /////////////////////////////////////////////// Format other */
-
-	/* 7th column starting with double quote */
-
-	span.quote7
-	{
-	    /* color: Green; */
-	    /* font-style: italic; */
-	    font-family: Verdana;
-	    font-weigh: bold;
-	    font-size: 1em;
-	}
-
-	/* This appears in FRAME version: xxx-toc.html */
-
-	div.toc
-	{
-	    font-size: 0.8em;
-	}
-
-	/* This appears in picture: the acption text beneath */
-
-	div.picture
-	{
-	    font-style: italic;
-	}
-
-	/* This is the document info footer */
-
-	em.footer
-	{
-	    font-size: 0.9em;
-	}
-
-
-    </style>
-
-
-    <!-- ...................................................... Java code -->
-
-    <script type="text/javascript">
-
-	function MakeVisual(obj)
-	{
-	    obj.style.fontWeight = "italic";
-	}
-
-	function MakeNormal(obj)
-	{
-	    obj.style.fontWeight = "normal";
-	}
-
-	function IgnoreErrors()
-	{
-	    return true;
-	}
-
-	window.onerror = IgnoreErrors;
-
-    </script>
 
