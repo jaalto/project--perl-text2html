@@ -1,9 +1,11 @@
 README: Perl Text to HTML converter
 -----------------------------------
 
-Convert text files into HTML 4.01/CSS2 format. The text files are written
-naturally using headings and indented paragraphs and using *only* _minimal_
-=markup= `tokens'.
+Convert text file into HTML 4.01/CSS2 format. The is written in
+natural white paper format by using standard headings and indented
+paragraphs at standard tab position column 8. The text can *contain*
+_ASCII_ =markup= `tokens'. Embedding HTML is also posible via INCLUDE
+directives.
 
     admin/		Administrative files for the project
     bin/	    	The program and manual page *.1
