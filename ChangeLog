@@ -4,6 +4,10 @@
 	(Help): Chnage all mixed case options like --Link-check to
 	lowercase --link-check.
 
+	* conversion/index.txt: Add index.css
+
+	* conversion/index.css: New file.
+
 2010-02-16  Jari Aalto  <jari.aalto@cante.net>
 
 	* t2html.pl (Initialize): add "http://www.w3.org/TR/html4/loose.dtd"
@@ -26,7 +30,6 @@
 
 	* t2html.pl (HtmlFixes): Correct raw HTML entity translations
         &amp;#35; => &#35;
->>>>>>> 78e390d002610daf767f9e4ab24d2d11671a17cd:bin/ChangeLog
 
 2009-02-11  Jari Aalto  <jari.aalto@cante.net>
 
@@ -97,6 +100,20 @@
 	* t2html.pl (UrlInclude): Fixed reading of
 	function argument. This made 'raw:' include mode to
 	work again.
+
+2004-08-28 Sat  Jari Aalto  <jari.aalto@cante.net>
+
+        * txt/conversion.txt (2.1 Preface, Jan 1997): 1.7 Removed.
+        The pfficial description is in t2html.pl --help.
+        (2.3 Other text to HTML tools): 1.7 Added t2php project.
+
+2007-09-30  Jari Aalto  <jari.aalto@cante.net>
+
+	* txt/COPYING.GNU-FDL: New.
+
+	* txt/COPYING.GNU-GPL: New.
+
+	* txt/LICENSE.txt: New.
 
 2007-09-18  Jari Aalto  <jari.aalto@cante.net>
 
@@ -683,6 +700,9 @@
 
 2002-08-31 Sat  Jari Aalto  <jari.aalto@cante.net>
 
+        * examples/: The other test files (2, 3) were not
+        identical to (1). Copied.
+
         * t2html.pl (HandleCommandLineArgs): 1.90 Removed
         non-descriptive --Butt, --Buttp, --Butt options.
         Use the long names instead.
@@ -737,6 +757,14 @@
         (Help): Added POD documentation to new section
         `Controlling CSS generation (HTML tables)'. Long story
         about how <TABLE> and <TD> tags can be controlled.
+
+        * html/index.html: Added news for 2002-08-19 version, which
+        contains lot of impreovements.
+
+        * examples/t2html.pl-1.txt: Spell cheked file with
+        Emacs M-x flyspell-buffer.
+        (Table rendering examples): New section to demontrate the
+        new table controlling features.
 
 2002-08-18  Jari Aalto  <jari.aalto@cante.net>
 
@@ -881,6 +909,20 @@
         at the end of SIZE and FONT styles. (added double ;;)
         (HandleCommandLineArgs): No longer set default
         CSS_FONT_SIZE, but let the browser decide font size.
+
+        * html/index.html: Removed Copyright year
+        from the end of page.
+
+        * /html/index.html (<H1> Links and
+        download ): Added CHANGELOG printing from CVS.
+        Rewote teh example perl commands. Had to copy files from
+        doc/examples/ to doc/html directory, because otherwise
+        it is not possible to locally browse doc/html/index.html with
+        the example links in the page. Updated  NEWS section to mention
+        about new #T2HTML features. Chnages CPAN text to say, that
+        it no longer the primary source - warning, that the CPAN
+        file may not be up to date. Removed copyright year from the end
+        of file.
 
 2002-08-03 Sat  Jari Aalto  <jari.aalto@cante.net>
 
