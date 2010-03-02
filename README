@@ -12,7 +12,7 @@ naturally using headings and indented paragraphs and using *only* _minimal_
 Important files
 
     doc/license/ 	Licensing information
-    bin/ChangeLog 	Project change records
+    ChangeLog 		Project change records
 
 Project details
 
