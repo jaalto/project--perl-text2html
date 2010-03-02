@@ -1,5 +1,5 @@
-Perl Text to HTML converter
----------------------------
+INTALL: Perl Text to HTML converter
+------------------------------------
 
 System wide install
 
@@ -8,11 +8,15 @@ System wide install
 
             make DESTDIR= prefix=/usr/local install
 
-Manual install:
+	To test the installation (to see how files are installed):
 
-        Copy bin/*.pl somewhere along $PATH or use
+	    make install-test
+	    find -type f tmp/
 
-            make DESTDIR=$HOME prefix=/. install
+Manual install
+
+        1. Copy bin/*.pl somewhere along $PATH
+        2. Copy bin/*.1 somewhere along $MANPATH
 
 Optional
 
