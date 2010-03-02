@@ -1,8 +1,8 @@
-Perl Text to HTML converter
----------------------------
+README: Perl Text to HTML converter
+-----------------------------------
 
-Convert text files into HTML 4.01/CSS2 fromat. The text files are written
-naturally using headings and indented paragraphs. There are *only* _minimal_
+Convert text files into HTML 4.01/CSS2 format. The text files are written
+naturally using headings and indented paragraphs and using *only* _minimal_
 =markup= `tokens'.
 
     admin/		Administrative files for the project
@@ -14,7 +14,7 @@ Important files
     doc/license/ 	Licensing information
     bin/ChangeLog 	Project change records
 
-Project contacts
+Project details
 
     Homepage
       http://freshmeat.net/projects/perl-text2html
@@ -24,5 +24,27 @@ Project contacts
 
     Source code repository
       See freshmeat page
+
+    Depends
+      Perl (any version)
+
+    Extenral Perl CPAN library dependencies
+
+      LWP::UserAgent		[1a]
+      HTML::FormatText		[1b]
+      HTML::Parse		[1c]
+
+      HTML::LinkExtractor	[2]
+
+      [1a] Required if option --link-check is used. Included in
+      library libwww-perl in Debian:
+
+      [1b] Same as 1a. Included in Debian library libhtml-format-perl
+
+      [1c] Same as 1a. Included in Debian library libhtml-linkextractor-perl
+
+      [2] Optional. Used only if available to extract links from
+      document for use with --link-check. If library is not available,
+      the internal extractor is used.
 
 End of file
