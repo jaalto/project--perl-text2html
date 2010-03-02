@@ -110,7 +110,7 @@ use vars qw ( $VERSION );
 #   this file is saved. See Emacs module tinperl.el where the
 #   feature is implemented.
 
-$VERSION = '2010.0302.1024';
+$VERSION = '2010.0302.1044';
 
 # }}}
 # {{{ Initial setup
@@ -2371,7 +2371,7 @@ clickable.
 
 The bulletin table is contructed if there is "o" or "*" at column 8 and 3
 spaces after it, so that text starts at column 12. Bulleted lines are
-adviced to be kept together; no spaces between bullet blocks.
+advised to be kept together; no spaces between bullet blocks.
 
 =item *
 

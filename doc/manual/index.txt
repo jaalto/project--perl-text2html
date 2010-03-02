@@ -1068,7 +1068,7 @@ TEXT PLACEMENT RULES
   Lists and bullets
     *   The bulletin table is contructed if there is "o" or "*" at column 8
         and 3 spaces after it, so that text starts at column 12. Bulleted
-        lines are adviced to be kept together; no spaces between bullet
+        lines are advised to be kept together; no spaces between bullet
         blocks.
 
     *   The ordered list is started with ".", a dot, and written like bullet
