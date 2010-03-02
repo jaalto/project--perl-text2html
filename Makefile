@@ -113,7 +113,7 @@ dist-git:
 # The "gt" is maintainer's program frontend to Git
 # Rule: dist-snap - [maintainer] release snapshot from Git repository
 dist-snap:
-	gt tar -q -z -p $(PACKAGE) -c -D master
+	echo gt tar -q -z -p $(PACKAGE) -c -D master
 
 # Rule: dist - [maintainer] release from Git repository
 dist: dist-git
