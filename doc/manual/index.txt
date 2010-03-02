@@ -7,6 +7,17 @@ SYNOPSIS
 
 DESCRIPTION
     Convert pure text files into nice looking, possibly framed, HTML pages.
+    An example of conversion:
+
+      1. Plain text source code
+      http://pm-doc.git.sourceforge.net/git/gitweb.cgi?p=pm-doc/pm-doc;a=blob_plain;f=doc/index.txt;hb=HEAD
+
+      2. reusult of conversion with custom --css-file option:
+      http://pm-doc.sourceforge.net/pm-tips.html
+      http://pm-doc.sourceforge.net/pm-tips.css
+
+      3. An Emacs mode tinytf.el for writing the text files (optional)
+      https://savannah.nongnu.org/projects/emacs-tiny-tools
 
     Requirements for the input ascii files
 
