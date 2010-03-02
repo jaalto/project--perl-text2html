@@ -4,22 +4,22 @@
 #
 #   Copyright information
 #
-#	Copyright (C) 1996-2010 Jari Aalto
+#       Copyright (C) 1996-2010 Jari Aalto
 #
 #   License
 #
-#	This program is free software; you can redistribute it and/or modify
-#	it under the terms of the GNU General Public License as published by
-#	the Free Software Foundation; either version 2 of the License, or
-#	(at your option) any later version.
+#       This program is free software; you can redistribute it and/or modify
+#       it under the terms of the GNU General Public License as published by
+#       the Free Software Foundation; either version 2 of the License, or
+#       (at your option) any later version.
 #
-#	This program is distributed in the hope that it will be useful,
-#	but WITHOUT ANY WARRANTY; without even the implied warranty of
-#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#	GNU General Public License for more details.
+#       This program is distributed in the hope that it will be useful,
+#       but WITHOUT ANY WARRANTY; without even the implied warranty of
+#       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#       GNU General Public License for more details.
 #
-#	You should have received a copy of the GNU General Public License
-#	along with this program. If not, see <http://www.gnu.org/licenses/>.
+#       You should have received a copy of the GNU General Public License
+#       along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 #   Introduction
 #
@@ -110,7 +110,7 @@ use vars qw ( $VERSION );
 #   this file is saved. See Emacs module tinperl.el where the
 #   feature is implemented.
 
-$VERSION = '2010.0302.1022';
+$VERSION = '2010.0302.1024';
 
 # }}}
 # {{{ Initial setup
@@ -326,7 +326,7 @@ sub Initialize ()
 
     my $doctype = Here <<"EOF";
 	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-	          "http://www.w3.org/TR/html4/loose.dtd">
+		  "http://www.w3.org/TR/html4/loose.dtd">
 EOF
 
     my $doctype_frame = HereQuote <<"EOF";
@@ -1018,16 +1018,16 @@ EOF
 	$debug  and
 	    print "$id: Reading CSS and Java definitions form $SCRIPT_FILE\n";
 
-        if ( open FILE, "<", $SCRIPT_FILE )
-        {
-            $JAVA_CODE = join '', <FILE>;
-            close FILE;
-        }
-        else
-        {
-            warn "$id: Couldn't read [$SCRIPT_FILE] $ERRNO";
-            $JAVA_CODE = "<!-- ERROR: couldn't import -->";
-        }
+	if ( open FILE, "<", $SCRIPT_FILE )
+	{
+	    $JAVA_CODE = join '', <FILE>;
+	    close FILE;
+	}
+	else
+	{
+	    warn "$id: Couldn't read [$SCRIPT_FILE] $ERRNO";
+	    $JAVA_CODE = "<!-- ERROR: couldn't import -->";
+	}
     }
 
     if ( $LINK_CHECK )
@@ -2001,7 +2001,7 @@ column poisiton ruler at the top:
 
 	"Special <em> text at column 7 starts with double quote"
 
-         Standard text starts at column 8, you can *emphatize* text or
+	 Standard text starts at column 8, you can *emphatize* text or
 	 make it _strong_ and write =SmallText= or +BigText+ show
 	 variable name `ThisIsAlsoVariable'. You can `_*nest*_' `the'
 	 markup. more txt in this paragraph txt txt txt txt txt txt
@@ -2009,14 +2009,14 @@ column poisiton ruler at the top:
 	 txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt
 	 txt txt
 
-          Strong text at column 9
+	  Strong text at column 9
 
 	   Column 10 is reserved for quotations
-           Column 10 is reserved for quotations
-           Column 10 is reserved for quotations
-           Column 10 is reserved for quotations
+	   Column 10 is reserved for quotations
+	   Column 10 is reserved for quotations
+	   Column 10 is reserved for quotations
 
-          Strong text at column 11
+	  Strong text at column 11
 
 	   Column 12 and further is reserved for code examples
 	   Column 12 and further is reserved for code examples
@@ -2025,7 +2025,7 @@ column poisiton ruler at the top:
 
      Heading 2 at column 4 again
 
-        If you want something like Heading level 3, use column 7 (bold)
+	If you want something like Heading level 3, use column 7 (bold)
 
 	 Column 8. Standard tab position. txt txt txt txt txt txt txt
 	 txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt
@@ -2264,7 +2264,7 @@ bigger font, CAPITALIZE THE WORDS.
 =item subscripting
 
     12[[10]]    is representation of value 12 un base 10.
-                This is intepreted as subscript. You can use like
+		This is intepreted as subscript. You can use like
 		this[[1]], multiple[[(2)]] and almost any[[(ab)]] and
 		imaginable[[IV superscritps]] as long as *two* left
 		brackets are attached to the word.
@@ -2572,7 +2572,7 @@ To print the test page and show all the possibilities:
 To make simple HTML page without any meta information:
 
     t2html --title "Html Page Title" --author "Mr. Foo" \
-           --simple --out --print file.txt
+	   --simple --out --print file.txt
 
 If you have periodic post in email format, use B<--delete-email-headers> to
 ignore the header text:
@@ -4031,7 +4031,7 @@ sub XlatDirectives (@)
 		$hash{ $name } = $arrRef;
 	    }
 	}
-	elsif ( /^(.*)\s*#T2HTML-(\S+)/i )	# Plain directive
+	elsif ( /^(.*)\s*#T2HTML-(\S+)/i )      # Plain directive
 	{
 	    #  Empty directive
 
@@ -4835,11 +4835,11 @@ sub UrlInclude (%)
 	local *FILE;
 	$url = EnvExpand $url;
 
-        unless ( open FILE, "<", $url )
-        {
-            $verb  and  warn "[WARN] Cannot open '$url' $ERRNO";
-            return;
-        }
+	unless ( open FILE, "<", $url )
+	{
+	    $verb  and  warn "[WARN] Cannot open '$url' $ERRNO";
+	    return;
+	}
 
 	$ret = join '', <FILE>;
 	close FILE;
@@ -4849,16 +4849,16 @@ sub UrlInclude (%)
 	    $ret = RemoveHTMLaround $ret;
 	}
 
-        $debug > 2  and  print "$id: content of [$url] START:"
-                             . $ret
-                             . "$id: content of [$url] END:\n";
+	$debug > 2  and  print "$id: content of [$url] START:"
+			     . $ret
+			     . "$id: content of [$url] END:\n";
 
-        unless ( $mode )
-        {
-            $ret = DoLineUserTags($ret);
-            $ret = XlatTag2html $ret;
-            $ret = XlatRef $ret;
-            $ret = XlatPicture $ret;
+	unless ( $mode )
+	{
+	    $ret = DoLineUserTags($ret);
+	    $ret = XlatTag2html $ret;
+	    $ret = XlatRef $ret;
+	    $ret = XlatPicture $ret;
 	    $ret = XlatUrlInline $ret;
 	    $ret = XlatUrl $ret;
 	    $ret = XlatMailto $ret;
@@ -6120,14 +6120,14 @@ sub LinkCache ( % )
 	#   This means, that user has deleted cache file and forcing
 	#   a full scan of every link.
 
-        unless ( open FILE, "<", $arg )
-        {
-            $verb > 1  and  warn "$id: Cannot open $arg $ERRNO";
-            $ret = 0;
-        }
-        else
-        {
-            $verb and  print "$id: reading [$arg]\n";
+	unless ( open FILE, "<", $arg )
+	{
+	    $verb > 1  and  warn "$id: Cannot open $arg $ERRNO";
+	    $ret = 0;
+	}
+	else
+	{
+	    $verb and  print "$id: reading [$arg]\n";
 
 	    while ( <FILE> )
 	    {
@@ -6149,7 +6149,7 @@ sub LinkCache ( % )
 
 	$verb  and  print "$id: writing [$arg]\n";
 
-        my $stat = open my $FILE, ">", $arg;
+	my $stat = open my $FILE, ">", $arg;
 
 	unless ( $stat )
 	{
