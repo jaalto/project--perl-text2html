@@ -1,8 +1,23 @@
+2010-03-13 Sat  Jari Aalto  <jari.aalto@cante.net>
+
+	* t2html.pl:  (top level): rearrange globals, use
+        comamnds.
+        (Version*): new.
+
+2010-03-12 Sat  Jari Aalto  <jari.aalto@cante.net>
+
+	* t2html.pl:
+	(top level): English qw( -no_match_vars )
+
 2010-03-02 Tue  Jari Aalto  <jari.aalto@cante.net>
 
 	* t2html.pl: (top level): update copyright template.
 	(Help): Chnage all mixed case options like --Link-check to
 	lowercase --link-check.
+	(DESCRIPTION): improve documentation and mention pm-doc
+	example page.
+	(FORMAT DESCRIPTION): rewrite the layout example: make sure
+	all the columns line up with the presented text.
 
 	* conversion/index.txt: Add index.css
 
