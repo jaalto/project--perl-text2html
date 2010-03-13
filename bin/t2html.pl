@@ -62,12 +62,28 @@
 #           0.48   0.210          1   0.2100 LWP::UserAgent::CODE(0x4023394c)
 #           0.41   0.180          1   0.1800 main::PrintHtmlDoc
 
-use strict;
-
-#       A U T O L O A D
+# ****************************************************************************
 #
-#       The => operator quotes only words, and Pod::Text is not
-#       Perl "word"
+#   Globals
+#
+# ****************************************************************************
+
+use vars qw ( $VERSION );
+
+#   This is for use of Makefile.PL and ExtUtils::MakeMaker
+#
+#   The following variable is updated by Emacs setup whenever
+#   this file is saved.
+
+$VERSION = '2010.0313.1634';
+
+# ****************************************************************************
+#
+#   Standard perl modules
+#
+# ****************************************************************************
+
+use strict;
 
 use autouse 'Carp'          => qw( croak carp cluck confess   );
 use autouse 'Pod::Html'     => qw( pod2html                   );
@@ -78,8 +94,6 @@ use autouse 'Pod::Html'     => qw( pod2html                   );
 #  Loaded only with --help-man
 #  use Pod::Man
 
-
-# Standard Perl modules
 use locale;
 use Cwd;
 use English;
@@ -99,18 +113,6 @@ IMPORT:
 	$LANG
     );
 }
-
-use vars qw ( $VERSION );
-
-#   This is for use of Makefile.PL and ExtUtils::MakeMaker
-#   So that it puts the tardist number in format YYYY.MMDD
-#   The REAL version number is defined later
-#
-#   The following variable is updated by Emacs setup whenever
-#   this file is saved. See Emacs module tinperl.el where the
-#   feature is implemented.
-
-$VERSION = '2010.0302.1044';
 
 # }}}
 # {{{ Initial setup
@@ -203,6 +205,8 @@ sub Initialize ()
 	$HTTP_CODE_OK
 	$LIB
 	$PROGNAME
+        $LICENSE
+        $AUTHOR
 	$URL
 	%HTML_HASH
 	$debug
@@ -210,7 +214,10 @@ sub Initialize ()
 
     $PROGNAME   = "t2html";
     $LIB        = $PROGNAME;      # library where each function belongs: PRGNAME
-    $URL        =  "http://freshmeat.net/projects/perl-text2html";
+
+    $LICENSE	= "GPL-2+";
+    $AUTHOR     = "Jari Aalto";
+    $URL        = "http://freshmeat.net/projects/perl-text2html";
 
     $OUTPUT_AUTOFLUSH = 1;
     $HTTP_CODE_OK     = 200;
@@ -481,6 +488,38 @@ sub HandleCommandLineArgsFromFile ( $ )
     close FILE;
 
     @arr;
+}
+
+# ****************************************************************************
+#
+#   DESCRIPTION
+#
+#       Return version string
+#
+#   INPUT PARAMETERS
+#
+#       none
+#
+#   RETURN VALUES
+#
+#       string
+#
+# ****************************************************************************
+
+sub Version ()
+{
+    "$VERSION";
+}
+
+sub VersionInfo ()
+{
+    Version() . " $AUTHOR $LICENSE $URL"
+}
+
+sub VersionPrint ()
+{
+    print( VersionInfo() . "\n");
+    exit 0;
 }
 
 # ************************************************************** &args *******
@@ -800,17 +839,12 @@ sub HandleCommandLineArgs ()
 	$debug = 0;
     }
 
+    $version    and  VersionPrint();
     $help       and  Help();
     $helpCss    and  HelpCss();
     $helpHTML   and  Help(undef, -html);
     $helpMan    and  Help(undef, -man);
     $testpage   and  TestPage();
-
-    if ( $version )
-    {
-	print "$VERSION $PROGNAME $URL $PROGRAM_NAME\n";
-	exit 0;
-    }
 
     if ( $XHTML_RENDER )
     {
