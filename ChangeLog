@@ -16,7 +16,7 @@
 2010-03-02 Tue  Jari Aalto  <jari.aalto@cante.net>
 
 	* t2html.pl: (top level): update copyright template.
-	(Help): Chnage all mixed case options like --Link-check to
+	(Help): Change all mixed case options like --Link-check to
 	lowercase --link-check.
 	(DESCRIPTION): improve documentation and mention pm-doc
 	example page.
@@ -31,12 +31,13 @@
 
 	* t2html.pl (Initialize): add "http://www.w3.org/TR/html4/loose.dtd"
 	to doctype to fix W3C validator informational message.
-	(HtmlFixes): remove duplicate <p><p> occurrances.
+	(HtmlFixes): remove duplicate <p><p> occurrences.
 
 2010-02-13 Sat  Jari Aalto  <jari.aalto@cante.net>
 
 	* t2html.pl (PrintEnd): at 'This file has been automatically generated'
-	do not suppond using <P></P> tags as HTML standard does not allow it.
+	do not surround with <P></P> tags as HTML standard does not allow it
+	Use only opening tag <P>.
 
 2009-08-31  Jari Aalto  <jari.aalto@cante.net>
 
@@ -80,7 +81,7 @@
 2008-09-19  Jari Aalto  <jari.aalto@cante.net>
 
 	* t2html.pl (CssData): Move closing qq() so that no
-	extra whitespaces are written to EOL.
+	extra white spaces are written to EOL.
 	(MakeToc): <dic class=toc">, remove id=toc, because it
 	is already defined one line below. W3C validator error.
 
