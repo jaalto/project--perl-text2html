@@ -1,3 +1,7 @@
+2010-03-24 Wed  Jari Aalto  <jari.aalto@cante.net>
+
+	* README (at the end): Add Copyright and License.
+
 2010-03-13 Sat  Jari Aalto  <jari.aalto@cante.net>
 
 	* t2html.pl:  (top level): rearrange globals and "use"
