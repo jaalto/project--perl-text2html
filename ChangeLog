@@ -1,7 +1,7 @@
 2010-03-13 Sat  Jari Aalto  <jari.aalto@cante.net>
 
-	* t2html.pl:  (top level): rearrange globals, use
-        comamnds.
+	* t2html.pl:  (top level): rearrange globals and "use"
+        commands.
         (Version*): new.
 
 2010-03-12 Sat  Jari Aalto  <jari.aalto@cante.net>
