@@ -62,6 +62,9 @@
 #           0.48   0.210          1   0.2100 LWP::UserAgent::CODE(0x4023394c)
 #           0.41   0.180          1   0.1800 main::PrintHtmlDoc
 
+# "Named Capture Buffers" are used
+use 5.10;
+
 # ****************************************************************************
 #
 #   Globals
