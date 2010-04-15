@@ -2783,7 +2783,7 @@ sub Help (;$ $)
 	$debug  and  print "$id: -man option\n";
 
 	eval "use Pod::Man"
-	    or "$id: Cannot generate Man: $EVAL_ERROR";
+	    or die "$id: Cannot generate Man: $EVAL_ERROR";
 
 	my %options;
 	$options{center} = 'Perl Text to HTML Converter';
