@@ -729,7 +729,6 @@ sub HandleCommandLineArgs ()
 
     Getopt::Long::config( qw
     (
-	require_order
 	no_ignore_case
 	no_ignore_case_always
     ));
