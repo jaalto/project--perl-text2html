@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2010.0313.1634';
+$VERSION = '2010.1205.1113';
 
 # ****************************************************************************
 #
@@ -817,7 +817,7 @@ sub HandleCommandLineArgs ()
 	, "reference=s@"            => \@reference
 
 	, "link-check"              => \$LINK_CHECK
-	, "L|Link-check-single"     => \$LINK_CHECK_ERR_TEXT_ONE_LINE
+	, "L|link-check-single"     => \$LINK_CHECK_ERR_TEXT_ONE_LINE
 	, "link-cache=s"            => \$linkCacheFile
 
 	, "X|xhtml"                 => \$XHTML_RENDER
