@@ -1,3 +1,8 @@
+2010-12-05 Sun  Jari Aalto  <jari.aalto@cante.net>
+
+	* bin/t2html.pl (HandleCommandLineArgs): Correct
+	--Link-check-single top --link-check-single.
+
 2010-05-01 Sat  Jari Aalto  <jari.aalto@cante.net>
 
 	* bin/t2html.pl (HandleCommandLineArgs): Remove
