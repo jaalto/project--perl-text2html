@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2010.1205.1113';
+$VERSION = '2010.1209.0852';
 
 # ****************************************************************************
 #
@@ -706,7 +706,7 @@ sub HandleCommandLineArgs ()
 	    }
 	    else
 	    {
-		warn "Unregognized switch: $ARG";
+		warn "Unregognized option: $ARG";
 	    }
 	}
     }
@@ -9162,9 +9162,7 @@ EOF
     {
 	my ( $name, $path, $extension ) = fileparse $file, '\.[^.]+$'; #font '
 
-
 	$debug  and  print "$id: fileparse [$name] [$path] [$extension]\n";
-
 
 	if ( $auto =~ /../ )        # Suppose filename if more than 2 chars
 	{
@@ -9993,6 +9991,8 @@ sub Main ()
 	    return ();
 	};
 
+       $debug > 1  and  PrintHash "$LIB.hash before", \%hash;
+
 	# Cancel all embedded options if user did not want them.
 
 	%hash = () unless $OBEY_T2HTML_DIRECTIVES;
@@ -10011,7 +10011,9 @@ sub Main ()
 		   , -argvadd => \@options;
 	}
 
-	my $title       = Hash("title", 1)  || "No title";
+       $debug > 1  and  PrintHash "$LIB.hash after", \%hash;
+
+	my $title       = $TITLE || Hash("title", 1)  || "No title";
 	my $doc         = $DOC              || Hash("doc", 1);
 	my $author      = $AUTHOR           || Hash("author", 1);
 	my $email       = $OPT_EMAIL        || Hash("email", 1);
