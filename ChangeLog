@@ -1,3 +1,7 @@
+2010-12-09 Thu  Jari Aalto  <jari.aalto@cante.net>
+
+	* bin/t2html.pl (Main): Read $TITLE variable set in command line.
+
 2010-12-05 Sun  Jari Aalto  <jari.aalto@cante.net>
 
 	* bin/t2html.pl (HandleCommandLineArgs): Correct
