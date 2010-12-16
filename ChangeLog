@@ -1,3 +1,9 @@
+2010-12-16 Fri  Jari Aalto  <jari.aalto@cante.net>
+
+	* bin/t2html.pl (XlatRef): Support https.
+	(AcceptUrl): Ignore example.net, example.org
+	(XlatUrl): Support https.
+
 2010-12-09 Thu  Jari Aalto  <jari.aalto@cante.net>
 
 	* bin/t2html.pl (Main): Read $TITLE variable set in command line.

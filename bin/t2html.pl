@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2010.1209.0852';
+$VERSION = '2010.1216.2251';
 
 # ****************************************************************************
 #
@@ -3915,7 +3915,7 @@ sub XlatRef ($)
 
 	$ARG = $1 .  MakeUrlRef($2, $3) . $4;
 
-	unless ( $ARG =~ /#|http:|file:|news:|wais:|ftp:/ )
+	unless ( $ARG =~ /#|https?:|file:|news:|wais:|ftp:/ )
 	{
 	    warn "$id: Suspicious REF. Did you forgot # or http?\n\t$ARG"
 	}
@@ -4117,7 +4117,7 @@ sub AcceptUrl($)
 			 |baz
 			 |quu[zx])\b
 		      |:/\S*\.?example\.
-		      |example\.com
+		      |example\.(com|net|org)
 		      |:/test\.
 
 		    ,x
@@ -4209,7 +4209,7 @@ sub XlatUrl ($)
     {
 	([^\"]?)           # Emacs font-lock comment to terminate opening "
 	(?<!HREF=\")       # Already handled by XlatUrlInline()
-	((?:file|ftp|http|news|wais|mail|telnet):
+	((?:file|ftp|https|news|wais|mail|telnet):
 
 	 #  urls can contain almost anything,
 	 #  BUT the last character grabbed in text must not be period,
