@@ -1,3 +1,7 @@
+2010-12-17 Fri  Jari Aalto  <jari.aalto@cante.net>
+
+	* bin/t2html.pl (XlatUrl): Fix https support.
+
 2010-12-16 Fri  Jari Aalto  <jari.aalto@cante.net>
 
 	* bin/t2html.pl (XlatRef): Support https.

@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2010.1216.2251';
+$VERSION = '2010.1217.0029';
 
 # ****************************************************************************
 #
@@ -4209,20 +4209,22 @@ sub XlatUrl ($)
     {
 	([^\"]?)           # Emacs font-lock comment to terminate opening "
 	(?<!HREF=\")       # Already handled by XlatUrlInline()
-	((?:file|ftp|https|news|wais|mail|telnet):
+	((?:file|ftp|https?|news|wais|mail|telnet):
 
-	 #  urls can contain almost anything,
-	 #  BUT the last character grabbed in text must not be period,
-	 #  colon etc. because they canät be distinguished from regular text
-	 #  tokens.
+	 #  URLs can contain almost anything, But the last character
+	 #  grabbed in text must not be period, colon etc. because
+	 #  they can't be distinguished from regular text tokens.
 	 #
 	 #      See url http://example.com/that.txt. New sentence starts here.
 	 #
 	 #  It would be better to write
 	 #
 	 #      See url <http://example.com/that.txt>. New sentence starts here.
-	 #
-	 [^][\s<>]+[^\s,.!?;:<>])
+
+	 [^][\s<>]+		    # Beginning and "in between characters"
+	 [^\s,.!?;:<>]		    # End character for URL, not a sentence punctuation
+
+	 )
     }
     {
 	$pre = $1;
