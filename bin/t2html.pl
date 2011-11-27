@@ -220,7 +220,7 @@ sub Initialize ()
 
     $LICENSE	= "GPL-2+";
     $AUTHOR     = "Jari Aalto";
-    $URL        = "http://freshmeat.net/projects/perl-text2html";
+    $URL        = "http://freecode.net/projects/perl-text2html";
 
     $OUTPUT_AUTOFLUSH = 1;
     $HTTP_CODE_OK     = 200;
@@ -1257,7 +1257,7 @@ To help maintining large documents, there is also available an
 I<Emacs> minor mode, package called I<tinytf.el>, which offers text
 fontification with colors, Indentation control, bullet filling,
 heading renumbering, word markup, syntax highlighting etc.
-See project http://freshmeat.net/projects/emacs-tiny-tools
+See project http://freecode.net/projects/emacs-tiny-tools
 
 
 =head1 OPTIONS
@@ -2704,7 +2704,7 @@ HTML validator is at http://validator.w3.org/
 iMATIX created htmlpp which is available at http://www.imatix.com/
 
 Emacs minor mode to write documents based on TF layout is available. See
-package tinytf.el in project http://freshmeat.net/projects/emacs-tiny-tools
+package tinytf.el in project http://freecode.net/projects/emacs-tiny-tools
 
 =head2 Standards
 
@@ -2751,7 +2751,7 @@ instead of included link extracting algorithm.
 
 =head1 AVAILABILITY
 
-Homepage is at http://freshmeat.net/projects/perl-text2html
+Homepage is at http://freecode.net/projects/perl-text2html
 
 =head1 AUTHOR
 
@@ -10146,7 +10146,7 @@ t2html Test Page
 	contents and the HTML generator can use it to generate a two
 	frame output with the TOC in the left frame as hotlinks to the
 	sections and subsections.
-	Visit http://freshmeat.net/projects/emacs-tiny-tools
+	Visit http://freecode.net/projects/emacs-tiny-tools
 
     Bullets, lists, and links
 

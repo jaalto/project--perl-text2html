@@ -73,7 +73,7 @@ DESCRIPTION
     minor mode, package called *tinytf.el*, which offers text fontification
     with colors, Indentation control, bullet filling, heading renumbering,
     word markup, syntax highlighting etc. See project
-    http://freshmeat.net/projects/emacs-tiny-tools
+    http://freecode.net/projects/emacs-tiny-tools
 
 OPTIONS
   Html: Header and Footer options
@@ -1332,7 +1332,7 @@ SEE ALSO
 
     Emacs minor mode to write documents based on TF layout is available. See
     package tinytf.el in project
-    http://freshmeat.net/projects/emacs-tiny-tools
+    http://freecode.net/projects/emacs-tiny-tools
 
   Standards
     RFC 1766 contains list of langauge codes at http://www.rfc.net/
@@ -1369,7 +1369,7 @@ COREQUISITES
     included link extracting algorithm.
 
 AVAILABILITY
-    Homepage is at http://freshmeat.net/projects/perl-text2html
+    Homepage is at http://freecode.net/projects/perl-text2html
 
 AUTHOR
     This program is free software; you can redistribute and/or modify

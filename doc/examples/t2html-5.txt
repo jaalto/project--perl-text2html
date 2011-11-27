@@ -67,7 +67,7 @@ t2html Test Page
         contents and the HTML generator can use it to generate a two
         frame output with the TOC in the left frame as hotlinks to the
         sections and subsections.
-        Visit http://freshmeat.net/projects/emacs-tiny-tools
+        Visit http://freecode.net/projects/emacs-tiny-tools
 
     Bullets, lists, and links
 

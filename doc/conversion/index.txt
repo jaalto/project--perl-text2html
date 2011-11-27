@@ -129,7 +129,7 @@ Table of contents
         number is displayed or editor can be configured to advance your
         TAB by 4 spaces. That's it.
         An Emacs minor mode (See package
-        #URL<http://freshmeat.net/projects/emacs-tiny-tools><tinytf.el>) can
+        #URL<http://freecode.net/projects/emacs-tiny-tools><tinytf.el>) can
         make the writing documents easy. The mode will help formatting
         paragraphs, filling bullets numbering headings and keeping TOC
         up to date.
