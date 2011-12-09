@@ -30,7 +30,7 @@ Project details
     Depends
       Perl (any version)
 
-    Extenral Perl CPAN library dependencies
+    External Perl CPAN library dependencies
 
       LWP::UserAgent		[1a]
       HTML::FormatText		[1b]
