@@ -2,10 +2,48 @@
 
 	* bin/t2html.pl (XlatPicture): Improve regexp.
 
+2010-12-17 Fri  Jari Aalto  <jari.aalto@cante.net>
+
+	* bin/t2html.pl (XlatUrl): Fix https support.
+
+2010-12-16 Fri  Jari Aalto  <jari.aalto@cante.net>
+
+	* bin/t2html.pl (XlatRef): Support https.
+	(AcceptUrl): Ignore example.net, example.org
+	(XlatUrl): Support https.
+
+2010-12-09 Thu  Jari Aalto  <jari.aalto@cante.net>
+
+	* bin/t2html.pl (Main): Read $TITLE variable set in command line.
+
+2010-12-05 Sun  Jari Aalto  <jari.aalto@cante.net>
+
+	* bin/t2html.pl (HandleCommandLineArgs): Correct
+	--Link-check-single top --link-check-single.
+
+2010-05-01 Sat  Jari Aalto  <jari.aalto@cante.net>
+
+	* bin/t2html.pl (HandleCommandLineArgs): Remove
+	"require_order" from Getopt::Long::config().
+
+2010-04-15 Thu  Jari Aalto  <jari.aalto@cante.net>
+
+	* bin/t2html.pl (Help): rewrite eval Pod::Man call.
+
+2010-04-13 Tue  Jari Aalto  <jari.aalto@cante.net>
+
+	* bin/t2html.pl: Add 'use 5.10' because "Named Capture Buffers"
+	are used.
+
+2010-03-24 Wed  Jari Aalto  <jari.aalto@cante.net>
+
+	* README (at the end): Add Copyright and License.
+>>>>>>> cd5a95a6408cd3f67a7446a2b164a9a3e7c4eef4:ChangeLog
+
 2010-03-13 Sat  Jari Aalto  <jari.aalto@cante.net>
 
-	* t2html.pl:  (top level): rearrange globals, use
-        comamnds.
+	* t2html.pl:  (top level): rearrange globals and "use"
+        commands.
         (Version*): new.
 
 2010-03-12 Sat  Jari Aalto  <jari.aalto@cante.net>
@@ -16,7 +54,7 @@
 2010-03-02 Tue  Jari Aalto  <jari.aalto@cante.net>
 
 	* t2html.pl: (top level): update copyright template.
-	(Help): Chnage all mixed case options like --Link-check to
+	(Help): Change all mixed case options like --Link-check to
 	lowercase --link-check.
 	(DESCRIPTION): improve documentation and mention pm-doc
 	example page.
@@ -31,12 +69,13 @@
 
 	* t2html.pl (Initialize): add "http://www.w3.org/TR/html4/loose.dtd"
 	to doctype to fix W3C validator informational message.
-	(HtmlFixes): remove duplicate <p><p> occurrances.
+	(HtmlFixes): remove duplicate <p><p> occurrences.
 
 2010-02-13 Sat  Jari Aalto  <jari.aalto@cante.net>
 
 	* t2html.pl (PrintEnd): at 'This file has been automatically generated'
-	do not suppond using <P></P> tags as HTML standard does not allow it.
+	do not surround with <P></P> tags as HTML standard does not allow it
+	Use only opening tag <P>.
 
 2009-08-31  Jari Aalto  <jari.aalto@cante.net>
 
@@ -80,7 +119,7 @@
 2008-09-19  Jari Aalto  <jari.aalto@cante.net>
 
 	* t2html.pl (CssData): Move closing qq() so that no
-	extra whitespaces are written to EOL.
+	extra white spaces are written to EOL.
 	(MakeToc): <dic class=toc">, remove id=toc, because it
 	is already defined one line below. W3C validator error.
 

@@ -62,6 +62,9 @@
 #           0.48   0.210          1   0.2100 LWP::UserAgent::CODE(0x4023394c)
 #           0.41   0.180          1   0.1800 main::PrintHtmlDoc
 
+# "Named Capture Buffers" are used
+use 5.10.0;
+
 # ****************************************************************************
 #
 #   Globals
@@ -75,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2010.0313.1634';
+$VERSION = '2010.1217.0029';
 
 # ****************************************************************************
 #
@@ -217,7 +220,7 @@ sub Initialize ()
 
     $LICENSE	= "GPL-2+";
     $AUTHOR     = "Jari Aalto";
-    $URL        = "http://freshmeat.net/projects/perl-text2html";
+    $URL        = "http://freecode.com/projects/perl-text2html";
 
     $OUTPUT_AUTOFLUSH = 1;
     $HTTP_CODE_OK     = 200;
@@ -703,7 +706,7 @@ sub HandleCommandLineArgs ()
 	    }
 	    else
 	    {
-		warn "Unregognized switch: $ARG";
+		warn "Unregognized option: $ARG";
 	    }
 	}
     }
@@ -726,7 +729,6 @@ sub HandleCommandLineArgs ()
 
     Getopt::Long::config( qw
     (
-	require_order
 	no_ignore_case
 	no_ignore_case_always
     ));
@@ -815,7 +817,7 @@ sub HandleCommandLineArgs ()
 	, "reference=s@"            => \@reference
 
 	, "link-check"              => \$LINK_CHECK
-	, "L|Link-check-single"     => \$LINK_CHECK_ERR_TEXT_ONE_LINE
+	, "L|link-check-single"     => \$LINK_CHECK_ERR_TEXT_ONE_LINE
 	, "link-cache=s"            => \$linkCacheFile
 
 	, "X|xhtml"                 => \$XHTML_RENDER
@@ -1255,7 +1257,7 @@ To help maintining large documents, there is also available an
 I<Emacs> minor mode, package called I<tinytf.el>, which offers text
 fontification with colors, Indentation control, bullet filling,
 heading renumbering, word markup, syntax highlighting etc.
-See project http://freshmeat.net/projects/emacs-tiny-tools
+See project http://freecode.com/projects/emacs-tiny-tools
 
 
 =head1 OPTIONS
@@ -2702,7 +2704,7 @@ HTML validator is at http://validator.w3.org/
 iMATIX created htmlpp which is available at http://www.imatix.com/
 
 Emacs minor mode to write documents based on TF layout is available. See
-package tinytf.el in project http://freshmeat.net/projects/emacs-tiny-tools
+package tinytf.el in project http://freecode.com/projects/emacs-tiny-tools
 
 =head2 Standards
 
@@ -2749,7 +2751,7 @@ instead of included link extracting algorithm.
 
 =head1 AVAILABILITY
 
-Homepage is at http://freshmeat.net/projects/perl-text2html
+Homepage is at http://freecode.com/projects/perl-text2html
 
 =head1 AUTHOR
 
@@ -2779,8 +2781,8 @@ sub Help (;$ $)
     {
 	$debug  and  print "$id: -man option\n";
 
-	eval "use Pod::Man";
-	$EVAL_ERROR  and  die "$id: Cannot generate Man: $EVAL_ERROR";
+	eval "use Pod::Man"
+	    or die "$id: Cannot generate Man: $EVAL_ERROR";
 
 	my %options;
 	$options{center} = 'Perl Text to HTML Converter';
@@ -3913,7 +3915,7 @@ sub XlatRef ($)
 
 	$ARG = $1 .  MakeUrlRef($2, $3) . $4;
 
-	unless ( $ARG =~ /#|http:|file:|news:|wais:|ftp:/ )
+	unless ( $ARG =~ /#|https?:|file:|news:|wais:|ftp:/ )
 	{
 	    warn "$id: Suspicious REF. Did you forgot # or http?\n\t$ARG"
 	}
@@ -4115,7 +4117,7 @@ sub AcceptUrl($)
 			 |baz
 			 |quu[zx])\b
 		      |:/\S*\.?example\.
-		      |example\.com
+		      |example\.(com|net|org)
 		      |:/test\.
 
 		    ,x
@@ -4207,20 +4209,22 @@ sub XlatUrl ($)
     {
 	([^\"]?)           # Emacs font-lock comment to terminate opening "
 	(?<!HREF=\")       # Already handled by XlatUrlInline()
-	((?:file|ftp|http|news|wais|mail|telnet):
+	((?:file|ftp|https?|news|wais|mail|telnet):
 
-	 #  urls can contain almost anything,
-	 #  BUT the last character grabbed in text must not be period,
-	 #  colon etc. because they canät be distinguished from regular text
-	 #  tokens.
+	 #  URLs can contain almost anything, But the last character
+	 #  grabbed in text must not be period, colon etc. because
+	 #  they can't be distinguished from regular text tokens.
 	 #
 	 #      See url http://example.com/that.txt. New sentence starts here.
 	 #
 	 #  It would be better to write
 	 #
 	 #      See url <http://example.com/that.txt>. New sentence starts here.
-	 #
-	 [^][\s<>]+[^\s,.!?;:<>])
+
+	 [^][\s<>]+		    # Beginning and "in between characters"
+	 [^\s,.!?;:<>]		    # End character for URL, not a sentence punctuation
+
+	 )
     }
     {
 	$pre = $1;
@@ -9160,9 +9164,7 @@ EOF
     {
 	my ( $name, $path, $extension ) = fileparse $file, '\.[^.]+$'; #font '
 
-
 	$debug  and  print "$id: fileparse [$name] [$path] [$extension]\n";
-
 
 	if ( $auto =~ /../ )        # Suppose filename if more than 2 chars
 	{
@@ -9991,6 +9993,8 @@ sub Main ()
 	    return ();
 	};
 
+       $debug > 1  and  PrintHash "$LIB.hash before", \%hash;
+
 	# Cancel all embedded options if user did not want them.
 
 	%hash = () unless $OBEY_T2HTML_DIRECTIVES;
@@ -10009,7 +10013,9 @@ sub Main ()
 		   , -argvadd => \@options;
 	}
 
-	my $title       = Hash("title", 1)  || "No title";
+       $debug > 1  and  PrintHash "$LIB.hash after", \%hash;
+
+	my $title       = $TITLE || Hash("title", 1)  || "No title";
 	my $doc         = $DOC              || Hash("doc", 1);
 	my $author      = $AUTHOR           || Hash("author", 1);
 	my $email       = $OPT_EMAIL        || Hash("email", 1);
@@ -10140,7 +10146,7 @@ t2html Test Page
 	contents and the HTML generator can use it to generate a two
 	frame output with the TOC in the left frame as hotlinks to the
 	sections and subsections.
-	Visit http://freshmeat.net/projects/emacs-tiny-tools
+	Visit http://freecode.com/projects/emacs-tiny-tools
 
     Bullets, lists, and links
 
