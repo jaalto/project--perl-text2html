@@ -1,3 +1,7 @@
+2012-01-11 Wed  Jari Aalto  <jari.aalto@cante.net>
+
+	* bin/t2html.pl (XlatPicture): Improve regexp.
+
 2010-03-13 Sat  Jari Aalto  <jari.aalto@cante.net>
 
 	* t2html.pl:  (top level): rearrange globals, use

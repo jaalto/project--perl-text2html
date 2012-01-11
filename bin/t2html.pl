@@ -3959,7 +3959,7 @@ sub XlatPicture ($)
     my $id     = "$LIB.XlatPicture";
     local $ARG = shift;
 
-    if ( /(.*)#PIC\s+([^#]+\S)\s*#\s*(.*)#\s*(.*)#\s*(.*)#(.*)/ )
+    if ( /(.*)#PIC\s+([^#]+[^ #])\s*#\s*(.*)#\s*(.*)#\s*(.*)#(.*)/ )
     {
 	my ($before, $url, $text, $attr, $align, $rest)
 	    = ($1, $2, $3, $4, $5, $6);
@@ -3972,7 +3972,7 @@ sub XlatPicture ($)
 	#
 	#   http:/www.example.com#referece_here
 
-	$debug and warn "$id: #PIC--> \$1[$1]\n\$2[$2]\n\$3[$3]\nLINE[$ARG]";
+	$debug and warn "$id: #PIC-->\n\$1[$1]\n\$2[$2]\n\$3[$3]\nLINE[$ARG]";
 
 	my $pictureHtml = MakeUrlPicture
 	    -url        => $url
@@ -4892,9 +4892,9 @@ sub UrlInclude (%)
 	    $ret = DoLineUserTags($ret);
 	    $ret = XlatTag2html $ret;
 	    $ret = XlatRef $ret;
-	    $ret = XlatPicture $ret;
 	    $ret = XlatUrlInline $ret;
 	    $ret = XlatUrl $ret;
+	    $ret = XlatPicture $ret;
 	    $ret = XlatMailto $ret;
 	    $ret = XlatWordMarkup $ret;
 	}
