@@ -4156,19 +4156,17 @@ sub XlatUrlInline ($)
 
     s
     {
-      ^(.*)
+      (.*?)
       \#URL \s*
       &lt; (.+?) &gt; \s*
       &lt; (.+?) &gt;
-      (.*)
     }
     {
 	my $before = $1;
 	my $url    = $2;
 	my $inline = $3;
-	my $after  = $4;
 
-	qq($before<a href="$url">$inline</a>$after);
+	qq($before<a href="$url">$inline</a>);
 
     }gmex;
 

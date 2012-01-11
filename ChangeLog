@@ -1,6 +1,7 @@
 2012-01-11 Wed  Jari Aalto  <jari.aalto@cante.net>
 
 	* bin/t2html.pl (XlatPicture): Improve regexp.
+	(XlatUrlInline): Support multiple #URL tags on line.
 
 2010-12-17 Fri  Jari Aalto  <jari.aalto@cante.net>
 
