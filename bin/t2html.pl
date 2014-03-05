@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2014.0305.1011';
+$VERSION = '2014.0305.1014';
 
 # ****************************************************************************
 #
@@ -2411,6 +2411,19 @@ clickable.
 The bulletin table is contructed if there is "o" or "*" at column 8 and 3
 spaces after it, so that text starts at column 12. Bulleted lines are
 advised to be kept together; no spaces between bullet blocks.
+
+    *   This is a bullet
+    *   This is a bullte
+
+Another example:
+
+    o   This is a bullet
+    o   This is a bullet
+
+List example:
+
+    .   This is an ordered list
+    .   This is an ordered list
 
 =item *
 
