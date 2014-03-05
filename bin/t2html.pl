@@ -4,7 +4,7 @@
 #
 #   Copyright information
 #
-#       Copyright (C) 1996-2010 Jari Aalto
+#       Copyright (C) 1996-2014 Jari Aalto
 #
 #   License
 #
@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2014.0305.1030';
+$VERSION = '2014.0305.1031';
 
 # ****************************************************************************
 #
@@ -2776,6 +2776,8 @@ instead of included link extracting algorithm.
 Homepage is at http://freecode.com/projects/perl-text2html
 
 =head1 AUTHOR
+
+Copyright (C) 1996-2014 <jari.aalto@cante.net>
 
 This program is free software; you can redistribute and/or modify
 program under the terms of GNU General Public license either version 2
