@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2014.0305.1028';
+$VERSION = '2014.0305.1030';
 
 # ****************************************************************************
 #
@@ -2760,12 +2760,12 @@ html
 
 =head1 PREREQUISITES
 
-No additional CPAN modules needed for text to HTML conversion.
+No additional Perl CPAN modules needed for text to HTML conversion.
 
 =head1 COREQUISITES
 
 If link check feature is used to to validate URL links, then following
-modules are needed from CPAN C<use LWP::UserAgent> C<HTML::FormatText>
+modules are needed from Perl CPAN C<use LWP::UserAgent> C<HTML::FormatText>
 and C<HTML::Parse>
 
 If you module C<HTML::LinkExtractor> is available, it is used
