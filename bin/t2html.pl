@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2014.0305.1024';
+$VERSION = '2014.0305.1028';
 
 # ****************************************************************************
 #
@@ -2721,10 +2721,12 @@ available at http://www.tdb.uu.se/~jan/html2ps.html
 
 HTML validator is at http://validator.w3.org/
 
-iMATIX created htmlpp which is available at http://www.imatix.com/
+iMATIX created htmlpp which is available from http://www.imatix.com and seen
+2014-03-05 at http://legacy.imatix.com/html/htmlpp
 
-Emacs minor mode to write documents based on TF layout is available. See
-package tinytf.el in project http://freecode.com/projects/emacs-tiny-tools
+Emacs minor mode to help writing documents based on TF layout is
+available. See package tinytf.el in project
+http://freecode.com/projects/emacs-tiny-tools
 
 =head2 Standards
 
