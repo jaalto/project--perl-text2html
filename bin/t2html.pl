@@ -63,7 +63,7 @@
 #           0.41   0.180          1   0.1800 main::PrintHtmlDoc
 
 # "Named Capture Buffers" are used
-use 5.10.0;
+# use 5.10.0;
 
 # ****************************************************************************
 #
@@ -3963,7 +3963,7 @@ sub XlatPicture ($)
     my $id     = "$LIB.XlatPicture";
     local $ARG = shift;
 
-    if ( /(.*)#PIC\s+([^#]+\S)\s*#\s*(.*)#\s*(.*)#\s*(.*)#(.*)/ )
+    if ( /(.*)#PIC\s+([^#]+[^ #])\s*#\s*(.*)#\s*(.*)#\s*(.*)#(.*)/ )
     {
 	my ($before, $url, $text, $attr, $align, $rest)
 	    = ($1, $2, $3, $4, $5, $6);
@@ -3976,7 +3976,7 @@ sub XlatPicture ($)
 	#
 	#   http:/www.example.com#referece_here
 
-	$debug and warn "$id: #PIC--> \$1[$1]\n\$2[$2]\n\$3[$3]\nLINE[$ARG]";
+	$debug and warn "$id: #PIC-->\n\$1[$1]\n\$2[$2]\n\$3[$3]\nLINE[$ARG]";
 
 	my $pictureHtml = MakeUrlPicture
 	    -url        => $url
@@ -4158,19 +4158,17 @@ sub XlatUrlInline ($)
 
     s
     {
-      ^(.*)
+      (.*?)
       \#URL \s*
       &lt; (.+?) &gt; \s*
       &lt; (.+?) &gt;
-      (.*)
     }
     {
 	my $before = $1;
 	my $url    = $2;
 	my $inline = $3;
-	my $after  = $4;
 
-	qq($before<a href="$url">$inline</a>$after);
+	qq($before<a href="$url">$inline</a>);
 
     }gmex;
 
@@ -4898,9 +4896,9 @@ sub UrlInclude (%)
 	    $ret = DoLineUserTags($ret);
 	    $ret = XlatTag2html $ret;
 	    $ret = XlatRef $ret;
-	    $ret = XlatPicture $ret;
 	    $ret = XlatUrlInline $ret;
 	    $ret = XlatUrl $ret;
+	    $ret = XlatPicture $ret;
 	    $ret = XlatMailto $ret;
 	    $ret = XlatWordMarkup $ret;
 	}

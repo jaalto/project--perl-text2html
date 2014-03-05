@@ -4,6 +4,11 @@
 	(HandleCommandLineArgs): Remove defined() test from array.
 	(Help::POD): Add UTF-8 encoding tag.
 
+2012-01-11 Wed  Jari Aalto  <jari.aalto@cante.net>
+
+	* bin/t2html.pl (XlatPicture): Improve regexp.
+	(XlatUrlInline): Support multiple #URL tags on line.
+
 2010-12-17 Fri  Jari Aalto  <jari.aalto@cante.net>
 
 	* bin/t2html.pl (XlatUrl): Fix https support.
