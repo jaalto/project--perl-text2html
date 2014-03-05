@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2014.0305.0955';
+$VERSION = '2014.0305.1002';
 
 # ****************************************************************************
 #
@@ -2085,7 +2085,7 @@ column poisiton ruler at the top:
 	     Notice that previous paragraph ends to P-comma
 	     code, it tells this paragraph to continue in
 	     bullet mode, otherwise this text at column 12
-	     would be intepreted as code section surrpoundedn
+	     would be intepreted as code section surrounded
 	     by <pre> HTML codes.
 
 
