@@ -769,7 +769,7 @@ FORMAT DESCRIPTION
      Heading 1 starts with a big letter at leftmost column 1
 
       The column positions 1,2,3 are currently undefined and may not
-      format correctly. Do ot place text at columns 1,2 or 3.
+      format correctly. Do not place text at columns 1,2 or 3.
 
          Heading level 2 starts at half-tab column 4 with a big letter
 
@@ -1323,7 +1323,7 @@ SEE ALSO
     asciidoc(1) html2ps(1) htmlpp(1) markdown(1)
 
   Related programs
-    Jan Kärrman <jan@tdb.uu.se> has written Perl html2ps which was
+    Jan Kï¿½rrman <jan@tdb.uu.se> has written Perl html2ps which was
     2004-11-11 available at http://www.tdb.uu.se/~jan/html2ps.html
 
     HTML validator is at http://validator.w3.org/
