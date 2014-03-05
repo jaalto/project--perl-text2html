@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2014.0305.1004';
+$VERSION = '2014.0305.1005';
 
 # ****************************************************************************
 #
@@ -2130,8 +2130,9 @@ of text formatting are secribed below.
 
 =item *
 
-There are only I<two> heading levels in this style. Heading columns are 0
-and 4 and the heading must start with big letter or number
+There are only I<two> heading levels in this style. Heading columns
+are 0 and 4 and the heading must start with big letter ("Heading") or
+number ("1.0 Heading")
 
 =item *
 
