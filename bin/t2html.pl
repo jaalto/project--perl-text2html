@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2010.1217.0029';
+$VERSION = '2014.0305.0951';
 
 # ****************************************************************************
 #
@@ -2025,7 +2025,7 @@ column poisiton ruler at the top:
  Heading 1 starts with a big letter at leftmost column 1
 
   The column positions 1,2,3 are currently undefined and may not
-  format correctly. Do ot place text at columns 1,2 or 3.
+  format correctly. Do not place text at columns 1,2 or 3.
 
      Heading level 2 starts at half-tab column 4 with a big letter
 
