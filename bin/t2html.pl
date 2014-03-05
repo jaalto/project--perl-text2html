@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2014.0305.1023';
+$VERSION = '2014.0305.1024';
 
 # ****************************************************************************
 #
@@ -2637,7 +2637,7 @@ ignore the header text:
 
 To make page fast
 
-    t2html --html-frame --out --print page.txt
+    t2html --out --print page.txt
 
 To convert page from a text document, including meta tags, buttons, colors
 and frames. Pay attention to switch I<--html-body> which defines document
