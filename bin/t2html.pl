@@ -2191,7 +2191,7 @@ or to add reference text, place the text in this column.
 
 =item *
 
-Text at colums 9,11 are marked with <strong>
+Text at colums 9 and 11 are marked with <strong>
 
 =back
 
