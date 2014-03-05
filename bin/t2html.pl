@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2014.0305.1005';
+$VERSION = '2014.0305.1007';
 
 # ****************************************************************************
 #
@@ -2136,7 +2136,7 @@ number ("1.0 Heading")
 
 =item *
 
-at column 4, if the text starts with small letter, that line is interpreted
+At column 4, if the text starts with small letter, that line is interpreted
 as <strong>
 
 =item *
@@ -2165,12 +2165,12 @@ The basic rules for positioning text in certain columns:
 
 =item *
 
-Text at column 0 is undefined if it does not start with big letter or number
-to indicate Heading level 1.
+Text at column 1 is undefined if it does not start with big letter or
+number to indicate Heading level 1.
 
 =item *
 
-Text between colums 1-3 is marked with <em>
+Text between colums 2 and 3 is marked with <em>
 
 =item *
 
