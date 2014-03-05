@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2014.0305.1007';
+$VERSION = '2014.0305.1008';
 
 # ****************************************************************************
 #
@@ -2217,7 +2217,7 @@ Column 12 is special
 
 Column 12 is treated specially: block is started with <pre> and lines are
 marked as <samp></samp>. When the last text at I<column> 12 is found, the
-block is closed with </pre> Note follwing example
+block is closed with </pre>. An example:
 
     txt txt txt         ;evenly placed block, fine, do it like this
     txt txt
