@@ -1,6 +1,7 @@
 2014-03-05 Wed  Jari Aalto  <jari.aalto@cante.net>
 
 	* bin/t2html.pl (Help::PODD::FORMAT DESCRIPTION): Fix typo.
+	(HandleCommandLineArgs): Remove defined() test from array.
 
 2010-12-17 Fri  Jari Aalto  <jari.aalto@cante.net>
 

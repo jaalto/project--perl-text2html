@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2014.0305.0951';
+$VERSION = '2014.0305.0952';
 
 # ****************************************************************************
 #
@@ -1036,7 +1036,7 @@ EOF
 	$BASE_URL = $1 if m,(.*)/,;
     }
 
-    if ( defined @CSS_FILE  and  @CSS_FILE )
+    if ( @CSS_FILE  and  @CSS_FILE )
     {
 	$JAVA_CODE = '';
 
