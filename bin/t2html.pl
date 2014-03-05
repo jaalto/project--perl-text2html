@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2014.0305.1010';
+$VERSION = '2014.0305.1011';
 
 # ****************************************************************************
 #
@@ -2333,7 +2333,7 @@ and '>' characters, like:
 The other rule is that all PURE HTML must be kept together. There must
 be no line breaks between pure HTML lines. This is incorrect:
 
-    <<table>
+    <<table>>
 
 	<<tr>>one
 	<<tr>>two
@@ -2342,7 +2342,7 @@ be no line breaks between pure HTML lines. This is incorrect:
 
 The pure HTML must be written without extra newlines:
 
-    <<table>
+    <<table>>
 	<<tr>>one
 	<<tr>>two
     <</table>>
