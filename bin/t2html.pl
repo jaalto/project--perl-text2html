@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2014.0305.1014';
+$VERSION = '2014.0305.1016';
 
 # ****************************************************************************
 #
@@ -2535,7 +2535,7 @@ Examples:
     #PIC picture.png#Caption Text#Picture HTML attributes#align#
 	  (1)        (2)          (3)                     (4)
 
-    1.  The NAME or URL address of the picturere. Like image/this.png
+    1.  The NAME or URL address of the picture. Like image/this.png
 
     2.  The Text that appears below picture
 
