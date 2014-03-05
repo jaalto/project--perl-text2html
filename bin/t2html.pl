@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2014.0305.1019';
+$VERSION = '2014.0305.1022';
 
 # ****************************************************************************
 #
@@ -2595,6 +2595,10 @@ be used.
 =head1 TROUBLESHOOTING
 
 =head2 Generated HTML document did not look what I intended
+
+Did you use editor that inseted TABs which inserts single ascii code
+(\t) and 8 spaces? check our editor's settings and prefer writing
+in-all-space format.
 
 The most common mistake is that there are extra newlines in the
 document. Keeep I<one> empty line between headings and text, keep I<one>
