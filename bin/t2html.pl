@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2014.0305.1008';
+$VERSION = '2014.0305.1010';
 
 # ****************************************************************************
 #
@@ -2325,7 +2325,7 @@ either using sybolic names or the hash code. Here are exmples:
 
 B<This feature is highly experimental>. It is possible to embed pure
 HTML inside text in occasions, where e.g. some special formatting is
-needed. The isea is simple: you write HTML as usual but double every '<'
+needed. The idea is simple: you write HTML as usual but double every '<'
 and '>' characters, like:
 
     <<p>>
