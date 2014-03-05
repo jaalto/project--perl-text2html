@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2014.0305.1002';
+$VERSION = '2014.0305.1003';
 
 # ****************************************************************************
 #
@@ -2094,8 +2094,8 @@ column poisiton ruler at the top:
 	 .   This is ordered list.
 
 
-	 .This line starts wirg dot and is displayed in line by itself.
-	 .This line starts wirg dot and is displayed in line by itself.
+	 .This line starts with dot and is displayed in line by itself.
+	 .This line starts with dot and is displayed in line by itself.
 
 	 !! This adds an <hr> HTML code, text in line is marked with
 	 !! <strong> <em>
