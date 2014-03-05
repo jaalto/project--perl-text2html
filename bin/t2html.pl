@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2014.0305.1022';
+$VERSION = '2014.0305.1023';
 
 # ****************************************************************************
 #
@@ -2621,7 +2621,7 @@ Headings start with a big letter or number, likein "Heading", not
 
 =head1 EXAMPLES
 
-To print the test page and show all the possibilities:
+To print the test page and demonstrate possibilities:
 
     t2html --test-page
 
