@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2014.0305.1003';
+$VERSION = '2014.0305.1004';
 
 # ****************************************************************************
 #
@@ -2070,10 +2070,10 @@ column poisiton ruler at the top:
 	 txt txt txt txt txt txt txt txt txt txt txt txt txt txt
 	 [1998-09-10 Mr. Foo said]:
 
-	   cited text cited text cited text cited text cited
-	   text cited text cited text cited text cited text
-	   cited text cited text cited text cited text cited
-	   text cited text
+	   cited text at column 10. cited text cited text cited text
+	   cited text cited text cited text cited text cited text
+	   cited text cited text cited text cited text cited text
+	   cited text
 
 
 	 *   Bullet at column 8. Notice 3 spaces after (*), so
