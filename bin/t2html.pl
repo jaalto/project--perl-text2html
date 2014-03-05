@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2014.0305.1016';
+$VERSION = '2014.0305.1019';
 
 # ****************************************************************************
 #
@@ -2572,14 +2572,14 @@ C<#URL> tag can be used to embed URLs inline, so that the full
 link is not visible. Only the shown text is used to jump to URL.
 This directive cannot be broken to separate lines,
 
-     #URL<FULL-HTTP-LINK> <embedded inline text>
-	 |               |
-	 |               whitespace allowed here
+     #URL<FULL-URL><embedded inline text>
+	 |          |
+	 |          Displayed, clickable, text
 	 Must be kept together
 
-Like if written:
+An example:
 
-     See search engine #URL<http://www.google.com> <Google>
+     See search engine #URL<http://www.google.com><Google>
 
 =back
 
