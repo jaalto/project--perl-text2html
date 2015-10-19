@@ -4,7 +4,7 @@
 #
 #   Copyright information
 #
-#       Copyright (C) 1996-2010 Jari Aalto
+#       Copyright (C) 1996-2015 Jari Aalto
 #
 #   License
 #
@@ -1036,7 +1036,7 @@ EOF
 	$BASE_URL = $1 if m,(.*)/,;
     }
 
-    if ( defined @CSS_FILE  and  @CSS_FILE )
+    if ( @CSS_FILE  and  @CSS_FILE )
     {
 	$JAVA_CODE = '';
 
