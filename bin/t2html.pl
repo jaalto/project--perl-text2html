@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2014.0305.1031';
+$VERSION = '2015.1019.1636';
 
 # ****************************************************************************
 #
