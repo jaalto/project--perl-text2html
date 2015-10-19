@@ -4,10 +4,10 @@
 <head>
 <title></title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<link rev="made" href="mailto:root@localhost" />
+<link rev="made" href="mailto:ASSI@cygwin.nonet" />
 </head>
 
-<body style="background-color: white">
+<body>
 
 
 
@@ -879,10 +879,10 @@
          txt txt txt txt txt txt txt txt txt txt txt txt txt txt
          [1998-09-10 Mr. Foo said]:
 
-           cited text cited text cited text cited text cited
-           text cited text cited text cited text cited text
-           cited text cited text cited text cited text cited
-           text cited text
+           cited text at column 10. cited text cited text cited text
+           cited text cited text cited text cited text cited text
+           cited text cited text cited text cited text cited text
+           cited text
 
 
          *   Bullet at column 8. Notice 3 spaces after (*), so
@@ -894,7 +894,7 @@
              Notice that previous paragraph ends to P-comma
              code, it tells this paragraph to continue in
              bullet mode, otherwise this text at column 12
-             would be intepreted as code section surrpoundedn
+             would be intepreted as code section surrounded
              by &lt;pre&gt; HTML codes.
 
 
@@ -903,8 +903,8 @@
          .   This is ordered list.
 
 
-         .This line starts wirg dot and is displayed in line by itself.
-         .This line starts wirg dot and is displayed in line by itself.
+         .This line starts with dot and is displayed in line by itself.
+         .This line starts with dot and is displayed in line by itself.
 
          !! This adds an &lt;hr&gt; HTML code, text in line is marked with
          !! &lt;strong&gt; &lt;em&gt;
@@ -936,10 +936,10 @@
 
 <ul>
 
-<li><p>There are only <i>two</i> heading levels in this style. Heading columns are 0 and 4 and the heading must start with big letter or number</p>
+<li><p>There are only <i>two</i> heading levels in this style. Heading columns are 0 and 4 and the heading must start with big letter (&quot;Heading&quot;) or number (&quot;1.0 Heading&quot;)</p>
 
 </li>
-<li><p>at column 4, if the text starts with small letter, that line is interpreted as &lt;strong&gt;</p>
+<li><p>At column 4, if the text starts with small letter, that line is interpreted as &lt;strong&gt;</p>
 
 </li>
 <li><p>A HTML &lt;hr&gt; mark is added just before printing heading at level 1.</p>
@@ -958,10 +958,10 @@
 
 <ul>
 
-<li><p>Text at column 0 is undefined if it does not start with big letter or number to indicate Heading level 1.</p>
+<li><p>Text at column 1 is undefined if it does not start with big letter or number to indicate Heading level 1.</p>
 
 </li>
-<li><p>Text between colums 1-3 is marked with &lt;em&gt;</p>
+<li><p>Text between colums 2 and 3 is marked with &lt;em&gt;</p>
 
 </li>
 <li><p>Column 4 is reserved for heading level 2</p>
@@ -976,7 +976,7 @@
 <li><p>Column 10 is reserved for &lt;em&gt; text. If you want to quote someone or to add reference text, place the text in this column.</p>
 
 </li>
-<li><p>Text at colums 9,11 are marked with &lt;strong&gt;</p>
+<li><p>Text at colums 9 and 11 are marked with &lt;strong&gt;</p>
 
 </li>
 </ul>
@@ -997,7 +997,7 @@
 
 <ul>
 
-<li><p>Column 12 is treated specially: block is started with &lt;pre&gt; and lines are marked as &lt;samp&gt;&lt;/samp&gt;. When the last text at <i>column</i> 12 is found, the block is closed with &lt;/pre&gt; Note follwing example</p>
+<li><p>Column 12 is treated specially: block is started with &lt;pre&gt; and lines are marked as &lt;samp&gt;&lt;/samp&gt;. When the last text at <i>column</i> 12 is found, the block is closed with &lt;/pre&gt;. An example:</p>
 
 <pre><code>    txt txt txt         ;evenly placed block, fine, do it like this
     txt txt
@@ -1102,13 +1102,13 @@
 <dt id="embedding-PURE-HTML-into-text">embedding PURE HTML into text</dt>
 <dd>
 
-<p><b>This feature is highly experimental</b>. It is possible to embed pure HTML inside text in occasions, where e.g. some special formatting is needed. The isea is simple: you write HTML as usual but double every &#39;&lt;&#39; and &#39;&gt;&#39; characters, like:</p>
+<p><b>This feature is highly experimental</b>. It is possible to embed pure HTML inside text in occasions, where e.g. some special formatting is needed. The idea is simple: you write HTML as usual but double every &#39;&lt;&#39; and &#39;&gt;&#39; characters, like:</p>
 
 <pre><code>    &lt;&lt;p&gt;&gt;</code></pre>
 
 <p>The other rule is that all PURE HTML must be kept together. There must be no line breaks between pure HTML lines. This is incorrect:</p>
 
-<pre><code>    &lt;&lt;table&gt;
+<pre><code>    &lt;&lt;table&gt;&gt;
 
         &lt;&lt;tr&gt;&gt;one
         &lt;&lt;tr&gt;&gt;two
@@ -1117,7 +1117,7 @@
 
 <p>The pure HTML must be written without extra newlines:</p>
 
-<pre><code>    &lt;&lt;table&gt;
+<pre><code>    &lt;&lt;table&gt;&gt;
         &lt;&lt;tr&gt;&gt;one
         &lt;&lt;tr&gt;&gt;two
     &lt;&lt;/table&gt;&gt;</code></pre>
@@ -1173,6 +1173,19 @@
 <ul>
 
 <li><p>The bulletin table is contructed if there is &quot;o&quot; or &quot;*&quot; at column 8 and 3 spaces after it, so that text starts at column 12. Bulleted lines are advised to be kept together; no spaces between bullet blocks.</p>
+
+<pre><code>    *   This is a bullet
+    *   This is a bullte</code></pre>
+
+<p>Another example:</p>
+
+<pre><code>    o   This is a bullet
+    o   This is a bullet</code></pre>
+
+<p>List example:</p>
+
+<pre><code>    .   This is an ordered list
+    .   This is an ordered list</code></pre>
 
 </li>
 <li><p>The ordered list is started with &quot;.&quot;, a dot, and written like bullet where text starts at column 12.</p>
@@ -1268,7 +1281,7 @@
 <pre><code>    #PIC picture.png#Caption Text#Picture HTML attributes#align#
           (1)        (2)          (3)                     (4)
 
-    1.  The NAME or URL address of the picturere. Like image/this.png
+    1.  The NAME or URL address of the picture. Like image/this.png
 
     2.  The Text that appears below picture
 
@@ -1303,14 +1316,14 @@
 
 <p><code>#URL</code> tag can be used to embed URLs inline, so that the full link is not visible. Only the shown text is used to jump to URL. This directive cannot be broken to separate lines,</p>
 
-<pre><code>     #URL&lt;FULL-HTTP-LINK&gt; &lt;embedded inline text&gt;
-         |               |
-         |               whitespace allowed here
+<pre><code>     #URL&lt;FULL-URL&gt;&lt;embedded inline text&gt;
+         |          |
+         |          Displayed, clickable, text
          Must be kept together</code></pre>
 
-<p>Like if written:</p>
+<p>An example:</p>
 
-<pre><code>     See search engine #URL&lt;http://www.google.com&gt; &lt;Google&gt;</code></pre>
+<pre><code>     See search engine #URL&lt;http://www.google.com&gt;&lt;Google&gt;</code></pre>
 
 </dd>
 </dl>
@@ -1322,6 +1335,8 @@
 <h1 id="TROUBLESHOOTING">TROUBLESHOOTING</h1>
 
 <h2 id="Generated-HTML-document-did-not-look-what-I-intended">Generated HTML document did not look what I intended</h2>
+
+<p>Did you use editor that inseted TABs which inserts single ascii code (\t) and 8 spaces? check our editor&#39;s settings and prefer writing in-all-space format.</p>
 
 <p>The most common mistake is that there are extra newlines in the document. Keeep <i>one</i> empty line between headings and text, keep <i>one</i> empty line between paragraphs, keep <i>one</i> empty line between body text and bullet. Make it your mantra: <i>one</i> <i>one</i> <i>one</i> ...</p>
 
@@ -1338,7 +1353,7 @@
 
 <h1 id="EXAMPLES">EXAMPLES</h1>
 
-<p>To print the test page and show all the possibilities:</p>
+<p>To print the test page and demonstrate possibilities:</p>
 
 <pre><code>    t2html --test-page</code></pre>
 
@@ -1353,7 +1368,7 @@
 
 <p>To make page fast</p>
 
-<pre><code>    t2html --html-frame --out --print page.txt</code></pre>
+<pre><code>    t2html --out --print page.txt</code></pre>
 
 <p>To convert page from a text document, including meta tags, buttons, colors and frames. Pay attention to switch <i>--html-body</i> which defines document language.</p>
 
@@ -1427,9 +1442,9 @@
 
 <p>HTML validator is at http://validator.w3.org/</p>
 
-<p>iMATIX created htmlpp which is available at http://www.imatix.com/</p>
+<p>iMATIX created htmlpp which is available from http://www.imatix.com and seen 2014-03-05 at http://legacy.imatix.com/html/htmlpp</p>
 
-<p>Emacs minor mode to write documents based on TF layout is available. See package tinytf.el in project http://freecode.com/projects/emacs-tiny-tools</p>
+<p>Emacs minor mode to help writing documents based on TF layout is available. See package tinytf.el in project http://freecode.com/projects/emacs-tiny-tools</p>
 
 <h2 id="Standards">Standards</h2>
 
@@ -1455,11 +1470,11 @@
 
 <h1 id="PREREQUISITES">PREREQUISITES</h1>
 
-<p>No additional CPAN modules needed for text to HTML conversion.</p>
+<p>No additional Perl CPAN modules needed for text to HTML conversion.</p>
 
 <h1 id="COREQUISITES">COREQUISITES</h1>
 
-<p>If link check feature is used to to validate URL links, then following modules are needed from CPAN <code>use LWP::UserAgent</code> <code>HTML::FormatText</code> and <code>HTML::Parse</code></p>
+<p>If link check feature is used to to validate URL links, then following modules are needed from Perl CPAN <code>use LWP::UserAgent</code> <code>HTML::FormatText</code> and <code>HTML::Parse</code></p>
 
 <p>If you module <code>HTML::LinkExtractor</code> is available, it is used instead of included link extracting algorithm.</p>
 
@@ -1468,6 +1483,8 @@
 <p>Homepage is at http://freecode.com/projects/perl-text2html</p>
 
 <h1 id="AUTHOR">AUTHOR</h1>
+
+<p>Copyright (C) 1996-2014 &lt;jari.aalto@cante.net&gt;</p>
 
 <p>This program is free software; you can redistribute and/or modify program under the terms of GNU General Public license either version 2 of the License, or (at your option) any later version.</p>
 
