@@ -2,7 +2,7 @@
 #
 #   Copyright information
 #
-#	Copyright (C) 2002-2014 Jari Aalto
+#	Copyright (C) 2002-2015 Jari Aalto
 #
 #   License
 #
@@ -157,6 +157,7 @@ perl-test:
 
 # Rule: test - Run tests
 test: perl-test
+check: test
 
 install-doc:
 	# Rule install-doc - Install documentation
