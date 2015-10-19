@@ -1,3 +1,8 @@
+2015-10-19  Jari Aalto  <jari.aalto@cante.net>
+
+	* bin/t2html.pl: (Help): emove eval and use plain
+	"use Pod::Man" at the beginning.
+
 2014-03-05 Wed  Jari Aalto  <jari.aalto@cante.net>
 
 	* bin/t2html.pl (Help::POD::FORMAT DESCRIPTION): Fix typo.
