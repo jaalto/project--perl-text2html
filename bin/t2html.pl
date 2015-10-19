@@ -94,8 +94,7 @@ use autouse 'Pod::Html'     => qw( pod2html                   );
 # Perl 5.x bug, doesn't work
 # use autouse 'Pod::Text'     => qw( pod2text                   );
 
-#  Loaded only with --help-man
-#  use Pod::Man
+use Pod::Man;
 
 use locale;
 use Cwd;
@@ -2804,9 +2803,6 @@ sub Help (;$ $)
     elsif ( $type eq -man )
     {
 	$debug  and  print "$id: -man option\n";
-
-	eval "use Pod::Man"
-	    or die "$id: Cannot generate Man: $EVAL_ERROR";
 
 	my %options;
 	$options{center} = 'Perl Text to HTML Converter';
