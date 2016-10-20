@@ -88,7 +88,7 @@
 
 <p><b>Requirements for the input ascii files</b></p>
 
-<p>The file must be written in Technical Format, whose layout is described in the this manual. Basicly the idea is simple and there are only two heading levels: one at column 0 and the other at column 4 (halfway between the tab width). Standard text starts at column 8 (the position after pressed tab-key).</p>
+<p>The file must be written in Technical Format, whose layout is described in the this manual. Basically the idea is simple and there are only two heading levels: one at column 0 and the other at column 4 (halfway between the tab width). Standard text starts at column 8 (the position after pressed tab-key).</p>
 
 <p>The idea of technical format is that each column represents different rendering layout in the generated HTML. There is no special markup needed in the text file, so you can use the text version as a master copy of a FAQ etc. Bullets, numbered lists, word emphasis and quotation etc. can expressed in natural way.</p>
 
@@ -241,7 +241,7 @@
 <dt id="reference-tag-value"><b>--reference tag=value</b></dt>
 <dd>
 
-<p>You can add any custom references (tags) inside text and get them expand to any value. This option can be given multiple times and every occurrance of TAG is replaced with VALUE. E.g. when given following options:</p>
+<p>You can add any custom references (tags) inside text and get them expand to any value. This option can be given multiple times and every occurrence of TAG is replaced with VALUE. E.g. when given following options:</p>
 
 <pre><code>    --reference &quot;#HOME-URL=http://www.example.com/dir&quot;
     --reference &quot;#ARCHIVE-URL=http://www.example.com/dir/dir2&quot;</code></pre>
@@ -261,7 +261,7 @@
 <dt id="T---toc-url-print"><b>-T, --toc-url-print</b></dt>
 <dd>
 
-<p>Display URLs (contructed from headings) that build up the Table of Contents (NAME AHREF tags) in a document. The list is outputted to stderr, so that it can be separated:</p>
+<p>Display URLs (constructed from headings) that build up the Table of Contents (NAME AHREF tags) in a document. The list is outputted to stderr, so that it can be separated:</p>
 
 <pre><code>    % t2html --toc-url-print tmp.txt &gt; file.html 2&gt; toc-list.txt</code></pre>
 
@@ -285,7 +285,7 @@
 <dt id="css-code-note-REGEXP"><b>--css-code-note &quot;REGEXP&quot; </b></dt>
 <dd>
 
-<p>Option <b>--css-code-bg</b> is required to activate this option. A special word defined using regexp (defualt is &#39;Note:&#39;) will mark code sections specially. The <code>first word</code> is matched against the supplied Perl regexp.</p>
+<p>Option <b>--css-code-bg</b> is required to activate this option. A special word defined using regexp (default is &#39;Note:&#39;) will mark code sections specially. The <code>first word</code> is matched against the supplied Perl regexp.</p>
 
 <p>The supplied regexp must not, repeat, must not, include any matching group operators. This simply means, that grouping parenthesis like <code>(one|two|three)</code> are not allowed. You must use the Perl non-grouping ones like <code>(?:one|two|three)</code>. Please refer to perl manual page [perlre] if this short introduction did not give enough rope.</p>
 
@@ -433,7 +433,7 @@
 <dt id="css-font-type-CSS-DEFINITION"><b>--css-font-type CSS-DEFINITION</b></dt>
 <dd>
 
-<p>Set the BODY element&#39;s font defintion to CSS-DEFINITION. The default value used is the regular typeset used in newspapers and books:</p>
+<p>Set the BODY element&#39;s font definition to CSS-DEFINITION. The default value used is the regular typeset used in newspapers and books:</p>
 
 <pre><code>    --css-font-type=&#39;font-family: &quot;Times New Roman&quot;, serif;&#39;</code></pre>
 
@@ -571,9 +571,9 @@
 
 <p>Use language ID, a two character ISO identifier like &quot;en&quot; for English during the generation of HTML. This only affects the text that is shown to end-user, like text &quot;Table Of contents&quot;. The default setting is &quot;en&quot;. See section &quot;SEE ALSO&quot; for standards ISO 639 and ISO 3166 for proper codes.</p>
 
-<p>The selected langauge changes propgram&#39;s internal arrays in two ways: 1) Instead of default &quot;Table of ocntents&quot; heading the national langaugage equivalent will be used 2) The text &quot;Pic&quot; below embedded sequentially numbered pictures will use natinal equivalent.</p>
+<p>The selected language changes propgram&#39;s internal arrays in two ways: 1) Instead of default &quot;Table of ocntents&quot; heading the national langaugage equivalent will be used 2) The text &quot;Pic&quot; below embedded sequentially numbered pictures will use natinal equivalent.</p>
 
-<p>If your languagae is not supported, please send the phrase for &quot;Table of contents&quot; and word &quot;Pic&quot; in your langauge to the maintainer.</p>
+<p>If your languagae is not supported, please send the phrase for &quot;Table of contents&quot; and word &quot;Pic&quot; in your language to the maintainer.</p>
 
 </dd>
 <dt id="script-file-FILE"><b>--script-file FILE</b></dt>
@@ -814,7 +814,7 @@
 <dt id="q---quiet"><b>-q, --quiet</b></dt>
 <dd>
 
-<p>Print no footer at all. This option has different meaning if <i>--link-check</i> option is turned on: print only errorneous links.</p>
+<p>Print no footer at all. This option has different meaning if <i>--link-check</i> option is turned on: print only erroneous links.</p>
 
 </dd>
 <dt id="V---version"><b>V, --version</b></dt>
@@ -829,7 +829,7 @@
 
 <p>Program converts text files to HTML. The basic idea is to rely on indentation level, and the layout used is called &#39;Technical format&#39; (TF) where only minimal conventions are used to mark italic, bold etc. text. The Basic principles can be demonstrated below. Notice the column poisiton ruler at the top:</p>
 
-<pre><code> --//-- decription start
+<pre><code> --//-- description start
 
  123456789 123456789 123456789 123456789 123456789 column numbers
 
@@ -894,7 +894,7 @@
              Notice that previous paragraph ends to P-comma
              code, it tells this paragraph to continue in
              bullet mode, otherwise this text at column 12
-             would be intepreted as code section surrounded
+             would be interpreted as code section surrounded
              by &lt;pre&gt; HTML codes.
 
 
@@ -920,15 +920,15 @@
          white space. This may be more convenient way to disable email
          addresses temporarily.
 
- Heading1 again at colum 0
+ Heading1 again at column 0
 
-     Subheading at colum 4
+     Subheading at column 4
 
          And regular text, column 8 txt txt txt txt txt txt txt txt txt
          txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt
          txt txt txt txt txt txt txt txt txt txt txt
 
- --//-- decription end</code></pre>
+ --//-- description end</code></pre>
 
 <p>That is it, there is the whole layout described. More formally the rules of text formatting are secribed below.</p>
 
@@ -961,13 +961,13 @@
 <li><p>Text at column 1 is undefined if it does not start with big letter or number to indicate Heading level 1.</p>
 
 </li>
-<li><p>Text between colums 2 and 3 is marked with &lt;em&gt;</p>
+<li><p>Text between columns 2 and 3 is marked with &lt;em&gt;</p>
 
 </li>
 <li><p>Column 4 is reserved for heading level 2</p>
 
 </li>
-<li><p>Text between colums 5-7 is marked with &lt;strong&gt;</p>
+<li><p>Text between columns 5-7 is marked with &lt;strong&gt;</p>
 
 </li>
 <li><p>Text at column 7 is &lt;em&gt; if the first character is double quote.</p>
@@ -976,7 +976,7 @@
 <li><p>Column 10 is reserved for &lt;em&gt; text. If you want to quote someone or to add reference text, place the text in this column.</p>
 
 </li>
-<li><p>Text at colums 9 and 11 are marked with &lt;strong&gt;</p>
+<li><p>Text at columns 9 and 11 are marked with &lt;strong&gt;</p>
 
 </li>
 </ul>
@@ -988,7 +988,7 @@
 <li><p>Column 8 is reserved for normal text</p>
 
 </li>
-<li><p>At the start of text, at colum 8, there can be DOT-code or COMMA-code.</p>
+<li><p>At the start of text, at column 8, there can be DOT-code or COMMA-code.</p>
 
 </li>
 </ul>
@@ -1055,21 +1055,21 @@
 <dt id="italic-bold-code-small-big-tokens">italic, bold, code, small, big tokens</dt>
 <dd>
 
-<pre><code>    _this_      is intepreted as &lt;strong class=&#39;word&#39;&gt;this&lt;/strong&gt;
-    *this*      is intepreted as &lt;em class=&#39;word&#39;&gt;this&lt;/em&gt;
-    `this&#39;      is intepreted as &lt;sample class=&#39;word&#39;&gt;this&lt;/sample&gt; `</code></pre>
+<pre><code>    _this_      is interpreted as &lt;strong class=&#39;word&#39;&gt;this&lt;/strong&gt;
+    *this*      is interpreted as &lt;em class=&#39;word&#39;&gt;this&lt;/em&gt;
+    `this&#39;      is interpreted as &lt;sample class=&#39;word&#39;&gt;this&lt;/sample&gt; `</code></pre>
 
 <p>Exra modifiers that can be mixed with the above. Usually if you want bigger font, CAPITALIZE THE WORDS.</p>
 
-<pre><code>    =this=      is intepreted as &lt;span class=&quot;word-small&quot;&gt;this&lt;/span&gt;
-    +this+      is intepreted as &lt;span class=&quot;word-big&quot;&gt;this&lt;/span&gt;
-    [this]      is intepreted as &lt;span class=&quot;word-ref&quot;&gt;this&lt;/span&gt;</code></pre>
+<pre><code>    =this=      is interpreted as &lt;span class=&quot;word-small&quot;&gt;this&lt;/span&gt;
+    +this+      is interpreted as &lt;span class=&quot;word-big&quot;&gt;this&lt;/span&gt;
+    [this]      is interpreted as &lt;span class=&quot;word-ref&quot;&gt;this&lt;/span&gt;</code></pre>
 
 </dd>
 <dt id="superscripting">superscripting</dt>
 <dd>
 
-<pre><code>    word[this]  is intepreted as superscript. You can use like
+<pre><code>    word[this]  is interpreted as superscript. You can use like
                 this[1], multiple[(2)] and almost any[(ab)] and
                 imaginable[IV superscritps] as long as the left
                 bracket is attached to the word.</code></pre>
@@ -1079,7 +1079,7 @@
 <dd>
 
 <pre><code>    12[[10]]    is representation of value 12 un base 10.
-                This is intepreted as subscript. You can use like
+                This is interpreted as subscript. You can use like
                 this[[1]], multiple[[(2)]] and almost any[[(ab)]] and
                 imaginable[[IV superscritps]] as long as *two* left
                 brackets are attached to the word.</code></pre>
@@ -1172,7 +1172,7 @@
 
 <ul>
 
-<li><p>The bulletin table is contructed if there is &quot;o&quot; or &quot;*&quot; at column 8 and 3 spaces after it, so that text starts at column 12. Bulleted lines are advised to be kept together; no spaces between bullet blocks.</p>
+<li><p>The bulletin table is constructed if there is &quot;o&quot; or &quot;*&quot; at column 8 and 3 spaces after it, so that text starts at column 12. Bulleted lines are advised to be kept together; no spaces between bullet blocks.</p>
 
 <pre><code>    *   This is a bullet
     *   This is a bullte</code></pre>
@@ -1250,7 +1250,7 @@
 
 <p>#INCLUDE- command</p>
 
-<p>This is used to include the content into current current position. The URL can be a filename reference, where every $VAR is subtituted from the environment variables. The tilde(~) expansion is not supported. The included filename is operating system supported path location.</p>
+<p>This is used to include the content into current current position. The URL can be a filename reference, where every $VAR is substituted from the environment variables. The tilde(~) expansion is not supported. The included filename is operating system supported path location.</p>
 
 <p>A prefix <code>raw:</code> disables any normal formatting. The file content is included as is.</p>
 
@@ -1299,7 +1299,7 @@
 <dt id="Fragment-identifiers-for-named-tags">Fragment identifiers for named tags</dt>
 <dd>
 
-<p>#REF command is used for refering to HTML &lt;name&gt; tag inside current document. The whole command must be placed on one single line and cannot be broken to multiple lines. An example:</p>
+<p>#REF command is used for referring to HTML &lt;name&gt; tag inside current document. The whole command must be placed on one single line and cannot be broken to multiple lines. An example:</p>
 
 <pre><code>    #REF #how_to_profile;(Note: profiling);
           (1)            (2)
@@ -1448,7 +1448,7 @@
 
 <h2 id="Standards">Standards</h2>
 
-<p>RFC <b>1766</b> contains list of langauge codes at http://www.rfc.net/</p>
+<p>RFC <b>1766</b> contains list of language codes at http://www.rfc.net/</p>
 
 <p>Latest HTML/XHTML and CSS specifications are at http://www.w3c.org/</p>
 

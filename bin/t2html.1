@@ -165,7 +165,7 @@ pages. An example of conversion:
 \&\fBRequirements for the input ascii files\fR
 .PP
 The file must be written in Technical Format, whose layout is described in
-the this manual. Basicly the idea is simple and there are only two heading
+the this manual. Basically the idea is simple and there are only two heading
 levels: one at column 0 and the other at column 4 (halfway between the tab
 width). Standard text starts at column 8 (the position after pressed tab-key).
 .PP
@@ -325,7 +325,7 @@ the buttons are defined by a separate program. And example using Perl:
 .IP "\fB\-\-reference tag=value\fR" 4
 .IX Item "--reference tag=value"
 You can add any custom references (tags) inside text and get them expand to
-any value. This option can be given multiple times and every occurrance
+any value. This option can be given multiple times and every occurrence
 of \s-1TAG\s0 is replaced with \s-1VALUE. E\s0.g. when given following options:
 .Sp
 .Vb 2
@@ -346,7 +346,7 @@ See above. String that is used to split the \s-1TAG\s0 and \s-1VALUE.\s0 Default
 sign \*(L"=\*(R".
 .IP "\fB\-T, \-\-toc\-url\-print\fR" 4
 .IX Item "-T, --toc-url-print"
-Display URLs (contructed from headings) that build up the Table of Contents
+Display URLs (constructed from headings) that build up the Table of Contents
 (\s-1NAME AHREF\s0 tags) in a document. The list is outputted to stderr, so that
 it can be separated:
 .Sp
@@ -372,7 +372,7 @@ options, something more fancier is used. The code is wrapped inside a
 .el .IP "\fB\-\-css\-code\-note ``\s-1REGEXP'' \s0\fR" 4
 .IX Item "--css-code-note REGEXP "
 Option \fB\-\-css\-code\-bg\fR is required to activate this option. A special word
-defined using regexp (defualt is 'Note:') will mark code sections specially.
+defined using regexp (default is 'Note:') will mark code sections specially.
 The \f(CW\*(C`first word\*(C'\fR is matched against the supplied Perl regexp.
 .Sp
 The supplied regexp must not, repeat, must not, include any matching group
@@ -562,7 +562,7 @@ can appear multiple times and the external \s-1CSS\s0 files are added in
 listed order.
 .IP "\fB\-\-css\-font\-type CSS-DEFINITION\fR" 4
 .IX Item "--css-font-type CSS-DEFINITION"
-Set the \s-1BODY\s0 element's font defintion to CSS-DEFINITION. The
+Set the \s-1BODY\s0 element's font definition to CSS-DEFINITION. The
 default value used is the regular typeset used in newspapers and books:
 .Sp
 .Vb 1
@@ -712,13 +712,13 @@ during the generation of \s-1HTML.\s0 This only affects the text that is shown t
 end-user, like text \*(L"Table Of contents\*(R". The default setting is \*(L"en\*(R". See
 section \*(L"\s-1SEE ALSO\*(R"\s0 for standards \s-1ISO 639\s0 and \s-1ISO 3166\s0 for proper codes.
 .Sp
-The selected langauge changes propgram's internal arrays in two ways: 1)
+The selected language changes propgram's internal arrays in two ways: 1)
 Instead of default \*(L"Table of ocntents\*(R" heading the national langaugage
 equivalent will be used 2) The text \*(L"Pic\*(R" below embedded sequentially
 numbered pictures will use natinal equivalent.
 .Sp
 If your languagae is not supported, please send the phrase for \*(L"Table of
-contents\*(R" and word \*(L"Pic\*(R" in your langauge to the maintainer.
+contents\*(R" and word \*(L"Pic\*(R" in your language to the maintainer.
 .IP "\fB\-\-script\-file \s-1FILE\s0\fR" 4
 .IX Item "--script-file FILE"
 Include java code that must be complete <script...></script> from \s-1FILE.\s0 The
@@ -969,7 +969,7 @@ Print verbose messages.
 .IP "\fB\-q, \-\-quiet\fR" 4
 .IX Item "-q, --quiet"
 Print no footer at all. This option has different meaning if
-\&\fI\-\-link\-check\fR option is turned on: print only errorneous links.
+\&\fI\-\-link\-check\fR option is turned on: print only erroneous links.
 .IP "\fBV, \-\-version\fR" 4
 .IX Item "V, --version"
 Print program version information.
@@ -982,7 +982,7 @@ text. The Basic principles can be demonstrated below. Notice the
 column poisiton ruler at the top:
 .PP
 .Vb 1
-\& \-\-//\-\- decription start
+\& \-\-//\-\- description start
 \&
 \& 123456789 123456789 123456789 123456789 123456789 column numbers
 \&
@@ -1047,7 +1047,7 @@ column poisiton ruler at the top:
 \&             Notice that previous paragraph ends to P\-comma
 \&             code, it tells this paragraph to continue in
 \&             bullet mode, otherwise this text at column 12
-\&             would be intepreted as code section surrounded
+\&             would be interpreted as code section surrounded
 \&             by <pre> HTML codes.
 \&
 \&
@@ -1073,15 +1073,15 @@ column poisiton ruler at the top:
 \&         white space. This may be more convenient way to disable email
 \&         addresses temporarily.
 \&
-\& Heading1 again at colum 0
+\& Heading1 again at column 0
 \&
-\&     Subheading at colum 4
+\&     Subheading at column 4
 \&
 \&         And regular text, column 8 txt txt txt txt txt txt txt txt txt
 \&         txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt
 \&         txt txt txt txt txt txt txt txt txt txt txt
 \&
-\& \-\-//\-\- decription end
+\& \-\-//\-\- description end
 .Ve
 .PP
 That is it, there is the whole layout described. More formally the rules
@@ -1114,24 +1114,24 @@ The basic rules for positioning text in certain columns:
 Text at column 1 is undefined if it does not start with big letter or
 number to indicate Heading level 1.
 .IP "\(bu" 4
-Text between colums 2 and 3 is marked with <em>
+Text between columns 2 and 3 is marked with <em>
 .IP "\(bu" 4
 Column 4 is reserved for heading level 2
 .IP "\(bu" 4
-Text between colums 5\-7 is marked with <strong>
+Text between columns 5\-7 is marked with <strong>
 .IP "\(bu" 4
 Text at column 7 is <em> if the first character is double quote.
 .IP "\(bu" 4
 Column 10 is reserved for <em> text. If you want to quote someone
 or to add reference text, place the text in this column.
 .IP "\(bu" 4
-Text at colums 9 and 11 are marked with <strong>
+Text at columns 9 and 11 are marked with <strong>
 .PP
 Column 8 for text and special codes
 .IP "\(bu" 4
 Column 8 is reserved for normal text
 .IP "\(bu" 4
-At the start of text, at colum 8, there can be DOT-code or COMMA-code.
+At the start of text, at column 8, there can be DOT-code or COMMA-code.
 .PP
 Column 12 is special
 .IP "\(bu" 4
@@ -1198,23 +1198,23 @@ not <sample> while it is placed at column 12
 .IP "italic, bold, code, small, big tokens" 4
 .IX Item "italic, bold, code, small, big tokens"
 .Vb 3
-\&    _this_      is intepreted as <strong class=\*(Aqword\*(Aq>this</strong>
-\&    *this*      is intepreted as <em class=\*(Aqword\*(Aq>this</em>
-\&    \`this\*(Aq      is intepreted as <sample class=\*(Aqword\*(Aq>this</sample> \`
+\&    _this_      is interpreted as <strong class=\*(Aqword\*(Aq>this</strong>
+\&    *this*      is interpreted as <em class=\*(Aqword\*(Aq>this</em>
+\&    \`this\*(Aq      is interpreted as <sample class=\*(Aqword\*(Aq>this</sample> \`
 .Ve
 .Sp
 Exra modifiers that can be mixed with the above. Usually if you want
 bigger font, \s-1CAPITALIZE THE WORDS.\s0
 .Sp
 .Vb 3
-\&    =this=      is intepreted as <span class="word\-small">this</span>
-\&    +this+      is intepreted as <span class="word\-big">this</span>
-\&    [this]      is intepreted as <span class="word\-ref">this</span>
+\&    =this=      is interpreted as <span class="word\-small">this</span>
+\&    +this+      is interpreted as <span class="word\-big">this</span>
+\&    [this]      is interpreted as <span class="word\-ref">this</span>
 .Ve
 .IP "superscripting" 4
 .IX Item "superscripting"
 .Vb 4
-\&    word[this]  is intepreted as superscript. You can use like
+\&    word[this]  is interpreted as superscript. You can use like
 \&                this[1], multiple[(2)] and almost any[(ab)] and
 \&                imaginable[IV superscritps] as long as the left
 \&                bracket is attached to the word.
@@ -1223,7 +1223,7 @@ bigger font, \s-1CAPITALIZE THE WORDS.\s0
 .IX Item "subscripting"
 .Vb 5
 \&    12[[10]]    is representation of value 12 un base 10.
-\&                This is intepreted as subscript. You can use like
+\&                This is interpreted as subscript. You can use like
 \&                this[[1]], multiple[[(2)]] and almost any[[(ab)]] and
 \&                imaginable[[IV superscritps]] as long as *two* left
 \&                brackets are attached to the word.
@@ -1322,7 +1322,7 @@ clickable.
 .SS "Lists and bullets"
 .IX Subsection "Lists and bullets"
 .IP "\(bu" 4
-The bulletin table is contructed if there is \*(L"o\*(R" or \*(L"*\*(R" at column 8 and 3
+The bulletin table is constructed if there is \*(L"o\*(R" or \*(L"*\*(R" at column 8 and 3
 spaces after it, so that text starts at column 12. Bulleted lines are
 advised to be kept together; no spaces between bullet blocks.
 .Sp
@@ -1410,7 +1410,7 @@ You can also embed your own comments to the text. These are stripped away:
 #INCLUDE\- command
 .Sp
 This is used to include the content into current current position. The \s-1URL\s0
-can be a filename reference, where every \f(CW$VAR\fR is subtituted from the
+can be a filename reference, where every \f(CW$VAR\fR is substituted from the
 environment variables. The tilde(~) expansion is not supported. The
 included filename is operating system supported path location.
 .Sp
@@ -1468,7 +1468,7 @@ which is used in case the browser is not capable of showing pictures.
 You can suppress the \s-1ALT\s0 text with option \fB\-\-no\-picture\-alt\fR.
 .IP "Fragment identifiers for named tags" 4
 .IX Item "Fragment identifiers for named tags"
-#REF command is used for refering to \s-1HTML\s0 <name> tag inside current
+#REF command is used for referring to \s-1HTML\s0 <name> tag inside current
 document. The whole command must be placed on one single line and
 cannot be broken to multiple lines. An example:
 .Sp
@@ -1658,7 +1658,7 @@ available. See package tinytf.el in project
 http://freecode.com/projects/emacs\-tiny\-tools
 .SS "Standards"
 .IX Subsection "Standards"
-\&\s-1RFC \s0\fB1766\fR contains list of langauge codes at
+\&\s-1RFC \s0\fB1766\fR contains list of language codes at
 http://www.rfc.net/
 .PP
 Latest \s-1HTML/XHTML\s0 and \s-1CSS\s0 specifications are at http://www.w3c.org/
