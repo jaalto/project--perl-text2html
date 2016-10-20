@@ -1,3 +1,10 @@
+2016-10-20 Thu  Jari Aalto  <jari.aalto@cante.net>
+
+	* bin/t2html.pl: (POD): Fix typos.
+
+	* doc/index.html: Remove call to
+	http://tiny-tools.sourceforge.net/bmt-time.js
+
 2015-10-19  Jari Aalto  <jari.aalto@cante.net>
 
 	* bin/t2html.pl: (Help): emove eval and use plain

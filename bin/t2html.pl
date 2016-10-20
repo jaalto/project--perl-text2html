@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2015.1019.1636';
+$VERSION = '2016.1020.1118';
 
 # ****************************************************************************
 #
@@ -1209,7 +1209,7 @@ pages. An example of conversion:
 B<Requirements for the input ascii files>
 
 The file must be written in Technical Format, whose layout is described in
-the this manual. Basicly the idea is simple and there are only two heading
+the this manual. Basically the idea is simple and there are only two heading
 levels: one at column 0 and the other at column 4 (halfway between the tab
 width). Standard text starts at column 8 (the position after pressed tab-key).
 
@@ -1378,7 +1378,7 @@ URL to go to next document or string I<none>.
 =item B<--reference tag=value>
 
 You can add any custom references (tags) inside text and get them expand to
-any value. This option can be given multiple times and every occurrance
+any value. This option can be given multiple times and every occurrence
 of TAG is replaced with VALUE. E.g. when given following options:
 
     --reference "#HOME-URL=http://www.example.com/dir"
@@ -1397,7 +1397,7 @@ sign "=".
 
 =item B<-T, --toc-url-print>
 
-Display URLs (contructed from headings) that build up the Table of Contents
+Display URLs (constructed from headings) that build up the Table of Contents
 (NAME AHREF tags) in a document. The list is outputted to stderr, so that
 it can be separated:
 
@@ -1424,7 +1424,7 @@ options, something more fancier is used. The code is wrapped inside a
 =item B<--css-code-note "REGEXP" >
 
 Option B<--css-code-bg> is required to activate this option. A special word
-defined using regexp (defualt is 'Note:') will mark code sections specially.
+defined using regexp (default is 'Note:') will mark code sections specially.
 The C<first word> is matched against the supplied Perl regexp.
 
 The supplied regexp must not, repeat, must not, include any matching group
@@ -1596,7 +1596,7 @@ listed order.
 
 =item B<--css-font-type CSS-DEFINITION>
 
-Set the BODY element's font defintion to CSS-DEFINITION. The
+Set the BODY element's font definition to CSS-DEFINITION. The
 default value used is the regular typeset used in newspapers and books:
 
     --css-font-type='font-family: "Times New Roman", serif;'
@@ -1742,13 +1742,13 @@ during the generation of HTML. This only affects the text that is shown to
 end-user, like text "Table Of contents". The default setting is "en". See
 section "SEE ALSO" for standards ISO 639 and ISO 3166 for proper codes.
 
-The selected langauge changes propgram's internal arrays in two ways: 1)
+The selected language changes propgram's internal arrays in two ways: 1)
 Instead of default "Table of ocntents" heading the national langaugage
 equivalent will be used 2) The text "Pic" below embedded sequentially
 numbered pictures will use natinal equivalent.
 
 If your languagae is not supported, please send the phrase for "Table of
-contents" and word "Pic" in your langauge to the maintainer.
+contents" and word "Pic" in your language to the maintainer.
 
 =item B<--script-file FILE>
 
@@ -2003,7 +2003,7 @@ Print verbose messages.
 =item B<-q, --quiet>
 
 Print no footer at all. This option has different meaning if
-I<--link-check> option is turned on: print only errorneous links.
+I<--link-check> option is turned on: print only erroneous links.
 
 =item B<V, --version>
 
@@ -2019,7 +2019,7 @@ indentation level, and the layout used is called 'Technical format'
 text. The Basic principles can be demonstrated below. Notice the
 column poisiton ruler at the top:
 
- --//-- decription start
+ --//-- description start
 
  123456789 123456789 123456789 123456789 123456789 column numbers
 
@@ -2084,7 +2084,7 @@ column poisiton ruler at the top:
 	     Notice that previous paragraph ends to P-comma
 	     code, it tells this paragraph to continue in
 	     bullet mode, otherwise this text at column 12
-	     would be intepreted as code section surrounded
+	     would be interpreted as code section surrounded
 	     by <pre> HTML codes.
 
 
@@ -2110,15 +2110,15 @@ column poisiton ruler at the top:
 	 white space. This may be more convenient way to disable email
 	 addresses temporarily.
 
- Heading1 again at colum 0
+ Heading1 again at column 0
 
-     Subheading at colum 4
+     Subheading at column 4
 
 	 And regular text, column 8 txt txt txt txt txt txt txt txt txt
 	 txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt txt
 	 txt txt txt txt txt txt txt txt txt txt txt
 
- --//-- decription end
+ --//-- description end
 
 That is it, there is the whole layout described. More formally the rules
 of text formatting are secribed below.
@@ -2169,7 +2169,7 @@ number to indicate Heading level 1.
 
 =item *
 
-Text between colums 2 and 3 is marked with <em>
+Text between columns 2 and 3 is marked with <em>
 
 =item *
 
@@ -2177,7 +2177,7 @@ Column 4 is reserved for heading level 2
 
 =item *
 
-Text between colums 5-7 is marked with <strong>
+Text between columns 5-7 is marked with <strong>
 
 =item *
 
@@ -2190,7 +2190,7 @@ or to add reference text, place the text in this column.
 
 =item *
 
-Text at colums 9 and 11 are marked with <strong>
+Text at columns 9 and 11 are marked with <strong>
 
 =back
 
@@ -2204,7 +2204,7 @@ Column 8 is reserved for normal text
 
 =item *
 
-At the start of text, at colum 8, there can be DOT-code or COMMA-code.
+At the start of text, at column 8, there can be DOT-code or COMMA-code.
 
 =back
 
@@ -2281,20 +2281,20 @@ not <sample> while it is placed at column 12
 
 =item italic, bold, code, small, big tokens
 
-    _this_      is intepreted as <strong class='word'>this</strong>
-    *this*      is intepreted as <em class='word'>this</em>
-    `this'      is intepreted as <sample class='word'>this</sample> `
+    _this_      is interpreted as <strong class='word'>this</strong>
+    *this*      is interpreted as <em class='word'>this</em>
+    `this'      is interpreted as <sample class='word'>this</sample> `
 
 Exra modifiers that can be mixed with the above. Usually if you want
 bigger font, CAPITALIZE THE WORDS.
 
-    =this=      is intepreted as <span class="word-small">this</span>
-    +this+      is intepreted as <span class="word-big">this</span>
-    [this]      is intepreted as <span class="word-ref">this</span>
+    =this=      is interpreted as <span class="word-small">this</span>
+    +this+      is interpreted as <span class="word-big">this</span>
+    [this]      is interpreted as <span class="word-ref">this</span>
 
 =item superscripting
 
-    word[this]  is intepreted as superscript. You can use like
+    word[this]  is interpreted as superscript. You can use like
 		this[1], multiple[(2)] and almost any[(ab)] and
 		imaginable[IV superscritps] as long as the left
 		bracket is attached to the word.
@@ -2302,7 +2302,7 @@ bigger font, CAPITALIZE THE WORDS.
 =item subscripting
 
     12[[10]]    is representation of value 12 un base 10.
-		This is intepreted as subscript. You can use like
+		This is interpreted as subscript. You can use like
 		this[[1]], multiple[[(2)]] and almost any[[(ab)]] and
 		imaginable[[IV superscritps]] as long as *two* left
 		brackets are attached to the word.
@@ -2407,7 +2407,7 @@ clickable.
 
 =item *
 
-The bulletin table is contructed if there is "o" or "*" at column 8 and 3
+The bulletin table is constructed if there is "o" or "*" at column 8 and 3
 spaces after it, so that text starts at column 12. Bulleted lines are
 advised to be kept together; no spaces between bullet blocks.
 
@@ -2498,7 +2498,7 @@ You can also embed your own comments to the text. These are stripped away:
 #INCLUDE- command
 
 This is used to include the content into current current position. The URL
-can be a filename reference, where every $VAR is subtituted from the
+can be a filename reference, where every $VAR is substituted from the
 environment variables. The tilde(~) expansion is not supported. The
 included filename is operating system supported path location.
 
@@ -2552,7 +2552,7 @@ You can suppress the ALT text with option B<--no-picture-alt>.
 
 =item Fragment identifiers for named tags
 
-#REF command is used for refering to HTML <name> tag inside current
+#REF command is used for referring to HTML <name> tag inside current
 document. The whole command must be placed on one single line and
 cannot be broken to multiple lines. An example:
 
@@ -2729,7 +2729,7 @@ http://freecode.com/projects/emacs-tiny-tools
 
 =head2 Standards
 
-RFC B<1766> contains list of langauge codes at
+RFC B<1766> contains list of language codes at
 http://www.rfc.net/
 
 Latest HTML/XHTML and CSS specifications are at http://www.w3c.org/
