@@ -4,7 +4,7 @@
 #
 #   Copyright information
 #
-#       Copyright (C) 1996-2015 Jari Aalto
+#       Copyright (C) 1996-2016 Jari Aalto
 #
 #   License
 #
@@ -2776,7 +2776,7 @@ Homepage is at http://freecode.com/projects/perl-text2html
 
 =head1 AUTHOR
 
-Copyright (C) 1996-2014 <jari.aalto@cante.net>
+Copyright (C) 1996-2016 <jari.aalto@cante.net>
 
 This program is free software; you can redistribute and/or modify
 program under the terms of GNU General Public license either version 2
