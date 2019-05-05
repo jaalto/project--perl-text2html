@@ -1,5 +1,7 @@
 2019-05-05 Sun  Jari Aalto  <jari.aalto@cante.net>
 
+	* ALL: update copyright years. Point URLs to Github.
+
 	* Makefile (html): Add doc/conversion/index.html
 
 2016-10-20 Thu  Jari Aalto  <jari.aalto@cante.net>
