@@ -78,7 +78,7 @@ use vars qw ( $VERSION );
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2016.1020.1118';
+$VERSION = '2019.0505.1548';
 
 # ****************************************************************************
 #
@@ -219,7 +219,7 @@ sub Initialize ()
 
     $LICENSE	= "GPL-2+";
     $AUTHOR     = "Jari Aalto";
-    $URL        = "http://freecode.com/projects/perl-text2html";
+    $URL        = "https://github.com/jaalto/project--perl-text2html";
 
     $OUTPUT_AUTOFLUSH = 1;
     $HTTP_CODE_OK     = 200;
@@ -1204,7 +1204,7 @@ pages. An example of conversion:
   http://pm-doc.sourceforge.net/pm-tips.css
 
   3. An Emacs mode tinytf.el for writing the text files (optional)
-  https://savannah.nongnu.org/projects/emacs-tiny-tools
+  https://github.com/jaalto/project--emacs-tiny-tools
 
 B<Requirements for the input ascii files>
 
@@ -1258,8 +1258,7 @@ To help maintining large documents, there is also available an
 I<Emacs> minor mode, package called I<tinytf.el>, which offers text
 fontification with colors, Indentation control, bullet filling,
 heading renumbering, word markup, syntax highlighting etc.
-See project http://freecode.com/projects/emacs-tiny-tools
-
+See https://github.com/jaalto/project--emacs-tiny-tools
 
 =head1 OPTIONS
 
@@ -2725,7 +2724,7 @@ iMATIX created htmlpp which is available from http://www.imatix.com and seen
 
 Emacs minor mode to help writing documents based on TF layout is
 available. See package tinytf.el in project
-http://freecode.com/projects/emacs-tiny-tools
+https://github.com/jaalto/project--emacs-tiny-tools
 
 =head2 Standards
 
@@ -2772,7 +2771,7 @@ instead of included link extracting algorithm.
 
 =head1 AVAILABILITY
 
-Homepage is at http://freecode.com/projects/perl-text2html
+Homepage is at https://github.com/jaalto/project--perl-text2html
 
 =head1 AUTHOR
 
@@ -10163,8 +10162,7 @@ t2html Test Page
 	The editing mode can automatically generate the table of
 	contents and the HTML generator can use it to generate a two
 	frame output with the TOC in the left frame as hotlinks to the
-	sections and subsections.
-	Visit http://freecode.com/projects/emacs-tiny-tools
+	sections and subsections. (Emacs mode in tinytf.el)
 
     Bullets, lists, and links
 

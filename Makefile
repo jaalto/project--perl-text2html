@@ -137,12 +137,13 @@ doc/manual/index.txt: $(PL_SCRIPT)
 	@-rm -f *.x~~ pod*.tmp
 
 doc/conversion/index.html: doc/conversion/index.txt
-	perl -S t2html.pl --Auto-detect --Out --print-url $<
+	perl -S t2html.pl --auto-detect --out --print-url $<
+	@-rm -f *.x~~ pod*.tmp
 
 # Rule: man - Generate or update manual page
 man: bin/$(PACKAGE).1
 
-html: doc/manual/index.html
+html: doc/manual/index.html doc/conversion/index.html
 
 txt: doc/manual/index.txt
 

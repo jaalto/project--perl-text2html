@@ -129,7 +129,7 @@ Table of contents
         number is displayed or editor can be configured to advance your
         TAB by 4 spaces. That's it.
         An Emacs minor mode (See package
-        #URL<http://freecode.com/projects/emacs-tiny-tools><tinytf.el>) can
+        #URL<https://github.com/jaalto/project--emacs-tiny-tools><tinytf.el>) can
         make the writing documents easy. The mode will help formatting
         paragraphs, filling bullets numbering headings and keeping TOC
         up to date.
@@ -285,10 +285,11 @@ Table of contents
              html, which can then be read with a browser."
         o    #URL<http://wwwwbs.cs.tu-berlin.de/~schwartz/pmh/><Laola>
              Viewing MS WORD files.
-             "Laola(perl) does a respectable job of taking MSWord files to text
-             ...LAOLA is giving access to the raw document streams of any program
-             using "structured storage" technology to save its documents.
-             ELSER is dealing especially with these streams as they are present
+             "Laola(perl) does a respectable job of taking MSWord
+             files to text ...LAOLA is giving access to the raw
+             document streams of any program using "structured
+             storage" technology to save its documents. ELSER is
+             dealing especially with these streams as they are present
              in Word 6 and Word 7 documents."
 
     2.5 General Document Maintenance tools
