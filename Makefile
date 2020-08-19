@@ -187,7 +187,7 @@ install-bin:
 # Rule: install - Standard install
 install: install-bin install-man install-doc
 
-# Rule: install-test - for Maintainer only
+# Rule: install-test - [maintainer] test installation in tmp directory
 install-test:
 	rm -rf tmp
 	make DESTDIR=`pwd`/tmp prefix=/usr install
