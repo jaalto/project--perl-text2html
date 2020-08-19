@@ -61,6 +61,8 @@ TAR_OPT_NO	= --exclude='.build'	 \
 		  --exclude='.bzr'	 \
 		  --exclude='*.tar*'	 \
 		  --exclude='*.tgz'
+# E.g. --verbose
+TAR_OPT_USER    =
 
 INSTALL		= /usr/bin/install
 INSTALL_BIN	= $(INSTALL) -m 755
@@ -167,7 +169,7 @@ install-doc:
 	[ ! "$(INSTALL_OBJS_DOC)" ] || \
 		$(INSTALL_DATA) $(INSTALL_OBJS_DOC) $(DOCDIR)
 
-	$(TAR) -C doc $(TAR_OPT_NO) --create --file=- . | \
+	$(TAR) -C doc $(TAR_OPT_NO) $(TAR_OPT_USER) --create --file=- . | \
 	$(TAR) -C $(DOCDIR) --extract --file=-
 
 install-man: man
