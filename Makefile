@@ -154,7 +154,7 @@ txt: doc/manual/index.txt
 # Rule: doc - Generate or update all documentation
 doc: man html txt
 
-# Rule: perl-test - Check program syntax
+# Internal: perl-test - Check program syntax
 perl-test:
 	# perl-test - Check syntax
 	perl -cw $(PL_SCRIPT)
