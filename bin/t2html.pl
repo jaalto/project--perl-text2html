@@ -71,14 +71,14 @@
 #
 # ****************************************************************************
 
-use vars qw ( $VERSION );
+use vars qw ($VERSION);
 
 #   This is for use of Makefile.PL and ExtUtils::MakeMaker
 #
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2019.0505.1548';
+$VERSION = '2020.0819.0706';
 
 # ****************************************************************************
 #
@@ -88,11 +88,11 @@ $VERSION = '2019.0505.1548';
 
 use strict;
 
-use autouse 'Carp'          => qw( croak carp cluck confess   );
-use autouse 'Pod::Html'     => qw( pod2html                   );
+use autouse 'Carp'          => qw(croak carp cluck confess);
+use autouse 'Pod::Html'     => qw(pod2html);
 
 # Perl 5.x bug, doesn't work
-# use autouse 'Pod::Text'     => qw( pod2text                   );
+# use autouse 'Pod::Text'     => qw(pod2text);
 
 use Pod::Man;
 
@@ -166,15 +166,15 @@ sub HereQuote ($)
 {
     local $ARG = shift;
 
-    my ( $white, $lead );
+    my ($white, $lead);
 
-    if ( /^\s*(?:([^\w\s]+)(\s*).*\n)(?:\s*\1\2?.*\n)+$/ )     #font-lock s//
+    if (/^\s*(?:([^\w\s]+)(\s*).*\n)(?:\s*\1\2?.*\n)+$/) #Emacs font-lock fix s//
     {
-	( $white, $lead ) = ( $2, quotemeta $1);
+	($white, $lead) = ($2, quotemeta $1);
     }
     else
     {
-	( $white, $lead ) = ( /^(\s+)/, '');
+	($white, $lead) = (/^(\s+)/, '');
     }
 
     s/^\s*?$lead(?:$white)?//gm;
@@ -262,7 +262,7 @@ sub Initialize ()
     *BULLET_TYPE_NUMBERED = \-numbered;
     *BULLET_TYPE_NORMAL   = \-normal;
 
-    use vars qw( %COLUMN_HASH );
+    use vars qw(%COLUMN_HASH);
 
     %COLUMN_HASH =
     (
@@ -310,7 +310,7 @@ sub Initialize ()
     # There are some visible LANGUAGE dependent things which must
     # be changed. the internal HTML, NAMES and all can be in English.
 
-    use vars qw( %LANGUAGE_HASH );
+    use vars qw(%LANGUAGE_HASH);
 
     %LANGUAGE_HASH =
     (
@@ -408,20 +408,20 @@ EOF
 #
 # ****************************************************************************
 
-sub HandleCommandLineArgsFromFile ( $ )
+sub HandleCommandLineArgsFromFile ($)
 {
     my $id = "$LIB.HandleCommandLineArgsFromFile";
-    my ( $file ) = @ARG;
+    my ($file) = @ARG;
 
-    local ( *FILE, $ARG );
-    my ( @arr, $line );
+    local (*FILE, $ARG);
+    my (@arr, $line);
 
-    unless ( open FILE, $file )
+    unless (open FILE, $file)
     {
 	die "$id: Cannot open file [$file] $ERRNO";
     }
 
-    while ( defined($ARG = <FILE>) )
+    while (defined($ARG = <FILE>))
     {
 	s/#\s.*//g;                 # Delete comments
 
@@ -453,32 +453,32 @@ sub HandleCommandLineArgsFromFile ( $ )
 
     $ARG = $line;
 
-    while ( $ARG ne ""  )
+    while ($ARG ne "")
     {
 	s/^\s+//;
 
-	if ( /^(-+\S+)(.*)/ )   #font-lock s//
+	if (/^(-+\S+)(.*)/)   #font-lock s//
 	{
 	    $debug  and  warn "$id: PARSE option $1\n";
 
 	    push @arr, $1;
 	    $ARG = $2;
 	}
-	elsif ( /^[\"]([^\"]*)[\"](.*)/ )       #font-lock s//
+	elsif (/^[\"]([^\"]*)[\"](.*)/)       #font-lock s//
 	{
 	    $debug  and  warn "$id: PARSE dquote $1\n";
 
 	    push @arr, $1;
 	    $ARG = $2;
 	}
-	elsif ( /^'([^']*)'(.*)/ )      #font-lock s'/
+	elsif (/^'([^']*)'(.*)/)      #font-lock s'/
 	{
 	    $debug  and  warn "$id: PARSE squote $1\n";
 
 	    push @arr, $1;
 	    $ARG = $2;
 	}
-	elsif ( /^(\S+)(.*)/ )  #font-lock s//  #
+	elsif (/^(\S+)(.*)/)  #font-lock s//  #
 	{
 	    $debug  and  warn "$id: PARSE value  $1\n";
 
@@ -520,7 +520,7 @@ sub VersionInfo ()
 
 sub VersionPrint ()
 {
-    print( VersionInfo() . "\n");
+    print(VersionInfo() . "\n");
     exit 0;
 }
 
@@ -652,7 +652,7 @@ sub HandleCommandLineArgs ()
 
     $LANG_ISO = "en";           # Standard ISO language name, two chars
 
-    if ( defined $LANG and $LANG =~ /^[a-z][a-z]/i ) # s/ environment var
+    if (defined $LANG and $LANG =~ /^[a-z][a-z]/i) # s/ environment var
     {
 	$LANG_ISO = lc $LANG;
     }
@@ -663,13 +663,13 @@ sub HandleCommandLineArgs ()
 
     $ARG = join ' ', @ARGV;
 
-    if ( /(--options?-file(?:=|\s+)(\S+))/  )         # s/
+    if (/(--options?-file(?:=|\s+)(\S+))/)         # s/
     {
 	my $opt  = $1;
 	my $file = $2;
 	my @argv;
 
-	for my $arg ( @ARGV )               # Remove option
+	for my $arg (@ARGV)                 # Remove option
 	{
 	    next if  $arg eq $opt;
 	    push @argv, $arg;
@@ -677,7 +677,7 @@ sub HandleCommandLineArgs ()
 
 	# Merge options
 
-	@ARGV = ( @argv, HandleCommandLineArgsFromFile($file) );
+	@ARGV = (@argv, HandleCommandLineArgsFromFile($file));
     }
 
     my @argv = @ARGV;           # Save value for debugging;
@@ -690,15 +690,15 @@ sub HandleCommandLineArgs ()
     #   --html-column-beg="10 " -->
     #   --html-column-beg=10
 
-    my ( $key, $tag, $val , $email );
+    my ($key, $tag, $val, $email);
 
-    for ( @ARGV )
+    for (@ARGV)
     {
-	if ( /--html-column-(beg|end)/ )
+	if (/--html-column-(beg|end)/)
 	{
-	    if ( /--html-column-(beg|end)=(\w+) +(.+)/ )        #font-lock s//
+	    if (/--html-column-(beg|end)=(\w+) +(.+)/)        #font-lock s//
 	    {
-		( $key, $tag, $val ) = ( $1, $2, $3);
+		($key, $tag, $val) = ($1, $2, $3);
 
 		$COLUMN_HASH{ $key . $tag } = $val;
 		$debug  and  warn "$key$tag ==> $val\n";
@@ -716,17 +716,17 @@ sub HandleCommandLineArgs ()
 
     $BASE  = "";
 
-    my ( @reference , $referenceSeparator );
-    my ( $fontNormal, $fontReadable, $linkCacheFile );
-    my ( $help, $helpHTML, $helpMan, $helpCss);
-    my ( $version, $testpage, $code3d );
-    my ( $codeBg, $codeBg2, $codeNote );
+    my (@reference , $referenceSeparator);
+    my ($fontNormal, $fontReadable, $linkCacheFile);
+    my ($help, $helpHTML, $helpMan, $helpCss);
+    my ( $version, $testpage, $code3d);
+    my ( $codeBg, $codeBg2, $codeNote);
 
     # .................................................... read args ...
 
     # $Getopt::Long::debug = 1;
 
-    Getopt::Long::config( qw
+    Getopt::Long::config(qw
     (
 	no_ignore_case
 	no_ignore_case_always
@@ -828,10 +828,10 @@ sub HandleCommandLineArgs ()
     $verb = 1   if   defined $verb  and  $verb == 0;
     $verb = 0   if ! defined $verb;
 
-    if ( $debug )
+    if ($debug)
     {
 	warn "$id: ARGV => [@ARGV]\n";
-	PrintArray( "$id: ARGV after getopt", \@ARGV );
+	PrintArray("$id: ARGV after getopt", \@ARGV);
 
 	$verb = 10;
     }
@@ -847,7 +847,7 @@ sub HandleCommandLineArgs ()
     $helpMan    and  Help(undef, -man);
     $testpage   and  TestPage();
 
-    if ( $XHTML_RENDER )
+    if ($XHTML_RENDER)
     {
 	my $doctype = Here <<"EOF";
 	<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -862,35 +862,35 @@ EOF
 	@HTML_HASH{qw(br hr pend)} = ("<br />", "<hr />", "</p>");
     }
 
-    if ( defined $OPT_HEADING_TOP_BUTTON )
+    if (defined $OPT_HEADING_TOP_BUTTON)
     {
 	$OPT_HEADING_TOP_BUTTON = 1;
     }
 
-    if ( defined $code3d )
+    if (defined $code3d)
     {
 	$CSS_CODE_STYLE = -d3;
 	$CSS_CODE_STYLE_ATTRIBUTES = $code3d  if $code3d =~ /[a-z]/i
     }
-    elsif ( defined $codeBg )
+    elsif (defined $codeBg)
     {
 	$CSS_CODE_STYLE = -shade;
 	$CSS_CODE_STYLE_ATTRIBUTES = $codeBg  if $codeBg =~ /[a-z]/i
     }
-    elsif ( defined $codeBg2 )
+    elsif (defined $codeBg2)
     {
 	$CSS_CODE_STYLE = -shade2;
 	$CSS_CODE_STYLE_ATTRIBUTES = $codeBg2  if $codeBg2 =~ /[a-z]/i
     }
 
-    unless ( $CSS_CODE_STYLE )
+    unless ($CSS_CODE_STYLE)
     {
 	$CSS_CODE_STYLE = -notset;
     }
 
-    if ( defined $codeNote )
+    if (defined $codeNote)
     {
-	if ( $CSS_CODE_STYLE eq -notset )
+	if ($CSS_CODE_STYLE eq -notset)
 	{
 	    die "$id: Which css style you want with --css-code-note? "
 		. "Please select one of -css-code-* options.";
@@ -898,12 +898,12 @@ EOF
 
 	$ARG = $codeNote;
 
-	unless ( /\S/ )
+	unless (/\S/)
 	{
 	    die "$id: You must supply search regexp: --css-code-note='REGEXP'";
 	}
 
-	if ( s/\(([^?])/(?:$1/g  )
+	if (s/\(([^?])/(?:$1/g)
 	{
 	    $verb and warn "$id: Incorrect --css-code-note."
 		, " Must use non-grouping parens in regexp."
@@ -917,24 +917,24 @@ EOF
 	$CSS_CODE_STYLE_NOTE = 'Note:';
     }
 
-    unless ( defined $OBEY_T2HTML_DIRECTIVES )
+    unless (defined $OBEY_T2HTML_DIRECTIVES)
     {
 	$OBEY_T2HTML_DIRECTIVES = 1;
     }
 
     $LINK_CHECK = 1  if    $LINK_CHECK_ERR_TEXT_ONE_LINE;
 
-    if ( $linkCacheFile )
+    if ($linkCacheFile)
     {
-	LinkCache( -action => '-read', -arg => $linkCacheFile);
+	LinkCache(-action => '-read', -arg => $linkCacheFile);
     }
 
-    for ( @reference )
+    for (@reference)
     {
 	my $sep = $referenceSeparator || "=";
-	my ( $key, $value ) = split /$sep/, $ARG;       #font-lock s/
+	my ($key, $value) = split /$sep/, $ARG;       #font-lock s/
 
-	unless ( $key and $value )
+	unless ($key and $value)
 	{
 	    die "No separator [$sep] found from --reference [$ARG]";
 	}
@@ -944,7 +944,7 @@ EOF
 	$debug  and warn "$id: [$ARG] Making reference [$key] => [$value]\n";
     }
 
-    if ( $LANG_ISO !~ /^[a-z][a-z]/ )                               #font s/
+    if ($LANG_ISO !~ /^[a-z][a-z]/)                               #font s/
     {
 	die "$id: --language setting must contain two character ISO 639 code."
     }
@@ -952,7 +952,7 @@ EOF
     {
 	my $lang = substr lc $LANG_ISO, 0, 2;
 
-	if ( exists $LANGUAGE_HASH{-toc }{$lang} )
+	if (exists $LANGUAGE_HASH{-toc }{$lang})
 	{
 	    $LANG_ISO = $lang;
 	}
@@ -965,7 +965,7 @@ EOF
 	}
     }
 
-    if ( defined $email )
+    if (defined $email)
     {
 	$OPT_EMAIL = $email;
     }
@@ -974,30 +974,30 @@ EOF
 	$OPT_EMAIL = '';
     }
 
-    if ( defined $DOC_URL )
+    if (defined $DOC_URL)
     {
 	local $ARG = $DOC_URL;
 	m,/$,  and  die  "$id: trailing slash in --url ? [$DOC_URL]"; #font m"
     }
 
-    if ( defined $OUTPUT_DIR  and $OUTPUT_DIR eq "none" )           #font m"
+    if (defined $OUTPUT_DIR  and  $OUTPUT_DIR eq "none")           #font m"
     {
 	undef $OUTPUT_DIR;
     }
 
     $OUTPUT_DIR  and  $OUTPUT_AUTOMATIC = 1;
 
-    if ( $FRAME and $XHTML_RENDER )
+    if ($FRAME and $XHTML_RENDER)
     {
 	die "$id: Conflicting options --html-frame and --xhtml. Use only one.";
     }
 
-    if ( $FRAME )
+    if ($FRAME)
     {
 	$OUTPUT_AUTOMATIC = 1;
     }
 
-    if ( not defined $deleteDefault  or  $deleteDefault == 1 )
+    if (not defined $deleteDefault  or  $deleteDefault == 1)
     {
 	#   Delete Emacs folding.el marks that keeps text in sections. #fl
 	#
@@ -1011,7 +1011,7 @@ EOF
 	$DELETE_REGEXP = '^(?:#\s*)?([{]{3}|[}]{3}|(#_comment(?i)))'
     }
 
-    if ( $BASE ne '' )
+    if ($BASE ne '')
     {
 
 	$BASE_URL_ALL   = $BASE;        # copy original
@@ -1035,25 +1035,25 @@ EOF
 	$BASE_URL = $1 if m,(.*)/,;
     }
 
-    if ( @CSS_FILE  and  @CSS_FILE )
+    if (@CSS_FILE  and  @CSS_FILE)
     {
 	$JAVA_CODE = '';
 
 	for my $file (@CSS_FILE)
 	{
 	    $JAVA_CODE .= qq(<link rel="stylesheet")
-			. qq( type="text/css" href="$file">\n);
+			. qq(type="text/css" href="$file">\n);
 	}
     }
 
-    if ( defined $SCRIPT_FILE  and  $SCRIPT_FILE ne '' )
+    if (defined $SCRIPT_FILE  and  $SCRIPT_FILE ne '')
     {
 	local *FILE;
 
 	$debug  and
 	    print "$id: Reading CSS and Java definitions form $SCRIPT_FILE\n";
 
-	if ( open FILE, "<", $SCRIPT_FILE )
+	if (open FILE, "<", $SCRIPT_FILE)
 	{
 	    $JAVA_CODE = join '', <FILE>;
 	    close FILE;
@@ -1065,14 +1065,14 @@ EOF
 	}
     }
 
-    if ( $LINK_CHECK )
+    if ($LINK_CHECK)
     {
 	$LINK_CHECK                  = 1;
-	$MODULE_LWP_OK               = CheckModule( 'LWP::UserAgent');
+	$MODULE_LWP_OK               = CheckModule('LWP::UserAgent');
 	#  http://search.cpan.org/author/PODMASTER/HTML-LinkExtractor-0.07/LinkExtractor.pm
-	$MODULE_LINKEXTRACTOR_OK     = CheckModule( 'HTML::LinkExtractor');
+	$MODULE_LINKEXTRACTOR_OK     = CheckModule('HTML::LinkExtractor');
 
-	if ( not $MODULE_LWP_OK )
+	unless ($MODULE_LWP_OK)
 	{
 	    die "Need library LWP::UserAgent to check links.";
 	}
@@ -1082,30 +1082,30 @@ EOF
     $OUTPUT_TYPE = $OUTPUT_TYPE_SIMPLE   if $OUTPUT_SIMPLE;
     $OUTPUT_TYPE = $OUTPUT_TYPE_QUIET    if $QUIET;
 
-    if ( defined $OPT_AUTO_DETECT )
+    if (defined $OPT_AUTO_DETECT)
     {
-	if (  $OPT_AUTO_DETECT =~ /^$|^\d+$/ )
+	if ($OPT_AUTO_DETECT =~ /^$|^\d+$/)
 	{
 	    # Default value
 	    $OPT_AUTO_DETECT = "(?i)#T2HTML-";
 	}
     }
 
-    if ( defined $SPLIT1 )
+    if (defined $SPLIT1)
     {
 	$SPLIT_REGEXP = '^([.0-9]+ )?[A-Z][a-z0-9]';
 	$debug and warn "$id: SPLIT_REGEXP = $SPLIT_REGEXP\n";
     }
 
-    if ( defined $SPLIT2 )
+    if (defined $SPLIT2)
     {
 	$SPLIT_REGEXP = '^    ([.0-9]+ )?[A-Z][a-z0-9]';
 	$debug and warn "$id: SPLIT_REGEXP = $SPLIT_REGEXP\n";
     }
 
-    use vars qw( $HOME_ABS_PATH );
+    use vars qw($HOME_ABS_PATH);
 
-    if ( defined $PRINT_URL )
+    if (defined $PRINT_URL)
     {
 	#   We can't print absolute references like:
 	#   file:/usr136/users/PM3/foo/file.html because that cannot
@@ -1116,7 +1116,7 @@ EOF
 
 	my $previous = cwd();
 
-	if ( defined $HOME  and  $HOME ne '' )
+	if (defined $HOME  and  $HOME ne '')
 	{
 	    chdir $HOME;
 	    $HOME_ABS_PATH = cwd();
@@ -1124,33 +1124,33 @@ EOF
 	}
     }
 
-    if ( $AS_IS )
+    if ($AS_IS)
     {
 	$BUT_TOP = $BUT_PREV = $BUT_NEXT = "";
     }
 
     # .................................................... css fonts ...
 
-    unless ( defined $CSS_FONT_SIZE )
+    unless (defined $CSS_FONT_SIZE)
     {
 	# $CSS_FONT_SIZE  = $CSS_BODY_FONT_SIZE_NORMAL;
     }
 
-    unless ( defined $CSS_FONT_TYPE )
+    unless (defined $CSS_FONT_TYPE)
     {
 	$CSS_FONT_TYPE  = $CSS_BODY_FONT_TYPE_NORMAL;
     }
 
-    if ( $fontNormal )
+    if ($fontNormal)
     {
 	$CSS_FONT_TYPE = $CSS_BODY_FONT_TYPE_NORMAL;
     }
-    elsif ( $fontReadable )
+    elsif ($fontReadable)
     {
 	$CSS_FONT_TYPE = $CSS_BODY_FONT_TYPE_READABLE
     }
 
-    if ( $AS_IS  and  $FRAME )
+    if ($AS_IS  and  $FRAME)
     {
 	warn "$id: [WARNING] --as-is cancels option --html-frame."
 	    . " Did you mean --quiet?";
@@ -1450,7 +1450,7 @@ first paragraphs at column 12 differently. Like this:
 
     Now, we have some code to show to the user:
 
-	for ( i = 0; i++; i < 10 )
+	for (i = 0; i++; i < 10)
 	{
 	    //  Doing something in this loop
 	}
@@ -1469,7 +1469,7 @@ are rendered as code sections. Like here:
 	Hoewver, this paragraph IS NOT rendered specially
 	any more. Only the first paragraph above.
 
-	for ( i = 0; i++; i < 10 )
+	for (i = 0; i++; i < 10)
 	{
 	    //  Doing something in this loop
 	}
@@ -1482,7 +1482,7 @@ put around the code section at column 12. Here are few examples:
 
 	#t2html::td:bgcolor=#F7F7DE
 
-	for ( i = 0; i++; i < 10 )
+	for (i = 0; i++; i < 10)
 	{
 	    //  Doing something in this loop
 	}
@@ -1491,7 +1491,7 @@ put around the code section at column 12. Here are few examples:
 
 	#t2html::td:bgcolor=#F7F7DE:tableborder:1
 
-	for ( i = 0; i++; i < 10 )
+	for (i = 0; i++; i < 10)
 	{
 	    //  Doing something in this loop
 	}
@@ -1500,7 +1500,7 @@ put around the code section at column 12. Here are few examples:
 
 	#t2html::td:bgcolor="#FFFFFF":tableclass:dashed
 
-	for ( i = 0; i++; i < 10 )
+	for (i = 0; i++; i < 10)
 	{
 	    //  Doing something in this loop
 	}
@@ -1509,7 +1509,7 @@ put around the code section at column 12. Here are few examples:
 
 	#t2html::td:bgcolor="#FFFFFF":table:border=1_width=94%_border=0_cellpadding="10"_cellspacing="0"
 
-	for ( i = 0; i++; i < 10 )
+	for (i = 0; i++; i < 10)
 	{
 	    //  Doing something in this loop
 	}
@@ -1558,7 +1558,7 @@ For example, there are couple of default styles that can be used:
 
 	#t2html::tableclass:dashed
 
-	    for ( i = 0; i++; i < 10 )
+	    for (i = 0; i++; i < 10)
 	    {
 		//  Doing something in this loop
 	    }
@@ -1567,7 +1567,7 @@ For example, there are couple of default styles that can be used:
 
 	#t2html::tableclass:solid
 
-	    for ( i = 0; i++; i < 10 )
+	    for (i = 0; i++; i < 10)
 	    {
 		//  Doing something in this loop
 	    }
@@ -2270,7 +2270,7 @@ not <sample> while it is placed at column 12
     *   This is new bullet
 
 	// and this is code sample after bullet
-	if ( $flag ) { ..do something.. }
+	if ($flag) { ..do something.. }
 
 =back
 
@@ -2794,12 +2794,12 @@ sub Help (;$ $)
     my $msg  = shift;  # optional arg, why are we here...
     my $type = shift;  # optional arg, type
 
-    if ( $type eq -html )
+    if ($type eq -html)
     {
 	$debug  and  print "$id: -html option\n";
 	pod2html $PROGRAM_NAME;
     }
-    elsif ( $type eq -man )
+    elsif ($type eq -man)
     {
 	$debug  and  print "$id: -man option\n";
 
@@ -2816,7 +2816,7 @@ sub Help (;$ $)
 	system "pod2text $PROGRAM_NAME";
     }
 
-    if ( defined $msg )
+    if (defined $msg)
     {
 	print $msg;
 	exit 1;
@@ -2857,7 +2857,7 @@ sub HelpCss ()
 
 sub Min (@)
 {
-    ( sort{$a <=> $b} @ARG )[0];
+    (sort{$a <=> $b} @ARG)[0];
 }
 
 # ****************************************************************************
@@ -2887,15 +2887,15 @@ sub IsHTML ($)
     local $ARG;
     my    $ret = 0;
 
-    unless ( defined $arrRef )
+    unless (defined $arrRef)
     {
 	warn "$id: [ERROR] arrRef is not defined";
 	return;
     }
 
-    for ( @$arrRef[0 .. Min(10, scalar(@$arrRef) -1) ]   )
+    for (@$arrRef[0 .. Min(10, scalar(@$arrRef) -1) ] )
     {
-	if ( /<\s*(HTML|XML)\s*>/i )
+	if (/<\s*(HTML|XML)\s*>/i)
 	{
 	    $ret = 1;
 	    last;
@@ -2935,16 +2935,16 @@ sub LoadUrlSupport ()
 	local $EVAL_ERROR  = '';
 	eval "use $lib";
 
-	if ( $EVAL_ERROR )
+	if ($EVAL_ERROR )
 	{
 	    warn "$id: $lib is not available [$EVAL_ERROR]\n";
 	    $error++;
 	}
     };
 
-    LoadLib( "LWP::UserAgent");
-    LoadLib( "HTML::Parse");
-    LoadLib( "HTML::FormatText");
+    LoadLib("LWP::UserAgent");
+    LoadLib("HTML::Parse");
+    LoadLib("HTML::FormatText");
 
     return 0 if $error;
     1;
@@ -2969,18 +2969,18 @@ sub LoadUrlSupport ()
 #
 # ****************************************************************************
 
-sub PathConvert ( $ ; $ )
+sub PathConvert ($ ; $)
 {
-    my $id           = "$LIB.PathConvert";
-    local ( $ARG   ) = shift;
-    my    ( $unix  ) = shift;
-    my    ( $trail ) = shift;
+    my $id      = "$LIB.PathConvert";
+    local $ARG  = shift;
+    my $unix    = shift;
+    my $trail   = shift;
 
-    if ( defined $unix )
+    if (defined $unix)
     {
 	s,\\,/,g;                   #font s/
 
-	if ( $trail )
+	if ($trail)
 	{
 	    s,/*$,/,;               #font s/
 	}
@@ -2993,7 +2993,7 @@ sub PathConvert ( $ ; $ )
     {
 	s,/,\\,g;                   #fonct s/
 
-	if ( $trail )
+	if ($trail)
 	{
 	    s,\\*$,\\,;
 	}
@@ -3028,21 +3028,21 @@ sub GetHomeDir ()
 
     my $ret;
 
-    unless ( defined $HOME )
+    unless (defined $HOME )
     {
 	print "$id: WARNING Please set environement variable HOME"
 	    , " to your home directory location. In Win32 This might be c:/home"
 	    ;
     }
 
-    if ( defined $HOME )
+    if (defined $HOME)
     {
 	$ret = $HOME;
     }
     else
     {
 	local $ARG;
-	for ( qw(~/tmp /tmp c:/temp)  )
+	for (qw(~/tmp /tmp c:/temp))
 	{
 	    -d  and   $ret = $ARG, last;
 	}
@@ -3075,7 +3075,7 @@ sub PrintArray ($$;*)
     my $id = "$LIB.PrintArray";
     my ($title, $arrayRef, $fh) = @ARG;
 
-    if ( defined $arrayRef )
+    if (defined $arrayRef)
     {
 	$fh       = $fh || \*STDERR;
 	my $i     = 1;
@@ -3083,7 +3083,7 @@ sub PrintArray ($$;*)
 
 	print $fh "\n ------ ARRAY BEG $title\n";
 
-	for ( @$arrayRef )
+	for (@$arrayRef)
 	{
 	    print $fh "[$i/$count] $ARG\n";
 	    $i++;
@@ -3110,10 +3110,10 @@ sub PrintArray ($$;*)
 #
 # ****************************************************************************
 
-sub PrintArray2 ( $ @ )
+sub PrintArray2 ($ @)
 {
     my $id = "$LIB.PrintArray";
-    my ( $name, @arr) = @ARG;
+    my ($name, @arr) = @ARG;
 
     local $ARG;
 
@@ -3122,7 +3122,7 @@ sub PrintArray2 ( $ @ )
 
     warn "$id: $name is empty"  if  not @arr;
 
-    for ( @arr )
+    for (@arr)
     {
 	warn "$id: $name\[$i\] = $ARG/$count\n";
 	$i++;
@@ -3150,7 +3150,7 @@ sub PrintArray2 ( $ @ )
 sub PrintHash ($$;*)
 {
     my $id = "$LIB.PrintHash";
-    my ( $title, $hashRef, $fh ) = @ARG;
+    my ($title, $hashRef, $fh) = @ARG;
 
     $fh = $fh || \*STDOUT;
 
@@ -3158,13 +3158,13 @@ sub PrintHash ($$;*)
 
     print $fh "\n ------ HASH $title -----------\n";
 
-    for ( sort keys %$hashRef )
+    for (sort keys %$hashRef)
     {
-	if ( $$hashRef{$ARG} )
+	if ($$hashRef{$ARG})
 	{
 	    $out = $$hashRef{ $ARG };
 
-	    if ( ref $out eq  "ARRAY" )
+	    if (ref $out eq  "ARRAY")
 	    {
 		$out = "ARRAY => @$out";
 	    }
@@ -3204,9 +3204,9 @@ sub CheckEmail ($)
 
     not defined $email  and  Help "--email missing";
 
-    if  ( $email =~ /^\S*$/ )         # Contains something
+    if  ($email =~ /^\S*$/)         # Contains something
     {
-	if  ( $email !~ /@/  or  $email =~ /[<>]/ )
+	if  ($email !~ /@/  or  $email =~ /[<>]/)
 	{
 	    die "Invalid EMAIL [$email]. It must not contain characters <> "
 	      , "or you didn't include \@\n"
@@ -3237,27 +3237,27 @@ sub DeleteEmailHeaders ($)
     my $id    = "$LIB.DeleteEmailHeaders";
     my ($txt) = @ARG;
 
-    unless ( defined $txt )
+    unless (defined $txt)
     {
 	warn "$id: \$txt is not defined";
 	return;
     }
 
-    my ( @array, $body);
+    my (@array, $body);
     my $line = @$txt[0];
 
-    if ( $line !~ /^[-\w]+:|^From/ )
+    if ($line !~ /^[-\w]+:|^From/)
     {
 	$debug  and print "$id: Skipped, no email ", @$txt[0];
 	@array = @$txt;
     }
     else
     {
-	for $line ( @$txt )
+	for $line (@$txt)
 	{
 	    next if   $body == 0  and  $line !~ /^\s*$/;
 
-	    unless ( $body )
+	    unless ($body)
 	    {
 		$body = 1;
 		next;                           # Ignore one empty line
@@ -3291,7 +3291,7 @@ sub DeleteEmailHeaders ($)
 sub MakeUrlRef ($$;$)
 {
     my $id = "$LIB.MakeUrlRef";
-    my( $ref, $txt, $attr ) = @ARG;
+    my($ref, $txt, $attr) = @ARG;
 
     qq(<a href="$ref" $attr>$txt</A>);
 }
@@ -3319,7 +3319,7 @@ sub MakeUrlRef ($$;$)
 {
     my $staticReference = "";
 
-sub MakeUrlPicture ( % )
+sub MakeUrlPicture (%)
 {
     my $id = "$LIB.MakeUrlPicture";
 
@@ -3330,14 +3330,14 @@ sub MakeUrlPicture ( % )
     my $align   = $arg{-align};
     my $nbr     = $arg{-number};
 
-    if ( not defined $align  or  not $align )
+    if (not defined $align  or  not $align)
     {
 	$align  = "left";
     }
 
-    unless ( $staticReference )
+    unless ($staticReference)
     {
-	$staticReference = Language( -pic);
+	$staticReference = Language(-pic);
     }
 
     my $picText;
@@ -3551,7 +3551,7 @@ sub XlatWordMarkup ($; $)
 
     # Prevent hash lookup, when these are set once.
 
-    unless ( $staticBegBold )
+    unless ($staticBegBold)
     {
 	$staticBegBold = $COLUMN_HASH{ begbold };
 	$staticEndBold = $COLUMN_HASH{ endbold };
@@ -3578,7 +3578,7 @@ sub XlatWordMarkup ($; $)
 	$staticEndQuote = $COLUMN_HASH{ endquote };
     }
 
-    my ( $beg, $end );
+    my ($beg, $end);
     my $prefix = '(?:[\s>=+*_\"()]|^)';
 
     #   Handle `this' text
@@ -3612,7 +3612,7 @@ sub XlatWordMarkup ($; $)
 
     $debug > 3  and  print "$id: after *this* [$ARG]";
 
-    if (  s,($prefix)\*(\S+?)\*,$1$beg$2$end,g  )
+    if ( s,($prefix)\*(\S+?)\*,$1$beg$2$end,g)
     {
 	# For debug only
 	# warn "$id:  $ARG";
@@ -3641,7 +3641,7 @@ sub XlatWordMarkup ($; $)
 
     $debug > 3  and  print "$id: after +this+ [$ARG]";
 
-    unless ( $type eq  -basic )
+    unless ($type eq  -basic)
     {
 
 	#       [Mike] referred to [rfc822]
@@ -3746,7 +3746,7 @@ sub XlatTag2html ($)
 
     $localDebug  and  print "$id: -0- $ARG\n";
 
-    unless ( /<<|>>/ )
+    unless (/<<|>>/)
     {
 	#   You can write PURE HTML inside text like this:
 	#
@@ -3922,7 +3922,7 @@ sub XlatRef ($)
     my $id     = "$LIB.XlatRef";
     local $ARG = shift;
 
-    if (  /(.*)#REF\s+(.*)\s*;(.*);(.*)/ )
+    if (/(.*)#REF\s+(.*)\s*;(.*);(.*)/)
     {
 	# There already may be absolute reference, check it first
 	#
@@ -3934,7 +3934,7 @@ sub XlatRef ($)
 
 	$ARG = $1 .  MakeUrlRef($2, $3) . $4;
 
-	unless ( $ARG =~ /#|https?:|file:|news:|wais:|ftp:/ )
+	unless ($ARG =~ /#|https?:|file:|news:|wais:|ftp:/)
 	{
 	    warn "$id: Suspicious REF. Did you forgot # or http?\n\t$ARG"
 	}
@@ -3942,7 +3942,7 @@ sub XlatRef ($)
 	$debug  and  print "$id:LINE[$ARG]";
 
     }
-    elsif ( /#REF.+#/ )
+    elsif (/#REF.+#/)
     {
 	warn "$id: Suspicious #REF format [$ARG]. Must contain hash-sign(#)";
     }
@@ -3980,7 +3980,7 @@ sub XlatPicture ($)
     my $id     = "$LIB.XlatPicture";
     local $ARG = shift;
 
-    if ( /(.*)#PIC\s+([^#]+[^ #])\s*#\s*(.*)#\s*(.*)#\s*(.*)#(.*)/ )
+    if (/(.*)#PIC\s+([^#]+[^ #])\s*#\s*(.*)#\s*(.*)#\s*(.*)#(.*)/)
     {
 	my ($before, $url, $text, $attr, $align, $rest)
 	    = ($1, $2, $3, $4, $5, $6);
@@ -4007,14 +4007,14 @@ sub XlatPicture ($)
 
 	#   Try finding .gif .jpg .png or something ...
 
-	unless ( m,\.[a-z][a-z][a-z],i )
+	unless (m,\.[a-z][a-z][a-z],i)
 	{
 	    warn "$id: Suspicious #PIC [$ARG]. Did you forgot .png .jpg ...?"
 	}
 
 	$debug  and  warn "$id:LINE[$ARG]";
     }
-    elsif ( /#PIC.*#/ )
+    elsif (/#PIC.*#/)
     {
 	warn "$id: Suspicious #PIC format [$ARG]. Must have 3 separators(#)";
     }
@@ -4049,7 +4049,7 @@ sub XlatPicture ($)
 sub XlatDirectives (@)
 {
     my $id     = "$LIB.XlatDirectives";
-    my ( @content ) = @ARG;
+    my (@content) = @ARG;
 
     ! @content  and die "$id: \@content is empty";
 
@@ -4058,9 +4058,9 @@ sub XlatDirectives (@)
 
     $debug  and  print "$id: line count: ", scalar @content, "\n";
 
-    for ( @content )
+    for (@content)
     {
-	if ( /^(.*)\s*#T2HTML-(\S+)\s+(.*\S)/i )   # Directive + value
+	if (/^(.*)\s*#T2HTML-(\S+)\s+(.*\S)/i)   # Directive + value
 	{
 	    $debug  > 2 and  warn "$id: if-1 [$ARG]\n";
 
@@ -4075,7 +4075,7 @@ sub XlatDirectives (@)
 
 	    $verb > 1  and  print "$id: if-3 [$name] = [$value]\n";
 
-	    unless ( defined $hash{$name} )
+	    unless (defined $hash{$name})
 	    {
 		$hash{ $name } = [$value];
 	    }
@@ -4086,7 +4086,7 @@ sub XlatDirectives (@)
 		$hash{ $name } = $arrRef;
 	    }
 	}
-	elsif ( /^(.*)\s*#T2HTML-(\S+)/i )      # Plain directive
+	elsif (/^(.*)\s*#T2HTML-(\S+)/i)      # Plain directive
 	{
 	    #  Empty directive
 
@@ -4132,7 +4132,7 @@ sub XlatDirectives (@)
 
 sub AcceptUrl($)
 {
-    if ( $ARG[0] !~ m,\b(foo
+    if ($ARG[0] !~ m,\b(foo
 			 |baz
 			 |quu[zx])\b
 		      |:/\S*\.?example\.
@@ -4256,7 +4256,7 @@ sub XlatUrl ($)
 
 	my $last = "";
 
-	if ( $url =~ /(&gt;?.*)/i )
+	if ($url =~ /(&gt;?.*)/i)
 	{
 	    $last = $1;
 	    $url  =~ s/&gt;?.*//;
@@ -4267,7 +4267,7 @@ sub XlatUrl ($)
 
 	my $clickable = 1;
 
-	if ( $pre =~ /-/ )
+	if ($pre =~ /-/)
 	{
 	    $clickable = 0;
 	    $pre       = "";
@@ -4276,7 +4276,7 @@ sub XlatUrl ($)
 	$debug > 4  and print "$id: ARG=[$ARG] pre=[$pre] url=[$url] "
 			, " click=$clickable, accept=", AcceptUrl $url, "\n";
 
-	if ( not $clickable  or  not AcceptUrl $url  )
+	if (not $clickable  or  not AcceptUrl $url)
 	{
 	    $pre . $url . $last ;
 	}
@@ -4355,13 +4355,13 @@ sub XlatMailto ($)
 	my $url       = $2;
 	my $clickable = 1;
 
-	if ( $pre eq '-' )
+	if ($pre eq '-')
 	{
 	    $clickable = 0;
 	    $pre       = "";
 	}
 
-	if ( not $clickable  or  not AcceptUrl $url )
+	if (not $clickable  or  not AcceptUrl $url)
 	{
 	    $pre . $url;
 	}
@@ -4515,9 +4515,9 @@ sub Language ($)
 sub FileNameChange ($$;$)
 {
     my $id              = "$LIB.FileNameChange";
-    my ( $file, $string , $ext ) = @ARG;
+    my ($file, $string , $ext) = @ARG;
 
-    my ( $filename, $path, $extension ) = fileparse $file, '\.[^.]+$'; #font '
+    my ($filename, $path, $extension) = fileparse $file, '\.[^.]+$'; #font '
 
     my $ret = $path . $filename . $string . ($ext or $extension);
 
@@ -4551,7 +4551,7 @@ sub FileFrameName ($)
     my $id      = "$LIB.FileFrameName";
     my $type    = shift;
 
-    if ( $ARG_PATH ne '' )
+    if ($ARG_PATH ne '')
     {
 	$debug  and  print "$id: $ARG_PATH + $type + .html\n";
 	FileNameChange $ARG_PATH, $type, ".html";
@@ -4586,7 +4586,7 @@ sub GeneratefileName ($;$)
     my $id       = "$LIB.GeneratefileName";
     my ($file, $headings ) = @ARG;
 
-    if ( $headings )
+    if ($headings)
     {
 	return sub
 	{
@@ -4635,7 +4635,7 @@ sub WriteFile ($$)
     my $id             = "$LIB.WriteFile";
     my ($file, $value) = @ARG;
 
-    unless ( defined $value )
+    unless (defined $value)
     {
 	warn "$id: \$value is not defined";
 	return;
@@ -4648,11 +4648,11 @@ sub WriteFile ($$)
 
     $debug  and  warn "$id: TYPE [$type]\n";
 
-    if ( $type eq "ARRAY" )
+    if ($type eq "ARRAY")
     {
 	print $FILE @$value;
     }
-    elsif ( not $type )
+    elsif (not $type)
     {
 	print $FILE $value;
     }
@@ -4688,7 +4688,7 @@ sub SplitToFiles ($ $$ $)
     my $id = "$LIB.SplitToFiles";
     my ($regexp, $file, $useNames, $array) = @ARG;
 
-    unless ( defined $array )
+    unless (defined $array)
     {
 	warn "$id: [ERROR] \$array is not defined";
 	return;
@@ -4698,16 +4698,16 @@ sub SplitToFiles ($ $$ $)
     my    $FileName = GeneratefileName $file, $useNames;
     local $ARG;
 
-    for ( @$array )
+    for (@$array )
     {
-	if ( /$regexp/o && @tmp )
+	if (/$regexp/o && @tmp)
 	{
 	    #   Get the first line that matched and use it as filename
 	    #   base
 
 	    my ($match) = grep /$regexp/o, @tmp;
 
-	    my $name = &$FileName( $match );
+	    my $name = &$FileName( $match);
 	    WriteFile $name, \@tmp;
 
 	    @tmp = ();
@@ -4721,9 +4721,9 @@ sub SplitToFiles ($ $$ $)
 	}
     }
 
-    if ( @tmp )                                 # last block
+    if ( @tmp)                                 # last block
     {
-	my $name = &$FileName( $tmp[0] );
+	my $name = &$FileName($tmp[0]);
 	WriteFile $name, \@tmp;
 
 	push @fileArray, $name;
@@ -4760,7 +4760,7 @@ sub EnvExpand ($)
 
     my $val;
 
-    for my $key ( sort {length($b) <=> length($a)} keys %ENV )
+    for my $key (sort {length($b) <=> length($a)} keys %ENV)
     {
 	$val = $ENV{$key};
 
@@ -4857,16 +4857,16 @@ sub UrlInclude (%)
 
     my $ret;
 
-    if ( $MODULE_LWP_OK  and  $url =~ m,http://,i )
+    if ($MODULE_LWP_OK  and  $url =~ m,http://,i)
     {
 	my $ua       = new LWP::UserAgent;
-	my $req      = new HTTP::Request( GET => $url);
-	my $response = $ua->request( $req );
+	my $req      = new HTTP::Request(GET => $url);
+	my $response = $ua->request($req);
 	my $ok       = $response->is_success();
 
 	$debug     and  print "$id: GET status $ok\n";
 
-	if ( $ok )
+	if ($ok)
 	{
 	    $ret = $response->content();
 
@@ -4880,7 +4880,7 @@ sub UrlInclude (%)
 	# 1) There is no path, so use current directory
 	# 2) It start with relative path ../
 
-	if ( $dir  and  ($url !~ m,[/\\],  or  $url =~ m,^[.],, ) )
+	if ($dir  and  ($url !~ m,[/\\],  or  $url =~ m,^[.],, ) )
 	{
 
 	    $debug > 2 and  print "$id: dir added: $dir + $url\n";
@@ -4890,7 +4890,7 @@ sub UrlInclude (%)
 	local *FILE;
 	$url = EnvExpand $url;
 
-	unless ( open FILE, "<", $url )
+	unless (open FILE, "<", $url)
 	{
 	    $verb  and  warn "[WARN] Cannot open '$url' $ERRNO";
 	    return;
@@ -4899,7 +4899,7 @@ sub UrlInclude (%)
 	$ret = join '', <FILE>;
 	close FILE;
 
-	if ( $url =~ /\.s?html?/ )
+	if ($url =~ /\.s?html?/)
 	{
 	    $ret = RemoveHTMLaround $ret;
 	}
@@ -4908,7 +4908,7 @@ sub UrlInclude (%)
 			     . $ret
 			     . "$id: content of [$url] END:\n";
 
-	unless ( $mode )
+	unless ($mode)
 	{
 	    $ret = DoLineUserTags($ret);
 	    $ret = XlatTag2html $ret;
@@ -4955,7 +4955,7 @@ sub Base (;$$)
     my $id      = "$LIB.Base";
     my ($file, $attrib) = @ARG;
 
-    if ( defined $BASE_URL and $BASE_URL ne '' )
+    if (defined $BASE_URL and $BASE_URL ne '')
     {
 	qq(  <base href="$BASE_URL/$file" $attrib>\n) ;
     }
@@ -4976,15 +4976,15 @@ sub Base (;$$)
 #
 # ****************************************************************************
 
-sub CssData ( ; $ )
+sub CssData (; $)
 {
-	local ( $ARG ) = @ARG;
+	local ($ARG) = @ARG;
 
 	$ARG = '' unless defined $ARG;
 
 	my $bodyFontType = '' ;
 
-	if ( defined $CSS_FONT_TYPE )
+	if (defined $CSS_FONT_TYPE)
 	{
 	    #  Css must end to ";", Add semicolon if it's missing.
 	    $bodyFontType = "font-family: $CSS_FONT_TYPE";
@@ -4993,13 +4993,13 @@ sub CssData ( ; $ )
 
 	my $bodyFontSize = '';
 
-	if ( defined $CSS_FONT_SIZE )
+	if (defined $CSS_FONT_SIZE)
 	{
 	    $bodyFontSize = qq(font-size: $CSS_FONT_SIZE);
 	    $bodyFontSize .= ";" unless $bodyFontSize =~ /;/;
 	}
 
-	if ( /toc/i )
+	if (/toc/i)
 	{
 	    $bodyFontSize = $CSS_BODY_FONT_SIZE_FRAME;
 	}
@@ -5680,9 +5680,9 @@ sub CssData ( ; $ )
 sub JavaScript (; $)
 {
     my $id      = "$LIB.JavaScript";
-    my ( $type )= @ARG;
+    my ($type)= @ARG;
 
-    if ( defined $JAVA_CODE )
+    if (defined $JAVA_CODE)
     {
 	$JAVA_CODE;
     }
@@ -5755,7 +5755,7 @@ $css
 #
 # ****************************************************************************
 
-sub HtmlStartBasic ( % )
+sub HtmlStartBasic (%)
 {
 
     #   [HTML 4.0/12.4] When present, the BASE element must appear in the
@@ -5844,7 +5844,7 @@ sub HtmlStartBasic ( % )
 sub MakeLinkHtml ($$$)
 {
     my $id  = "$LIB.MakeLinkHtml";
-    my( $type, $url , $title ) = @ARG;
+    my($type, $url , $title) = @ARG;
 
     $title = $title ||  qq(TITLE="$title");
 
@@ -5905,7 +5905,7 @@ sub MakeComment ($)
 #
 # ****************************************************************************
 
-sub MakeToc ( % )
+sub MakeToc (%)
 {
     my $id = "$LIB.MakeToc";
 
@@ -5919,21 +5919,21 @@ sub MakeToc ( % )
     my $email           = $arg{-email};
 
     local $ARG;
-    my( $txt, $li,  $ul , $refname );
-    my( @ret, $ref );
-    my( $styleb, $stylee, $spc, $str ) = ("") x 4;
+    my($txt, $li,  $ul , $refname);
+    my(@ret, $ref);
+    my($styleb, $stylee, $spc, $str) = ("") x 4;
     my $br = $HTML_HASH{br};
 
     my $frameFrm = basename FileFrameNameMain();
     my $frameToc = basename FileFrameNameToc();
     my $frameTxt = basename FileFrameNameBody();
 
-    if ( $debug   and  $frame )
+    if ($debug   and  $frame)
     {
 	warn "$id: arg_dir $ARG_DIR $frameFrm, $frameToc, $frameTxt\n";
     }
 
-    if ( 0 )                # disabled now
+    if (0)                # disabled now
     {
 	$styleb = "<strong>";
 	$stylee = "</strong>";
@@ -5941,7 +5941,7 @@ sub MakeToc ( % )
 
     # ........................................................ start ...
 
-    if ( $frame )
+    if ($frame)
     {
 	push @ret, <<"........EOF";
 $HTML_HASH{doctype}
@@ -5959,7 +5959,7 @@ $HTML_HASH{beg}
 	push @ret,
 	    , MakeMetaTags( -author => $author, -email => $email)
 	    , qq(\n  <base target="body">\n)
-	    , JavaScript( "toc" )
+	    , JavaScript( "toc")
 	    ;
 
 	push @ret, Here <<"........EOF";
@@ -6040,7 +6040,7 @@ $HTML_HASH{beg}
     $ul     = 0;
     $frame  = basename FileFrameNameBody() if $frame;
 
-    for ( @$headingArrayRef )
+    for (@$headingArrayRef)
     {
 	$refname = $$headingHashRef{ $ARG };
 
@@ -6051,7 +6051,7 @@ $HTML_HASH{beg}
 
 	$li = $str = "";
 
-	if ( /^ +[A-Z0-9]/ )
+	if (/^ +[A-Z0-9]/)
 	{
 	    $str =  "\n<ul>\n"  if $ul == 0;
 	    $li  = "\t<li>";
@@ -6085,7 +6085,7 @@ $HTML_HASH{beg}
 
     # .......................................................... end ...
 
-    if( $frame )
+    if($frame)
     {
 	push @ret, Here <<"........EOF";
 	    </div>
@@ -6147,7 +6147,7 @@ $HTML_HASH{beg}
     my $staticFile;
     my %staticLinkCache;
 
-sub LinkCache ( % )
+sub LinkCache (%)
 {
     my $id    = "$LIB.LinkCache";
 
@@ -6158,13 +6158,13 @@ sub LinkCache ( % )
 
     my $ret = 1;
 
-    if ( $debug > 1 )
+    if ($debug > 1)
     {
 	print "$id: action [$ARG] arg [$arg] "
 	    , "act [$staticActive] code [$code]\n";
     }
 
-    if ( /-read/ )
+    if (/-read/)
     {
 	$staticActive = 1;      # start using cache
 	$staticFile   = $arg;
@@ -6175,7 +6175,7 @@ sub LinkCache ( % )
 	#   This means, that user has deleted cache file and forcing
 	#   a full scan of every link.
 
-	unless ( open FILE, "<", $arg )
+	unless (open FILE, "<", $arg)
 	{
 	    $verb > 1  and  warn "$id: Cannot open $arg $ERRNO";
 	    $ret = 0;
@@ -6184,7 +6184,7 @@ sub LinkCache ( % )
 	{
 	    $verb and  print "$id: reading [$arg]\n";
 
-	    while ( <FILE> )
+	    while (<FILE>)
 	    {
 		#   Filter out empty lines and extra spaces
 
@@ -6198,7 +6198,7 @@ sub LinkCache ( % )
 	    close FILE;
 	}
     }
-    elsif  ( $staticActive  and  /-write/ )
+    elsif  ($staticActive  and  /-write/)
     {
 	$arg = $staticFile;         # Same as used in open
 
@@ -6206,7 +6206,7 @@ sub LinkCache ( % )
 
 	my $stat = open my $FILE, ">", $arg;
 
-	unless ( $stat )
+	unless ($stat)
 	{
 	    not $QUIET  and  warn "$id: Cannot write $arg $ERRNO";
 	    $ret = 0;
@@ -6217,9 +6217,9 @@ sub LinkCache ( % )
 
 	    # PrintHash "$id",  \%staticLinkCache;
 
-	    while ( my($url, $ccode) = each %staticLinkCache )
+	    while (my($url, $ccode) = each %staticLinkCache)
 	    {
-		if ( $ccode != $HTTP_CODE_OK )
+		if ($ccode != $HTTP_CODE_OK)
 		{
 		    $debug > 2 and  print "$id: Ignored $url $ccode\n";
 		    next;
@@ -6227,7 +6227,7 @@ sub LinkCache ( % )
 
 		$debug > 2  and  print "$id: write => $url\n";
 
-		if ( $url )
+		if ($url)
 		{
 		    print $FILE $url, "\n";
 		}
@@ -6236,14 +6236,14 @@ sub LinkCache ( % )
 	    close $FILE;
 	}
     }
-    elsif ( /-add/ )
+    elsif (/-add/)
     {
 	$staticLinkCache{ $arg } = $code;
 	$ret = 1;
 
 	$debug > 1  and  print "$id: added ok\n";
     }
-    elsif ( /-exist/ )
+    elsif (/-exist/)
     {
 	$ret = exists $staticLinkCache{$arg}
 	       ? $staticLinkCache{$arg}
@@ -6251,7 +6251,7 @@ sub LinkCache ( % )
 
 	$verb > 1  and  print "$id: exist status [$ret]\n";
     }
-    elsif ( $staticActive )
+    elsif ($staticActive)
     {
 	die "$id: Unknown action [$ARG] arg [$arg]";
     }
@@ -6288,7 +6288,7 @@ sub LinkHash (%)
 
     #  There is new error code, record it.
 
-    if ( not defined $LINK_HASH_CODE{ $error }  )
+    if (not defined $LINK_HASH_CODE{$error})
     {
 	$LINK_HASH_CODE{ $error } = $text;
     }
@@ -6314,13 +6314,13 @@ sub LinkHash (%)
 sub LinkCheckLwp ($)
 {
     my $id = "$LIB.LinkCheckLwp";
-    my ( $url ) = @ARG;
+    my ($url) = @ARG;
 
     $debug  and  print "$id: processing... $url\n";
 
     my $code = LinkCache -action => '-exist', -arg => $url;
 
-    if ( $code == $HTTP_CODE_OK )
+    if ($code == $HTTP_CODE_OK)
     {
 	#   Found from cache. Last check gave OK to this link
 	$debug > 1 and  print "$id: Return; cached value $code $url\n";
@@ -6333,8 +6333,8 @@ sub LinkCheckLwp ($)
     #   Code 200  is "OK" response
 
     my $ua      = new LWP::UserAgent;
-    my $request = new HTTP::Request( 'HEAD', $url );
-    my $obj     = $ua->request( $request );
+    my $request = new HTTP::Request('HEAD', $url);
+    my $obj     = $ua->request($request);
     my $ok      = $obj->is_success;
     my $status  = $ok;
     my $txt     = $obj->message;
@@ -6353,7 +6353,7 @@ sub LinkCheckLwp ($)
     #  GET request is disabled because it would call 2 time on
     #  fialure. Trust HEAD all the way.
 
-    unless ( 0 and $status != $HTTP_CODE_OK  )
+    unless (0 and $status != $HTTP_CODE_OK)
     {
 	#  Hm,
 	#  HEAD is not the total answer because there are still servers
@@ -6362,8 +6362,8 @@ sub LinkCheckLwp ($)
 	#  you that it doesn't, necessarily.
 
 	my $ua2      = new LWP::UserAgent;
-	my $request2 = new HTTP::Request( 'GET', $url );
-	my $obj2     = $ua2->request( $request2 );
+	my $request2 = new HTTP::Request('GET', $url);
+	my $obj2     = $ua2->request($request2);
 	$status      = $obj2->code;
 	$txt         = $obj2->message;
 
@@ -6374,7 +6374,7 @@ sub LinkCheckLwp ($)
 		 ;
     }
 
-    unless ( $status != $HTTP_CODE_OK )
+    unless ($status != $HTTP_CODE_OK)
     {
 	LinkHash -url => $url, -error => $status, -txt => $txt;
     }
@@ -6399,7 +6399,7 @@ sub LinkCheckLwp ($)
 #
 # ****************************************************************************
 
-sub LinkCheckExternal ( % )
+sub LinkCheckExternal (%)
 {
     my $id  = "$LIB.LinkCheckExternal";
 
@@ -6415,11 +6415,11 @@ sub LinkCheckExternal ( % )
 
     my($ret, $txt) = (0, "");
 
-    if ( $url =~ /$regexp/o )
+    if ($url =~ /$regexp/o)
     {
 	$verb  and  print "$id: Link [$url] excluded by regexp [$regexp]\n";
     }
-    elsif ( $MODULE_LWP_OK )
+    elsif ($MODULE_LWP_OK)
     {
 	($ret, $txt) = LinkCheckLwp $url;
     }
@@ -6451,17 +6451,17 @@ sub Html2txt ($)
     my $id         = "$LIB.Html2txt";
     my $arrayRef   = shift;
 
-    unless ( defined $arrayRef )
+    unless (defined $arrayRef)
     {
 	warn "$id: [ERROR] \$arrayRef is not defined";
 	return;
     }
 
-    my ( @ret, $carry, $comment );
+    my (@ret, $carry, $comment);
 
-    for ( @$arrayRef )
+    for (@$arrayRef)
     {
-	if ( 0 )        # enable/disable comment stripping
+	if (0)        # enable/disable comment stripping
 	{
 	    $comment = 1 if /<!/;
 	    $comment = 0 if /<!.*>/;
@@ -6470,7 +6470,7 @@ sub Html2txt ($)
 	    next if $comment;
 	}
 
-	if ( $carry )
+	if ($carry)
 	{
 	    #   remove all until the first >
 
@@ -6481,9 +6481,9 @@ sub Html2txt ($)
 	    $carry = 0;
 	}
 
-	while( s/<[^>]*>//g ) { }
+	while(s/<[^>]*>//g) { }
 
-	if( s/<.*$// )
+	if(s/<.*$//)
 	{
 	    $carry = 1;
 	}
@@ -6522,26 +6522,26 @@ sub ReadLinksLinkExtractor (%)
     my $file        = $arg{-file};      # also URL
     my $arrayRef    = $arg{-array};
 
-    unless ( defined $arrayRef )
+    unless (defined $arrayRef)
     {
 	warn "$id: [ERROR] \$arrayRef is not defined";
 	return;
     }
 
     local $ARG      = join '', @$arrayRef;
-    my ( @list, $base );
+    my (@list, $base);
 
     $base = $file   if   $file =~ m,http://,i;
 
     local *callback = sub
     {
-	my( $tag, %links) = @ARG;
+	my($tag, %links) = @ARG;
 
 	#   Only look at "A" HREF links
 
-	if ( $tag eq "a" )
+	if ($tag eq "a" )
 	{
-	    while ( my($key, $ref) = each %links )
+	    while (my($key, $ref) = each %links)
 	    {
 		#  Reference to URI::URL object
 		my $url = $ref->as_string();
@@ -6551,18 +6551,18 @@ sub ReadLinksLinkExtractor (%)
 	}
     };
 
-    my $parser = HTML::LinkExtractor->new( \&callback, $base);
+    my $parser = HTML::LinkExtractor->new(\&callback, $base);
 
     # $debug > 2  and  print "$id: Calling parse() => $ARG";
 
-    $parser->parse( $ARG );
+    $parser->parse($ARG);
 
     #       Add fake line numbers, we can't get those from LinkExtractor
 
     my %ret;
     my $i = 1;
 
-    for my $link ( @list )
+    for my $link (@list)
     {
 	$ret{$i++} = $link;
     }
@@ -6598,7 +6598,7 @@ sub ReadLinksBasic (%)
     my $file        = $arg{-file};
     my $arrayRef    = $arg{-array};
 
-    unless ( defined $arrayRef )
+    unless (defined $arrayRef)
     {
 	warn "$id: [ERROR] \$arrayRef is not defined";
 	return;
@@ -6613,7 +6613,7 @@ sub ReadLinksBasic (%)
     my $base = '';
     my $root = '';
 
-    if ( $file =~ m,^\s*(http://[^/\s]+), )
+    if ($file =~ m,^\s*(http://[^/\s]+),)
     {
 	$base = $1 . '/'; # Add trailing slash
 	$root = $base;
@@ -6661,18 +6661,18 @@ sub ReadLinksBasic (%)
 	#      Fix mismatches http://example.org/links.html&gt
 	#      only GET parameters can have '?': this.php?arg=1&more=2
 
-	if ( $link !~ /[?]/  and  $link =~  /^(.+)&/ )
+	if ($link !~ /[?]/  and  $link =~  /^(.+)&/)
 	{
 	    $link = $1;
 	    $debug > 4  and  print "$id: fixed link [$link]\n";
 	}
 
-	if ( $link =~ /mailto:/ )
+	if ($link =~ /mailto:/)
 	{
 	    $link = '';
 	}
 
-	if ( $link =~ m,(?:HREF|SRC)\s*=\s*$quote?(.+),oi )
+	if ($link =~ m,(?:HREF|SRC)\s*=\s*$quote?(.+),oi)
 	{
 	    #   (') Dummy comment to fix Emacs font lock quotation mark
 	    #   from previous line
@@ -6683,7 +6683,7 @@ sub ReadLinksBasic (%)
 
 	    #  Not an external http:// reference, so it's local link
 
-	    if ( $base  and  $link !~ m,//, )
+	    if ($base  and  $link !~ m,//,)
 	    {
 		my $glue = $base;
 
@@ -6696,7 +6696,7 @@ sub ReadLinksBasic (%)
 
 	$debug > 2   and  print "$id: AFTER $link\n";
 
-	if ( $char eq '-' )          # Ignore -http://this.is/example.html
+	if ($char eq '-')          # Ignore -http://this.is/example.html
 	{
 	    not $QUIET  and  warn "$id: ignored MINUS url: $ARG\n";
 	    next;
@@ -6704,7 +6704,7 @@ sub ReadLinksBasic (%)
 
 	#   Do not check the "tar.gz" links. or "url?args" cgi calls
 
-	if ( $link =~ m,\.(gz|tgz|Z|bz2|rar)$|\?, )
+	if ($link =~ m,\.(gz|tgz|Z|bz2|rar)$|\?,)
 	{
 	    not $QUIET  and  warn "$id: ignored complex url: $ARG\n";
 
@@ -6715,12 +6715,12 @@ sub ReadLinksBasic (%)
 	    $link =~ s,(.*/),$1,;
 	}
 
-	if ( $link ne '' )
+	if ($link ne '')
 	{
 	    #   What is the line number so far before match?
 	    my $i = 0;
 
-	    $i++ while ( $tmp =~ /\n/g );
+	    $i++ while ($tmp =~ /\n/g);
 
 	    #  There can be many links at the the same line.
 	    #  Like if page is generated with a tool, which outputs whole
@@ -6729,7 +6729,7 @@ sub ReadLinksBasic (%)
 	    my $count = 0;
 	    my $name;
 
-	    while ( exists $ret{ $name = sprintf "$i=count%03d", $count } )
+	    while (exists $ret{ $name = sprintf "$i=count%03d", $count })
 	    {
 		$count++;
 	    }
@@ -6739,7 +6739,7 @@ sub ReadLinksBasic (%)
 	}
     }
 
-    if ( $verb > 1  and  not keys %ret )
+    if ($verb > 1  and  not keys %ret)
     {
 	print "$id:  WARNING No links found\n";
     }
@@ -6770,7 +6770,7 @@ sub ReadLinksMain (%)
     my $id          = "$LIB.ReadLinks";
     my %arg         = @ARG ;
 
-    if ( $debug )
+    if ($debug)
     {
 	print "$id: file => " , $arg{-file};
 
@@ -6789,7 +6789,7 @@ sub ReadLinksMain (%)
 
     my %hash;
 
-    if ( $MODULE_LINKEXTRACTOR_OK )
+    if ($MODULE_LINKEXTRACTOR_OK)
     {
 	%hash = ReadLinksLinkExtractor %arg;
     }
@@ -6822,7 +6822,7 @@ sub ReadLinksMain (%)
 #
 # ****************************************************************************
 
-sub LinkCheckMain ( % )
+sub LinkCheckMain (%)
 {
     my $id   = "$LIB.LinkCheck";
 
@@ -6831,7 +6831,7 @@ sub LinkCheckMain ( % )
     my $arrayRef    = $arg{-array};
     my $oneLine     = $arg{-oneline};
 
-    if  ( not defined $arrayRef  or  not @$arrayRef )
+    if  (not defined $arrayRef  or  not @$arrayRef)
     {
 	warn "$id: WARNING [$file] is empty\n";
 	return;
@@ -6845,7 +6845,7 @@ sub LinkCheckMain ( % )
 
     local $ARG;
 
-    for ( sort {$a <=> $b} keys %link  )
+    for (sort {$a <=> $b} keys %link)
     {
 	my ($i) = $ARG =~ /^(\d+)/;
 	my $lnk = $link{ $ARG };
@@ -6856,16 +6856,16 @@ sub LinkCheckMain ( % )
 
 	my $text = "";
 
-	if ( $err  and  $LINK_CHECK_ERR_TEXT_ONE_LINE )
+	if ($err  and  $LINK_CHECK_ERR_TEXT_ONE_LINE)
 	{
 	    ($text = $err) =~ s/\n/./;
 	}
 
-	if ( not $QUIET )
+	if (not $QUIET)
 	{
 	    print " $status $text\n";   # this print() is continuation...
 	}
-	elsif ( $status != 0  and  $status != $HTTP_CODE_OK )
+	elsif ($status != 0  and  $status != $HTTP_CODE_OK)
 	{
 	    printf "$file:$i:%-4d $lnk $text\n", $status;
 	}
@@ -6898,7 +6898,7 @@ sub IsEmptyText ($)
     my $id   = "$LIB.IsEmptyText";
     my $text = shift;
 
-    if  ( not defined $text
+    if  (not defined $text
 	  or  $text eq ''
 	  or  $text =~ /^\s+$|[Nn][Oo][Nn][Ee]$/
 	)
@@ -6962,7 +6962,7 @@ sub IsHeading ($)
 sub IsBullet ($$)
 {
     my $id = "$LIB.IsBullet";
-    my( $line, $textRef ) = @ARG;
+    my($line, $textRef) = @ARG;
 
     my $type    = 0;
 
@@ -6977,16 +6977,16 @@ sub IsBullet ($$)
     #   *   Regular bullet
     #   *   Regular bullet
 
-    if ( $line =~ /^ {8}([*o.]) {3}(.+)/  )
+    if ($line =~ /^ {8}([*o.]) {3}(.+)/)
     {
 	$$textRef = $2;     # fill return value
 
-	if ( $1 eq "o"  or   $1 eq "*" )
+	if ($1 eq "o"  or   $1 eq "*")
 	{
 	    $debug and warn "$id: BULLET_TYPE_NORMAL >>$2\n";
 	    $type = $BULLET_TYPE_NORMAL;
 	}
-	elsif ( $1 eq "." )
+	elsif ($1 eq ".")
 	{
 	    $debug and warn "$id: BULLET_TYPE_NUMBERED >>$2\n";
 	    $type = $BULLET_TYPE_NUMBERED;
@@ -7018,7 +7018,7 @@ sub IsBullet ($$)
 #
 # ****************************************************************************
 
-sub MakeMetaTags ( % )
+sub MakeMetaTags (%)
 {
     my $id = "$LIB.MakeMetaTags";
 
@@ -7046,7 +7046,7 @@ sub MakeMetaTags ( % )
 
     push @ret, MakeComment "META TAGS (FOR SEARCH ENGINES)";
 
-    if ( $kwd =~ /\S+/ and $kwd !~ /^\S+$/ )
+    if ($kwd =~ /\S+/ and $kwd !~ /^\S+$/)
     {
 	#   "keywords" [according to Wilbur]
 	#   Provides keywords for search engines such as Infoseek or Alta
@@ -7054,7 +7054,7 @@ sub MakeMetaTags ( % )
 	#   itself. If you insert a keyword more than seven times here,
 	#   the whole tag will be ignored!
 
-	if (  $kwd !~ /,/  )
+	if ($kwd !~ /,/)
 	{
 	    $kwd = join ","  ,   split ' ', $kwd;
 
@@ -7065,7 +7065,7 @@ sub MakeMetaTags ( % )
 	push @ret, qq(  <$META="keywords"\n\tCONTENT="$kwd">\n\n);
     }
 
-    if ( $desc = /\S/ )
+    if ($desc = /\S/)
     {
 	length($desc) > 1000
 	    and warn "$id: META DESC over 1000 characters";
@@ -7083,12 +7083,12 @@ sub MakeMetaTags ( % )
 	       . qq(content=") .  GetExpiryDate() . qq(">\n\n)
 	       ;
 
-    if ( defined $author  and  $author )
+    if (defined $author  and  $author)
     {
 	$author = qq(  <$META="Author"\n\tcontent="$author">\n\n);
     }
 
-    if ( defined $email  and $email )
+    if (defined $email  and $email)
     {
 	$email = qq(  <$META="Made"\n\tcontent="mailto:$email">\n\n);
 
@@ -7134,7 +7134,7 @@ sub MakeMetaTags ( % )
 #
 # ****************************************************************************
 
-sub PrintStart ( % )
+sub PrintStart (%)
 {
     my $id = "$LIB.PrintStart";
 
@@ -7167,7 +7167,7 @@ $id: INPUT
     my email       = $arg{-email}
 EOF
 
-    my( $str , $tmp ) = ( "", "");
+    my($str , $tmp) = ( "", "");
     my @ret  = ();
     my $link = 0;           # Flag; Do we add LINK AHREF ?
     my $tab  = "  ";
@@ -7193,8 +7193,8 @@ EOF
 
     # ... ... ... ... ... ... ... ... ... ... ... ... ... ... .. push ...
 
-    $base = Base( basename FileFrameName "");
-    $base = Base( basename FileFrameNameBody() ) if $FRAME;
+    $base = Base(basename FileFrameName "");
+    $base = Base(basename FileFrameNameBody()) if $FRAME;
 
     push @ret, HereQuote <<"........EOF";
 	<head>
@@ -7224,11 +7224,11 @@ EOF
     #   (thus cancelling all other frames). This value is equivalent to _self
     #   if the current frame has no parent.
 
-    $attr = qq( target="_top" class="btn" );
+    $attr = qq(target="_top" class="btn");
 
     push @ret, MakeComment "BUTTON DEFINITION START";
 
-    if ( not IsEmptyText $butp )
+    unless (IsEmptyText $butp)
     {
 	$tmp = "Previous document";
 
@@ -7240,7 +7240,7 @@ EOF
 	    , "\n";
     }
 
-    if ( not IsEmptyText $butt )
+    unless (IsEmptyText $butt)
     {
 	$tmp = "The homepage of site";
 
@@ -7252,7 +7252,7 @@ EOF
 	    , "\n";
     }
 
-    if ( not IsEmptyText $butn )
+    unless (IsEmptyText $butn)
     {
 	$tmp = "Next document";
 
@@ -7330,7 +7330,7 @@ sub PrintEndSimple ($;$)
 
     my $date = GetDate();
 
-    if ( defined $OPT_EMAIL  and  $OPT_EMAIL )
+    if (defined $OPT_EMAIL  and  $OPT_EMAIL)
     {
 	$email = qq(Contact: &lt;<a href="mailto:$email">)
 		 . qq($email</a>&gt;$HTML_HASH{br}\n)
@@ -7371,7 +7371,7 @@ sub PrintEndSimple ($;$)
 #
 # ****************************************************************************
 
-sub PrintEnd ( % )
+sub PrintEnd (%)
 {
     my  $id  = "$LIB.PrintEnd";
 
@@ -7393,7 +7393,7 @@ $id: INPUT
     email   = $arg{-email}
 EOF
 
-    my( @ret, $str );
+    my(@ret, $str);
 
     my $date = GetDate();
     my $year = GetDateYear();
@@ -7415,7 +7415,7 @@ EOF
 
 ........EOF
 
-    if ( defined $file )              # Read the disclaimer from separate file.
+    if (defined $file)              # Read the disclaimer from separate file.
     {
 	local *F;
 	open F, $file       or die "$id: Can't open [$file] $ERRNO";
@@ -7486,7 +7486,7 @@ EOF
 #
 # ****************************************************************************
 
-sub PrintHtmlDoc ( % )
+sub PrintHtmlDoc (%)
 {
     my $id = "$LIB.PrintHtmlDoc";
 
@@ -7535,7 +7535,7 @@ EOF
 		, -email    => $email
 		;
 
-    unless ( $AS_IS )
+    unless ($AS_IS)
     {
 	my @toc = MakeToc
 	    -headingListRef     => \@HEADING_ARRAY
@@ -7547,7 +7547,7 @@ EOF
 	    , -email            => $OPT_EMAIL
 	    ;
 
-	if ( $FRAME )
+	if ($FRAME)
 	{
 	    WriteFile FileFrameNameToc(), \@toc;
 	}
@@ -7561,11 +7561,11 @@ EOF
 
     $debug  and  print "$id: output type [$type]\n";
 
-    if ( $type eq $OUTPUT_TYPE_SIMPLE )
+    if ($type eq $OUTPUT_TYPE_SIMPLE)
     {
 	push @ret, PrintEndSimple $DOC, $OPT_EMAIL;
     }
-    elsif ( $type eq $OUTPUT_TYPE_QUIET )
+    elsif ($type eq $OUTPUT_TYPE_QUIET)
     {
 	push @ret, PrintEndQuiet();
     }
@@ -7606,25 +7606,25 @@ sub KillToc ($)
     my $id       = "$LIB.KillToc";
     my $arrayRef = shift;
 
-    unless ( defined $arrayRef )
+    unless (defined $arrayRef)
     {
 	warn "$id: [ERROR] \$arrayRef is not defined";
 	return;
     }
 
-    my( @ret, $flag );
+    my(@ret, $flag);
 
-    for ( @$arrayRef )
+    for (@$arrayRef)
     {
 	$flag = 1 if /^Table\s+of\s+contents\s*$/i;
 
-	if ( $flag )
+	if ($flag)
 	{
 	    #  save next header
 
 	    next if /^Table/;
 
-	    if ( /^[A-Z0-9]/ )
+	    if (/^[A-Z0-9]/)
 	    {
 		$flag = 0;
 	    }
@@ -7665,7 +7665,7 @@ sub KillToc ($)
 sub MakeHeadingName ($)
 {
     my $id         = "$LIB.MakeHeadingName";
-    local ( $ARG ) = @ARG;
+    local ($ARG) = @ARG;
 
     $debug  > 2 and   print "$id: -1- $ARG\n";
 
@@ -7775,11 +7775,11 @@ sub HeaderArrayUpdate ($; $)
 {
     my    $id  = "$LIB.HeaderArrayUpdate";
     local $ARG = shift;
-    my ( $clear ) = shift;
+    my $clear  = shift;
 
     $debug  > 1 and  warn "$id: INPUT line [$ARG] clear [$clear]\n";
 
-    if ( $clear )
+    if ($clear)
     {
 	# Because this function "remembers" values, a NEW
 	# file handling must first clear the hash.
@@ -7822,7 +7822,7 @@ sub HeaderArrayUpdate ($; $)
 
     $debug  > 2 and  warn "$id: substitute D: $ARG\n";
 
-    if ( $NAME_UNIQ )               # use numbers for AHREF name=""
+    if ($NAME_UNIQ)               # use numbers for AHREF name=""
     {
 	$ARG = $staticCounter;
     }
@@ -7840,7 +7840,7 @@ sub HeaderArrayUpdate ($; $)
 
     # ........................................ check duplicate clash ...
 
-    if ( not defined $staticNameHash{ $ARG } ) # are 1-5 words unique?
+    if (not defined $staticNameHash{$ARG}) # are 1-5 words unique?
     {
 	$debug and warn "$id: Added $ARG\n";
 	$staticNameHash{ $ARG } = $origHeading;     # add new
@@ -7926,7 +7926,7 @@ sub HeaderArrayClear ()
 #
 # ****************************************************************************
 
-sub MakeHeadingHtml ( % )
+sub MakeHeadingHtml (%)
 {
     my $id = "$LIB.PrintHeader";
 
@@ -7938,19 +7938,19 @@ sub MakeHeadingHtml ( % )
     $debug  and  print "$id INPUT header [$header] hname [$hname]",
     , "level [$level]\n";
 
-    my ($ret, $button) = ( "", "");
+    my ($ret, $button) = ("", "");
 
     $PRINT_NAME_REFS     and warn "NAME REFERENCE: $hname\n";
 
-    if ( not $AS_IS and not $FRAME )
+    if (not $AS_IS  and  not $FRAME)
     {
-	my $attr = qq( class="btn-toc" );
+	my $attr = qq( class="btn-toc");
 
 	#   It doesn't matter how the FONT is reduced, it
 	#   won't make the [toc] button any smaller inside the <h> tag.
 	#   -- too bad --
 
-	if ( $OPT_HEADING_TOP_BUTTON )
+	if ($OPT_HEADING_TOP_BUTTON)
 	{
 	    my $toc = Language -toc;
 
@@ -7960,7 +7960,7 @@ sub MakeHeadingHtml ( % )
 	    ;
 	}
 
-	if ( 0 )
+	if (0) # disabled
 	{
 	    $button = MakeUrlRef
 	    (
@@ -7975,7 +7975,7 @@ sub MakeHeadingHtml ( % )
     $header =~ s/^\s+//;
     $header = XlatTag2htmlSpecial $header;
 
-    if ( $level == 1 )
+    if ($level == 1)
     {
 	my $hr = $AS_IS ? "" : $HTML_HASH{hr};
 
@@ -7991,7 +7991,7 @@ sub MakeHeadingHtml ( % )
 EOF
 
     }
-    elsif ( $level > 1 )
+    elsif ($level > 1)
     {
 	$ret = << "EOF";
 
@@ -8031,10 +8031,10 @@ EOF
 #
 # ****************************************************************************
 
-sub HtmlTable ( $$$ )
+sub HtmlTable ($$$)
 {
     my $id = "$LIB.HtmlTable";
-    my ( $text, $stylet, $styletd ) = @ARG;
+    my ($text, $stylet, $styletd) = @ARG;
 
     return qq(
 
@@ -8076,9 +8076,9 @@ sub HtmlTable ( $$$ )
 sub HtmlFixes ($)
 {
     my $id = "$LIB.HtmlFixes";
-    my ( $arrRef ) = @ARG;
+    my ($arrRef) = @ARG;
 
-    unless ( defined $arrRef )
+    unless (defined $arrRef)
     {
 	warn "$id: [ERROR] \$arrRef is not defined";
 	return;
@@ -8086,7 +8086,7 @@ sub HtmlFixes ($)
 
     local $ARG = join '', @$arrRef;
 
-    if ( 1 )  # Enabled
+    if (1)  # Enabled
     {
 	my $tag = '\S+';  # $CSS_CODE_STYLE_NOTE;
 
@@ -8124,7 +8124,7 @@ sub HtmlFixes ($)
 	    my $table   = $orig;
 	    my $found   = 0;
 
-	    if ( $tagcss )
+	    if ($tagcss)
 	    {
 		$table =~ s/$classT\"/shade-note\"/g;
 		$table =~ s/$classTD\"/shade-note-attrib\"/g;
@@ -8132,7 +8132,7 @@ sub HtmlFixes ($)
 		$end   = "";            # remove </pre>
 		$found = 1;
 	    }
-	    elsif ( $tagWord2 =~ /t2html::(\S+)/ )
+	    elsif ($tagWord2 =~ /t2html::(\S+)/)
 	    {
 		#   Command directives for table rendering
 		#
@@ -8146,7 +8146,7 @@ sub HtmlFixes ($)
 		$tagWord = "";      # Kill first line
 		$pre     = 1;       # Put PRE back
 
-		while ( $directives =~ /([^:]+):([^:]+)/g )
+		while ($directives =~ /([^:]+):([^:]+)/g)
 		{
 		    my ($key, $val) = ($1, $2);
 
@@ -8154,20 +8154,20 @@ sub HtmlFixes ($)
 		    #  $key = class=color-beige
 		    #  => $key = class="color-beige"
 
-		    if ( $val =~ /=/  and  $val =~  /(.*)=([^\"']+)/ )
+		    if ($val =~ /=/  and  $val =~  /(.*)=([^\"']+)/)
 		    {
 			$val = qq($1="$2");
 		    }
 
-		    if ( $key eq 'td' )
+		    if ($key eq 'td')
 		    {
 			$table =~ s/((?i:td[^>]+))class=.[^\"']+./$1$val/g;
 		    }
-		    elsif ( $key eq 'table' )
+		    elsif ($key eq 'table')
 		    {
 			$table =~ s/((?i:table\s+))[^>]+/$1$val/g;
 		    }
-		    elsif ( $key =~ /table(\S+)/ )
+		    elsif ($key =~ /table(\S+)/)
 		    {
 			$key   = $1;
 			$val   = qq("$val")  unless $val =~ /[\"']/;
@@ -8176,7 +8176,7 @@ sub HtmlFixes ($)
 		}
 	    }
 
-	    my ( $para, $rest ) = ("", "");
+	    my ($para, $rest) = ("", "");
 
 	    #   This code is a bit hairy.
 	    #   - If there a paragraph (\n\s*\n), then treat it as
@@ -8184,9 +8184,9 @@ sub HtmlFixes ($)
 	    #   - After this initial pragraph, the rest of
 	    #     the text is returned back to the original <pre>
 
-	    if ( $found  and  $text =~ /\A(.+?\S)\n\s*\n(.+)/sgm )
+	    if ($found  and  $text =~ /\A(.+?\S)\n\s*\n(.+)/sgm)
 	    {
-		( $para, $rest ) = ( $1, $2 );
+		($para, $rest) = ($1, $2);
 
 		$debug > 7  and  print "$id: PARAGRAPH [$para] [$rest]\n";
 
@@ -8194,7 +8194,7 @@ sub HtmlFixes ($)
 		$text  = $rest;
 		$pre   = 1;
 
-		$para =  XlatWordMarkup ( XlatTag2html $para );
+		$para =  XlatWordMarkup(XlatTag2html $para);
 		$para = qq(<span class="note12">$tagWord</span> ) . $para;
 
 		$para = HtmlTable $para, "shade-note", "shade-note-attrib";
@@ -8311,16 +8311,16 @@ sub HtmlFixes ($)
 #
 # ****************************************************************************
 
-sub DoLineUserTags ( $ )
+sub DoLineUserTags ($)
 {
     my $id          = "$LIB.DoLineUserTags";
-    local ( $ARG )  = @ARG;
+    local ($ARG)  = @ARG;
 
     # ........................................ substitute user tags ...
 
-    while ( my($key, $value) = each %REFERENCE_HASH )
+    while (my($key, $value) = each %REFERENCE_HASH)
     {
-	if ( /$key/ )
+	if (/$key/)
 	{
 	    $debug  and  print "$id: $ARG -- KEY $key => VAL $value\n";
 
@@ -8355,7 +8355,7 @@ sub HtmlCodeSectionEnd ()
 {
     my $id = "$LIB.HtmlCodeSectionEnd";
 
-    if ( $CSS_CODE_STYLE  ne  -notset )
+    if ($CSS_CODE_STYLE ne -notset)
     {
 	#   This will format nicely in the generated HTML
 
@@ -8401,10 +8401,10 @@ sub HtmlCodeSectionStart ()
 	, -shade2       => ["shade-normal2" , "shade-normal2-attrib" ]
     );
 
-    if( $CSS_CODE_STYLE  ne  -notset
+    if($CSS_CODE_STYLE ne -notset
 	and  my $arrRef = $style{$CSS_CODE_STYLE} )
     {
-	my ( $class, $attrib ) = @{ $arrRef } ;
+	my ($class, $attrib) = @{$arrRef};
 
 
 	$html = << "EOF";
@@ -8453,7 +8453,7 @@ EOF
     my $static7beg;
     my $static7end;
 
-sub DoLine ( % )
+sub DoLine (%)
 {
     # .................................................... arguments ...
 
@@ -8466,7 +8466,7 @@ sub DoLine ( % )
     my $line    = $arg{-lineNumber};
     my $arrayRef= $arg{-lineArrayRef};
 
-    unless ( defined $arrayRef )
+    unless (defined $arrayRef)
     {
 	warn "$id: [ERROR] \$arrayRef is not defined";
 	return;
@@ -8522,7 +8522,7 @@ sub DoLine ( % )
 
     # ............................................... flag variables ...
 
-    my( $AsIs, $hlevel, $isBullet );
+    my($AsIs, $hlevel, $isBullet);
 
     my $isCode      = 0;
     my $isText      = 0;
@@ -8536,7 +8536,7 @@ sub DoLine ( % )
     $tmp            = "  ";                     # 4 spaces
     $isPureText     = 1 if /^$tmp$tmp$tmp/o;    # {12}
 
-    unless ( $static7beg )
+    unless ($static7beg)
     {
 	$static7beg = $COLUMN_HASH{ beg7quote };
 	$static7end = $COLUMN_HASH{ end7quote };
@@ -8544,7 +8544,7 @@ sub DoLine ( % )
 
     # ................................................. command tags ...
 
-    if  ( /^( {1,11})\.([^ \t.].*)/ )
+    if  (/^( {1,11})\.([^ \t.].*)/)
     {
 	# The "DOT" code at the beginning of word. Notice that the dot
 	# code is efective only at columns 1..11
@@ -8557,7 +8557,7 @@ sub DoLine ( % )
 	$ARG = $s1 . $s2;    #       Remove the DOT control code
     }
 
-    if ( /^([ \t]+),([^ \t,].*)/ )                  # The "P" tag
+    if (/^([ \t]+),([^ \t,].*)/)                  # The "P" tag
     {
 	# Remove the command from the output.
 
@@ -8595,7 +8595,7 @@ sub DoLine ( % )
 
     $ARG = DoLineUserTags $ARG;
 
-    if( /#URL-BASE/ )
+    if(/#URL-BASE/)
     {
 	$debug > 6 and warn ">> $ARG";
 
@@ -8614,7 +8614,7 @@ sub DoLine ( % )
 
     # .................................................... url-as-is ...
 
-    if( /(.*)#URL-AS-IS-\s*(\S+)((?:&gt;|>).*)/ or
+    if(/(.*)#URL-AS-IS-\s*(\S+)((?:&gt;|>).*)/ or
 	/(.*)#URL-AS-IS-\s*(\S+)(.*)/
       )
     {
@@ -8626,7 +8626,7 @@ sub DoLine ( % )
 
 	my $name   = $url;
 
-	if ( $url =~ m,.*/(.*), )
+	if ($url =~ m,.*/(.*),)
 	{
 	    $name = $1;
 	}
@@ -8648,22 +8648,22 @@ sub DoLine ( % )
 
     # ................................................... study line ...
 
-    if ( /^( +)[^ ]/ )
+    if (/^( +)[^ ]/)
     {
 	($spaces) = /^( +)[^ ]/;
 	$spaces   = length $spaces;
     }
 
-    if ( /^ {8}[^ ]/o  )
+    if (/^ {8}[^ ]/o)
     {
 	$isText = 1;
     }
-    # elsif ( /^$s1(!!)([^!\n\r]*)$/o )
-    elsif ( /^ {4}(!!)([^!\n\r]*)/o )
+    # elsif (/^$s1(!!)([^!\n\r]*)$/o)
+    elsif (/^ {4}(!!)([^!\n\r]*)/o)
     {
 	#   A special !! code means adding <hr> tag
 
-	if ( defined $2 )
+	if (defined $2)
 	{
 	    $ARG = qq(\n<hr class="special"> \n)
 		.  qq(\t <strong><em> $2 </em></strong>$br \n)
@@ -8674,7 +8674,7 @@ sub DoLine ( % )
 	     $ARG = "\n<hr> \n\t<!--  BREAK -->   $br\n";
 	}
     }
-    elsif ( $hlevel = IsHeading $ARG )
+    elsif ($hlevel = IsHeading $ARG)
     {
 
 	$debug > 1  and warn "$id: IsHeading ok, $hlevel, $ARG\n";
@@ -8709,7 +8709,7 @@ sub DoLine ( % )
 	    # $end = $COLUMN_HASH{end12};
 	    # $ARG = $beg . $ARG . $end;
     }
-    elsif ( /^ {7}\&quot;(.*)\&quot;/o  )
+    elsif (/^ {7}\&quot;(.*)\&quot;/o)
     {
 	#  Remove quotes
 	$ARG = $1;
@@ -8725,14 +8725,14 @@ sub DoLine ( % )
 
     # ...................................................... picture ...
 
-    if ( /IMG src=/i )
+    if (/IMG src=/i)
     {
-	if (  $line > 0  and  $AsIs  and  $prevEmpty )
+	if ($line > 0  and  $AsIs  and  $prevEmpty)
 	{
 	    #  if the Image reference #PIC is placed to the code column,
 	    #  the <pre> tags are not good at all.
 
-	    if ( $staticPreMode )
+	    if ($staticPreMode)
 	    {
 		#   Don't leave pictures inside pre tags.
 
@@ -8750,27 +8750,27 @@ sub DoLine ( % )
 
     $ARG = XlatTag2htmlSpecial $ARG   unless  $AsIs;
 
-    if ( $line > 0  and  $AsIs  and  $prevEmpty )
+    if ($line > 0  and  $AsIs  and  $prevEmpty)
     {
-	unless ( $staticPreMode )
+	unless ($staticPreMode)
 	{
 	    my $html = HtmlCodeSectionStart();
 	    $ARG = $html . $ARG;
 
 	    $staticPreMode = 1   unless $staticPreMode;
 
-	    if ( $staticPreMode )
+	    if ($staticPreMode)
 	    {
 		$debug > 6  and  print "$id: PRE-1 [$ARG]\n";
 	    }
 	}
     }
 
-    if ( not $AsIs and  $next !~ /^ {12,}[^ ]|^[\r\n]+$/ )
+    if (not $AsIs and  $next !~ /^ {12,}[^ ]|^[\r\n]+$/)
     {
 	#   Next non-empty line terminates PRE mode
 
-	if ( $staticPreMode )
+	if ($staticPreMode)
 	{
 	    my $html = HtmlCodeSectionEnd();
 	    $ARG = "$html$ARG";
@@ -8783,7 +8783,7 @@ sub DoLine ( % )
 
     # disable, not needed
 
-    if (  0  and  $staticPreMode  and $AsIs  and
+    if (0  and  $staticPreMode  and $AsIs  and
 	  $CSS_CODE_STYLE  ne -notset
 	)
     {
@@ -8809,7 +8809,7 @@ sub DoLine ( % )
 		, "next[$next]\n"
 		;
 
-    if ( $isBullet and $prevEmpty  )
+    if ($isBullet and $prevEmpty)
     {
 	$s1 =   "<ul>";
 	$s1 =   "<ol>" if $isBullet eq $BULLET_TYPE_NUMBERED;
@@ -8821,14 +8821,14 @@ sub DoLine ( % )
 	$debug > 1 and warn "______________BULLET ON [$isBullet] $ARG\n";
     }
 
-    if ( ($isBullet or $staticBulletMode) and $nextEmpty )
+    if (($isBullet or $staticBulletMode) and $nextEmpty)
     {
 	$s1 =   "</ul>";
 	$s1 =   "</ol>" if $isBullet eq $BULLET_TYPE_NUMBERED;
 
 	$ARG = "<li>$bulletText" if $isBullet;
 
-	if ( not $isPcode )
+	if (not $isPcode)
 	{
 	    #   if previous paragraph does not contain P code,
 	    #   then terminate this bullet
@@ -8845,7 +8845,7 @@ sub DoLine ( % )
 	$isBullet = 0;
     }
 
-    if ( $isBullet )
+    if ($isBullet)
     {
 	my $end = "\t</li>\n"  if $staticBulletMode > 1;
 
@@ -8861,7 +8861,7 @@ sub DoLine ( % )
     #   If this is column 8, suppose regular text.
     #   See if this is begining or end of paragraph.
 
-    if ( $spaces  == 1  or  $spaces == 2 )
+    if ($spaces  == 1  or  $spaces == 2)
     {
 	$AsIs = $isCode = 1;
     }
@@ -8877,7 +8877,7 @@ sub DoLine ( % )
 #        # because it would double the line spacing
 #        # BUT, if user has moved this line out of col 8, go ahead
 #
-#        and ( not $isPrevHdr or ($isPrevHdr and $spaces != 8 ))
+#        and (not $isPrevHdr or ($isPrevHdr and $spaces != 8 ))
 #
 #        and not $hlevel
 #        and not $isBullet
@@ -8903,7 +8903,7 @@ sub DoLine ( % )
 	# BUT, if user has moved this line out of col 8, go ahead
 	#
 	# 2007-03-01 not used any more
-	# and ( not $isPrevHdr or ($isPrevHdr and $spaces != 8 ))
+	# and (not $isPrevHdr or ($isPrevHdr and $spaces != 8 ))
 
 	and not $hlevel
 	and not $isBullet
@@ -8923,28 +8923,28 @@ sub DoLine ( % )
 	$debug > 6 and
 	    print "$id: %%P-in%% prevEmpty [$prevEmpty] nextEmpty [$nextEmpty]\n";
 
-	if ( $prevEmpty )
+	if ($prevEmpty)
 	{
-	    if ( exists $COLUMN_HASH{ "beg" . $spaces } )
+	    if (exists $COLUMN_HASH{"beg" . $spaces})
 	    {
 		$code = $COLUMN_HASH{ "beg" . $spaces };
 		$ARG = "\n$code\n$ARG";
 	    }
-	    elsif ( $spaces <= 12 )
+	    elsif ($spaces <= 12)
 	    {
 		$code = " class=" . qq("column) . $spaces . qq(");
 		$ARG = "\n<p$code>\n$ARG";
 	    }
 	}
 
-	if ( $nextEmpty )
+	if ($nextEmpty)
 	{
-	    if ( exists $COLUMN_HASH{ "end" . $spaces } )
+	    if (exists $COLUMN_HASH{"end" . $spaces})
 	    {
 		$code = $COLUMN_HASH{ "end" . $spaces };
 		$ARG .= $code . "\n";
 	    }
-	    elsif ( $spaces <= 12 )
+	    elsif ($spaces <= 12)
 	    {
 		# No </p> needed
 	    }
@@ -8960,13 +8960,13 @@ sub DoLine ( % )
 
     #   do not touch "code" text above 12 column amd IMAGES
 
-    if ( not $AsIs )
+    if (not $AsIs)
     {
 	$ARG = XlatWordMarkup $ARG;
 
 	#   If already has /P then do nothing.
 
-	if ( $isBrCode  and  not m,</p>,i )
+	if ($isBrCode  and  not m,</p>,i)
 	{
 	    $ARG .= $br;
 	}
@@ -8974,7 +8974,7 @@ sub DoLine ( % )
 
     # ...................................................... include ...
 
-    if( /(.*)#INCLUDE-(\S+)(.*)/ )
+    if(/(.*)#INCLUDE-(\S+)(.*)/)
     {
 	my $dir = dirname $file;
 
@@ -8983,7 +8983,7 @@ sub DoLine ( % )
 	my $after  = $3;
 	my $mode   = "";
 
-	if ( $url =~ /^raw:(.*)/ )
+	if ($url =~ /^raw:(.*)/)
 	{
 	    $mode = -raw;
 	    $url = $1;
@@ -8991,7 +8991,7 @@ sub DoLine ( % )
 
 	my $out = UrlInclude -dir => $dir, -url => $url, -mode => $mode;
 
-	unless ( $out )
+	unless ($out)
 	{
 	    warn "$id: Include error '$url' in [$file:$ARG]";
 	}
@@ -9032,7 +9032,7 @@ sub DoLine ( % )
 #
 # ****************************************************************************
 
-sub HandleOneFile ( % )
+sub HandleOneFile (%)
 {
     my $id  = "$LIB.HandleOneFile";
 
@@ -9052,7 +9052,7 @@ sub HandleOneFile ( % )
     my $metaDescription     = $arg{-metadescription};
     my $metaKeywords        = $arg{-metakeywords};
 
-    unless ( defined $txt )
+    unless (defined $txt)
     {
 	warn "$id: [ERROR] \$txt is not defined";
 	return;
@@ -9082,10 +9082,10 @@ EOF
 
     # ........................................................ local ...
 
-    my ( $i, $line , @arr, $htmlArrRef);
+    my ($i, $line , @arr, $htmlArrRef);
     my $timeStart = time();
 
-    unless ( defined @$txt[0] )
+    unless (defined @$txt[0])
     {
 	warn "$id: [$file] No input lines found"; # We got no input
 	return;
@@ -9095,12 +9095,12 @@ EOF
     # - If text contain tag <html> in the begining of file then automatically
     #   convert the input into text
 
-    if ( defined @$txt[2] and IsHTML $txt )
+    if (defined @$txt[2] and IsHTML $txt)
     {
 	# warn "$id: Conversion to text:\n";
 	# @$txt = split /\n/, Html2txt($txt);
 
-	unless ( $LINK_CHECK or $LINK_CHECK_ERR_TEXT_ONE_LINE )
+	unless ($LINK_CHECK or $LINK_CHECK_ERR_TEXT_ONE_LINE)
 	{
 	    warn "$id: [WARNING] $file looks like HTML page.\n";
 	    die "$id: Did you meant to add option for link check? See --help"
@@ -9116,7 +9116,7 @@ EOF
 
     #   handle split marks
 
-    if ( defined $regexp )
+    if (defined $regexp)
     {
 	@arr = SplitToFiles $regexp, $file, $splitUseFileNames, $txt;
 	print join("\n", @arr), "\n" ;
@@ -9125,14 +9125,14 @@ EOF
 
     #   Should we ignore some lines according to regexp ?
 
-    if ( defined $DELETE_REGEXP  and  not $DELETE_REGEXP eq "")
+    if (defined $DELETE_REGEXP  and  not $DELETE_REGEXP eq "")
     {
 	@$txt = grep !/$DELETE_REGEXP/o, @$txt ;
     }
 
     @$txt = expand @$txt;                    # Text::Tabs
 
-    if ( $linkCheck )
+    if ($linkCheck)
     {
 	LinkCheckMain -file     => $file
 		  , -array      => $txt
@@ -9144,9 +9144,9 @@ EOF
     {
 	HeaderArrayClear();
 
-	for my $line ( @$txt )
+	for my $line (@$txt)
 	{
-	    if ( defined $line )
+	    if (defined $line)
 	    {
 		my $tmp = DoLine -line  => $line
 		    , -file             => $file
@@ -9177,13 +9177,13 @@ EOF
 
     my $timeDiff = time() -  $timeStart;
 
-    if ( length $auto )
+    if (length $auto)
     {
-	my ( $name, $path, $extension ) = fileparse $file, '\.[^.]+$'; #font '
+	my ($name, $path, $extension) = fileparse $file, '\.[^.]+$'; #font '
 
 	$debug  and  print "$id: fileparse [$name] [$path] [$extension]\n";
 
-	if ( $auto =~ /../ )        # Suppose filename if more than 2 chars
+	if ($auto =~ /../)        # Suppose filename if more than 2 chars
 	{
 	    $path = $auto;
 	}
@@ -9192,7 +9192,7 @@ EOF
 
 	$verb  and  warn "$id: output automatic => $htmlFile\n";
 
-	if ( $frame )
+	if ($frame)
 	{
 	    $htmlFile =  FileFrameNameBody();
 	    WriteFile $htmlFile,  $htmlArrRef;
@@ -9239,10 +9239,10 @@ EOF
 #
 # ****************************************************************************
 
-sub TestPageRun ( $ $ ; $ )
+sub TestPageRun ($ $ ; $)
 {
     my $id = "$LIB.TestPageRun";
-    my ( $cmd, $fileText, $fileHtml ) = @ARG;
+    my ($cmd, $fileText, $fileHtml) = @ARG;
 
     not defined $fileHtml   and  $fileHtml = "";
 
@@ -9250,7 +9250,7 @@ sub TestPageRun ( $ $ ; $ )
 
     my @ret = `$cmd`;
 
-    if ( grep /fail/i, @ret )
+    if (grep /fail/i, @ret)
     {
 	print "$id: Please run the command manually and "
 	      . "use absolute path names";
@@ -9433,7 +9433,7 @@ table.dashed
     );
 }
 
-sub TestPage ( $ )
+sub TestPage ($)
 {
     my $id = "$LIB.TestPage";
 
@@ -9444,12 +9444,12 @@ sub TestPage ( $ )
 #
 #    $destdir = $tmp  if  -d $tmp;
 #
-#    if ( not $destdir )
+#    if (not $destdir)
 #    {
 #        $destdir = $TEMPDIR || $TEMP || "/tmp";
 #    }
 #
-#    unless ( -d $destdir)
+#    unless (-d $destdir)
 #    {
 #        die "[FATAL] Cannot find temporary directory to write test files to.";
 #    }
@@ -9488,7 +9488,7 @@ sub TestPage ( $ )
 
     local $ARG = $PROGRAM_NAME;
 
-    if ( not m,[/\\], )
+    if (not m,[/\\],)
     {
 	#   There is no absolute dir that we could refer to ourself.
 	#   the -S forces perl to search the path, but what if the progrma
@@ -9560,19 +9560,19 @@ sub TestPage ( $ )
     my $staticLibChecked = 0;
     my $staticLibStatus  = 0;
 
-sub Html2Text ( @ )
+sub Html2Text (@)
 {
     my  $id = "$LIB.Html2Text";
     my (@page) = @ARG;
 
     $debug  and  print "$id: CONTENT =>[[[@page]]]";
 
-    unless ( $staticLibChecked )
+    unless ($staticLibChecked)
     {
 	$staticLibChecked = 1;
 	$staticLibStatus = LoadUrlSupport();
 
-	if ( not $staticLibStatus  and  $verb )
+	if (not $staticLibStatus  and  $verb)
 	{
 	    warn "$id: Cannot Convert to HTML. Please get more Perl libraries.";
 	}
@@ -9580,15 +9580,15 @@ sub Html2Text ( @ )
 
     my $content   = join '', @page;
     my $formatter = new HTML::FormatText
-		( leftmargin => 0, rightmargin => 76);
+		(leftmargin => 0, rightmargin => 76);
 
     # my $parser = HTML::Parser->new();
-    # $parser->parse( join '', @list );
+    # $parser->parse(join '', @list);
     # $parser-eof();
 
     # $verb  and  $HTML::Parse::WARN = 1;
 
-    my $html = parse_html( $content );
+    my $html = parse_html($content);
 
     $verb > 1  and  warn "$id: Making conversion\n";
 
@@ -9622,7 +9622,7 @@ sub Html2Text ( @ )
     my $staticLibChecked = 0;
     my $staticLibStatus  = 0;
 
-sub UrlGet ( $; $ )
+sub UrlGet ($; $)
 {
     my  $id = "$LIB.UrlGet";
     my ($url, $opt) = @ARG;
@@ -9630,29 +9630,29 @@ sub UrlGet ( $; $ )
     $debug  and  print "$id: OPT [$opt] Getting URL $url\n";
 
 
-    unless ( $staticLibChecked )
+    unless ($staticLibChecked)
     {
 	$staticLibChecked = 1;
 	$staticLibStatus = LoadUrlSupport();
 
-	if ( not $staticLibStatus  and  $verb )
+	if (not $staticLibStatus  and  $verb)
 	{
 	    warn "$id: Cannot check remote URLs. Please get more Perl libraries.";
 	}
     }
 
-    unless ( $staticLibStatus )
+    unless ($staticLibStatus)
     {
 	$verb  and  print "$id: No URL support: $url\n";
 	return;
     }
 
     my $ua      = new LWP::UserAgent;
-    my $request = new HTTP::Request( 'GET' => $url );
+    my $request = new HTTP::Request( 'GET' => $url);
     my $obj     = $ua->request($request);
     my $stat    = $obj->is_success;
 
-    unless ( $stat )
+    unless ($stat)
     {
 	warn "$id  ** error: $url ",  $obj->message, "\n";
 	return;
@@ -9662,11 +9662,11 @@ sub UrlGet ( $; $ )
     my $ret     = $content;
     # my $head    = $obj->headers_as_string();
 
-    if ( $opt )
+    if ($opt)
     {
 	$ret = Html2Text $content;
 
-	if ( $ret =~ /TABLE NOT SHOWN/ )
+	if ($ret =~ /TABLE NOT SHOWN/)
 	{
 	    $verb  and
 		print "$id: HTML to text conversion failed. Using original.";
@@ -9694,7 +9694,7 @@ sub UrlGet ( $; $ )
 #
 # ****************************************************************************
 
-sub OutputDir ( $ )
+sub OutputDir ($)
 {
     my $id      = "$LIB.OutputDir";
     my ($file)  = @ARG;
@@ -9703,16 +9703,16 @@ sub OutputDir ( $ )
     $ARG_PATH = $file;
     $ARG_PATH = "stdin" if $file eq '-';
 
-    if ( $ARG_PATH eq "stdin" )
+    if ($ARG_PATH eq "stdin")
     {
 	$ARG_PATH = "./stdout";
     }
-    elsif ( $ARG_PATH !~ m,[/\\],  or $OUTPUT_DIR )
+    elsif ($ARG_PATH !~ m,[/\\],  or $OUTPUT_DIR)
     {
 
 	$debug  and  print "$id: output dir [$OUTPUT_DIR]\n";
 
-	if ( not defined $OUTPUT_DIR  or  $OUTPUT_DIR =~ /^\.$|^\s*$/ )
+	if (not defined $OUTPUT_DIR  or  $OUTPUT_DIR =~ /^\.$|^\s*$/)
 	{
 	    $ARG_PATH  = cwd();
 	}
@@ -9753,7 +9753,7 @@ sub OutputDir ( $ )
 #
 # ****************************************************************************
 
-sub GetFile ( % )
+sub GetFile (%)
 {
     my $id = "$LIB.GetFile";
 
@@ -9761,7 +9761,7 @@ sub GetFile ( % )
     my $file    = $arg{-file};
     my $dir     = $arg{-dir};
 
-    if ( not $file  and  not $dir )
+    if (not $file  and  not $dir)
     {
 	warn "$id: [ERROR] file and dir arguments are empty.";
 	return;
@@ -9771,13 +9771,13 @@ sub GetFile ( % )
 
     $debug  and  print "$id: -file [$file] -dir [$dir]\n";
 
-    if ( $file =~ m,://, )
+    if ($file =~ m,://,)
     {
 	my $content = UrlGet $file, -text;
 
-	if ( $content )
+	if ($content)
 	{
-	    for my $line ( split /\r?\n/, $content )
+	    for my $line (split /\r?\n/, $content)
 	    {
 		push @content, $line . "\n";
 	    }
@@ -9785,12 +9785,12 @@ sub GetFile ( % )
     }
     else
     {
-	if ( $file !~ m,[\\/]|^[-~]$,  and $dir )
+	if ($file !~ m,[\\/]|^[-~]$,  and $dir)
 	{
 	    $file  = "$dir/$file";
 	}
 
-	unless ( -f $file )
+	unless (-f $file)
 	{
 	    warn "$id: [WARNING] does not look like a file [$file]";
 	    return;
@@ -9798,7 +9798,7 @@ sub GetFile ( % )
 
 	local *FILE;
 
-	unless ( open FILE, $file )
+	unless (open FILE, $file)
 	{
 	    warn "$id: Cannot open [$file] $ERRNO" ;
 	}
@@ -9810,7 +9810,7 @@ sub GetFile ( % )
 	close FILE              or warn "$id: Cannot close [$file] $ERRNO";
     }
 
-    if ( $debug > 3 )
+    if ($debug > 3)
     {
 	print "$id: file [$file] [$file] CONTENT-START ["
 	      , @content
@@ -9866,7 +9866,7 @@ sub InitArgs (%)
 
     $debug  and  PrintArray "$id: ARGV (after) ", \@ARGV;
 
-    if ( defined $OPT_EMAIL  and  $OPT_EMAIL ne '' )
+    if (defined $OPT_EMAIL  and  $OPT_EMAIL ne '')
     {
 	$OPT_EMAIL =~ s/[<>]//g;        # Do this automatic fix
 	CheckEmail $OPT_EMAIL;
@@ -9898,7 +9898,7 @@ sub Main ()
 
     my $cmdline = join ' ', @ARGV   if  @ARGV;
 
-    if ( defined $cmdline  and  $cmdline =~ /(^|\s)(?:-d|--debug)[\s=]*(\d+)*/ )
+    if (defined $cmdline  and  $cmdline =~ /(^|\s)(?:-d|--debug)[\s=]*(\d+)*/)
     {
 	PrintArray "Main() started - ARGV (orig) ", \@ARGV;
 
@@ -9936,13 +9936,13 @@ sub Main ()
 
     ! -d $dir   and  die "$id: [PANIC] Perl cwd() returned invalid dir $dir";
 
-    unless ( @ARGV  )
+    unless (@ARGV)
     {
 	warn "$id: No command line files, reading STDIN.";
 	push @ARGV, "-";
     }
 
-    for my $url ( @ARGV )
+    for my $url (@ARGV)
     {
 	my @content = GetFile -file => $url,
 			      -dir  => $dir;
@@ -9952,17 +9952,17 @@ sub Main ()
 	# .............................................. auto detect ...
 	# See if this file should be converted at all
 
-	if ( $OPT_AUTO_DETECT )
+	if ($OPT_AUTO_DETECT)
 	{
 	    local $ARG;
 	    my $ok;
 
-	    for ( @content )
+	    for (@content)
 	    {
 		/$OPT_AUTO_DETECT/o  and  $ok = 1, last;
 	    }
 
-	    unless ( $ok )
+	    unless ($ok)
 	    {
 		$verb  and  print "$id: [AUTO-DETECT] skip $url\n";
 		next;
@@ -9979,7 +9979,7 @@ sub Main ()
 	$debug > 3  and  print "$id: content before\n<<<\n@content>>>\n";
 
 	my ($hashRef);
-	( $hashRef, @content ) = XlatDirectives @content;
+	($hashRef, @content) = XlatDirectives @content;
 	my %hash = %$hashRef;
 
 	$debug > 3  and  print "$id: content after\n<<<\n@content>>>\n";
@@ -9991,15 +9991,15 @@ sub Main ()
 	{
 	    my ($key, $first) = @ARG;
 
-	    if ( exists $hash{$key} )
+	    if (exists $hash{$key})
 	    {
 		my $ref     = $hash{$key};
 		my @values  = $first ? @$ref[0] : @$ref;
 
-		if ( $debug > 2 )
+		if ($debug > 2)
 		{
 		    warn "$id.Hash: ($key, $first) => "
-		       , join( '::', @values)
+		       , join('::', @values)
 		       , "\n";
 		}
 
@@ -10018,7 +10018,7 @@ sub Main ()
 
 	my @options = Hash("option");
 
-	if ( @options )
+	if (@options)
 	{
 	    #   Parse user embedded command line directives
 
@@ -10040,7 +10040,7 @@ sub Main ()
 	my $description = $META_DESC        || Hash("metadescription", 1);
 	my $auto        = $OUTPUT_AUTOMATIC ? $outDir : "";
 
-	if ( @content )
+	if (@content)
 	{
 	    HandleOneFile -array    => \@content
 		, -title            => $title
@@ -10070,7 +10070,7 @@ sub TestDriverLinkExtractor ()
 
     $debug = 1;
 
-    for my $lib ( "LWP::UserAgent", "HTML::LinkExtractor" )
+    for my $lib ("LWP::UserAgent", "HTML::LinkExtractor")
     {
 	CheckModule "$lib"       or die "$id: $lib [ERROR] $ERRNO";
     }
@@ -10079,11 +10079,11 @@ sub TestDriverLinkExtractor ()
 
     my $url = "http://www.tpu.fi/~jaalto";
     my $ua  = new LWP::UserAgent;
-    my $req = new HTTP::Request( GET => $url);
+    my $req = new HTTP::Request(GET => $url);
 
-    my $response = $ua->request( $req );
+    my $response = $ua->request($req);
 
-    if ( $response->is_success() )
+    if ($response->is_success())
     {
 	my %hash = ReadLinksMain -file  => $url
 			       , -array => [$response->content()]
@@ -10257,7 +10257,7 @@ Samples per column (heading level h1)
 	    /* 10pt courier navy */
 	    // col 12 and beyond stay as is to preserve code formatting.
 
-	    for( i=0 ; i < 10 ; i++ )
+	    for (i = 0 ; i < 10 ; i++)
 	    {
 		more();
 		whatever();
@@ -10290,7 +10290,7 @@ Table rendering examples
 
 	    #t2html::tableborder:1
 
-	    for ( i = 0; i++; i < 10 )
+	    for (i = 0; i++; i < 10)
 	    {
 		//  Doing something in this loop
 	    }
@@ -10300,7 +10300,7 @@ Table rendering examples
 
 	    #t2html::td:bgcolor=#FFEEFF:tableclass:solid
 
-	    for ( i = 0; i++; i < 10 )
+	    for (i = 0; i++; i < 10)
 	    {
 		//  Doing something in this loop
 	    }
@@ -10310,7 +10310,7 @@ Table rendering examples
 
 	    #t2html::td:bgcolor=#CCFFCC
 
-	    for ( i = 0; i++; i < 10 )
+	    for (i = 0; i++; i < 10)
 	    {
 		//  Doing something in this loop
 	    }
@@ -10322,7 +10322,7 @@ Table rendering examples
 
 	    #t2html::td:bgcolor=#FFFFFF:tableclass:dashed
 
-	    for ( i = 0; i++; i < 10 )
+	    for (i = 0; i++; i < 10)
 	    {
 		//  Doing something in this loop
 	    }
@@ -10336,7 +10336,7 @@ Table rendering examples
 
 	    #t2html::td:bgcolor="#EAEAEA":table:border=1_border=0_cellpadding="10"_cellspacing="0"
 
-	    for ( i = 0; i++; i < 10 )
+	    for (i = 0; i++; i < 10)
 	    {
 		//  Doing something in this loop
 	    }
@@ -10348,7 +10348,7 @@ Table rendering examples
 
 	    #t2html::td:class=color-white:table:cellpadding=0
 
-	    for ( i = 0; i++; i < 10 )
+	    for (i = 0; i++; i < 10)
 	    {
 		//  Doing something in this loop
 	    }
