@@ -23,6 +23,8 @@ ifneq (,)
 This makefile requires GNU Make.
 endif
 
+PATH		:= bin:$(PATH)
+
 PACKAGE		= t2html
 DESTDIR		=
 prefix		= /usr
