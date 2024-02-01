@@ -1,5 +1,3 @@
-#!/usr/bin/make -f
-#
 #   Copyright information
 #
 #	Copyright (C) 2002-2020 Jari Aalto
