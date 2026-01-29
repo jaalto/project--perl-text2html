@@ -78,7 +78,7 @@ use vars qw ($VERSION);
 #   The following variable is updated by Emacs setup whenever
 #   this file is saved.
 
-$VERSION = '2020.0819.0706';
+$VERSION = '2026.0129.1801';
 
 # ****************************************************************************
 #
@@ -333,9 +333,13 @@ sub Initialize ()
 
     sub Here($);
 
+    my $doctypeOld = Here <<"EOF";
+        <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                 "http://www.w3.org/TR/html4/loose.dtd">
+EOF
+
     my $doctype = Here <<"EOF";
-	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-		  "http://www.w3.org/TR/html4/loose.dtd">
+	<DOCTYPE html>
 EOF
 
     my $doctype_frame = HereQuote <<"EOF";
